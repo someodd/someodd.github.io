@@ -5,8 +5,8 @@ date: 2024-03-05
 categories: showcase
 tags: sdl haskell game nix
 image:
-  path: /assets/posts/haskellcard/haskellcard-xmas-release-demo.gif
-  thumbnail: /assets/posts/haskellcard/haskellcard-xmas-release-demo.gif
+  path: /assets/posts/haskellcard/haskellcard-xmas-release.png
+  thumbnail: /assets/posts/haskellcard/haskellcard-xmas-release.png
   caption: haskellcard xmas release screenshot
 ---
 
