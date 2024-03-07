@@ -83,9 +83,7 @@ defaults:
       comments: true
       share: true
 
-#title: Categories Archive
-#layout: categories
-#permalink: /foo/
+logo: /assets/logo.png
 
 # Site Author
 author:
