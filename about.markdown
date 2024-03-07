@@ -16,4 +16,7 @@ someodd also enjoys these softwares:
   * Firefox
   * WindowMaker
 
-[@someodd on Fosstodon/Mastodon](https://fosstodon.org/@someodd).
+On the web:
+
+  * [@someodd on Fosstodon/Mastodon](https://fosstodon.org/@someodd).
+  * [@someodd on GitHub](https://github.com/someodd)
