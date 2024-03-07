@@ -4,8 +4,10 @@ title: "Productivity in Window Maker"
 date: 2024-03-04
 categories: notes
 tags: windowmaker debian
-image: /assets/posts/window-maker/screenshot-window-maker.png
-image.caption: Being Productive in Window Maker
+image:
+  path: /assets/posts/window-maker/screenshot-window-maker.png
+  thumbnail: /assets/posts/window-maker/screenshot-window-maker.png
+  caption: Being Productive in Window Maker
 ---
 
 I use the old school, lightweight [Window Maker](http://www.windowmaker.org/)
