@@ -1,7 +1,7 @@
 ---
 title: Showcase
 layout: collection
-permalink: /showcase
+permalink: /showcase/
 collection: showcase
 entries_layout: grid
 ---
