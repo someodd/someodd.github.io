@@ -5,8 +5,8 @@ date: 2024-03-05
 categories: showcase
 tags: gopher haskell debian
 image:
-  path: /assets/posts/waffle/waffle-playing-solitaire.png
-  thumbnail: /assets/posts/waffle/waffle-playing-solitaire.png
+  path: /assets/showcase/waffle/waffle-playing-solitaire.png
+  thumbnail: /assets/showcase/waffle/waffle-playing-solitaire.png
   caption: Screenshot of Waffle being used
 ---
 
@@ -42,23 +42,23 @@ Some other highlights:
 
 I believe Waffle has an INI file for customization:
 
-![Waffle style configuration](/assets/posts/waffle/waffle-customization.gif)
+![Waffle style configuration](/assets/showcase/waffle/waffle-customization.gif)
 
 Playing a hacking game in Waffle on mozz.us:
 
-![Playing a hacking game with Waffle](/assets/posts/waffle/waffle-playing-hacking-game.gif)
+![Playing a hacking game with Waffle](/assets/showcase/waffle/waffle-playing-hacking-game.gif)
 
 Waffle playing solitaire:
 
-![Waffle playing solitaire](/assets/posts/waffle/waffle-playing-solitaire.png)
+![Waffle playing solitaire](/assets/showcase/waffle/waffle-playing-solitaire.png)
 
 Waffle playing Zork:
 
-![Waffle playing Zork](/assets/posts/waffle/waffle-playing-zork.png)
+![Waffle playing Zork](/assets/showcase/waffle/waffle-playing-zork.png)
 
 An example of Waffle's search and refresh abilities (also kind of showing off caching):
 
-![Search and refresh in Waffle](/assets/posts/waffle/waffle-search-and-refresh-quotes.gif)
+![Search and refresh in Waffle](/assets/showcase/waffle/waffle-search-and-refresh-quotes.gif)
 
 ## The development journey
 

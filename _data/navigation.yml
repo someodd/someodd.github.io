@@ -1,6 +1,8 @@
 - title: Notes
   url: /categories/notes
 - title: Showcase
-  url: /categories/showcase
+  url: /showcase/
 - title: About
-  url: /about
+  url: /about/
+- title: Search
+  url: /search/

@@ -1,8 +1,8 @@
 ---
 title: Showcase
-layout: category
-permalink: /categories/showcase/
-taxonomy: showcase
+layout: collection
+permalink: /showcase
+collection: showcase
 entries_layout: grid
 ---
 

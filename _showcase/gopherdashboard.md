@@ -5,8 +5,8 @@ date: 2024-03-05
 categories: showcase
 tags: gopher haskell
 image:
-  path: /assets/posts/gopherdashboard/gopherdashboard-demo.gif
-  thumbnail: /assets/posts/gopherdashboard/gopherdashboard-demo.gif
+  path: /assets/showcase/gopherdashboard/gopherdashboard-demo.gif
+  thumbnail: /assets/showcase/gopherdashboard/gopherdashboard-demo.gif
   caption: Demo of gopherdashboard being used
 ---
 
@@ -21,5 +21,4 @@ Cool features:
 
   * Execute arbitrary commands if you want (flag to enable this not-so-safe feature)
   * Monitor arbitrary files
-  * COnfigure through a JSON file
-
+  * Configure through a JSON file

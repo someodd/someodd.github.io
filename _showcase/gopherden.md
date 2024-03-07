@@ -5,8 +5,8 @@ date: 2024-03-05
 categories: showcase
 tags: gopher haskell
 image:
-  path: /assets/posts/gopherden/gopherden-demo.gif
-  thumbnail: /assets/posts/gopherden/gopherden-demo.gif
+  path: /assets/showcase/gopherden/gopherden-demo.gif
+  thumbnail: /assets/showcase/gopherden/gopherden-demo.gif
   caption: Screenshot of gopherden being used
 ---
 
