@@ -40,10 +40,10 @@ Below is a photo of me using Lagrange to visit the forum on my phone:
 
 ![Langrange client on a phone, visiting a gopherden forum](/assets/showcase/gopherden/lagrange-gopherden-phone.png).
 
-## Setting up a server the lazy way
+## Setting up a server
 
 As of the time I'm writing this I don't have a `systemd` integration or Debian
-package, so an easy set up is:
+package, so a set up I like and think is simple/easy:
 
 1. clone the repo and `cd` into it
 1. make sure `nixpkgs` is installed on your
