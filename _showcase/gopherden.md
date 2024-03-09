@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "gopherden: Gopher Protocol Server"
-date: 2024-03-05
+date: 2024-03-08
 categories: showcase
 tags: gopher haskell
 image:
@@ -24,3 +24,18 @@ I'm leveraging `nixpkgs` to:
   * Have a development environment that sets up/takes down postgresql for
     me, which also helps with deploying a little demo server I'm hosting
     now. It also wipes the database on exit, too.
+
+## It's alive!
+
+You can try out a live server running `gopherden`! You just need a Gopher client!
+
+You can use `gopher` (`sudo apt-get install gopher`) and then use `gopher -p "/" someodd.duckdns.org 7070`.
+
+You could also use [Lagrange](https://gmi.skyjake.fi/lagrange/), which has a
+client for Linux, MacOS, Windows, Android, and iOS. Then visit:
+
+gopher://someodd.duckdns.org:7070/1/
+
+Below is a photo of me using Lagrange to visit the forum on my phone:
+
+![Langrange client on a phone, visiting a gopherden forum](/assets/showcase/gopherden/lagrange-gopherden-phone.png).
