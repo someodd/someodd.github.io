@@ -10,7 +10,9 @@ image:
   caption: Demo of gopherdashboard being used
 ---
 
-You may have heard of *static site generators*. You may even have heard of the [Gopher Protocol](https://en.wikipedia.org/wiki/Gopher_(protocol)). But have you heard of a *static gopherhole generator?*
+You may have heard of *static site generators*. You may even have heard of the
+[Gopher Protocol](https://en.wikipedia.org/wiki/Gopher_(protocol)). But have
+you heard of a *static gopherhole generator?*
 
 [burrow](https://github.com/someodd/burrow) creates gopherholes for you. It has
 a lot of features to do so. It's so good, in my opinion, I'm considering
@@ -28,3 +30,6 @@ have worked with on other matters as well.
 This is an example of a gopherhole generated with *burrow,* as rendered by my software [waffle](/showcase/waffle):
 
 ![burrow-generated gopherhole in waffle](/assets/showcase/burrow/burrow-columnate-fonts-justify-example.png)
+
+[The burrow repository](https://github.com/someodd/burrow) (hopefully) has an
+example of a gopherhole that can be built with `burrow`.
