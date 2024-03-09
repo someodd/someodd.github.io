@@ -94,7 +94,6 @@ author:
     - title: Mastodon
       url: https://fosstodon.org/@someodd
       icon: fab fa-mastodon
-    - title: Instagram
     - title: GitHub
       url: https://github.com/someodd
       icon: fab fa-github-square
