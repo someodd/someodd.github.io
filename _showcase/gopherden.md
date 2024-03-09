@@ -17,3 +17,10 @@ with some features I find interesting:
   * Ephemeral (old threads are deleted)
   * Anonymous (IPs are held for banning purposes, though)
   * View threads as menus or files
+
+I'm leveraging `nixpkgs` to:
+
+  * Make it very easy on me to build and deploy, particularly on my server
+  * Have a development environment that sets up/takes down postgresql for
+    me, which also helps with deploying a little demo server I'm hosting
+    now. It also wipes the database on exit, too.
