@@ -39,3 +39,19 @@ gopher://someodd.duckdns.org:7070/1/
 Below is a photo of me using Lagrange to visit the forum on my phone:
 
 ![Langrange client on a phone, visiting a gopherden forum](/assets/showcase/gopherden/lagrange-gopherden-phone.png).
+
+## Setting up a server the lazy way
+
+As of the time I'm writing this I don't have a `systemd` integration or Debian
+package, so an easy set up is:
+
+1. clone the repo and `cd` into it
+1. make sure `nixpkgs` is installed on your
+   system with `experimental-features = flakes nix-command` in your
+   `~/.config/nix/nix.conf`
+1. start a GNU Screen session `screen -S services`
+1. `nix develop`
+1. `nix run .#gopherden -- launch`
+
+There you go! Keep in mind if you send the exit signal (I think) inside of `nix
+develop` the database gets wiped.
