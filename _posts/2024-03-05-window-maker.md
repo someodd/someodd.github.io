@@ -321,6 +321,10 @@ Use `brightnessctl set 10%-` and `brightnessctl set 10%+` then add to menu and a
 
 ## Essential programs
 
+### Other/quick mentions
+
+  * RSS: Liferea
+
 ### Login manager
 
 I recommend using LightDM as your login manager. One thing I like about it is I

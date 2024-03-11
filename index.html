@@ -3,11 +3,10 @@ layout: page
 excerpt: "someodd"
 show_excerpts: true
 paginate: true
-entries_layout: grid
+entries_layout: list
 ---
 
-{% assign combined_collections = site.posts | concat: site.showcase %}
-{% assign sorted_posts = combined_collections | sort: 'date' | reverse %}
+{% assign sorted_posts = site.posts | sort: 'date' | reverse %}
 
 <div class="entries-{{ page.entries_layout | default: 'list' }}">
   {% for entry in sorted_posts %}

@@ -55,14 +55,13 @@ plugins:
 #
 
 search_full_content: true
-  #category_archive_path: "/categories/#"
-category_archive_path: "/categories/"
+category_archive_path: "/"
 tag_archive_path: "/tags/#"
 
 collections:
-  showcase:
+  posts:
     output: true
-    permalink: /:collection/:path/
+    permalink: /:categories/:title/
 
 # Front Matter Defaults
 defaults:
@@ -74,29 +73,12 @@ defaults:
       layout: post
       comments: true
       share: true
-  # Recipe defaults
-  - scope:
-      path: "_showcase"
-      type: showcase
-    values:
-      layout: post
-      comments: true
-      share: true
 
 logo: /assets/logo.png
 
 # Site Author
 author:
-  name: someodd
-  picture: /assets/someodd.png
-  email:
-  links:
-    - title: Mastodon
-      url: https://fosstodon.org/@someodd
-      icon: fab fa-mastodon
-    - title: GitHub
-      url: https://github.com/someodd
-      icon: fab fa-github-square
+  links: false
 
 # Footer Links
 footer_links:
