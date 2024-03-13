@@ -42,6 +42,7 @@ install) a Window-Maker-centric Debian setup.
 - [ ] deja-dup
 - [ ] cursor theme
 - [ ] icon theme
+- [ ] power daemon management (efficient/battery save vs performance)
 - [ ] touchpad
 - [ ] i don't like middle click paste.
 - [ ] xsreensaver lock broken? hotkey... startup problem?
@@ -61,7 +62,17 @@ dockapps I've tried seem to all have good man pages, I think.
 
   * `wmclock`: I like this because it shows the time and the date as a
     tear-away date pad graphic.
-  * `wmbattery` and `wmacpi`: two different battery-relaed dockapps!
+  * `wmbattery` and `wmacpi`: two different battery-relaed dockapps! A special note for launch command for `wmbattery`:
+
+   * `wmbattery` lets you execute a command when the battery is below critical.
+     Here's a command that will send a notification that the battery is
+     critically low):
+     ```
+     wmbattery -c 10 -l 30 -a /home/tilde/Music/sfx/sosumi.au -x "/usr/bin/espeak -v en-us+whisper 'critically low battery' -a 200 -s 130 && /usr/bin/notify-send -w -u critical -i /usr/share/WindowMaker/Icons/timer.tiff 'Low Battery' 'Battery at %percent%%, with %minutes% minutes left.'"
+     ```
+     Note the full/abs/real paths. The audio file is an `.au`, I feel it's kind
+     of hard to find `.au` files these days.
+
   * `wmbubble`, `wmcube`, `wmforkplop`, `wmmon`, `wmtop`: fun and/or
     informative dockapps for system information, a few of which are veyr
     visually interesting/fun to me.
@@ -426,12 +437,23 @@ lat=...
 lon=...
 ```
 
-### Claws
+### Claws/claws-mail
 
 I use this email client with [Protonmail Bridge](https://proton.me/mail/bridge)
 and `wmbiff` (mentioned in this document).
 
 Really feels like it fits the spirit of Window Maker, to me.
+
+#### Configuration
+
+I think I did create `~/.claws-mail/queue` and set it as the
+*Preferences for current account* then *advanced* tand *put queued messages in*
+and I used the absolute path/realpath, because it complained about the queue
+directory or something. even then it didn't work
+
+FIXME
+
+It may also complain about not being able to open signature.
 
 ### Bonus software+ apps i like using with
 
