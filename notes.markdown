@@ -14,6 +14,6 @@ polished enough to be articles.
 -- Confucius
 
 > Dit que le mieux est l'ennemi du bien.
-> Perfect is the enemy of good.
+> (Perfect is the enemy of good.)
 
 -- Voltaire
