@@ -135,7 +135,7 @@ I made sure that there was a `flake.lock` and I also did a `cabal freeze` inside
 
 1. `nix develop`
 1. `cabal build`
-1. `cabal freeze`
+1. `cabal freeze` -- although if i freeze inside nix develop then i can't build with cabal outside and vice-versa!
 1. `ghc --version`: note the version
 1. exit `nix develop`
 1. Use `ghcup` to set the GHC version to the version shown earlier
@@ -183,3 +183,9 @@ weird issues with `nix-develop`, like it takes so incredibly long to launch
 
 Then after all that I advice checking doing `cabal freeze` in `nix develop` and
 rebuilding.
+
+after a lot of troubleshooting trying to get cabal freeze to work in both nix develop and regular cabal i noticed the cabal produced by regular had later zlib version than nix, so I tried setting the nix version in the nix file
+
+don't forget to use your `ghcup` install carefully (using right ghc).
+
+In the end I decided not to worry about `cabal freeze`.
