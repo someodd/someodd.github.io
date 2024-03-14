@@ -25,6 +25,12 @@ I'm leveraging `nixpkgs` to:
     me, which also helps with deploying a little demo server I'm hosting
     now. It also wipes the database on exit, too.
 
+I also started trying out TOML as a configuration spec for the first time and
+I'm enjoying it, the TOML library I'm using for Haskell is decent.
+
+I'm using Spacecookie as the Gopher server. I've worked with the author of
+Spacecookie before!
+
 ## It's alive!
 
 You can try out a live server running `gopherden`! You just need a Gopher client!
