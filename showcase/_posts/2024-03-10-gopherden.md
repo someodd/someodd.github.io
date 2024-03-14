@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "gopherden: Gopher Protocol Server"
+title: "gopherden: Forum via Gopher Protocol"
 date: 2024-03-08
 categories: showcase
 tags: gopher haskell
