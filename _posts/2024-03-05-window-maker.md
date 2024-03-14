@@ -451,7 +451,8 @@ I think I did create `~/.claws-mail/queue` and set it as the
 and I used the absolute path/realpath, because it complained about the queue
 directory or something. even then it didn't work
 
-FIXME
+I finally set the queue folder to the IMAP *Drafts* folder or whatever and now
+it works!
 
 It may also complain about not being able to open signature.
 
