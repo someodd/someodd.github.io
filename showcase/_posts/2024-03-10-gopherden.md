@@ -18,6 +18,9 @@ with some features I find interesting:
   * Anonymous (IPs are held for banning purposes, though)
   * View threads as menus or files
 
+Visit the official live demo of the forum at
+[gopher://gopher.someodd.zip:7070/](gopher://gopher.someodd.zip:7070/).
+
 I'm leveraging `nixpkgs` to:
 
   * Make it very easy on me to build and deploy, particularly on my server
@@ -35,12 +38,12 @@ Spacecookie before!
 
 You can try out a live server running `gopherden`! You just need a Gopher client!
 
-You can use `gopher` (`sudo apt-get install gopher`) and then use `gopher -p "/" someodd.duckdns.org 7070`.
+You can use `gopher` (`sudo apt-get install gopher`) and then use `gopher -p "/" gopher.someodd.zip 7070`.
 
 You could also use [Lagrange](https://gmi.skyjake.fi/lagrange/), which has a
 client for Linux, MacOS, Windows, Android, and iOS. Then visit:
 
-gopher://someodd.duckdns.org:7070/1/
+gopher://gopher.someodd.zip:7070/
 
 Below is a photo of me using Lagrange to visit the forum on my phone:
 

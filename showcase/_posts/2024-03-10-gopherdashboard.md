@@ -16,11 +16,6 @@ Anonymous forum software written for the Gopher Protocol in Haskell. You may
 want to read [my article on using the Gopher
 Protocol](/posts/2024/03/10/gopher.md).
 
-Visit the official live demo of the forum at
-[gopher://someodd.duckdns.org:7070/](gopher://someodd.duckdns.org:7070/). For
-some reason [Lagrange](https://gmi.skyjake.fi/lagrange/) wants the address
-[gopher://someodd.duckdns.org:7070/1/](gopher://someodd.duckdns.org:7070/1/).
-
 Some core things I learned or did:
 
   * systemd daemon managed
