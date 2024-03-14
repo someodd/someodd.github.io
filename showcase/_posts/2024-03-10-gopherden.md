@@ -3,7 +3,7 @@ layout: post
 title: "gopherden: Forum via Gopher Protocol"
 date: 2024-03-08
 categories: showcase
-tags: gopher haskell
+tags: gopher haskell nix
 image:
   path: /assets/showcase/gopherden/gopherden-demo.gif
   thumbnail: /assets/showcase/gopherden/gopherden-demo.gif
