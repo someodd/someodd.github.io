@@ -45,6 +45,10 @@ client for Linux, MacOS, Windows, Android, and iOS. Then visit:
 
 gopher://gopher.someodd.zip:7070/
 
+Please note that lagrange doesn't support the `h` item type yet, it just
+appears as a removed/blank line, but [I have made an issue about
+that](https://github.com/skyjake/lagrange/issues/658).
+
 Below is a photo of me using Lagrange to visit the forum on my phone:
 
 ![Langrange client on a phone, visiting a gopherden forum](/assets/showcase/gopherden/lagrange-gopherden-phone.png).
