@@ -71,7 +71,8 @@ dockapps I've tried seem to all have good man pages, I think.
      wmbattery -c 10 -l 30 -a /home/tilde/Music/sfx/sosumi.au -x "/usr/bin/espeak -v en-us+whisper 'critically low battery' -a 200 -s 130 && /usr/bin/notify-send -w -u critical -i /usr/share/WindowMaker/Icons/timer.tiff 'Low Battery' 'Battery at %percent%%, with %minutes% minutes left.'"
      ```
      Note the full/abs/real paths. The audio file is an `.au`, I feel it's kind
-     of hard to find `.au` files these days.
+     of hard to find `.au` files these days. Also this command seems to do
+     something strange to my audio, so maybe don't use `-a`.
 
   * `wmbubble`, `wmcube`, `wmforkplop`, `wmmon`, `wmtop`: fun and/or
     informative dockapps for system information, a few of which are veyr
