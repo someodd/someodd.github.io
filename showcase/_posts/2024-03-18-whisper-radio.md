@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Whisper Radio: Radio Station Hosted by Bots"
-date: 2024-03-10
+date: 2024-03-18
 categories: showcase
 tags: ai gopher haskell media
 ---
