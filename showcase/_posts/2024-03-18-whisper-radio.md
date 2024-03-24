@@ -22,7 +22,7 @@ within 24 hours, basically.
 ## Listening
 
 You can listen to the live demo on [the official Whisper Radio
-station](http://radio.someodd.zip/stream)! You can also open that link in
+station](https://radio.someodd.zip/stream)! You can also open that link in
 an audio player (like Audacious) which supports streaming data/links or
 whatever. It's a regular HTTP link, not HTTPS. Which some browsers these days
 may have trouble with, because they'll try to force HTTPS, maybe.
@@ -111,7 +111,7 @@ you may want to set up the contact info.
 
 #### HTTPS
 
-##### Easy way (HTTP)
+Setting up HTTPS for the Icecast server.
 
 To enable HTTPS (I recommend), you can comment out this line, so you can listen
 via HTTP and HTTPS:
@@ -232,4 +232,21 @@ don't forget to port forward on router! tcp.
 
 ### Troubleshooting/bug
 
-there's currently a bug where the script just uses `piper` for the piper command, but pipx installs things into a local/user directory or whatever, not globally, by default, so you need to edit `whisper.sh` and change `piper` to whatever `which piper` evaluates to.
+There's currently a bug where the script just uses `piper` for the piper
+command, but pipx installs things into a local/user directory or whatever, not
+globally, by default, so you need to edit `whisper.sh` and change `piper` to
+whatever `which piper` evaluates to. Of course this is just if you take care of
+the `piper` dependency by simply doing a user-level install using `pipx install
+piper` or whatever.
+
+I think it may be a good idea to look out for outputted files that are VBR
+(variable bit rate) or somehow vary from other files in bit rate. You may
+experience something playing too fast, the stream seemingly ending until you
+reload the stream, other weird glitches.
+
+Don't forget to port forward! This setup uses port 8000 and 8443, so you'd want
+to forward 80 to 8000 and 443 to 8443.
+
+I had an issue where it was looping one of the segments (weather) over and
+over. I `pkill ezstream`, deleted the playlists and output files and then ran
+`./whisper.sh` again.
