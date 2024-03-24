@@ -232,6 +232,12 @@ don't forget to port forward on router! tcp.
 
 ### Troubleshooting/bug
 
+Try loading the main playlist with `ezstream` manually if you have any troubles:
+
+```
+ezstream -v -c ezstream.xml
+```
+
 There's currently a bug where the script just uses `piper` for the piper
 command, but pipx installs things into a local/user directory or whatever, not
 globally, by default, so you need to edit `whisper.sh` and change `piper` to
