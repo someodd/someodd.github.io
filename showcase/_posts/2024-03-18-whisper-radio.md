@@ -33,7 +33,8 @@ image in vlc (phone)
 
 ## set up+securing (walk through what i did)
 
-read the project's readme. it'll be more reliable for big parts of this.
+Read the project's readme. it'll be more reliable for big parts of this and I
+won't be going over everything here.
 
 I started setting up inside a screen session i use for server stuff. i created a new window (Simply press `Ctrl-a` followed by `c`).
 
@@ -60,37 +61,6 @@ Download the Piper voices:
 curl -o en_US-hfc_female-medium.onnx.json "https://huggingface.co/rhasspy/piper-voices/resolve/v1.0.0/en/en_US/hfc_female/medium/en_US-hfc_female-medium.onnx.json"
 curl -o en_US-hfc_female-medium.onnx -L "https://huggingface.co/rhasspy/piper-voices/resolve/v1.0.0/en/en_US/hfc_female/medium/en_US-hfc_female-medium.onnx?download=true"
 ```
-
-Remember the credentials you entered? Edit `ezstream.xml` to reflect your source password (replace `hackme`) and I guess also change the path to the playlist (project root + `playlist-main.m3u`):
-
-```
-<ezstream>
-
-  <servers>
-    <server>
-      <hostname>127.0.0.1</hostname>
-      <port>8000</port>
-      <password>hackme</password>
-    </server>
-  </servers>
-
-  <streams>
-    <stream>
-      <mountpoint>/stream</mountpoint>
-      <format>MP3</format>
-    </stream>
-  </streams>
-
-  <intakes>
-    <intake>
-      <filename>/home/you/Projects/whisper-radio/playlist-main.m3u</filename>
-      <stream_once>0</stream_once>
-      <shuffle>No</shuffle>
-    </intake>
-  </intakes>
-```
-
-edit `whisper.sh` especially project root
 
 ### icecast2 server setup
 
@@ -214,19 +184,6 @@ sudo ufw allow 8443/tcp comment 'icecast/whisper radio (SSL)'
 I didn't like that the admin web interface was exposed to the internet...
 
 ### start the server + crontab it!
-
-```
-sudo service icecast2 start
-./whisper.sh
-```
-
-If you get `./whisper.sh: line 25: piper: command not found` just try starting new session. In my case i closed the gnu screen window (ctrl d) and then started a new window and started over basically (relaunched whisper).
-
-`crontab -e`:
-
-```
-*/5 * * * * /home/you/dir/whisper-radio/whisper.sh > /home/you/dir/whisper-radio/logfile 2>&1
-```
 
 don't forget to port forward on router! tcp.
 
