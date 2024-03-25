@@ -21,6 +21,10 @@ with some features I find interesting:
 Visit the official live demo of the forum at
 [gopher://gopher.someodd.zip:7070/](gopher://gopher.someodd.zip:7070/).
 
+You can also [use the Floodgap Gopher-HTTP gateway to use the project basically
+like a normal
+website](https://gopher.floodgap.com/gopher/gw?a=gopher%3A%2F%2Fgopher.someodd.zip%3A7070%2F)!
+
 I'm leveraging `nixpkgs` to:
 
   * Make it very easy on me to build and deploy, particularly on my server
@@ -36,18 +40,16 @@ Spacecookie before!
 
 ## It's alive!
 
+Official *gopherden* server at gopher://gopher.someodd.zip:7070
+
 You can try out a live server running `gopherden`! You just need a Gopher client!
+
+You can use [my Gopher Protocol client, "waffle"](/showcase/waffle) to visit the forum!
 
 You can use `gopher` (`sudo apt-get install gopher`) and then use `gopher -p "/" gopher.someodd.zip 7070`.
 
 You could also use [Lagrange](https://gmi.skyjake.fi/lagrange/), which has a
-client for Linux, MacOS, Windows, Android, and iOS. Then visit:
-
-gopher://gopher.someodd.zip:7070/
-
-Please note that lagrange doesn't support the `h` item type yet, it just
-appears as a removed/blank line, but [I have made an issue about
-that](https://github.com/skyjake/lagrange/issues/658).
+client for Linux, MacOS, Windows, Android, and iOS.
 
 Below is a photo of me using Lagrange to visit the forum on my phone:
 
