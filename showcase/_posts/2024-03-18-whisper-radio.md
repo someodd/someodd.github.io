@@ -12,9 +12,9 @@ image:
 
 Whisper Radio is a (hopefully) 24/7 Internet radio station "hosted by a bot."
 
-Text-To-Speech (TTS, both AI and older-school) is leveraged to dynamically read news, texts, trends, announce the next song, report the weather, and maybe more!
+Text-To-Speech (TTS, both AI and older-school) is leveraged to dynamically read news, texts, trends, announce the next song, report the weather, and maybe more! Configurable!
 
-Maybe the coolest feature is the interactive feature where the "host" replies to posts on [Fosstodon](https://fosstodon.org), under a specific hashtag.
+Maybe the coolest feature is the interactive feature where the "host" replies to posts on [Fosstodon](https://fosstodon.org), [under a specific hashtag](https://fosstodon.org/tags/whisperradio).
 
 [The Whisper Radio project is basically Bash scripting and is open source on GitHub](https://github.com/someodd/whisper-radio).
 
@@ -23,6 +23,7 @@ Lovingly named after the [espeak](https://espeak.sourceforge.net/) voice which r
 <audio controls>
   <source src="https://radio.someodd.zip/stream" type="audio/mp3">
 </audio>
+
 ## Inspiration
 
 I got the idea one night to have a radio station that is just TTS reading out
