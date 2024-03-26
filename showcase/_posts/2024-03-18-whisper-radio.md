@@ -4,20 +4,36 @@ title: "Whisper Radio: Radio Station Hosted by Bots"
 date: 2024-03-18
 categories: showcase
 tags: ai gopher haskell media
+image:
+  path: /assets/showcase/whisper-radio/ai-generated-robot-radio-host.webp
+  thumbnail: /assets/showcase/whisper-radio/ai-generated-robot-radio-host.webp
+  caption: AI-generated image of a robot radio host.
 ---
 
-[The Whisper Radio software project](https://github.com/someodd/whisper-radio) is software which hosts an automated Internet radio station, using text-to-speech and...
+Whisper Radio is a (hopefully) 24/7 Internet radio station "hosted by a bot."
 
-Uses some old school TTS and AI TTS.
+Text-To-Speech (TTS, both AI and older-school) is leveraged to dynamically read news, texts, trends, announce the next song, report the weather, and maybe more!
+
+Maybe the coolest feature is the interactive feature where the "host" replies to posts on [Fosstodon](https://fosstodon.org), under a specific hashtag.
+
+[The Whisper Radio project is basically Bash scripting and is open source on GitHub](https://github.com/someodd/whisper-radio).
+
+Lovingly named after the [espeak](https://espeak.sourceforge.net/) voice which reads some of the segments.
+
+<audio controls>
+  <source src="https://radio.someodd.zip/stream" type="audio/mp3">
+</audio>
+## Inspiration
 
 I got the idea one night to have a radio station that is just TTS reading out
 random things like... or whatever. I quickly hacked together some using bash
 within 24 hours, basically.
 
-<audio controls>
-  <source src="https://radio.someodd.zip/stream" type="audio/mp3">
-</audio>
+## Developer story
 
+Making this project was fun! It was interesting hacking various tools together with Bash. I feel like my Haskell experience when it comes to statelessness/immutability maybe came in handy when it came to scripting parts of this project.
+
+One of the most annoying, yet oddly fun, parts of the project was lots of copyright-compatible text and audio.
 
 ## Listening
 
@@ -27,13 +43,11 @@ an audio player (like Audacious) which supports streaming data/links or
 whatever. It's a regular HTTP link, not HTTPS. Which some browsers these days
 may have trouble with, because they'll try to force HTTPS, maybe.
 
-image in audacious
-
-image in vlc (phone)
+I have used VLC to listen to it on my phone.
 
 ## set up+securing (walk through what i did)
 
-Read the project's readme. it'll be more reliable for big parts of this and I
+Read [the project's README.md](https://github.com/someodd/whisper-radio). it'll be more reliable for big parts of this and I
 won't be going over everything here.
 
 I started setting up inside a screen session i use for server stuff. i created a new window (Simply press `Ctrl-a` followed by `c`).
@@ -43,17 +57,9 @@ git clone https://github.com/someodd/whisper-radio
 cd whisper-radio
 ```
 
-here's the dependencies as of this time:
+I installed the dependencies. I also ran `pipx ensurepath`.
 
-```
-sudo apt-get update
-sudo apt-get install espeak jq curl ezstream icecast2 metar ffmpeg pipx ffmpeg xmlstarlet
-pipx install piper-tts
-```
-
-I also ran `pipx ensurepath`.
-
-Icecast may ask for FQDN--this is what people will listen on. I entered `radio.someodd.zip`. Then maybe enter and note your source password (I think this is to manage the server?) and some other credenitals I guess. Note these!
+Icecast may ask for FQDN--this is what people will listen on. I entered `radio.someodd.zip`. Then maybe enter and note your source password (I think this is to manage the server?) and some other credentials I guess. Note those!
 
 Download the Piper voices:
 
@@ -195,8 +201,8 @@ Try loading the main playlist with `ezstream` manually if you have any troubles:
 ezstream -v -c ezstream.xml
 ```
 
-There's currently a bug where the script just uses `piper` for the piper
-command, but pipx installs things into a local/user directory or whatever, not
+The script just uses `piper` for the piper
+command, but pipx installs things into a local/user directory by default or whatever, not
 globally, by default, so you need to edit `whisper.sh` and change `piper` to
 whatever `which piper` evaluates to. Of course this is just if you take care of
 the `piper` dependency by simply doing a user-level install using `pipx install
