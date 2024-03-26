@@ -3,7 +3,7 @@ layout: post
 title: "Whisper Radio: Radio Station Hosted by Bots"
 date: 2024-03-18
 categories: showcase
-tags: ai gopher haskell media
+tags: ai bash media
 image:
   path: /assets/showcase/whisper-radio/ai-generated-robot-radio-host.webp
   thumbnail: /assets/showcase/whisper-radio/ai-generated-robot-radio-host.webp
