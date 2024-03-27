@@ -190,6 +190,23 @@ don't forget to use your `ghcup` install carefully (using right ghc).
 
 In the end I decided not to worry about `cabal freeze`.
 
+## VS Code
+
+direnv (carefully follow instructions) and add this to project root (`hie.yaml` I guess so HLS knows to use cabal not stack or whatever):
+
+```
+cradle:
+  cabal:
+
+```
+
+install these plugins to vscode: 
+
+* direnv by cab404
+* haskell by haskell
+* i think nix env selector doesn't work with flakes?
+* nix ide
+
 ## Crazy caveat
 
 I ran into this weird issue where when I try to `nix build` it'd complain about
