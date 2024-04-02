@@ -173,7 +173,7 @@ Validate that the above command works correctly:
 sudo certbot renew --dry-run
 ```
 
-An interesting caveat: i noticed it could not renew if the stream wasn't up.
+*An interesting caveat: i noticed it could not renew if the stream wasn't up (certbot will fail).*
 
 ### ufw
 

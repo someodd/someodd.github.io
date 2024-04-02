@@ -35,4 +35,4 @@ My very own IRC server. Features services! [I wrote some about my journey settin
 
 # ZNC maybe available on request
 
-Not yet, but I plan to host ZNC.
+I am hosting ZNC and you can contact me using one of the methods on [my about page](/about) to request a ZNC account and info.

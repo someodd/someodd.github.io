@@ -12,7 +12,7 @@ My journey setting up a little IRC server, with SSL support and services, on Deb
 
 I feel like I went through a lot of struggles and research to get to the point of having a functional server. I tried various IRC daemons services, but ultimately decided to go with ngircd and atheme. I feel these are well supported, maintained and current. I also thought they were easier and simpler to understand and set up. An almost out-of-the-box experience.
 
-This is the setup I use for [my IRC server](/showcase/irc-server).
+This is the setup I use for [my IRC server](/showcase/irc-server). Try joining!
 
 If you're struggling feel free to contact me using info from [my about page](/about).
 
@@ -108,7 +108,7 @@ PORT=6667
 NICK="Urgent"
 FULLNAME="Urgent"
 CHANNEL="#main"
-MESSAGE="THIS IS A TEST. THIS IS A DRILL. Attention all users: The IRC service will be restarted shortly for maintenance. Please expect a brief disconnection. If service does not resume normally please contact someodd@pm.me or @someodd@fosstodon.org."
+MESSAGE="Attention all users: The IRC service will be restarted shortly for maintenance. Please expect a brief disconnection. If service does not resume normally please contact someodd@pm.me or @someodd@fosstodon.org."
 
 # Directory where ii will create its server/channel structure
 IIDIR="/tmp/ii_$$" # Using PID for uniqueness
@@ -217,3 +217,81 @@ Now have fun and test out with `sudo service atheme-services restart`! Try to `/
 Stability, backup tips
 
 ## ZNC
+
+Install:
+
+```
+sudo apt-get update
+sudo apt-get upgrade
+sudo apt-get install znc
+```
+
+Run the configuration wizard:
+
+```
+znc --makeconf
+```
+
+Since I already have port 6697 for SSL on the main IRC server I'll use `6669`.
+
+This just makes it run as the current user you have it set up as. I probably will make a better set up in the future, but this is fine right now. Also the SSL cert it generates is self-signed and doesn't use letsencrypt.
+
+Let's make it start at startup:
+
+```
+sudo systemctl enable znc
+```
+
+And run:
+
+```
+sudo service znc start
+```
+
+UFW:
+
+```
+sudo ufw allow proto tcp from any to any port 6669 comment 'ZNC SSL'
+```
+
+You can access the web UI through the same port, but firefox will require setting `network.security.ports.banned.override` to the string value of `6669` in `about:config`. Also forward port on router.
+
+Only edit `~/.znc/configs/znc.conf` if ZNC not running.
+
+### SSL + more
+
+Create the certificate or whatever (note I'm using the web root from [my Whisper Radio setup](/showcase/whisper-radio) but you may wanna just use the `--standalone` option instead; I selected *webroot* when prompted):
+
+```bash
+sudo certbot certonly --webroot-path="/usr/share/icecast2/web" -d 'znc.someodd.zip'
+```
+
+Copy the files, ensure ownership, create a directory (we will automate this with a hook, too):
+
+```
+mkdir ~/.znc/ssl
+sudo cp /etc/letsencrypt/live/znc.someodd.zip/fullchain.pem /home/someuser/.znc/ssl/fullchain.pem
+sudo cp /etc/letsencrypt/live/znc.someodd.zip/privkey.pem /home/someuser/.znc/ssl/privkey.pem
+sudo chown -r someuser:someuser ~/.znc/ssl
+```
+
+Now in `~/.znc/configs/znc.conf` (make sure ZNC isn't running):
+
+```
+SSLCertFile = /home/someuser/.znc/ssl/fullchain.pem
+SSLKeyFile = /home/someuser/.znc/ssl/privkey.pem
+<Listener l>
+        Port = 6669
+        IPv4 = true
+        IPv6 = true
+        SSL = true
+</Listener>
+```
+
+check service file see which user runs as or make znc run as a user...
+
+in hex chat i have `znc.someodd.zip/6669` and default login method with my admin password and I mamke sure the username is the right username (don't use default info)
+
+### backing up
+
+...
