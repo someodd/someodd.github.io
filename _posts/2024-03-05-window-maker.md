@@ -343,9 +343,11 @@ I recommend using LightDM as your login manager. One thing I like about it is I
 can switch the environment/WM I log into. This can be handy because sometimes
 you come across something like how Waydroid only runs in Wayland.
 
-### `firefox-esr`
+### Browsers
 
-My main web browser is just the Debian-provided Firefox.
+`firefox-esr`My main web browser is just the Debian-provided Firefox.
+
+https://github.com/dillo-browser/dillo -- you actually may not want to use the repo version and build it from there, because of the time of writing this i'm told the repo verison is ten years old. https://github.com/dillo-browser/dillo/blob/master/doc/install.md gopher plugin: https://github.com/dillo-browser/dillo-plugin-gopher
 
 ### KeepassXC
 
@@ -467,6 +469,8 @@ transmission-qt
 
 ted
 https://www.nllgg.nl/Ted/#How_to_install_Ted
+
+I recommend installing libreoffice-gtk3 for office. lyx seems interesting but I haven't used it much yet. also sudo apt install texlive-full
 
 
 ## Set default apps

@@ -12,7 +12,7 @@ image:
 
 Whisper Radio is a (hopefully) 24/7 Internet radio station "hosted by a bot."
 
-Text-To-Speech (TTS, both AI and older-school) is leveraged to dynamically read news, texts, trends, announce the next song, report the weather, and maybe more! Configurable!
+Text-To-Speech (TTS, both AI and older-school) is leveraged to dynamically read news, texts, trends, announce the next song, report the weather, the freshest thread post from my forum, and maybe more! Configurable!
 
 Maybe the coolest feature is the interactive feature where the "host" replies to posts on [Fosstodon](https://fosstodon.org), [under a specific hashtag](https://fosstodon.org/tags/whisperradio).
 
@@ -23,6 +23,7 @@ Lovingly named after the [espeak](https://espeak.sourceforge.net/) voice which r
 <audio controls>
   <source src="https://radio.someodd.zip/stream" type="audio/mp3">
 </audio>
+[TOC]
 
 ## Inspiration
 
@@ -160,7 +161,7 @@ chown icecast2:icecast /etc/icecast2/bundle.pem
 ```
 
 Ensure certificate renewals run correctly (I edited
-`/etc/letsencrypt/renewal/radio.someodd.zip.conf`):
+`/etc/letsencrypt/renewal/radio.someodd.zip.conf`) in the section of `[renewalparams]`:
 
 ```
 post_hook = cat /etc/letsencrypt/live/radio.someodd.zip/fullchain.pem /etc/letsencrypt/live/radio.someodd.zip/privkey.pem > /etc/icecast2/bundle.pem && service icecast2 restart
@@ -171,6 +172,8 @@ Validate that the above command works correctly:
 ```
 sudo certbot renew --dry-run
 ```
+
+An interesting caveat: i noticed it could not renew if the stream wasn't up.
 
 ### ufw
 

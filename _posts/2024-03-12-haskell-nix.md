@@ -9,6 +9,12 @@ tags: haskell nix
 I wrote these notes because I wante to reduce the friction for myself and
 others to getting a Nix Flake working for their Haskell Project.
 
+Some of these tips might be useful for Haskell in general.
+
+* TOC
+{:toc}
+
+
 ## Why use a Nix Flake?
 
   * Reproducibility.
@@ -200,12 +206,21 @@ cradle:
 
 ```
 
+i think this file above helps HLS detect that you're only using cabal and not using Stack (you may get errors about cradle otherwise). generally helpful maybe
+
 install these plugins to vscode: 
 
 * direnv by cab404
 * haskell by haskell
 * i think nix env selector doesn't work with flakes?
 * nix ide
+
+This link (reddit) was helpful: https://www.reddit.com/r/NixOS/comments/v23c3k/how_are_nix_flakes_used_in_vscode/
+
+```
+echo use flake > .envrc
+direnv allow
+```
 
 ## Crazy caveat
 
