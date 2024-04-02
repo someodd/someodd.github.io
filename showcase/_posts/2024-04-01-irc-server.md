@@ -11,7 +11,7 @@ image:
 
 ---
 
-My very own IRC server. Features services! [I wrote some about my journey setting up this service](/posts/irc-server) (so maybe you can set it up, too).
+My very own IRC server. Features services! [I wrote some about my journey setting up this service](/notes/irc-server) (so maybe you can set it up, too).
 
 * TOC
 {:toc}
