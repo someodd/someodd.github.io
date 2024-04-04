@@ -326,6 +326,8 @@ all the *run program* entries which have hotkeys associated to them.
 
 For example, I set lock (`xscreensaver-command -lock`) to my super key + l.
 
+I think sometimes (?) you may need to restart the session for hotkeys to come into effect.
+
 #### Control Screen Brightness
 
 Use `brightnessctl set 10%-` and `brightnessctl set 10%+` then add to menu and assign hotkeys.
@@ -395,9 +397,14 @@ i also use `blueman-applet` (you can just install through `blueman` package), ad
 
 I find that this is a nice terminal to use in Window Maker.
 
-### xfce4-screenshooter
+### Screenshots
 
-Screenshot utility I have mapped to my *prt scr* key.
+Scrot and Maim didn't seem to work well with WindowMaker hotkey or the like. So I'm using `xfce4-screenshooter`, which seems to segfault if I capture window border when capturing the active window.
+
+I made two entries:
+
+* Active window (alt + prt scr): `xfce4-screenshooter -w --no-border`
+* Default (prt scr): `xfce4-screenshooter`
 
 ### xscreensaver
 

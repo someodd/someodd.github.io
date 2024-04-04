@@ -17,7 +17,9 @@ someodd also enjoys these softwares:
   * Firefox
   * WindowMaker
 
-On the web:
+On the Internet:
 
   * [@someodd on Fosstodon/Mastodon](https://fosstodon.org/@someodd).
+  * someodd@pm.me
+  * `someodd` on [my IRC server](/showcase/irc-server)
   * [@someodd on GitHub](https://github.com/someodd)

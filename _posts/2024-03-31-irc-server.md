@@ -158,6 +158,8 @@ Validate that the above command works correctly:
 sudo certbot renew --dry-run
 ```
 
+Please note, something I don't like about this script and would like to update in the future, is that I think it should use Atheme's global notice module.
+
 # Atheme
 
 I like Atheme because it seems to have an active community, basically works well out-of-the-box, and is relatively straightforward.
@@ -291,6 +293,8 @@ SSLKeyFile = /home/someuser/.znc/ssl/privkey.pem
 check service file see which user runs as or make znc run as a user...
 
 in hex chat i have `znc.someodd.zip/6669` and default login method with my admin password and I mamke sure the username is the right username (don't use default info)
+
+NEEDS TO USE HOOK POST HOOK FOR RENEWAL... LETSENCRYPT
 
 ### backing up
 
