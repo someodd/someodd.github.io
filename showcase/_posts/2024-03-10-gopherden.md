@@ -38,7 +38,7 @@ Features for the people who use a gopherden:
 # Feedback
 
 * Contact me using a method mentioned on [my about page](/about)
-* [Create an issue on the gopherden GitHub repo](https://github.com/someodd/gopherden/issue)
+* [Create an issue on the gopherden GitHub repo](https://github.com/someodd/gopherden/issues)
 
 # Who's using, in the news
 
