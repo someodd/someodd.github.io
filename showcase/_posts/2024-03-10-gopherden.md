@@ -50,7 +50,7 @@ Some other instances, notable users...
 
 # See also
 
-* [This site's gopher tag](/tag/gopher)
+* [This site's gopher tag](/tags/gopher)
 * [My post about the Gopher Protocol](/notes/gopher)
 * [gopherden GitHub repo](https://github.com/someodd/gopherden)
 
