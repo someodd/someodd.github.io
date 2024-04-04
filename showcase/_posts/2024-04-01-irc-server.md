@@ -49,7 +49,11 @@ And likely more!
 * irc.someodd.zip
 * Main room is #main
 
-## Hexchat
+## Web Client
+
+<iframe src="https://kiwiirc.com/client/irc.someodd.zip/+6697/#main" style="border:0; width:100%; height:450px;"></iframe>
+
+## Hexchat (Linux, probably more)
 
 ![Screenshot of HexChat, connected to someodd IRC](/assets/showcase/irc-server/someodd-irc-hexchat.png)
 
@@ -60,7 +64,7 @@ Using the Network List, click the *Add* button to bring up the window which allo
 * Servers: just `irc.someodd.zip/6697`
 * You may want to tick "Use SSL for all the servers on this network"
 
-## Weechat
+## Weechat (Linux, probably more)
 
 How to connect using weechat.
 
@@ -78,6 +82,16 @@ Then connect and join the main channel:
 /connect someodd
 /join #main
 ```
+
+## Revolution IRC (Android)
+
+I think ZNC doesn't play nice with Revolution IRC. When you add/edit a server just make sure the connection info is as follows:
+
+* server address: irc.someodd.zip
+* port: 6697
+* Use SSL/TLS (checked)
+
+You can get Revolution IRC on F-Droid.
 
 # Rules/guidelines
 
