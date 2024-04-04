@@ -126,7 +126,7 @@ projects hosted here?
 
 # Documentation and tutorials
 
-* I documented [how you can run a setup similar to someodd IRC](/posts/irc-server)
+* I documented [how you can run a setup similar to someodd IRC](/notes/irc-server)
 
 # See also
 

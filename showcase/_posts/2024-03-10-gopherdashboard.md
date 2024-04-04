@@ -14,7 +14,7 @@ image:
 
 Anonymous forum software written for the Gopher Protocol in Haskell. You may
 want to read [my article on using the Gopher
-Protocol](/posts/2024/03/10/gopher.md).
+Protocol](/notes/gopher).
 
 Some core things I learned or did:
 
