@@ -311,7 +311,7 @@ theme](https://github.com/matthewmx86/Redmond97/tree/master/Theme),
 specifically the *redmond cde* theme, to match the overal purplish thing I have
 going on. I think it matches the *SteelBlueSilk* Window Maker theme.
 
-Bonus: [https://github.com/mgsander/wmstep/tree/master/WMStep](WMStep):
+Bonus: https://github.com/mgsander/wmstep/tree/master/WMStep:
 something I found but I didn't get working.
 
 I went ahead and disabled the GTK window decoration hints or the like in the
