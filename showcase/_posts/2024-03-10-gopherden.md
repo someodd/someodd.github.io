@@ -10,7 +10,7 @@ image:
   caption: Screenshot of gopherden being used
 ---
 
-[gopherden](https://github.com/someodd/gopherden/) is forum software for the [Gopher Protocol](/tag/gopher). View the official gopherden server [via the web](https://gopher.floodgap.com/gopher/gw?a=gopher%3A%2F%2Fgopher.someodd.zip%3A7070%2F) or [via the Gopher Protocol (as intended)](gopher://gopher.someodd.zip:7070/) (you may want to read [my post about the Gopher Protocol](/posts/gopher)).
+[gopherden](https://github.com/someodd/gopherden/) is forum software for the [Gopher Protocol](/tags/gopher). View the official gopherden server [via the web](https://gopher.floodgap.com/gopher/gw?a=gopher%3A%2F%2Fgopher.someodd.zip%3A7070%2F) or [via the Gopher Protocol (as intended)](gopher://gopher.someodd.zip:7070/) (you may want to read [my post about the Gopher Protocol](/notes/gopher)).
 
 * TOC
 {:toc}
