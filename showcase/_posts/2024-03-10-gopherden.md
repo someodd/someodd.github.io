@@ -10,39 +10,55 @@ image:
   caption: Screenshot of gopherden being used
 ---
 
-[gopherden](https://github.com/someodd/gopherden/) is forum software I wrote
-with some features I find interesting:
+[gopherden](https://github.com/someodd/gopherden/) is forum software for the [Gopher Protocol](/tag/gopher). View the official gopherden server [via the web](https://gopher.floodgap.com/gopher/gw?a=gopher%3A%2F%2Fgopher.someodd.zip%3A7070%2F) or [via the Gopher Protocol (as intended)](gopher://gopher.someodd.zip:7070/) (you may want to read [my post about the Gopher Protocol](/posts/gopher)).
 
-  * Written in Haskell
-  * Ephemeral (old threads are deleted)
-  * Anonymous (IPs are held for banning purposes, though)
-  * View threads as menus or files
+* TOC
+{:toc}
+# Features (Users/Visitors)
 
-Visit the official live demo of the forum at
-[gopher://gopher.someodd.zip:7070/](gopher://gopher.someodd.zip:7070/).
+Features for the people who use a gopherden:
 
-You can also [use the Floodgap Gopher-HTTP gateway to use the project basically
-like a normal
-website](https://gopher.floodgap.com/gopher/gw?a=gopher%3A%2F%2Fgopher.someodd.zip%3A7070%2F)!
+* Transient content. Old threads are deleted. There's max thread count, when reached and a new post is made, the oldest one gets erased.
+* Anonymous, except IPs are associated with posts for banning and legal purposes
+* View threads as gopher maps or as text files (ASCII art, kind of)
+* Prevents some accidental reposting by refreshing
+* Prevents new threads being created where the message/content is the same as another in the DB
+* "Secret codes" which allow you to use codes like `<jgsBagOfMoney>` to potentially show an ASCII art picture
+* Rate-limiting (how fast you can make new threads or posts)
+* Handles/parses Gopher and HTTP(S) URIs into menu/map items
 
-I'm leveraging `nixpkgs` to:
+# News
 
-  * Make it very easy on me to build and deploy, particularly on my server
-  * Have a development environment that sets up/takes down postgresql for
-    me, which also helps with deploying a little demo server I'm hosting
-    now. It also wipes the database on exit, too.
+[news from my blog about gopherden]
 
-I also started trying out TOML as a configuration spec for the first time and
-I'm enjoying it, the TOML library I'm using for Haskell is decent.
+# Known issues
 
-I'm using Spacecookie as the Gopher server. I've worked with the author of
-Spacecookie before!
+* No real bot prevention. A captcha-like system could be implemented.
 
-## It's alive!
+# Feedback
 
-Official *gopherden* server at gopher://gopher.someodd.zip:7070
+* Contact me using a method mentioned on [my about page](/about)
+* [Create an issue on the gopherden GitHub repo](https://github.com/someodd/gopherden/issue)
 
-You can try out a live server running `gopherden`! You just need a Gopher client!
+# Who's using, in the news
+
+Some other instances, notable users...
+
+# Documentation and tutorials
+
+* [The project's README.md](https://github.com/someodd/gopherden/blob/master/README.md)
+
+# See also
+
+* [This site's gopher tag](/tag/gopher)
+* [My post about the Gopher Protocol](/notes/gopher)
+* [gopherden GitHub repo](https://github.com/someodd/gopherden)
+
+# Post on the official server!
+
+This feels kind of redundant.
+
+Official *gopherden* server at [gopher://gopher.someodd.zip:7070](gopher://gopher.someodd.zip:7070). You may want to read [my article on the Gopher Protocol](/notes/gopher) for help on browsing gopherspace.
 
 You can use [my Gopher Protocol client, "waffle"](/showcase/waffle) to visit the forum!
 
@@ -54,6 +70,26 @@ client for Linux, MacOS, Windows, Android, and iOS.
 Below is a photo of me using Lagrange to visit the forum on my phone:
 
 ![Langrange client on a phone, visiting a gopherden forum](/assets/showcase/gopherden/lagrange-gopherden-phone.png).
+
+# Want your own gopherden or want to develop?
+
+[gopherden is open source](https://github.com/someodd/gopherden).
+
+## Developer and Server Features
+
+Features for those who host or develop (a) gopherden:
+
+* Written in Haskell
+* TOML configuration spec. First time I implemented a TOML config and I find it decent.
+* Uses [Spacecookie](https://github.com/sternenseemann/spacecookie), a wonderful Gopher Protocol library. I've worked with the author before.
+* CLI for banning
+
+I'm leveraging `nixpkgs` to:
+
+  * Make it very easy on me to build and deploy, particularly on my server
+  * Have a development environment that sets up/takes down postgresql for
+    me, which also helps with deploying a little demo server I'm hosting
+    now. It also wipes the database on exit, too.
 
 ## Setting up a server
 

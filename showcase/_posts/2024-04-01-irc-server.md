@@ -93,6 +93,8 @@ I think ZNC doesn't play nice with Revolution IRC. When you add/edit a server ju
 
 You can get Revolution IRC on F-Droid.
 
+![Revolution IRC connected to someodd IRC](/assets/showcase/irc-server/someodd-irc-revolution-irc.png)
+
 # Rules/guidelines
 
 * Nothing NSFW
