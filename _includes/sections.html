@@ -1,0 +1,90 @@
+{% comment %}
+This include iterates over sections separated by <h2> tags in the provided content.
+It skips the first section entirely and any section specifically titled "Features."
+{% endcomment %}
+
+{% assign sections = include.content | split: '<h2' %}
+{% assign is_first = true %}
+
+{% for section in sections offset:1 %}
+  {% if is_first %}
+    {% assign is_first = false %}
+    {% continue %}
+  {% else %}
+    {% assign heading_end = section | split: '</h2>' %}
+    {% assign heading_with_content = heading_end | first %}
+    {% assign content = heading_end | last %}
+
+    {% if heading_with_content contains 'id="features"' %}
+      {% comment %} Skip the Features section {% endcomment %}
+    {% elsif heading_with_content contains 'class="stats_section"' %}
+
+
+      {% assign paragraphs = content | split: '<p>' %}
+      {% assign first_paragraph = paragraphs[1] | split: '</p>' | first %}
+      {% assign second_paragraph = paragraphs[2] | split: '</p>' | first %}
+      
+      <!-- Find the <ul class="statistics"> and its <li> elements -->
+      {% assign ul_start = content | split: '<ul class="statistics">' %}
+      {% if ul_start.size > 1 %}
+        {% assign ul_content = ul_start[1] | split: '</ul>' | first %}
+        {% assign stats_items = ul_content | split: '<li>' %}
+        
+        {% assign stats_list = '' %}
+        {% for item in stats_items offset:1 %}
+          {% assign parts = item | split: ':' %}
+          {% assign icon = parts[0] | split: '"' | last %}
+          {% assign number = parts[1] %}
+          {% assign description = parts[2] | split: '</li>' | first %}
+          {% assign style_class = 'style' | append: forloop.index %}
+          
+          {% assign stats_list = stats_list | append: '<li class="' | append: style_class | append: '"><span class="icon ' | append: icon | append: '"></span><strong>' | append: number | append: '</strong> ' | append: description | append: '</li>' %}
+        {% endfor %}
+      {% endif %}
+      
+      <!-- Extract button links -->
+      {% assign button_links = '' %}
+      {% assign content_parts = content | split: '<a ' %}
+      {% assign rest_content = '' %}
+      {% for part in content_parts offset:1 %}
+        {% if part contains 'class="button"' %}
+          {% assign link_parts = part | split: '>' %}
+          {% assign link_url_parts = link_parts[0] | split: '"' %}
+          {% assign link_text_parts = link_parts[1] | split: '<' %}
+          {% assign button_links = button_links | append: '<li><a ' | append: link_parts[0] | append: '>' | append: link_text_parts[0] | append: '</a></li>' %}
+        {% else %}
+          {% assign rest_content = rest_content | append: '<a ' | append: part %}
+        {% endif %}
+      {% endfor %}
+
+<section id="second" class="main special">
+    <header class="major">
+        <h2{{ heading_with_content }}</h2>
+        <p>{{ first_paragraph }}</p>
+    </header>
+    <ul class="statistics">
+        {{ stats_list }}
+    </ul>
+    <p class="content">{{ second_paragraph }}</p>
+    <footer class="major">
+        <ul class="actions special">
+            {{ button_links }}
+        </ul>
+    </footer>
+</section>
+
+
+
+    {% elsif heading_with_content contains 'class="skip"' %}
+      {{ content }}
+    {% else %}
+      <section class="main">
+        <header class="major">
+          <h2{{ heading_with_content }}</h2>
+        </header>
+        {{ content }}
+      </section>
+    {% endif %}
+  {% endif %}
+{% endfor %}
+

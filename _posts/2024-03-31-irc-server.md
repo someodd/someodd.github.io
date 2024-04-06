@@ -214,6 +214,10 @@ A few things you really should set in `atheme.conf`:
 
 Now have fun and test out with `sudo service atheme-services restart`! Try to `/msg nickserv help`.
 
+## Known issues
+
+**I think it's not saving nicknames/registration after restart? That's severe!** or maybe it's that i need to verify  by email for it to work right? i should disable that? i have to follow up on this. 
+
 # Bonus
 
 Stability, backup tips
@@ -260,6 +264,8 @@ You can access the web UI through the same port, but firefox will require settin
 
 Only edit `~/.znc/configs/znc.conf` if ZNC not running.
 
+Honestly, somehow I'm just running it as my regular user so I just launch `znc` as that regular user.
+
 ### SSL + more
 
 Create the certificate or whatever (note I'm using the web root from [my Whisper Radio setup](/showcase/whisper-radio) but you may wanna just use the `--standalone` option instead; I selected *webroot* when prompted):
@@ -296,6 +302,66 @@ in hex chat i have `znc.someodd.zip/6669` and default login method with my admin
 
 NEEDS TO USE HOOK POST HOOK FOR RENEWAL... LETSENCRYPT
 
+### tor
+
+...
+
+### tips
+
+switching...
+
+/znc JumpNetwork netname
+
+debug with:
+
+znc -D
+
 ### backing up
+
+...
+
+## XMLRPC
+
+Enable the httpd/XMLRPC in server. Here are some examples...
+
+I had to read the source code and use chatgpt to figure this out.
+
+```
+curl -X POST -H 'Content-Type: text/xml' -d '<?xml version="1.0"?>
+<methodCall>
+   <methodName>atheme.login</methodName>
+   <params>
+      <param>
+         <value><string>username</string></value>
+      </param>
+      <param>
+         <value><string>password</string></value>
+      </param>
+   </params>
+</methodCall>' http://localhost:8080/xmlrpc
+```
+
+ideally i want to access statistics without logging in.
+
+finally found this? https://raw.githubusercontent.com/atheme/atheme/master/doc/XMLRPC
+
+```
+curl -X POST -H 'Content-Type: text/xml' -d '<?xml version="1.0"?>
+<methodCall>
+   <methodName>atheme.command</methodName>
+   <params>
+      <param><value><string>authcookie</string></value></param>
+      <param><value><string>someodd</string></value></param>
+      <param><value><string>sourceIP</string></value></param>
+      <param><value><string>ChanServ</string></value></param>
+      <param><value><string>info</string></value></param>
+      <param><value><string>#channel</string></value></param>
+   </params>
+</methodCall>' http://localhost:8080/xmlrpc
+```
+
+maybe set up a dummy user that will do this.
+
+## tor
 
 ...

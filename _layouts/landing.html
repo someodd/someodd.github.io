@@ -1,0 +1,135 @@
+<!DOCTYPE HTML>
+<!--
+	Stellar by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+
+  {% if site.owner.google.verify %}<meta name="google-site-verification" content="{{ site.owner.google.verify }}">{% endif %}
+  {% if site.owner.bing-verify %}<meta name="msvalidate.01" content="{{ site.owner.bing-verify }}">{% endif %}
+
+  {% if site.plugins contains 'jekyll-seo-tag' or site.gems contains 'jekyll-seo-tag' %}
+    {% comment %}
+      Add metadata for search engines and social networks if jekyll-seo-tag plugin is enabled
+    {% endcomment %}
+    {% include head-seo.html %}
+  {% else %}
+    <title>{% if page.title %}{{ page.title | escape }}{% else %}{{ site.title | escape }}{% endif %}</title>
+    <meta name="description" content="{{ page.excerpt | default: site.description | strip_html | normalize_whitespace | truncate: 160 | escape }}">
+    <link rel="canonical" href="{{ page.url | replace:'index.html', '' | absolute_url }}">
+  {% endif %}
+
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="/assets/css2/main.css" />
+		<noscript><link rel="stylesheet" href="/assets/css2/noscript.css" /></noscript>
+		  {%- if site.plugins contains 'jekyll-feed' or site.gems contains 'jekyll-feed' -%}
+    {%- comment -%}
+      Add Atom feed link if jekyll-feed plugin is enabled
+    {%- endcomment -%}
+    {% include head-feed.html %}
+  {%- endif -%}
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header" class="alt">
+						<span class="logo"><img src="{{ page.logo }}" alt="" /></span>
+						<h1>{{ page.title }}</h1>
+						<p>{{ page.tagline }}<br /><a href="/showcase">See more by someodd</a>.</p>
+					</header>
+
+				<!-- Nav -->
+					<nav id="nav">
+			      {% include toc.html html=content h_min=1 h_max=2 %}
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Introduction -->
+							<section id="intro" class="main">
+								<div class="spotlight">
+									<div class="content">
+										<header class="major">
+										  {% include first_section.html only_heading=true %}
+										</header>
+										{% include first_section.html only_content=true %}
+									</div>
+									<span class="image"><img src="{{ page.image.path }}" alt="{{ page.image.caption }}" /></span>
+								</div>
+							</section>
+
+            {% include features.html content=page.content %}
+							
+						{% include sections.html content=page.content %}
+
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<section>
+							<h2>Crafted by someodd</h2>
+							<p>This product/service was made/provided by someodd.
+							
+							{% if page.tags.size > 0 %}
+              This service/product has been tagged with:
+              {% assign tags = page.tags | sort %}
+                {%- for tag in tags -%}
+                    {%- if site.tag_archive_path -%}
+                      <a href="{{ tag | slugify | prepend: site.tag_archive_path | relative_url }}" title="{{ site.data.text[site.locale].pages_tagged | default: 'Pages tagged' }} {{ tag }}" rel="tag">{{ tag }}</a>
+                    {%- else -%}
+                      {{ tag }}
+                    {%- endif -%}
+                {%- endfor- %}
+            .
+            {% endif %}
+            </p>
+	
+							<ul class="actions">
+								<li><a href="/showcase" class="button">More by someodd</a></li>
+							</ul>
+						</section>
+						<section>
+							<h2>Author info</h2>
+							<dl class="alt">
+								<dt>Email</dt>
+								<dd><a href="mailto:{{ site.author.email }}">{{ site.author.email }}</a></dd>
+							</dl>
+							
+							
+              {%- if site.footer_links -%}
+                <ul class="icons">
+                  {%- for footer_link in site.footer_links -%}
+                    {%- if footer_link.url contains "://" -%}
+                      {%- assign url = footer_link.url -%}
+                    {%- else -%}
+                      {%- assign url = footer_link.url | relative_url -%}
+                    {%- endif -%}
+                    <li><a class="icon brands" href="{{ url }}"><i class="{{ footer_link.icon | default: 'fas fa-link' }} fa-2x" title="{{ footer_link.title }}"></i><span class="label">{{ footer_link.title }}</span></a></li>
+                  {%- endfor -%}
+                </ul>
+              {%- endif -%}
+							
+						</section>
+						<p class="copyright">&copy; someodd. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+					</footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="/assets/js/jquery.min.js"></script>
+			<script src="/assets/js/jquery.scrollex.min.js"></script>
+			<script src="/assets/js/jquery.scrolly.min.js"></script>
+			<script src="/assets/js/browser.min.js"></script>
+			<script src="/assets/js/breakpoints.min.js"></script>
+			<script src="/assets/js/util.js"></script>
+			<script src="/assets/js/main.js"></script>
+
+	</body>
+</html>

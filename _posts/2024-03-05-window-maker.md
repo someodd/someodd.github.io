@@ -345,6 +345,10 @@ I recommend using LightDM as your login manager. One thing I like about it is I
 can switch the environment/WM I log into. This can be handy because sometimes
 you come across something like how Waydroid only runs in Wayland.
 
+### Archivers
+
+xarchiver
+
 ### Browsers
 
 `firefox-esr`My main web browser is just the Debian-provided Firefox.
