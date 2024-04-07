@@ -223,3 +223,64 @@ to forward 80 to 8000 and 443 to 8443.
 I had an issue where it was looping one of the segments (weather) over and
 over. I `pkill ezstream`, deleted the playlists and output files and then ran
 `./whisper.sh` again.
+
+### Putting behind `nginx`
+
+the benefit of this is i wanted to hide the admin stuff and only expose stream and plus i want to have other http stuff on this server.
+
+```
+sudo apt-get install nginx
+sudo vi /etc/nginx/sites-available/radio.someodd.zip.conf
+```
+
+Then in the config:
+
+```
+server {
+    listen 8765;
+    listen 8888 ssl;
+    server_name radio.someodd.zip;
+    root /var/www/radio.someodd.zip;
+
+    ssl_certificate /etc/letsencrypt/live/radio.someodd.zip/cert.pem;
+    ssl_certificate_key /etc/letsencrypt/live/radio.someodd.zip/privkey.pem;
+
+    location /stream {
+        proxy_pass https://localhost:8443;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
+
+}
+```
+
+Then:
+
+```
+sudo mkdir /var/www/radio.someodd.zip/
+sudo ln -s /etc/nginx/sites-available/radio.someodd.zip.conf /etc/nginx/sites-enabled/
+```
+
+and `sudo service nginx restart`
+
+If you do this you may want to delete the other whisper radio ufw entries and then add this new one:
+
+```
+sudo ufw allow 8888/tcp comment 'general nginx https'
+sudo ufw allow 8765/tcp comment 'general nginx http'
+```
+
+gotta modify for letsencrypt...
+
+don't forget forward the ports--80->8765 and 8888->443 (tcp)
+
+gotta modify for letsencrypt `sudo vi /etc/letsencrypt/renewal/radio.someodd.zip.conf`:
+
+```
+webroot_path = /var/www/radio.someodd.zip/,
+```
+
+maybe even set the webroot_map to this too if that's a thing
+
+test with `sudo certbot renew --dry-run`

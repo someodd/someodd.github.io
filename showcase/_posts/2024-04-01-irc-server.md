@@ -59,13 +59,13 @@ You can chat through your web browser using Kiwi IRC.
 
 At-a-glance info about someodd IRC. 
 
-Sorry these statistics are fake right now. The idea is that I will be releasing software to utilize Atheme's XMLRPC to report statistics from Atheme's StatServ back here via an HTTP interface. It may be a while.
+These stats are fetched using JavaScript. The idea is that I will be releasing software to utilize Atheme's XMLRPC to report statistics from Atheme's StatServ back here via an HTTP interface. It may be a while.
 
-* fa-user:1,024:users
-* fa-calendar:365:days uptime
-* fa-square:2,424:channels
-* fa-star:2,824:bans
-* fa-thumbs-up:4,024:messages
+* fa-user:ERROR:current users
+* fa-calendar:ERROR:days uptime
+* fa-square:ERROR:channels
+* fa-star:ERROR:opers online
+* fa-thumbs-up:ERROR:most users
 {:.statistics}
 
 [Atheme Statistics HTTP](https://github.com/someodd/atheme-stats-http){:.button}
@@ -175,3 +175,64 @@ projects hosted here?
 
 * [Atheme](https://atheme.dev) (the IRC services daemon the server is running)
 * [ngircd](https://ngircd.barton.de/) (the IRC daemon the server is running)
+
+<script>
+// this script could be abstracted out so it's all just provided by markdown and not hardcoded into the makdown, this will make having stats for various things nicer
+function replaceTextInListItem(matchText, replaceText) {
+  // Get the <ul> element with the class 'statistics'
+  const ul = document.querySelector('ul.statistics');
+
+  // Find all <li> elements inside the <ul> element
+  const liElements = ul.querySelectorAll('li');
+
+  // Iterate over each <li> element
+  liElements.forEach(li => {
+    // Get the child nodes of the <li> element
+    const childNodes = li.childNodes;
+
+    // Initialize an empty string to store the text content
+    let liText = '';
+
+    // Iterate over each child node
+    childNodes.forEach(node => {
+      // Check if the child node is a text node
+      if (node.nodeType === Node.TEXT_NODE) {
+        // Append the text content of the text node to the liText string
+        liText += node.nodeValue.trim();
+      }
+    });
+
+    // Check if the concatenated text content matches the specified matchText
+    if (liText === matchText) {
+      // Find the <strong> element inside the <li>
+      const strongElement = li.querySelector('strong');
+
+      // Replace the text content of the <strong> element with the specified replaceText
+      strongElement.textContent = replaceText;
+    }
+  });
+}
+
+fetch('https://irc.someodd.zip/stats.json')
+  .then(response => response.json())
+  .then(data => {
+    // Parse the JSON object
+    const numberOfChannelsFormed = data['number of channels formed'];
+    const numberOfServices = data['number of services'];
+    const currentNumberOfUsers = data['current number of users'];
+    const highestConnectionCount = data['highest connection count'];
+    const operatorsOnline = data['operators online'];
+    const ngircdUptimeDays = data['ngircd uptime days'];
+    const athemeUptimeDays = data['atheme uptime days'];
+
+    // Display the parsed data
+    replaceTextInListItem("channels", numberOfChannelsFormed);
+    replaceTextInListItem("current users", currentNumberOfUsers);
+    replaceTextInListItem("most users", highestConnectionCount);
+  	replaceTextInListItem("days uptime", ngircdUptimeDays);
+  	replaceTextInListItem("opers online", operatorsOnline);
+  })
+  .catch(error => {
+    console.error('Error fetching data:', error);
+  });
+</script>

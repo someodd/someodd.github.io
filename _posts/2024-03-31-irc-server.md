@@ -365,3 +365,242 @@ maybe set up a dummy user that will do this.
 ## tor
 
 ...
+
+## setup to share statistics
+
+I think the easiest way to set up statistics haring is just to have nginx share a web root and then have a cron job run a script to echo the contents to the web root:
+
+```
+sudo apt-get install nginx
+
+```
+
+then edit `sudo vi /etc/nginx/sites-available/irc.someodd.zip.conf`  (we also want to set cors header or whatever so it's easier to fetch the site using javascript):
+
+```
+server {
+    listen 8765;
+    listen 8888 ssl;
+    server_name irc.someodd.zip;
+    root /var/www/irc.someodd.zip;
+
+    ssl_certificate /etc/letsencrypt/live/irc.someodd.zip/cert.pem;
+    ssl_certificate_key /etc/letsencrypt/live/irc.someodd.zip/privkey.pem;
+    
+    location /stats.json {
+        # Add CORS headers
+        add_header 'Access-Control-Allow-Origin' '*';
+        add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
+        add_header 'Access-Control-Allow-Headers' 'Origin, X-Requested-With, Content-Type, Accept';
+        add_header 'Access-Control-Allow-Credentials' 'true';
+    }
+
+    location / {
+        try_files $uri $uri/ =404;
+    }
+}
+```
+
+link the config to make it active
+
+```
+sudo ln -s /etc/nginx/sites-available/irc.someodd.zip.conf /etc/nginx/sites-enabled/
+```
+
+...
+
+make the web root:
+
+```
+mkdir /var/www/irc.someodd.zip/
+```
+
+finally create this bash script to `/usr/local/bin/irc_stats.sh` with these contents, and you must install `ii` to get it to work: ...
+
+```
+#!/bin/bash
+
+# Configuration variables
+SERVER="127.0.0.1" # Change to your IRC server
+PORT=6667 # Default IRC port
+NICK="iistats" # Change to your desired nickname
+IIDIR="/tmp/ii_$$" # Temporary directory for ii's output
+
+# Start ii in the background
+ii -s "$SERVER" -p "$PORT" -n "$NICK" -f "ii User" -i "$IIDIR" >/dev/null 2>&1 &
+IIPID=$!
+
+# Allow some time for ii to connect
+sleep 4
+
+input=$(cat "$IIDIR/$SERVER/out")
+
+# Parsing the information using grep and regex
+number_of_services=$(echo "$input" | grep -oP '(?<=and )\d+(?= services on)' | head -1)
+current_number_of_users=$(echo "$input" | grep -oP '(?<=I have )\d+(?= users,)' | head -1)
+highest_connection_count=$(echo "$input" | grep -oP '(?<=Highest connection count: )\d+')
+number_of_channels_formed=$(echo "$input" | grep -oP '\d+(?= channels formed)' | head -1)
+operators_online=$(echo "$input" | grep -oP '\d+(?= operator\(s\) online)')
+
+# ngIRCd uptime (days)
+ngircd_pid=$(pgrep ngircd)
+ngircd_uptime_seconds=$(ps -p $ngircd_pid -o etimes= | tail -n 1 | tr -d ' ')
+ngircd_uptime=$(echo "$ngircd_uptime_seconds / 86400" | bc)
+
+# Atheme uptime (days)
+atheme_pid=$(pgrep atheme-services)
+atheme_uptime_seconds=$(ps -p $atheme_pid -o etimes= | tail -n 1 | tr -d ' ')
+atheme_uptime=$(echo "$atheme_uptime_seconds / 86400" | bc)
+
+# output json
+echo "{
+\"number of channels formed\": $number_of_channels_formed,
+\"number of services\": $number_of_services,
+\"current number of users\": $current_number_of_users,
+\"highest connection count\": $highest_connection_count,
+\"operators online\": $operators_online,
+\"ngircd uptime days\": $ngircd_uptime,
+\"atheme uptime days\": $atheme_uptime
+}"
+
+# Clean up
+kill $IIPID
+rm -rf "$IIDIR"
+```
+
+chmod:
+
+```
+sudo chmod +x /usr/local/bin/irc_stats.sh
+```
+
+you can test it
+
+```
+sudo /usr/local/bin/irc_stats.sh > /var/www/irc.someodd.zip/stats.json
+```
+
+crontab it`crontab -e`:
+
+```
+*/30 * * * * /usr/local/bin/irc_stats.sh > /var/www/irc.someodd.zip/stats.json 2>&1
+```
+
+then
+
+`sudo service nginx restart`
+
+now change the web root path in the letsencrypt file...
+
+ufw for nginx:
+
+```
+sudo ufw allow 8888/tcp comment 'general nginx https'
+```
+
+then you can just fetch this: https://irc.someodd.zip/stats.txt (port forward 443 -> 8888) for stats line-by-line it'll look like:
+
+```
+number of channels formed: 2
+number of services: 8
+current number of users: 5
+highest connection count: 9
+operators online: 1
+ngircd uptime: 5 days
+atheme uptime: 1 days
+```
+
+the example javascript:
+
+```
+fetch('https://irc.someodd.zip/stats.json')
+  .then(response => response.json())
+  .then(data => {
+    // Parse the JSON object
+    const numberOfChannelsFormed = data['number of channels formed'];
+    const numberOfServices = data['number of services'];
+    const currentNumberOfUsers = data['current number of users'];
+    const highestConnectionCount = data['highest connection count'];
+    const operatorsOnline = data['operators online'];
+    const ngircdUptimeDays = data['ngircd uptime days'];
+    const athemeUptimeDays = data['atheme uptime days'];
+
+    // Display the parsed data
+    console.log('Number of channels formed:', numberOfChannelsFormed);
+    console.log('Number of services:', numberOfServices);
+    console.log('Current number of users:', currentNumberOfUsers);
+    console.log('Highest connection count:', highestConnectionCount);
+    console.log('Operators online:', operatorsOnline);
+    console.log('ngIRCd uptime days:', ngircdUptimeDays);
+    console.log('Atheme uptime days:', athemeUptimeDays);
+  })
+  .catch(error => {
+    console.error('Error fetching data:', error);
+  });
+```
+
+
+
+gotta modify for letsencrypt `sudo vi /etc/letsencrypt/renewal/irc.someodd.zip.conf`:
+
+```
+webroot_path = /var/www/irc.someodd.zip,
+```
+
+you may also want to set the `[[webroot_map]]`
+
+test with `sudo certbot renew --dry-run`
+
+for the sake of cerbot you may also want to add a config for znc, which you can use as an opportunity to use it through a better port, edit `/etc/nginx/sites-available/znc.someodd.zip.conf`:
+
+```
+server {
+    listen 8765;
+    listen 8888 ssl;
+    server_name znc.someodd.zip;
+    root /var/www/znc.someodd.zip;
+
+    ssl_certificate /etc/letsencrypt/live/znc.someodd.zip/cert.pem;
+    ssl_certificate_key /etc/letsencrypt/live/znc.someodd.zip/privkey.pem;
+
+    location ^~ /.well-known/acme-challenge/ {
+        root /var/www/znc.someodd.zip;
+        try_files $uri =404;
+    }
+
+    location /{
+        proxy_pass https://localhost:6669;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
+
+}
+```
+
+make the dir:
+
+`sudo mkdir /var/www/znc.someodd.zip`
+
+```
+sudo ln -s /etc/nginx/sites-available/znc.someodd.zip.conf /etc/nginx/sites-enabled/
+```
+
+restart nginx.
+
+you should be able to access znc on the regular https://znc.someodd.zip/
+
+edit the znc letsencrypt:
+
+```
+webroot_path = /var/www/znc.someodd.zip,
+[[webroot_map]]
+znc.someodd.zip = /var/www/znc.someodd.zip
+```
+
+try:
+
+```sudo certbot renew --dry-run 
+sudo certbot renew --dry-run 
+```
+
