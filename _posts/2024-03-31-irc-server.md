@@ -539,7 +539,7 @@ fetch('https://irc.someodd.zip/stats.json')
   });
 ```
 
-
+you can see a demo of irc stats in action [here](/showcase/irc-server/#statistics)
 
 gotta modify for letsencrypt `sudo vi /etc/letsencrypt/renewal/irc.someodd.zip.conf`:
 
