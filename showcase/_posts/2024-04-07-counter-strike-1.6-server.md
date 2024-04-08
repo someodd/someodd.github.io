@@ -2,14 +2,14 @@
 layout: landing
 title: "someodd CS 1.6"
 date: 2024-04-01
-logo: /assets/showcase/irc-server/someodd-irc-server-logo.png
+logo: /assets/showcase/counter-strike-1.6-server/counter-strike-logo.png
 categories: showcase
 tagline: Counter Strike 1.6 Server
 tags: gaming someodd-cs16
 image:
-  path: /assets/showcase/irc-server/someodd-irc-server.webp
-  thumbnail: /assets/showcase/irc-server/someodd-irc-server.webp
-  caption: AI-generated image representation of an IRC chat room.
+  path: /assets/showcase/counter-strike-1.6-server/counter-strike-1.6.jpg
+  thumbnail: /assets/showcase/counter-strike-1.6-server/counter-strike-1.6.jpg
+  caption: Banner or whatever for counter strike from steam.
 
 ---
 
