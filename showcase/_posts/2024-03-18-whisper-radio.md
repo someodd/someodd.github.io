@@ -1,14 +1,18 @@
 ---
-layout: post
-title: "Whisper Radio: Radio Station Hosted by Bots"
+layout: landing
+title: "Whisper Radio"
 date: 2024-03-18
 categories: showcase
-tags: ai bash media
+tagline: Automated web radio, using AI.
+tags: ai bash media whisper-radio
+logo: /assets/showcase/whisper-radio/whisper-radio-logo.png
 image:
   path: /assets/showcase/whisper-radio/ai-generated-robot-radio-host.webp
   thumbnail: /assets/showcase/whisper-radio/ai-generated-robot-radio-host.webp
   caption: AI-generated image of a robot radio host.
 ---
+
+## Look ma, no human DJ!
 
 Whisper Radio is a (hopefully) 24/7 Internet radio station "hosted by a bot."
 
@@ -16,28 +20,42 @@ Text-To-Speech (TTS, both AI and older-school) is leveraged to dynamically read 
 
 Maybe the coolest feature is the interactive feature where the "host" replies to posts on [Fosstodon](https://fosstodon.org), [under a specific hashtag](https://fosstodon.org/tags/whisperradio).
 
-[The Whisper Radio project is basically Bash scripting and is open source on GitHub](https://github.com/someodd/whisper-radio).
+[Open Stream](https://radio.someodd.zip/stream){:.button .primary}
+[Listen Details](#listening){:.button}
+[View Source](https://github.com/someodd/whisper-radio){:.button}
+
+## Features
+
+* AI: AI voice announces some segments, reads news, and more!:  fa-robot
+* News: Dynamically makes headlines, forum posts, and more a part of the broadcast!: fa-newspaper
+* Interactive: Users can send in messages for the AI to respond to on the broadcast!: fa-reply
+* Configurable: you can change the news sources and the like.
+* Reads freshest thread's post from [gopherden](/showcase/gopherden)
+
+This is probably a non-fully-inclusive list of features!
+
+[Listen](#listening){:.button .primary}
+[View Source](https://github.com/someodd/whisper-radio){:.button}
+
+## Backstory
 
 Lovingly named after the [espeak](https://espeak.sourceforge.net/) voice which reads some of the segments.
-
-<audio controls>
-  <source src="https://radio.someodd.zip/stream" type="audio/mp3">
-</audio>
-[TOC]
-
-## Inspiration
 
 I got the idea one night to have a radio station that is just TTS reading out
 random things like... or whatever. I quickly hacked together some using bash
 within 24 hours, basically.
-
-## Developer story
 
 Making this project was fun! It was interesting hacking various tools together with Bash. I feel like my Haskell experience when it comes to statelessness/immutability maybe came in handy when it came to scripting parts of this project.
 
 One of the most annoying, yet oddly fun, parts of the project was lots of copyright-compatible text and audio.
 
 ## Listening
+
+Simply listen with the player below.
+
+<audio controls>
+  <source src="https://radio.someodd.zip/stream" type="audio/mp3">
+</audio>
 
 You can listen to the live demo on [the official Whisper Radio
 station](https://radio.someodd.zip/stream)! You can also open that link in
@@ -47,7 +65,32 @@ may have trouble with, because they'll try to force HTTPS, maybe.
 
 I have used VLC to listen to it on my phone.
 
-## set up+securing (walk through what i did)
+## News
+
+whisper-radio
+
+## Known issues
+
+* I think I've noticed it stopp working a few times, but it's been stable for a long time now.
+
+## Feedback
+
+* Take a look at [my about page](/about) for my contact info.
+* [Create an issue on the GitHub repo](https://github.com/someodd/whisper-radio/issues/)
+
+## Who's using, in the news
+
+Not much!
+
+## Documentation & tutorials
+
+* [Project README](https://github.com/someodd/whisper-radio/blob/master/README.md)
+
+## See also
+
+* [Icecast stream list](http://dir.xiph.org/)
+
+## Running your own
 
 Read [the project's README.md](https://github.com/someodd/whisper-radio). it'll be more reliable for big parts of this and I
 won't be going over everything here.

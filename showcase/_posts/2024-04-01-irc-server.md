@@ -141,17 +141,7 @@ I am hosting ZNC and you can contact me using one of the methods on [my about pa
 
 ## News
 
-Latest [posts tagged with #someodd-irc](/tags/#someodd-irc) (should contain announcements/news, more):
-
-<ol>
-  {% assign tagged_posts = site.posts | where_exp: "post", "post.tags contains 'someodd-irc'" | sort: "date" | reverse %}
-  {% for post in tagged_posts %}
-    <li>
-      <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
-      <span>- {{ post.date | date: "%b %d, %Y" }}</span> <!-- Customizing the date format -->
-    </li>
-  {% endfor %}
-</ol>
+someodd-irc
 
 ## Known issues
 

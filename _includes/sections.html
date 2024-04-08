@@ -17,6 +17,28 @@ It skips the first section entirely and any section specifically titled "Feature
 
     {% if heading_with_content contains 'id="features"' %}
       {% comment %} Skip the Features section {% endcomment %}
+    {% elsif heading_with_content contains 'id="news"' %}
+      {% assign paragraph_start = content | split: '<p>' %}
+      {% if paragraph_start.size > 1 %}
+        {% assign paragraph_end = paragraph_start[1] | split: '</p>' %}
+        {% assign news_tag = paragraph_end[0] | strip_html | strip %}
+      {% endif %}
+    
+      <section class="main">
+        <header class="major">
+          <h2{{ heading_with_content }}</h2>
+          <p>Latest posts tagged with <a href="/tags/#{{ news_tag }}">#{{ news_tag }}</a>.</p>
+        </header>
+        <ol>
+          {% assign tagged_posts = site.posts | where_exp: "post", "post.tags contains news_tag" | sort: "date" | reverse %}
+          {% for post in tagged_posts %}
+            <li>
+              <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+              <span>- {{ post.date | date: "%b %d, %Y" }}</span> <!-- Customizing the date format -->
+            </li>
+          {% endfor %}
+        </ol>
+      </section>
     {% elsif heading_with_content contains 'class="stats_section"' %}
 
 
