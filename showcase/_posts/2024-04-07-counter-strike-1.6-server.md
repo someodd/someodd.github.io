@@ -32,7 +32,7 @@ These stats are fetched using JavaScript.
 * https://cs16.someodd.zip/stats.json
 {:.statistics}
 
-[Atheme Statistics HTTP](https://github.com/someodd/atheme-stats-http){:.button}
+[How to Get Stats](#running-it-yourself){:.button}
 
 
 ## See also
