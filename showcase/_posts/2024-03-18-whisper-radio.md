@@ -4,7 +4,7 @@ title: "Whisper Radio"
 date: 2024-03-18
 categories: showcase
 tagline: Automated web radio, using AI.
-tags: ai bash media whisper-radio
+tags: ai bash media whisper-radio letsencrypt nginx
 logo: /assets/showcase/whisper-radio/whisper-radio-logo.png
 image:
   path: /assets/showcase/whisper-radio/ai-generated-robot-radio-host.webp

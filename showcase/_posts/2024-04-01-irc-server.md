@@ -5,7 +5,7 @@ date: 2024-04-01
 logo: /assets/showcase/irc-server/someodd-irc-server-logo.png
 categories: showcase
 tagline: Boutique IRC server by someodd.
-tags: irc someodd-irc
+tags: irc someodd-irc nginx letsencrypt
 image:
   path: /assets/showcase/irc-server/someodd-irc-server.webp
   thumbnail: /assets/showcase/irc-server/someodd-irc-server.webp
@@ -59,7 +59,7 @@ You can chat through your web browser using Kiwi IRC.
 
 At-a-glance info about someodd IRC. 
 
-These stats are fetched using JavaScript. The idea is that I will be releasing software to utilize Atheme's XMLRPC to report statistics from Atheme's StatServ back here via an HTTP interface. It may be a while.
+These stats are fetched using JavaScript.
 
 * fa-user:ERROR:current users:current number of users
 * fa-calendar:ERROR:days uptime:ngircd uptime days
