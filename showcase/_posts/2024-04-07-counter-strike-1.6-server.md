@@ -37,7 +37,7 @@ These stats are fetched using JavaScript.
 
 ## See also
 
-[Counter Strike 1.6 on GameBanana](https://gamebanana.com/search?_sSearchString=counter+strike+1.6)
+[Counter Strike 1.6 on GameBanana](https://gamebanana.com/games/4254)
 
 ## Running it yourself
 
