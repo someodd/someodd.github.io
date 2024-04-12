@@ -302,15 +302,38 @@ in hex chat i have `znc.someodd.zip/6669` and default login method with my admin
 
 NEEDS TO USE HOOK POST HOOK FOR RENEWAL... LETSENCRYPT
 
+something is wrong with the ZNC configuration (nginx)
+
+### ZNC user config, tips
+
+To get messages on all devices (like if you have a laptop and a phone) and want to make sure you don't miss anything, even if you receive on one device:
+
+```
+/msg *controlpanel set AutoClearChanBuffer $me False
+/msg *controlpanel set AutoClearQueryBuffer $me False
+```
+
+Maybe I should make this for all users by default!
+
+switching...
+
+/znc JumpNetwork netname
+
+you can login using the default login message with username/pasword, but you can also specify the network to connect by default to make connecting to multiple networks easier:
+
+Client configs:
+
+* connecting by a phone client like revolution irc:
+  * auto-run commands: `/quote PASS username:password`
+* [HexChat - ZNC](https://wiki.znc.in/HexChat)
+  * Add your ZNC server’s address and port to the server list, like `znc.example.com/6667` for non-SSL connections or `znc.example.com/+6697` for SSL connections (prepend the port number with a `+` for SSL).
+  * In the `Password` field, input your ZNC credentials in the format `username/network:password`. This tells HexChat how to log in to ZNC and specifies which of your ZNC-configured networks to connect to.
+
 ### tor
 
 ...
 
 ### tips
-
-switching...
-
-/znc JumpNetwork netname
 
 debug with:
 
@@ -551,31 +574,72 @@ you may also want to set the `[[webroot_map]]`
 
 test with `sudo certbot renew --dry-run`
 
+### ZNC BEHIND NGINX (stats continued)
+
+this setup is kinda broken so use https://stackoverflow.com/questions/34236949/znc-on-a-subdomain-with-nginx-reverse-proxy ?
+
+https://wiki.znc.in/Reverse_Proxy
+
+edit the `~/.znc/configs/znc.conf`:
+
+```
+<Listener listener1>
+        AllowIRC = false
+        AllowWeb = true
+        IPv4 = true
+        IPv6 = true
+        Port = 6666
+        SSL = false
+        URIPrefix = /
+</Listener>
+```
+
+you can safely shut down:
+
+```
+znc --quit
+znc
+```
+
+
+
 for the sake of cerbot you may also want to add a config for znc, which you can use as an opportunity to use it through a better port, edit `/etc/nginx/sites-available/znc.someodd.zip.conf`:
 
 ```
 server {
     listen 8765;
-    listen 8888 ssl;
+    listen 8888 ssl;  # Listens on port 8888 for SSL connections
     server_name znc.someodd.zip;
-    root /var/www/znc.someodd.zip;
 
     ssl_certificate /etc/letsencrypt/live/znc.someodd.zip/cert.pem;
     ssl_certificate_key /etc/letsencrypt/live/znc.someodd.zip/privkey.pem;
 
+    # This is used for Let's Encrypt SSL verification without disrupting other redirects
     location ^~ /.well-known/acme-challenge/ {
         root /var/www/znc.someodd.zip;
         try_files $uri =404;
     }
 
-    location /{
-        proxy_pass https://localhost:6669;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header Host $host;
+    # Main location block
+    location / {
+        proxy_pass http://localhost:6666;  # ZNC is expected to be served over HTTP here
+        proxy_http_version 1.1;
+        #proxy_set_header Connection $connection_upgrade;  # This can help with WebSocket support
+        proxy_set_header Host $http_host;  # Use $http_host to preserve the port number if needed
+        proxy_set_header X-Real-IP $remote_addr;  # Forward real IP for correct client identification
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;  # Helps ZNC understand the protocol (http or https)
+        proxy_read_timeout 600s;  # Long timeout for long-standing connections
+        proxy_redirect off;  # Avoid redirecting responses
     }
 
+    # If WebSocket is used, this may be needed
+    #map $http_upgrade $connection_upgrade {
+    #    default upgrade;
+    #    ''      close;
+    #}
 }
+
 ```
 
 make the dir:
