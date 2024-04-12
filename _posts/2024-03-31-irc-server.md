@@ -608,38 +608,26 @@ for the sake of cerbot you may also want to add a config for znc, which you can 
 ```
 server {
     listen 8765;
-    listen 8888 ssl;  # Listens on port 8888 for SSL connections
+    listen 8888 ssl;
     server_name znc.someodd.zip;
+    root /var/www/znc.someodd.zip;
 
     ssl_certificate /etc/letsencrypt/live/znc.someodd.zip/cert.pem;
     ssl_certificate_key /etc/letsencrypt/live/znc.someodd.zip/privkey.pem;
 
-    # This is used for Let's Encrypt SSL verification without disrupting other redirects
     location ^~ /.well-known/acme-challenge/ {
         root /var/www/znc.someodd.zip;
         try_files $uri =404;
     }
 
-    # Main location block
-    location / {
-        proxy_pass http://localhost:6666;  # ZNC is expected to be served over HTTP here
-        proxy_http_version 1.1;
-        #proxy_set_header Connection $connection_upgrade;  # This can help with WebSocket support
-        proxy_set_header Host $http_host;  # Use $http_host to preserve the port number if needed
-        proxy_set_header X-Real-IP $remote_addr;  # Forward real IP for correct client identification
+    location /{
+        proxy_pass http://localhost:6666;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header Host $host;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto $scheme;  # Helps ZNC understand the protocol (http or https)
-        proxy_read_timeout 600s;  # Long timeout for long-standing connections
-        proxy_redirect off;  # Avoid redirecting responses
     }
 
-    # If WebSocket is used, this may be needed
-    #map $http_upgrade $connection_upgrade {
-    #    default upgrade;
-    #    ''      close;
-    #}
 }
-
 ```
 
 make the dir:

@@ -143,6 +143,7 @@ connecting:
 * your username and password i gave to you
 * Change your password and other settings here, i believe: https://znc.someodd.zip:6669 or https://znc.someodd.zip
   * Try the 6669 (note you may need to change browser security perms to allow accessing a website on that port).
+  * you can also try, once logged in to znc, something like `/msg *controlpanel set password myusername mynewpassword`
 
 I am hosting ZNC and you can contact me using one of the methods on [my about page](/about) to request a ZNC account and info.
 
