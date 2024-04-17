@@ -3,7 +3,7 @@ layout: post
 title: "Productivity in Window Maker"
 date: 2024-03-04
 categories: notes
-tags: windowmaker debian
+tags: windowmaker debian linux
 image:
   path: /assets/posts/window-maker/screenshot-window-maker.png
   thumbnail: /assets/posts/window-maker/screenshot-window-maker.png

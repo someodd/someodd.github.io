@@ -35,6 +35,7 @@ Someodd IRC Server is open to the public, but I try to fill it with interesting 
   * MemoServ: kind of like email in IRC
   * GroupServ
   * StatServ: records various network statistics.
+* [Server statistics publicly available via JSON](https://irc.someodd.zip/stats.json)
 * (Maybe) coming soon:
   * Web UI--join via the web
   * Chat via Gopher

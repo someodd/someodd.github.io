@@ -3,7 +3,7 @@ layout: post
 title: "Set up an IRC Server"
 date: 2024-03-30
 categories: notes
-tags: debian irc
+tags: debian irc server linux
 ---
 
 * TOC
@@ -578,11 +578,15 @@ test with `sudo certbot renew --dry-run`
 
 this setup is kinda broken so use https://stackoverflow.com/questions/34236949/znc-on-a-subdomain-with-nginx-reverse-proxy ?
 
+https://walkergriggs.com/2021/10/13/znc_the_right_way/
+
 https://wiki.znc.in/Reverse_Proxy
 
 edit the `~/.znc/configs/znc.conf`:
 
 ```
+TrustedProxy = 127.0.0.1
+
 <Listener listener1>
         AllowIRC = false
         AllowWeb = true
@@ -601,33 +605,34 @@ znc --quit
 znc
 ```
 
-
+HONESTLY DON'T EVEN NEED TO LISTNE ON 6666.. COULD JUST SSL TWICE.
 
 for the sake of cerbot you may also want to add a config for znc, which you can use as an opportunity to use it through a better port, edit `/etc/nginx/sites-available/znc.someodd.zip.conf`:
 
 ```
 server {
+    listen      8888 ssl http2;
     listen 8765;
-    listen 8888 ssl;
     server_name znc.someodd.zip;
-    root /var/www/znc.someodd.zip;
+    access_log  /var/log/nginx/irc.log combined;
 
     ssl_certificate /etc/letsencrypt/live/znc.someodd.zip/cert.pem;
     ssl_certificate_key /etc/letsencrypt/live/znc.someodd.zip/privkey.pem;
 
-    location ^~ /.well-known/acme-challenge/ {
-        root /var/www/znc.someodd.zip;
-        try_files $uri =404;
+    location / {
+        proxy_pass http://127.0.0.1:6666;
+        proxy_set_header      Host             $host;
+        proxy_set_header      X-Real-IP        $remote_addr;
+        proxy_set_header      X-Forwarded-For  $proxy_add_x_forwarded_for;
+        proxy_set_header      X-Client-Verify  SUCCESS;
+        proxy_set_header      X-Client-DN      $ssl_client_s_dn;
+        proxy_set_header      X-SSL-Subject    $ssl_client_s_dn;
+        proxy_set_header      X-SSL-Issuer     $ssl_client_i_dn;
+        proxy_read_timeout    1800;
+        proxy_connect_timeout 1800;
     }
-
-    location /{
-        proxy_pass http://localhost:6666;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header Host $host;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-    }
-
 }
+
 ```
 
 make the dir:
