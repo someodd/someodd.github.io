@@ -90,4 +90,4 @@ someodd-cs16
 ## See also
 
 * [Counter Strike 1.6 on GameBanana](https://gamebanana.com/games/4254)
-* [My article on running your own Counter-Strike 1.6 server on Linux](/notes/linux-counter-strike1.6-server)
+* [My article on running your own Counter-Strike 1.6 server on Linux](/notes/linux-counter-strike-1.6-server/)

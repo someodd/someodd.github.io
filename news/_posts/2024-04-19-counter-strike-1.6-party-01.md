@@ -34,6 +34,10 @@ The first someodd Counter-Strike 1.6 party.
   * Create chatter about the event
   * Get recordings of the event
 
+# On GameBanana
+
+[![](https://gamebanana.com/events/embeddables/1513?type=large)](https://gamebanana.com/events/1513)
+
 # promotional materials
 
 QR Code
