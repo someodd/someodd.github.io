@@ -28,6 +28,7 @@ The first *someodd Counter-Strike 1.6 online party*, to celebrate the launch of 
   * **CST (China Standard Time, Bejing)** Start and End Time: 5:30pm
 * Keep posted
   * [join the #main channel on someodd IRC](/showcase/irc-server)
+  * [The event on GameBanana](https://gamebanana.com/events/1513)
   * [#someoddcs16 tag on Mastodon](https://fosstodon.org/tags/someoddcs16)
   * [The #someodd-cs16 tag here](/tags/someodd-cs16)) (you may find news of future events here!)
   * [The news section of this website](/news)
