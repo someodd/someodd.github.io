@@ -16,6 +16,9 @@ The first *someodd Counter-Strike 1.6 online party*, to celebrate the launch of 
   * Coordinated time to play Counter-Strike 1.6 on [someodd's Counter-Strike 1.6 server](/showcase/counter-strike-1.6-server)
 * Where
   *  [someodd's Counter-Strike 1.6 server](/showcase/counter-strike-1.6-server) (you can connect to `cs16.someodd.zip` in Counter-Strike 1.6)
+  *  **The Internet!**
+* Who's invited
+  * The Internet!
 * When
   * Starts **Friday, May 24** and ends **Monday, May 27** (almost all timezones)
   * **UTC** Start (Friday) and End (Monday) Time: 10:30am
