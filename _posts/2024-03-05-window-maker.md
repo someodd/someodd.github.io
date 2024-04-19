@@ -277,7 +277,7 @@ by `&`, like below):
 #!/bin/sh
 blueman-applet &
 amor &
-xscreensaver --no-spash &
+xscreensaver --no-splash &
 xeyes &
 xpenguins -a -b -t "Big Penguins" &
 oneko &
@@ -414,6 +414,15 @@ I made two entries:
 
 The power management features are also nice and it provides the ability to lock
 the screen.
+
+don't forget to add to autostart
+
+For images you may be able to set both the text manipulation and the random image to atom/rss feeds:
+
+* https://planet.debian.org/rss20.xml - debian news
+* You can search a "booru" like Konachan which has wallpapers and provides RSS/ATOM feeds for search results, and you can specifically filter by "safe"
+  * Some early 2000s, late 90s vibes: https://konachan.net/post/atom?tags=lain+rating%3Asafe  **CHANGE THIS TO SEARCH SOMETHING ELSE**
+* https://photojournal.jpl.nasa.gov/rss/index.html
 
 ### redshift
 
