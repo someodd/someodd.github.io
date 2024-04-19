@@ -62,6 +62,9 @@ collections:
   posts:
     output: true
     permalink: /:categories/:title/
+  news:
+    output: true
+    permalink: /news/:year/:month/:day/:title/
 
 # Front Matter Defaults
 defaults:
@@ -73,6 +76,13 @@ defaults:
       layout: post
       comments: true
       share: true
+  # News
+  - scope:
+      path: "news/_posts"
+      type: posts
+    values:
+      permalink: news/:year/:month/:day/:title
+      category: news
 
 logo: /assets/logo.png
 
