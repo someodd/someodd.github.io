@@ -333,6 +333,50 @@ Client configs:
   * Add your ZNC server’s address and port to the server list, like `znc.example.com/6667` for non-SSL connections or `znc.example.com/+6697` for SSL connections (prepend the port number with a `+` for SSL).
   * In the `Password` field, input your ZNC credentials in the format `username/network:password`. This tells HexChat how to log in to ZNC and specifies which of your ZNC-configured networks to connect to.
 
+### Playback, Clientbuffer Modules
+
+I feel this is kind of required in the modern times where you may have phone and laptop connected. You may want to have the same playback/buffer for all clients.
+
+https://wiki.znc.in/Playback
+
+https://wiki.znc.in/Clientbuffer
+
+https://wiki.znc.in/Modules
+
+https://wiki.znc.in/Compiling_modules
+
+
+```
+sudo apt-get install znc-buildmod
+git clone https://github.com/jpnurmi/znc-playback
+cd znc-playback
+znc-buildmod playback.cpp
+mkdir -p ~/.znc/modules
+mv playback.so ~/.znc/modules
+```
+
+Then send `LoadMod playback` to `*status`.
+
+Now `clientbuffer`:
+
+```
+git clone https://github.com/CyberShadow/znc-clientbuffer
+cd znc-clientbuffer
+znc-buildmod clientbuffer.cpp
+mv clientbuffer.so ~/.znc/modules
+```
+
+Use the autoadd argument.
+
+```
+/msg *status Broadcast about to restart ZNC for maintenance. Please reconnect in a few minutes.
+/msg *status SaveConfig
+
+```
+now `pkill znc` and `znc`.
+
+now when i checked global modules, playback was set. `clientbuffer` seems to only show up in editnetwork.
+
 ### tor
 
 ...

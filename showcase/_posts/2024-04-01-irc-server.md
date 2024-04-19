@@ -136,7 +136,7 @@ In order of how much I care to enforce:
 
 ## ZNC Service
 
-Free ZNC accounts maybe available on request!
+Free ZNC accounts maybe available on request! Feel free to connect to other servers using this service.
 
 connecting:
 
@@ -149,6 +149,20 @@ connecting:
 
 I am hosting ZNC and you can contact me using one of the methods on [my about page](/about) to request a ZNC account and info.
 
+Client configs:
+
+* connecting by a phone client like revolution irc:
+  * auto-run commands: `/quote PASS username:password`
+* [HexChat - ZNC](https://wiki.znc.in/HexChat)
+  * Add your ZNC server’s address and port to the server list, like `znc.example.com/6667` for non-SSL connections or `znc.example.com/+6697` for SSL connections (prepend the port number with a `+` for SSL).
+  * In the `Password` field, input your ZNC credentials in the format `username/network:password`. This tells HexChat how to log in to ZNC and specifies which of your ZNC-configured networks to connect to. This will let you have different ZNC connections (say one for someodd and one for libera.chat)
+
+### Scrollback/missed messages
+
+In more modern times you may have both a laptop and a phone IRC client.
+
+Goal is to see messages on phone and laptop so that the  scrollback/buffer on both devices is the same. Do not repeat send  messages. Do not miss messages on one device because received on  another.
+
 You may want to use this in case you have more than one device using the znc account:
 
 ```
@@ -158,13 +172,7 @@ You may want to use this in case you have more than one device using the znc acc
 
 maybe above commands not one hundred percent it
 
-Client configs:
-
-* connecting by a phone client like revolution irc:
-  * auto-run commands: `/quote PASS username:password`
-* [HexChat - ZNC](https://wiki.znc.in/HexChat)
-  * Add your ZNC server’s address and port to the server list, like `znc.example.com/6667` for non-SSL connections or `znc.example.com/+6697` for SSL connections (prepend the port number with a `+` for SSL).
-  * In the `Password` field, input your ZNC credentials in the format `username/network:password`. This tells HexChat how to log in to ZNC and specifies which of your ZNC-configured networks to connect to. This will let you have different ZNC connections (say one for someodd and one for libera.chat)
+go to https://znc.someodd.zip/ and then edit the network you want and make sure clientbuffer mod enabled and has the argument `autoadd`
 
 ## News
 
