@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "someodd Counter-Strike 1.6 Party 01"
+title: "someodd Counter-Strike 1.6 Party #01"
 date: 2024-04-18
 categories: news
 tags: gaming someodd-cs16 events
@@ -10,7 +10,7 @@ image:
   caption: Promotional banner for the party.
 ---
 
-The first someodd Counter-Strike 1.6 party.
+Counter-Strike 1.6 party to celebrate the launch of the [someodd's Counter-Strike 1.6 server](/showcase/counter-strike-1.6-server)!
 
 * What:
   * Coordinated time to play Counter-Strike 1.6 on [someodd's Counter-Strike 1.6 server](/showcase/counter-strike-1.6-server)
