@@ -214,6 +214,10 @@ A few things you really should set in `atheme.conf`:
 
 Now have fun and test out with `sudo service atheme-services restart`! Try to `/msg nickserv help`.
 
+## Make sure to back up the database!
+
+My database, I think, was at `/var/lib/atheme/services.db`. I added it to the list of things that restic backs up.
+
 ## Known issues
 
 **I think it's not saving nicknames/registration after restart? That's severe!** or maybe it's that i need to verify  by email for it to work right? i should disable that? i have to follow up on this. 
