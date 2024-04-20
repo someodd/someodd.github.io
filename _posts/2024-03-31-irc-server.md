@@ -327,8 +327,9 @@ you can login using the default login message with username/pasword, but you can
 
 Client configs:
 
-* connecting by a phone client like revolution irc:
-  * auto-run commands: `/quote PASS username:password`
+* You can set an IRC password like `username/network:password` to connect to a specific network by default. This will let you have different ZNC connections (say one for someodd and one for libera.chat).
+  * I think you can even set `username/network` as the username and just have your ZNC password as the password.
+
 * [HexChat - ZNC](https://wiki.znc.in/HexChat)
   * Add your ZNC server’s address and port to the server list, like `znc.example.com/6667` for non-SSL connections or `znc.example.com/+6697` for SSL connections (prepend the port number with a `+` for SSL).
   * In the `Password` field, input your ZNC credentials in the format `username/network:password`. This tells HexChat how to log in to ZNC and specifies which of your ZNC-configured networks to connect to.
@@ -376,6 +377,13 @@ Use the autoadd argument.
 now `pkill znc` and `znc`.
 
 now when i checked global modules, playback was set. `clientbuffer` seems to only show up in editnetwork.
+
+
+
+It may be very handy to use the ClientBuffer module. In which case you can set an identifier either way:
+
+* `username@identifier/network:password` as the password and your username as the username
+* `username@identifier/network` as the username, and your password as the password
 
 ### tor
 
