@@ -136,45 +136,32 @@ In order of how much I care to enforce:
 
 ## ZNC Service
 
-I am hosting ZNC and you can contact me using one of the methods on [my about page](/about) to request a free ZNC account. I just ask you actually use my IRC server in return.
+* **What is ZNC?** Basically, it is something that stays connected to IRC for you and you in turn connect to the ZNC.
+* **Why use ZNC?** Primarily because if you're not connected to IRC you may miss messages.
+* **How can I get an account?** Contact me using one of the methods on [my about page](/about) to request a free ZNC account. You need to actually use the IRC server.
+* Some offerings: playback, clientbuffer
 
-Feel free to connect to other servers using this service.
+### Already have an account?
 
-Let me know if you want me to make changes to your account for you.
+* **Manage your account:** https://znc.someodd.zip
+  * You may want to change your password straightaway. You can also use `/msg *controlpanel set password myusername mynewpassword` once you're connected.
+* **Recommended connection settings:**
+  * **Host:** znc.someodd.zip/+6669
+    * SSL, port 6669
+  * **Username:** `username@identifier/network` (for example `someuser@mylaptop/someodd`)
+    * `username` is your ZNC username
+    * `identifier` is used for [ClientBuffer](https://wiki.znc.in/Clientbuffer), basically just set it to an arbitrary name of your device. For example, I use an identifier `hexchat` for my laptop and could use `revolution` for my phone.
+    * `network`: the name of the IRC network to connect to by default. This is the name for the IRC network in your ZNC settings. Specifying this is nice because you can have one connection to ZNC open per network, so you can perhaps better use many networks at once (without having to use `JumpNetwork`, which I think is annoying).
+  * **Password:** your ZNC password.
+* Let me know if you want me to make changes to your account
+* Feel free to connect to other servers using this service.
 
-### General info
-
-* Point to znc.someodd.zip port 6669
-* your username and password i gave to you
-* Change your password and other settings here, i believe: https://znc.someodd.zip
-  * Try the 6669 (note you may need to change browser security perms to allow accessing a website on that port).
-  * you can also try, once logged in to znc, something like `/msg *controlpanel set password myusername mynewpassword`
-* You can set an IRC password like `username/network:password` to connect to a specific network by default. This will let you have different ZNC connections (say one for someodd and one for libera.chat)
-
-### Client configs
-
-* Revolution IRC
-  * In the `Password` field, input your ZNC credentials in the format `username/network:password`. This tells Revolution IRC how to log in to ZNC and specifies which of your ZNC-configured networks to connect to. 
-* [HexChat - ZNC](https://wiki.znc.in/HexChat)
-  * Add your ZNC server’s address and port to the server list, like `znc.example.com/6667` for non-SSL connections or `znc.example.com/+6697` for SSL connections (prepend the port number with a `+` for SSL).
-  * In the `Password` field, input your ZNC credentials in the format `username/network:password`. This tells HexChat how to log in to ZNC and specifies which of your ZNC-configured networks to connect to. This will let you have different ZNC connections (say one for someodd and one for libera.chat)
-
-### Don't let your clients miss messages!
-
-You may want to make sure you don't miss messages on one device, just because you saw it on another, or just general concerns about missing messages.
-
-These days you might have a laptop client and a phone client connected to the ZNC.
-
-Go to https://znc.someodd.zip/ and then edit the network you want and make sure `clientbuffer` mod enabled and has the argument `autoadd`.
-
-if that seems insufficient you *may* want to use this in case you have more than one device using the znc account:
+I have some note about these commands which may come in handy, but don't just blindly use them:
 
 ```
 /msg *controlpanel set AutoClearChanBuffer $me False
 /msg *controlpanel set AutoClearQueryBuffer $me False
 ```
-
-I think the `playback` module is globally autoloaded.
 
 ## News
 
