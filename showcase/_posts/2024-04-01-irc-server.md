@@ -141,13 +141,15 @@ You can get Revolution IRC on F-Droid.
 
 ![Revolution IRC connected to someodd IRC](/assets/showcase/irc-server/someodd-irc-revolution-irc.png)
 
-## Guidelines
+## Rules
 
-In order of how much I care to enforce:
+Here are rules which breaking may result in a ban:
 
-1. Nothing NSFW
-1. Nothing political
-1. Keep it about tech and collaboration
+* Nothing NSFW
+* Nothing political
+* Keep it positive
+* Keep it about tech and collaboration
+* Be nice, no trolling
 
 ## Register your nickname!
 
