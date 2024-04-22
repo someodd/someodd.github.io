@@ -15,11 +15,19 @@ image:
 
 ## The skinny
 
-Someodd IRC Server is open to the public, but I try to fill it with interesting developers, people I've enjoyed working with, especially to facilitate further open source collaboration. It features various services (like `nickserv`). Also, you can try to request a ZNC account (using contact info on [my about page](/about)).
+Place for people to talk using [a text-based chat system from 1988 (IRC)](https://en.wikipedia.org/wiki/IRC). Some people may find IRC dated and counter-intuitive (partially for them, I have something in the works). Think of it like an old [Discord](https://discord.com/), where people can create their own channels (and sort of be the boss of them).
+
+Since IRC is old there may be some features lacking that you're used to, like the ability to upload media. Also, to receive messages while you're not around/connected you might want to [ask me for a ZNC account](#znc-service), or you may miss messages while you're away.
+
+Open to the public, but I try to fill it with people I respect, interesting developers, people I've enjoyed working with, hopefully sparking further collaboration and "cross-pollination."
 
  [I wrote some about my journey setting up this service](/notes/irc-server), so the setup is transparent, and I suppose in a way, open source. Try setting it up yourself!
 
-[Get Connected](#connecting){: .button}
+The central place (channel, room) to talk is `#main`.
+
+[Get Connected (No ZNC)](#connecting-without-znc){: .button}
+
+[Get Connected With My ZNC Service](#connecting-with-znc){: .button}
 
 ## Features
 
@@ -37,23 +45,14 @@ Someodd IRC Server is open to the public, but I try to fill it with interesting 
   * StatServ: records various network statistics.
 * [Server statistics publicly available via JSON](https://irc.someodd.zip/stats.json)
 * (Maybe) coming soon:
-  * Web UI--join via the web
   * Chat via Gopher
-  * Post to [Gopherden](/showcase/gopherden)
+  * [Whisper Radio integration](/showcase/whisper-radio)
+  * [Gopherden](/showcase/gopherden) notifications
 
 This is probably a non-fully-inclusive list of features!
 
 [ZNC Service](#znc-service){:.button}
 [Another Button](#znc-service){:.button}
-
-## Web UI
-{:.special}
-
-You can chat through your web browser using Kiwi IRC.
-
-[Use Kiwi IRC](https://kiwiirc.com/nextclient/#irc://irc.someodd.zip:+6697/#main){:.button .primary}
-[Open in Your Client](ircs://irc.someodd.zip:6697/main){: .button}
-[Client Connection Info](#connecting){:.button}
 
 ##  Statistics
 {:.stats_section}
@@ -72,7 +71,9 @@ These stats are fetched using JavaScript.
 
 [Atheme Statistics HTTP](https://github.com/someodd/atheme-stats-http){:.button}
 
-## Connecting
+## Connecting without ZNC
+
+Only use this connection info if you do not use [my ZNC service](#znc-service).
 
 * SSL only
 * Port 6697
@@ -83,6 +84,18 @@ After you  have a client you may be able to simply use the "open in your client"
 
 [Open in Your Client](ircs://irc.someodd.zip:6697/main){: .button .primary}
 [Web Client](#web-ui){: .button}
+
+### Web UI
+
+{:.special}
+
+You can chat through your web browser using Kiwi IRC.
+
+Sorry, this seems to be broken.
+
+[Use Kiwi IRC](https://kiwiirc.com/nextclient/#irc://irc.someodd.zip:+6697/#main){:.button .primary}
+[Open in Your Client](ircs://irc.someodd.zip:6697/main){: .button}
+[Client Connection Info](#connecting){:.button}
 
 ### Hexchat (Linux, probably more)
 
@@ -134,14 +147,16 @@ In order of how much I care to enforce:
 1. Nothing political
 1. Keep it about tech and collaboration
 
-## ZNC Service
+## ZNC service
 
 * **What is ZNC?** Basically, it is something that stays connected to IRC for you and you in turn connect to the ZNC.
 * **Why use ZNC?** Primarily because if you're not connected to IRC you may miss messages.
 * **How can I get an account?** Contact me using one of the methods on [my about page](/about) to request a free ZNC account. You need to actually use the IRC server.
 * Some offerings: playback, clientbuffer
 
-### Already have an account?
+### Connecting with ZNC
+
+Information on connecting to my IRC service using the ZNC account I made for you. You use this information *instead* of the regular connection info.
 
 * **Manage your account:** https://znc.someodd.zip
   * You may want to change your password straightaway. You can also use `/msg *controlpanel set password myusername mynewpassword` once you're connected.
@@ -153,6 +168,10 @@ In order of how much I care to enforce:
     * `identifier` is used for [ClientBuffer](https://wiki.znc.in/Clientbuffer), basically just set it to an arbitrary name of your device. For example, I use an identifier `hexchat` for my laptop and could use `revolution` for my phone.
     * `network`: the name of the IRC network to connect to by default. This is the name for the IRC network in your ZNC settings. Specifying this is nice because you can have one connection to ZNC open per network, so you can perhaps better use many networks at once (without having to use `JumpNetwork`, which I think is annoying).
   * **Password:** your ZNC password.
+* **Alternative connection settings:**
+  * Some clients like [Revolution IRC](https://github.com/MCMrARM/revolution-irc) may not let you enter in a regular username (you don't want to use SASL, I don't think), so you can actually use a password in this format:
+    * `username@identifier/someodd:yourpassword`
+
 * Let me know if you want me to make changes to your account
 * Feel free to connect to other servers using this service.
 
@@ -170,9 +189,9 @@ someodd-irc
 ## Known issues
 
 * Not using Atheme's Global notice module to send maintenance notifications
-* I'd like to enhance privacy and implement/utilize cloaks and the like more
 * I'm not really doing much of any administration, there's no other operators
 * Server isn't really fully set up (like services, permissions)
+* Web UI (KiwiIRC) seems to be broken
 
 ## Feedback
 
@@ -180,7 +199,7 @@ Take a look at [my about page](/about) for my contact info.
 
 ## Who's using, in the news
 
-projects hosted here?
+Some interesting people use this service. I also hope that some projects will soon be hosted here.
 
 ## Documentation and tutorials
 
