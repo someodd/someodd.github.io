@@ -77,7 +77,7 @@ Now that the config file should be open:
     * check out this module for invitation page: https://modules.prosody.im/mod_invites_page
       * enable the `"invites_page"`module in `/etc/prosody/prosody.cfg.lua`
       * `invites_page = "https://xmpp.someodd.zip/invites_page?{invite.token}"` in top level scope
-      * create an invnite with `sudo prosodyctl mod_invites generate xmpp.someodd.zip`
+      * create an invnite with `sudo prosodyctl mod_invites generate xmpp.someodd.zip` or you may be able to generate invites in your client
     * add `http_libjs` to modules
     
   * i decided to enable BOSH. I think this supposedly this helps with people who have unreliabel connectsions, or say are using XMPP from a phone.
