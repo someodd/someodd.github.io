@@ -235,7 +235,7 @@ someodd-irc
 
 ## Feedback
 
-Take a look at [my about page](/about) for my contact info.
+Take a look at [my about page](/about) for my contact info. Also, you can contact me on the IRC server, I'm `someodd`. Let me know if you have issues with the server or want help.
 
 ## Who's using, in the news
 
