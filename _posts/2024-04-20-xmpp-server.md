@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Set up an XMPP Server"
-date: 2024-03-30
+date: 2024-04-22
 categories: notes
 tags: debian xmpp server linux
 ---
