@@ -19,11 +19,11 @@ Place for people to talk using [a text-based chat system from 1988 (IRC)](https:
 
 Since IRC is old there may be some features lacking that you're used to, like the ability to upload media. Also, to receive messages while you're not around/connected you might want to [ask me for a ZNC account](#znc-service), or you may miss messages while you're away.
 
-There's different ways to join (called "clients"). For example, you can join using your phone with a client like Revolution IRC, or on your laptop using Hexchat.
+There's different ways to join (called "clients"). For example, you can join using your phone with a client like [Revolution IRC](https://github.com/MCMrARM/revolution-irc), or on your laptop using [Hexchat](https://hexchat.github.io/).
 
 Open to the public, but I try to fill it with people I respect, interesting developers, people I've enjoyed working with, hopefully sparking further collaboration and "cross-pollination."
 
- [I wrote some about my journey setting up this service](/notes/irc-server), so the setup is transparent, and I suppose in a way, open source. Try setting it up yourself!
+ [I wrote some about my journey setting up this service](/notes/irc-server), so the setup is transparent, and I suppose in a way, open source.
 
 The central place (channel, room) to talk is `#main`.
 
