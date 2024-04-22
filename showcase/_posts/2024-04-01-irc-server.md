@@ -177,6 +177,12 @@ I know it may be confusing considering you have a password for your ZNC, but you
 * input your password into the text box immediately to the right
 * Click the "save and return" button
 
+**Sorry, the above does not seem to work for me. I think in the future I may post SASL instructions. So for now manually IDENTIFY.** The below might work, though:
+
+* While you're editing the `someodd` network for your user, notice in the general navigation section there's a link or something like *network modules (someodd) SASL*.
+* Enter your username and password (from `NickServ`)
+* Click *save* button
+
 ## ZNC service
 
 * **What is ZNC?** Basically, it is something that stays connected to IRC for you and you in turn connect to the ZNC.
