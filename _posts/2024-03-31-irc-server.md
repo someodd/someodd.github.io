@@ -39,10 +39,22 @@ Now edit `/etc/ngircd/ngircd.conf`. We will come back to this config file later,
   * `MotdFile` (at `/etc/ngircd/motd.txt`)
   * `Ports`: I think actually resolved a connection issue for `atheme-services` by explicitly setting this to `6667`
   * `ServerGID` & `ServerUID`: I have these set to `irc` (user and group server runs under, be aware of file permissions to things ngircd needs to access)
+  * Set an `[Oper]` block.
+    * I have mine set to the same username I have registered with atheme services
 
 Try `sudo service ngircd restart`.
 
-A handy command for debugging ngircd is `sudo journalctl -xeu ngircd.service`.
+Handy commands:
+
+* A handy command for debugging ngircd is `sudo journalctl -xeu ngircd.service`.
+
+* Reload config without restarting service/interrupting:
+  ```
+  pgrep ngircd
+  sudo kill -HUP <PID>
+  ```
+
+
 
 ## ngircd + LetsEncrypt (SSL)
 
