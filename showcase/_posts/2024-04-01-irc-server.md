@@ -212,6 +212,8 @@ I have some note about these commands which may come in handy, but don't just bl
 /msg *controlpanel set AutoClearQueryBuffer $me False
 ```
 
+[Manage ZNC (Web)](https://znc.someodd.zip/){: .button .primary}
+
 ## News
 
 someodd-irc
