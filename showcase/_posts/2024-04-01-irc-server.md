@@ -28,10 +28,9 @@ Open to the public, but I try to fill it with people I respect, interesting deve
 The central place (channel, room) to talk is `#main`.
 
 [Read the Rules](#rules){: .button .primary}
-
 [Get Connected (No ZNC)](#connecting-without-znc){: .button}
-
 [Get Connected With My ZNC Service](#connecting-with-znc){: .button}
+[Read About Nickname Registration](#register-your-nickname){: .button}
 
 ## Features
 
