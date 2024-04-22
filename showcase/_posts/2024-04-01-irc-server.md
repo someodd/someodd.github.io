@@ -182,6 +182,8 @@ I know it may be confusing considering you have a password for your ZNC, but you
 * Enter your username and password (from `NickServ`)
 * Click *save* button
 
+[Manage ZNC (Web)](https://znc.someodd.zip/){: .button}
+
 ## ZNC service
 
 * **What is ZNC?** Basically, it is something that stays connected to IRC for you and you in turn connect to the ZNC.
