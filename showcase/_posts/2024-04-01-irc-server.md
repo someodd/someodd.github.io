@@ -151,9 +151,27 @@ In order of how much I care to enforce:
 
 ## Register your nickname!
 
-Very important...
+IRC is maybe a weird beast. One example is that anyone can take your nickname unless you register it with `NickServ`:
 
-I know it may be confusing considering you have a password for your ZNC...
+```
+/msg REGISTER <password> <email>
+```
+
+And to login (I think this is the command):
+
+```
+/msg IDENTIFY <password>
+```
+
+Note you don't actually include the `<>` brackets.
+
+### Note for ZNC users
+
+I know it may be confusing considering you have a password for your ZNC, but you still may want to register your nickname. Once you've done that you can [manage your ZNC account's someodd network](https://znc.someodd.zip) to:
+
+* Enable the `nickserv` module (check the checkbox)
+* input your password into the text box immediately to the right
+* Click the "save and return" button
 
 ## ZNC service
 
@@ -200,6 +218,7 @@ someodd-irc
 * I'm not really doing much of any administration, there's no other operators
 * Server isn't really fully set up (like services, permissions)
 * Web UI (KiwiIRC) seems to be broken
+* no real email system. this may mean you can't recover your account/nickname if you forget your password or the like
 
 ## Feedback
 
