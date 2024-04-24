@@ -47,24 +47,31 @@ Now that the config file should be open:
 
 * Change `VirtualHost` to your domain you want the XMPP service to be accessible through.
 
+* add this to the end of the config and make sure the domain you use has a valid ssl cert for it (files expire after a week!) also [note this important docs on how to change things like quotas, size limits, etc](https://prosody.im/doc/modules/mod_http_file_share):
+
+  * ```
+    Component "upload.xmpp.someodd.zip" "http_file_share"
+    http_file_share_size_limit = 25*1024*1024
+    ```
+
 * edit `modules_enabled`:
   * i'm thinking about uncommenting `http_openmetrics`
-  
+
   * `offline` is auto-loaded! I love that.
-  
+
   * i enabled `websocket` for web client?
-  
+
   * note of the log locations. mine are
     * `/var/log/prosody/prosody.log`
     * `/var/log/prosody/prosody.err`
-  
+
   * note the certificate location... mine just said `certs`, I believe that's `/etc/prosody/certs`
 
   * there's something about enabling statistics too
-  
+
   * definitely set this:
     * `admins = { "someodd@xmpp.someodd.zip" }`
-  
+
   * careful with registration:
     * https://prosody.im/doc/creating_accounts -- you may want to read this.
     * `allow_registration = true` is supposedly dangerous.
@@ -79,21 +86,22 @@ Now that the config file should be open:
       * `invites_page = "https://xmpp.someodd.zip/invites_page?{invite.token}"` in top level scope
       * create an invnite with `sudo prosodyctl mod_invites generate xmpp.someodd.zip` or you may be able to generate invites in your client
     * add `http_libjs` to modules
-    
+
   * i decided to enable BOSH. I think this supposedly this helps with people who have unreliabel connectsions, or say are using XMPP from a phone.
-  
+
   *  enable chat groups:
-  
+
     * i may want to set `restrict_room_creation = local`
-  
-    * add these (use a real domain):
-  
+
+    * add these (use a real domain) (not sure if I need the `modules_enabled` bit:
+
       ```
       Component "conference.xmpp.someodd.zip" "muc"
           name = "Prosody Chatrooms"
-          restrict_room_creation = local
+          restrict_room_creation = "local"
+          modules_enabled = { "muc_mam" }
       ```
-  
+
       
 
 A part of my enabled modules section looks like:
@@ -132,8 +140,8 @@ server {
     server_name xmpp.someodd.zip;
     root /var/www/xmpp.someodd.zip;
 
-    ssl_certificate /etc/letsencrypt/live/xmpp.someodd.zip/cert.pem;
-    ssl_certificate_key /etc/letsencrypt/live/xmpp.someodd.zip/privkey.pem;
+    #ssl_certificate /etc/letsencrypt/live/xmpp.someodd.zip/cert.pem;
+    #ssl_certificate_key /etc/letsencrypt/live/xmpp.someodd.zip/privkey.pem;
 
     location / {
         proxy_pass http://127.0.0.1:5280;
@@ -145,7 +153,7 @@ server {
 
     location ^~ /.well-known/acme-challenge/ {
         default_type "text/plain";
-        root /var/www/letsencrypt;
+        root /var/www/xmpp.someodd.zip;
     }
 
 }
@@ -168,7 +176,7 @@ Select web root. Now go back and uncomment those SSL-related lines in the nginx 
 Now that we have the certificates, link them to the certificate directory defined in the prosody config:
 
 ```
-sudo prosodyctl --root cert import /etc/letsencrypt/live/xmpp.someodd.zip
+sudo prosodyctl --root cert import /etc/letsencrypt/live
 ```
 
 Edit `/etc/letsencrypt/renewal/xmpp.someodd.zip.conf` and add the following to `renewalparams`:
@@ -182,6 +190,8 @@ I will probably update this article later to use a system-wide notification abou
 ```
 sudo certbot renew --dry-run --cert-name xmpp.someodd.zip
 ```
+
+Not done, just now do the same thing but for `upload.xmpp.someodd.zip`.
 
 ## Test what we have so far + firewall
 
@@ -208,6 +218,7 @@ test out conversejs module: https://xmpp.someodd.zip/conversejs
 handy commands:
 
 * `sudo systemctl restart prosody`
+* `sudo prosodyctl check`
 
 # Backups
 
@@ -215,7 +226,16 @@ Add `/var/lib/prosody/` to backups.
 
 # Coming soon
 
-* File sharing
+* maybe i wanna make it so any server can be joined IRC
+* File sharing: [http_file_share](https://prosody.im/doc/modules/mod_http_file_share) is built-in!
+* maybe i need certs for irc.xmpp.someodd.zip and conference.xmpp.someodd.zip
+* voice call+video
+  * https://prosody.im/doc/jingle
+  * i think this means no need config
+* specific public, anonymous mucs, maybe.
+  * I want to make it so I can provide people a conversejs anonymous/public access to #main on my irc server
+* It turns out I do have another question: if I enter a key/password for a channel and I have persistence turned on, I'm not going to have a nasty situation where others can now access the channel without the key/password, am I?  Like, how about if someone uses the same generic name I used to access the password-protected channel?
+* Public Statistics: https://prosody.im/doc/modules/mod_http_openmetrics -- [http_openmetrics](https://prosody.im/doc/modules/mod_http_openmetrics) is built in!
 
 # Bonus: link to IRC
 
@@ -257,6 +277,8 @@ fixed_irc_server=irc.someodd.zip
 persistent_by_default=true
 ```
 
+maybe `persistent_by_default` is a bad idea for security and I think a user can mark a connection as persistent on their end, so they don't miss messages?
+
 you'll also want to enable `mod_muc` for group chats maybe in the component?
 
 * `sudo journalctl -xeu biboumi.service`
@@ -273,3 +295,7 @@ Add `/var/lib/biboumi/.config/biboumi/` to backups.
 
 * https://metajack.im/2008/07/02/xmpp-is-better-with-bosh/
 * https://doc.biboumi.louiz.org/9.0/user.html
+* https://shadowkat.net/blog/30.html
+* https://prosody.im/doc/modules/mod_muc
+* https://joinjabber.org/
+* https://prosody.im/doc/jingle#server_support -- calling and video support

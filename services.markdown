@@ -9,6 +9,11 @@ Some services provided by someodd:
   * Counter Strike 1.6 Server
     * Connect to `cs16.someodd.zip`
     * [Read about the CS 1.6 service](/showcase/counter-strike-1.6-server)
+  * XMPP
+    * You can connect to my IRC server using XMPP
+    * Invite-only
+    * Read about how I did this
+    * See the service page
   * IRC
     * [ircs://irc.someodd.zip](ircs://irc.someodd.zip) (port 6697, SSL)
     * [Read about this service](/showcase/irc-server)
