@@ -15,9 +15,15 @@ image:
 
 ## Chat, kinda everywhere and everyone
 
-Modern and encrypted communication that everyone can own, instead of trusting some big tech giants. Communication that works like email--you can have an account on my server, but talk with someone on another server. Make voice calls, send files, create group chats, use completely different communication systems like IRC and Discord, all with XMPP!
+Modern, encrypted communication owned by everyone, not big tech giants. 
 
-Not only are you not locked into some big company for an account, but you can also use different apps to use XMPP! For example, on Android, I think [Conversations](https://conversations.im/) is very nice. On my laptop I use [Gajim](https://gajim.org/).
+Voice and video calls, send photos and files, create group chats, and more.
+
+Don't use text messages, Signal, WhatsApp, or Discord, use this service instead!
+
+Like email you trust one email provider with your account, like `example@gmail.com`, but you can still email people who use another provider like `tim@apple.com`, except here we're talking about chat and calls.
+
+You can use different apps to use this service. For example, on Android, I think [Conversations](https://conversations.im/) is very nice. On my laptop I use [Gajim](https://gajim.org/).
 
 [I wrote some about my journey setting up this service](/notes/xmpp-server), so the setup is transparent, and I suppose in a way, open source.
 
@@ -30,19 +36,29 @@ My XMPP server is invite-only. It's linked to [my IRC server](/showcase/irc-serv
 ## Tips
 
 * You can join any [someodd IRC](/showcase/irc-server) channel from XMPP! Just try joining a room like `#main@irc.xmpp.someodd.zip` (if enough people want I may open it up to being able to join other IRC servers as well!)
+* Gajim and Conversations support Jingle, which means you can make video and voice calls!
+
+### My favorite clients
+
+XMPP app for desktop/laptop (Linux, Windows, Mac): [Gajim](https://gajim.org/) (seen below, edited to respect privacy):
+
+![Gajim XMPP client connected to my XMPP server which is also connected to my IRC server](/showcase/xmpp-server/gajim-connected-someodd-xmpp-irc-censored.png)
+
+XMPP app for Android (it's free on F-Droid, costs money on Google Play): [Conversations](https://conversations.im/).
 
 ## Features
 
-* Linked to My IRC: You can use my IRC server from XMPP.: fa-cog
+* Voice & Video Calls: Make calls with clients that support it (like Conversations & Gajim).: fa-cog
 * Chat Groups: Start a group of friends!: fa-cloud-download-alt
 * Web Client: Join from your browser!: fa-people-arrows
+* You can use [my IRC server](/showcase/irc-server) from XMPP
 * Coming soon:
   * Anonymous web client to join [someodd IRC](/showcase/irc-server)
 
 
 This is probably a non-fully-inclusive list of features!
 
-[ZNC Service](#znc-service){:.button}
+[Request an Invite](#request-an-invite){:.button .primary}
 [Another Button](#znc-service){:.button}
 
 ## Request an invite
@@ -55,13 +71,11 @@ someodd-xmpp
 
 ## Known issues
 
-* Calling not implemented
-* File upload not implemented
 * No statistics implemented (on this page)
 
-## Feedback
+## Feedback, Support
 
-Take a look at [my about page](/about) for my contact info. Also, you can contact me using XMPP: someodd@xmpp.someodd.zip
+Take a look at [my about page](/about) for my contact info. Also, you can contact me using XMPP: `someodd@xmpp.someodd.zip`.
 
 ## In the news
 
