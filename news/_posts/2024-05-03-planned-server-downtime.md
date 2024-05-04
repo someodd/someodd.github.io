@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Planned Server Downtime on June 3, 2024 (GPU & RAM Upgrades)"
-date: 2025-05-03
+date: 2024-05-03
 categories: news
 tags: server
 ---
