@@ -175,6 +175,14 @@ now try starting the server! to debug (after launching server):
 meta list
 ```
 
+### a bit of configuring podbot
+
+`cs16/cstrike/addons/podbot/podbot.cfg`
+
+you may want to make bots easier, i found them very elite by default:
+
+`pb_minbotskill 15` and `pb_maxbotskill 60`
+
 ### creating waypoints
 
 Sadly, I'm not sure you can automatically create waypoints. So you'll maybe have ot do some work, especially if you're using custom maps. No waypoint, no bots.
@@ -536,6 +544,10 @@ I had trouble using Steam from the Debian Sid repo, so I instead [used the Steam
 flatpak install ./com.valvesoftware.Steam.flatpakref
 flatpak run com.valvesoftware.Steam
 ```
+
+# todo
+
+i want to add quake sounds
 
 # See also
 

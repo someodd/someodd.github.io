@@ -59,6 +59,8 @@ Now that the config file should be open:
 
   * `offline` is auto-loaded! I love that.
 
+  * enable `mam`
+
   * i enabled `websocket` for web client?
 
   * note of the log locations. mine are
@@ -226,12 +228,8 @@ Add `/var/lib/prosody/` to backups.
 
 # Coming soon
 
-* maybe i wanna make it so any server can be joined IRC
-* File sharing: [http_file_share](https://prosody.im/doc/modules/mod_http_file_share) is built-in!
+* pubsub?
 * maybe i need certs for irc.xmpp.someodd.zip and conference.xmpp.someodd.zip
-* voice call+video
-  * https://prosody.im/doc/jingle
-  * i think this means no need config
 * specific public, anonymous mucs, maybe.
   * I want to make it so I can provide people a conversejs anonymous/public access to #main on my irc server
 * It turns out I do have another question: if I enter a key/password for a channel and I have persistence turned on, I'm not going to have a nasty situation where others can now access the channel without the key/password, am I?  Like, how about if someone uses the same generic name I used to access the password-protected channel?
@@ -277,12 +275,15 @@ fixed_irc_server=irc.someodd.zip
 persistent_by_default=true
 ```
 
+`fixed_irc_server=irc.someodd.zip` makes it so only that server is accessible via the XMPP-IRC gateway.
+
 maybe `persistent_by_default` is a bad idea for security and I think a user can mark a connection as persistent on their end, so they don't miss messages?
 
 you'll also want to enable `mod_muc` for group chats maybe in the component?
 
 * `sudo journalctl -xeu biboumi.service`
 * https://doc.biboumi.louiz.org/9.0/user.html
+* https://doc.biboumi.louiz.org/admin.html
 * `sudo service biboumi start`
 
 Add `/var/lib/biboumi/.config/biboumi/` to backups.
