@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Productivity in Window Maker"
-date: 2024-03-04
+date: 2024-05-17
 categories: notes
 tags: windowmaker debian linux
 image:
@@ -46,6 +46,9 @@ install) a Window-Maker-centric Debian setup.
 - [ ] touchpad
 - [ ] i don't like middle click paste.
 - [ ] xsreensaver lock broken? hotkey... startup problem?
+- [ ] battery performance change (like battery savery mode)
+- [ ] adjust brightness with gui
+- [ ] tap touchpad to click
 
 ## Window Maker-specific and Appearance
 
@@ -483,7 +486,7 @@ It may also complain about not being able to open signature.
 
 shotwell for viewing photos
 
-deja-dup has been good to me.
+deja-dup has been good to me. but does it need something to actually launch backups in gui more than just running in bg or whatever?
 
 transmission-qt
 
@@ -491,6 +494,10 @@ ted
 https://www.nllgg.nl/Ted/#How_to_install_Ted
 
 I recommend installing libreoffice-gtk3 for office. lyx seems interesting but I haven't used it much yet. also sudo apt install texlive-full
+
+XMPP client: gajim (seen below, connected to my XMPP server which is also connected to my IRC server, edited to respect privacy):
+
+![Gajim XMPP client connected to my XMPP server which is also connected to my IRC server](/showcase/xmpp-server/gajim-connected-someodd-xmpp-irc-censored.png)
 
 
 ## Set default apps
@@ -524,6 +531,85 @@ Opening "Downloads" with Thunar File Manager  (inode/directory)
 ➜  ~ 
 
 ```
+
+## Bonus
+
+### rofi
+
+great for...
+
+```
+sudo apt-get install rofi
+```
+
+create `~/.config/rofi/config.rasi`:
+
+```
+configuration {
+  display-drun: "Applications:";
+  display-window: "Windows:";
+  drun-display-format: "{icon} {name}";
+  show-icons: true;
+  icon-theme: "Papirus";
+}
+```
+
+look at the commands possible:
+
+```
+rofi
+```
+
+you can use as an application launcher, window switcher... i'd like to install the emoji selector but i'm feeling lazy.
+
+add to various key shortcuts hotkeys, i did this by making entries to my applications menu. some i did:
+
+* windows: `rofi -show window` (win+w)
+* apps: `rofi -show drun` (win+r)
+* files: `rofi -show filebrowser` (win+f)
+
+### skippy-xd
+
+```
+sudo apt-get install git build-essential libx11-dev libxcomposite-dev libxdamage-dev libxrender-dev libxext-dev libxft-dev libxinerama-dev libpng-dev libimlib2-dev libwnck-dev libstartup-notification0-dev
+sudo apt-get install libgif-dev
+
+git clone https://github.com/richardgv/skippy-xd.git
+cd skippy-xd
+make
+sudo make install
+```
+
+now you can add `skippy-xd --start-daemon` to your autostart... and assign the `skippy-xd --toggle-window-picker` to a hotkey (i added toggle skippy to my hotkeys section in applications menu, basically assigned to super + s)
+
+in `~/GNUstep/Library/WindowMaker/autostart` add `skippy-xd --start-daemon &`
+
+it can also be configured...
+
+## Laptop
+
+## tap to click
+
+```
+sudo apt update
+sudo apt install xserver-xorg-input-libinput
+sudo mkdir -p /etc/X11/xorg.conf.d
+sudo nano /etc/X11/xorg.conf.d/40-libinput.conf
+```
+
+contents:
+
+```
+Section "InputClass"
+    Identifier "libinput touchpad catchall"
+    MatchIsTouchpad "on"
+    MatchDevicePath "/dev/input/event*"
+    Driver "libinput"
+    Option "Tapping" "on"
+EndSection
+```
+
+restart your x session.
 
 ## Toys
 
