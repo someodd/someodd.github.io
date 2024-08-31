@@ -398,6 +398,30 @@ edit `podbot.cfg` specifically these:
 
 Now edit the bot names in `botnames.txt`.
 
+#### restrict over-powered weapons with amxmodd
+
+enable restmenu in `cstrike/addons/amxmodx/configs/plugins.ini`:
+
+```
+restmenu.amxx           ; restrict weapons menu
+```
+
+you'll also want to set up admin by editing `configs/users.ini` and adding your steam ID you may find from something like https://www.steamidfinder.com/lookup/someodd/
+
+here i added:
+
+```
+"STEAM_0:0:854249781" "" "abcdefghijklmnopqrstu" "ce"
+```
+
+then in the console in game `~`:
+
+```
+amx_restmenu
+```
+
+or something like that?
+
 ## Set up statistics
 
 Basically assumes you have an nginx setup running, see my [#nginx tag](/tags/#nginx).

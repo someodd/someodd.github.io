@@ -282,6 +282,17 @@ Only edit `~/.znc/configs/znc.conf` if ZNC not running.
 
 Honestly, somehow I'm just running it as my regular user so I just launch `znc` as that regular user.
 
+You may want this in your nginx for znc if you setup ZNC:
+
+```
+    location ^~ /.well-known/acme-challenge/ {
+        default_type "text/plain";
+        root /var/www/znc.someodd.zip;
+    }
+```
+
+
+
 ### SSL + more
 
 Create the certificate or whatever (note I'm using the web root from [my Whisper Radio setup](/showcase/whisper-radio) but you may wanna just use the `--standalone` option instead; I selected *webroot* when prompted):
@@ -296,7 +307,7 @@ Copy the files, ensure ownership, create a directory (we will automate this with
 mkdir ~/.znc/ssl
 sudo cp /etc/letsencrypt/live/znc.someodd.zip/fullchain.pem /home/someuser/.znc/ssl/fullchain.pem
 sudo cp /etc/letsencrypt/live/znc.someodd.zip/privkey.pem /home/someuser/.znc/ssl/privkey.pem
-sudo chown -r someuser:someuser ~/.znc/ssl
+sudo chown -R someuser:someuser ~/.znc/ssl
 ```
 
 Now in `~/.znc/configs/znc.conf` (make sure ZNC isn't running):

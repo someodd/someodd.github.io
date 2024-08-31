@@ -11,6 +11,8 @@ others to getting a Nix Flake working for their Haskell Project.
 
 Some of these tips might be useful for Haskell in general.
 
+i recommend only using nix if you have non-haskellpur edepends
+
 * TOC
 {:toc}
 
@@ -206,6 +208,8 @@ cradle:
 
 ```
 
+you can also specify `stack` instead if you want.
+
 i think this file above helps HLS detect that you're only using cabal and not using Stack (you may get errors about cradle otherwise). generally helpful maybe
 
 install these plugins to vscode: 
@@ -221,6 +225,18 @@ This link (reddit) was helpful: https://www.reddit.com/r/NixOS/comments/v23c3k/h
 echo use flake > .envrc
 direnv allow
 ```
+
+also
+
+```
++++ b/.vscode/settings.json
+@@ -0,0 +1,3 @@
++{
++    "nixEnvSelector.nixFile": "${workspaceFolder}/flake.nix"
++}
+```
+
+
 
 ## Crazy caveat
 

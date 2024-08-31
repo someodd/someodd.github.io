@@ -195,6 +195,31 @@ sudo certbot renew --dry-run --cert-name xmpp.someodd.zip
 
 Not done, just now do the same thing but for `upload.xmpp.someodd.zip`.
 
+here's the general idea with the `/etc/letsencrypt/renewal/xmpp.someodd.zip.conf` file, please note the `deploy_hook` which restarts prosody after renewal:
+
+```
+# renew_before_expiry = 30 days
+version = 2.1.0
+archive_dir = /etc/letsencrypt/archive/xmpp.someodd.zip
+cert = /etc/letsencrypt/live/xmpp.someodd.zip/cert.pem
+privkey = /etc/letsencrypt/live/xmpp.someodd.zip/privkey.pem
+chain = /etc/letsencrypt/live/xmpp.someodd.zip/chain.pem
+fullchain = /etc/letsencrypt/live/xmpp.someodd.zip/fullchain.pem
+
+# Options used in the renewal process
+[renewalparams]
+account = redacted
+authenticator = webroot
+webroot_path = /var/www/xmpp.someodd.zip,
+server = https://acme-v02.api.letsencrypt.org/directory
+key_type = ecdsa
+deploy_hook = prosodyctl --root cert import /etc/letsencrypt/live
+[[webroot_map]]
+xmpp.someodd.zip = /var/www/xmpp.someodd.zip
+```
+
+**I THINK YOU'LL WANT TO ALSO DO THAT FOR irc.xmpp.someodd.zip** if you're going to do biboumi/irc connection.
+
 ## Test what we have so far + firewall
 
 ```

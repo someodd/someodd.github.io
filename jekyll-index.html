@@ -1,0 +1,15 @@
+---
+layout: category
+excerpt: "someodd"
+show_excerpts: true
+paginate: true
+entries_layout: list
+---
+
+{% assign sorted_posts = site.posts | sort: 'date' | reverse %}
+
+<div class="entries-{{ page.entries_layout | default: 'list' }}">
+  {% for entry in sorted_posts %}
+    {% include entry.html %}
+  {% endfor %}
+</div>

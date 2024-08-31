@@ -1,15 +1,54 @@
----
-layout: category
-excerpt: "someodd"
-show_excerpts: true
-paginate: true
-entries_layout: list
----
-
-{% assign sorted_posts = site.posts | sort: 'date' | reverse %}
-
-<div class="entries-{{ page.entries_layout | default: 'list' }}">
-  {% for entry in sorted_posts %}
-    {% include entry.html %}
-  {% endfor %}
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>someodd</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: #f5e8d3; /* Creme-ish, yellowish background */
+            font-family: 'Palatino', 'Garamond', serif; /* Elegant, academic-style fonts */
+        }
+        .container {
+            text-align: center;
+            max-width: 90%;
+        }
+        .gopher-address {
+            font-size: 5vw; /* Responsive font size */
+            color: #800020; /* Burgundy color */
+            margin-bottom: 20px;
+            word-wrap: break-word;
+            line-height: 1.2;
+        }
+        .normal-link {
+            font-size: 18px;
+            color: #4a4a4a;
+            text-decoration: none;
+            border-bottom: 1px solid #4a4a4a;
+            transition: color 0.3s ease, border-color 0.3s ease;
+        }
+        .normal-link:hover {
+            color: #800020;
+            border-color: #800020;
+        }
+        @media (max-width: 600px) {
+            .gopher-address {
+                font-size: 8vw;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="gopher-address">gopher://gopher.someodd.zip:7071/</h1>
+        <a href="/jekyll-index.html" class="normal-link">huh? take me the website</a>
+    </div>
+</body>
+</html>
