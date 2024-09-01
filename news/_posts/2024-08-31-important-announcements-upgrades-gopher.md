@@ -16,7 +16,7 @@ Some important news about my services.
 I'll be winding down the website in favor of being active on my personal
 gopherhole:
 
-gopher://gopher.someodd.zip:7070/
+gopher://gopher.someodd.zip:7071/
 
 You may have noticed the new frontpage of this website simply points to the
 Gopher URL and also a link to the old index.
