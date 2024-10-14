@@ -20,12 +20,15 @@
             text-align: center;
             max-width: 90%;
         }
-        .gopher-address {
-            font-size: 5vw; /* Responsive font size */
+	.gopher-address a:visited,
+	.gopher-address a:link {
             color: #800020; /* Burgundy color */
+	}
+        .gopher-address {
             margin-bottom: 20px;
             word-wrap: break-word;
             line-height: 1.2;
+            font-size: 5vw; /* Responsive font size */
         }
         .normal-link {
             font-size: 18px;
@@ -47,8 +50,8 @@
 </head>
 <body>
     <div class="container">
-        <h1 class="gopher-address">gopher://gopher.someodd.zip:7071/</h1>
-        <a href="/jekyll-index.html" class="normal-link">huh? take me to the website</a>
+	<h1 class="gopher-address"><a href="https://gopher.floodgap.com/gopher/gw?a=gopher%3A%2F%2Fgopher.someodd.zip%2F">gopher://gopher.someodd.zip/</a></h1>
+        <a href="/jekyll-index.html" class="normal-link">Just View Someodd's Website</a>
     </div>
 </body>
 </html>
