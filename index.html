@@ -15,10 +15,13 @@
             align-items: center;
             background-color: #f5e8d3; /* Creme-ish, yellowish background */
             font-family: 'Palatino', 'Garamond', serif; /* Elegant, academic-style fonts */
+            line-height: 1.5;
         }
         .container {
             text-align: center;
             max-width: 90%;
+            padding: 20px;
+            box-sizing: border-box;
         }
 	.gopher-address a:visited,
 	.gopher-address a:link {
@@ -36,8 +39,27 @@
             text-decoration: none;
             border-bottom: 1px solid #4a4a4a;
             transition: color 0.3s ease, border-color 0.3s ease;
+            margin-bottom: 40px;
+            display: inline-block;
         }
         .normal-link:hover {
+            color: #800020;
+            border-color: #800020;
+        }
+        .link-list {
+            margin-top: 40px;
+	    list-style-type: none;
+        }
+        .link-list a {
+            display: block;
+            font-size: 16px;
+            color: #4a4a4a;
+            text-decoration: none;
+            padding: 10px 0;
+            border-bottom: 1px solid #4a4a4a;
+            transition: color 0.3s ease, border-color 0.3s ease;
+        }
+        .link-list a:hover {
             color: #800020;
             border-color: #800020;
         }
@@ -45,13 +67,31 @@
             .gopher-address {
                 font-size: 8vw;
             }
+            .normal-link {
+                font-size: 16px;
+            }
+            .link-list a {
+                font-size: 14px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-	<h1 class="gopher-address"><a href="https://gopher.floodgap.com/gopher/gw?a=gopher%3A%2F%2Fgopher.someodd.zip%2F">gopher://gopher.someodd.zip/</a></h1>
+	<header>
+	<h1 class="gopher-address">
+            <a href="https://gopher.floodgap.com/gopher/gw?a=gopher%3A%2F%2Fgopher.someodd.zip%2F">gopher://gopher.someodd.zip/</a>
+        </h1>
         <a href="/jekyll-index.html" class="normal-link">Just View Someodd's Website</a>
+	</header>
+        <nav class="link-list">
+		<li><a href="https://gopher.floodgap.com/gopher/gw?a=gopher%3A%2F%2Fgopher.someodd.zip%2F">Gopherhole&mdash;More Maintained than Website &amp; Can View in Browser!</a></li>
+		<li><a href="/jekyll-index.html">Blog (Website)</a></li>
+		<li><a href="mailto:contact@someodd.zip">Email</a></li>
+		<li><a href="https://fosstodon.org/@someodd">Mastodon</a></li>
+		<li><a href="https://github.com/someodd">GitHub</a></li>
+		<li><a href="xmpp:someodd@xmpp.someodd.zip">XMPP</a></li>
+        </nav>
     </div>
 </body>
 </html>
