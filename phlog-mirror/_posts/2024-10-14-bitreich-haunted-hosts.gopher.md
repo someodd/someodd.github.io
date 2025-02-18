@@ -8,7 +8,6 @@ tags:
 title: My entry for Bitreich's "Haunted Hosts" Halloween Event
 
 ---
-Original content in gopherspace: gopher://gopher.someodd.zip:Just 7071/phlog/
 
 
 For Bitreich's "Haunted Hosts" Hallowe'en event I made this, try a `trick`:
@@ -423,3 +422,4 @@ Event page: gopher://bitreich.org/1/haunted-hosts
 
 Source: gopher://bitreich.org/0/usr/roygbyte/phlog/2024-10-12T14-01-34-582764.md
 
+Original content in gopherspace: gopher://gopher.someodd.zip:7071/phlog/

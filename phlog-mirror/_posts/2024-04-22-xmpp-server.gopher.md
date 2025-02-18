@@ -6,7 +6,6 @@ tags:
 title: Set up an XMPP Server
 
 ---
-Original content in gopherspace: gopher://gopher.someodd.zip:Just 7071/phlog/
 
 
 
@@ -342,3 +341,4 @@ Add `/var/lib/biboumi/.config/biboumi/` to backups.
 * https://joinjabber.org/
 * https://prosody.im/doc/jingle#server_support -- calling and video support
 
+Original content in gopherspace: gopher://gopher.someodd.zip:7071/phlog/

@@ -6,7 +6,6 @@ tags:
 title: 'Joining The MADE: Retro Tech Museum'
 
 ---
-Original content in gopherspace: gopher://gopher.someodd.zip:Just 7071/phlog/
 
 
 I have donated and am starting to volunteer at The Made, primarily remotely.
@@ -18,3 +17,4 @@ them because I donated a Packard Bell "corner computer."
 
 I'll try to update this document with more info later, especially pictures!
 
+Original content in gopherspace: gopher://gopher.someodd.zip:7071/phlog/

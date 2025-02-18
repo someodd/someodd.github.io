@@ -5,7 +5,6 @@ tags:
 title: Productivity in Window Maker
 
 ---
-Original content in gopherspace: gopher://gopher.someodd.zip:Just 7071/phlog/
 
 
 I use the old school, lightweight [Window Maker](http://www.windowmaker.org/)
@@ -733,3 +732,4 @@ I saw in the aforementioned directory a file called `WMState`, which indeed had 
 
 https://www.windowmaker.org/docs/chap4.html
 
+Original content in gopherspace: gopher://gopher.someodd.zip:7071/phlog/

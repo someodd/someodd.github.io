@@ -8,7 +8,6 @@ tags:
 title: someodd CS 1.6
 
 ---
-Original content in gopherspace: gopher://gopher.someodd.zip:Just 7071/phlog/
 
 
 ## Good ol' head shots
@@ -90,3 +89,4 @@ someodd-cs16
 * [Counter Strike 1.6 on GameBanana](https://gamebanana.com/games/4254)
 * [My article on running your own Counter-Strike 1.6 server on Linux](/notes/linux-counter-strike-1.6-server/)
 
+Original content in gopherspace: gopher://gopher.someodd.zip:7071/phlog/

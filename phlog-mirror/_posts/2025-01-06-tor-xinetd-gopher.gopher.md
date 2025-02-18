@@ -7,7 +7,6 @@ tags:
 title: Rewrite server's gopher menus for Tor requests
 
 ---
-Original content in gopherspace: gopher://gopher.someodd.zip:Just 7071/phlog/
 
 
 in `/etc/xinetd.d/gopher`:
@@ -86,3 +85,4 @@ Related:
 
 0Gopher Reverse Proxy	/phlog/gopher-routing.gopher.txt
 
+Original content in gopherspace: gopher://gopher.someodd.zip:7071/phlog/

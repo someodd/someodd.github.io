@@ -6,7 +6,6 @@ tags:
 title: Using old terminals (like the VT320) with Linux
 
 ---
-Original content in gopherspace: gopher://gopher.someodd.zip:Just 7071/phlog/
 
 
 ## VT320/server setup
@@ -179,3 +178,4 @@ irssi without the screen getting all corrupted..
 * sacc: I really enjoy this Gopher protocol client
 * weechat: I like this IRC client
 
+Original content in gopherspace: gopher://gopher.someodd.zip:7071/phlog/

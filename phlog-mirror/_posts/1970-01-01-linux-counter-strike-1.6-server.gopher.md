@@ -11,7 +11,6 @@ tags:
 title: Counter-Strike 1.6 Server (Linux)
 
 ---
-Original content in gopherspace: gopher://gopher.someodd.zip:Just 7071/phlog/
 
 
 How to run a [Counter-Strike 1.6](https://en.wikipedia.org/wiki/Counter-Strike_(video_game)) server in Linux (namely Debian). I even go into some bonus materials, like making bonus assets (maps, sounds, etc.) download quickly, making statistics accessible as JSON via HTTPS.
@@ -580,3 +579,4 @@ i want to add quake sounds
 * [Counter-Strike 1.6 on GameBanana](https://gamebanana.com/games/4254), a good place to get mods (like maps) for CS1.6
 * [My CS1.6 server](/services)
 
+Original content in gopherspace: gopher://gopher.someodd.zip:7071/phlog/

@@ -9,7 +9,6 @@ tags:
 title: Someodd IRC
 
 ---
-Original content in gopherspace: gopher://gopher.someodd.zip:Just 7071/phlog/
 
 
 ## The skinny
@@ -249,3 +248,4 @@ Some interesting people use this service. I also hope that some projects will so
 * [Atheme](https://atheme.dev) (the IRC services daemon the server is running)
 * [ngircd](https://ngircd.barton.de/) (the IRC daemon the server is running)
 
+Original content in gopherspace: gopher://gopher.someodd.zip:7071/phlog/

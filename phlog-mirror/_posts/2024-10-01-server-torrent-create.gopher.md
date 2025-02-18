@@ -7,7 +7,6 @@ tags:
 title: Torrents for data longevity
 
 ---
-Original content in gopherspace: gopher://gopher.someodd.zip:Just 7071/phlog/
 
 
 # Torrents for data longevity
@@ -129,3 +128,4 @@ transmission-remote -t 1 -it
 
 You may want to edit `/etc/transmission-daemon/settings.json` and set `lpd-enabled` to `true` if you want to test downloading the torrent via local network (or even same VPN?).
 
+Original content in gopherspace: gopher://gopher.someodd.zip:7071/phlog/

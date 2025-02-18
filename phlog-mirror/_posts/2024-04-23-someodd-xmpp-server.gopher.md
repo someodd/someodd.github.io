@@ -9,7 +9,6 @@ tags:
 title: Someodd XMPP
 
 ---
-Original content in gopherspace: gopher://gopher.someodd.zip:Just 7071/phlog/
 
 
 ## Chat, kinda everywhere and everyone
@@ -88,3 +87,4 @@ Nothing here.
 
 * [Read more about Jabber](https://joinjabber.org/)
 
+Original content in gopherspace: gopher://gopher.someodd.zip:7071/phlog/

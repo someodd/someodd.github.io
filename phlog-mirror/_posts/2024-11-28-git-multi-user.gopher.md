@@ -8,7 +8,6 @@ tags:
 title: git, GitHub and multiple accounts/profiles
 
 ---
-Original content in gopherspace: gopher://gopher.someodd.zip:Just 7071/phlog/
 
 
 ## SSH Key
@@ -137,3 +136,4 @@ git config --get user.signingkey
 git config --get commit.gpgsign
 ```
 
+Original content in gopherspace: gopher://gopher.someodd.zip:7071/phlog/

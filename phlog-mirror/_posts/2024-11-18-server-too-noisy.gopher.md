@@ -8,7 +8,6 @@ tags:
 title: Making my server quieter
 
 ---
-Original content in gopherspace: gopher://gopher.someodd.zip:Just 7071/phlog/
 
 
 Entered BIOS and looked for acoustic/power/performance settings which led me to
@@ -31,3 +30,4 @@ I think it's already consistent across boots from the command I tried?
 
 I checked temps with `sensors`.
 
+Original content in gopherspace: gopher://gopher.someodd.zip:7071/phlog/

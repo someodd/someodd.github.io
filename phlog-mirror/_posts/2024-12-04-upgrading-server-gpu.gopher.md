@@ -9,7 +9,6 @@ tags:
 title: Server upgrade! 4x RAM + GPU! Including CUDA+ollama!
 
 ---
-Original content in gopherspace: gopher://gopher.someodd.zip:Just 7071/phlog/
 
 
 This is both a server announcement and a guide!
@@ -118,3 +117,4 @@ All looks pretty good to me!
 
 Darn, that fan is sure annoying on that little low-profile P620.
 
+Original content in gopherspace: gopher://gopher.someodd.zip:7071/phlog/

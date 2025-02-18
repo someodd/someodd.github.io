@@ -6,7 +6,6 @@ tags:
 title: Set up an IRC server
 
 ---
-Original content in gopherspace: gopher://gopher.someodd.zip:Just 7071/phlog/
 
 
 My journey setting up a little IRC server, with SSL support and services, on Debian 12.
@@ -688,3 +687,4 @@ sudo certbot renew --dry-run
 ```
 
 
+Original content in gopherspace: gopher://gopher.someodd.zip:7071/phlog/

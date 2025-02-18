@@ -10,7 +10,6 @@ tags:
 title: Restic on LTFS
 
 ---
-Original content in gopherspace: gopher://gopher.someodd.zip:Just 7071/phlog/
 
 
 Archiving to tape with restic: how I processed 414980 files, roughtly 60 GiB in
@@ -221,3 +220,4 @@ sudo mt -f /dev/st0 comp on
 sudo mt -f /dev/st0 status
 ```
 
+Original content in gopherspace: gopher://gopher.someodd.zip:7071/phlog/

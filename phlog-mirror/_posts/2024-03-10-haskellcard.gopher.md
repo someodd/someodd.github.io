@@ -9,7 +9,6 @@ tags:
 title: 'haskellcard: hypercard-like game engine'
 
 ---
-Original content in gopherspace: gopher://gopher.someodd.zip:Just 7071/phlog/
 
 
 [haskellcard](https://github.com/someodd/haskellcard) an SDL2 game engine based
@@ -29,3 +28,4 @@ Neat parts:
     next song plays
   * Tweening system
 
+Original content in gopherspace: gopher://gopher.someodd.zip:7071/phlog/

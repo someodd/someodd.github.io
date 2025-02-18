@@ -6,7 +6,6 @@ tags:
 title: Now hosting gopherholes!
 
 ---
-Original content in gopherspace: gopher://gopher.someodd.zip:Just 7071/phlog/
 
 
 SEEKING PEOPLE INTERESTED IN #gopher 
@@ -170,3 +169,4 @@ testing with on client machine:
 
 
 
+Original content in gopherspace: gopher://gopher.someodd.zip:7071/phlog/

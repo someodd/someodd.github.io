@@ -5,7 +5,6 @@ tags:
 title: Lagrange & ASCII-art-heavy gopherholes
 
 ---
-Original content in gopherspace: gopher://gopher.someodd.zip:Just 7071/phlog/
 
 
 Making Lagrange display ASCII-art heavy gopherholes in a (hopefully) nicer way.
@@ -39,3 +38,4 @@ markdown bullets into actual bullets.
 
 Also disable word wrapping. This is under "page layout" > wrpa long plaintext lines (make sure to disable).
 
+Original content in gopherspace: gopher://gopher.someodd.zip:7071/phlog/

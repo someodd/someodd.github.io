@@ -5,7 +5,6 @@ tags:
 title: Using GPG to encrypt messages (like email)
 
 ---
-Original content in gopherspace: gopher://gopher.someodd.zip:Just 7071/phlog/
 
 
 I wanted to email phrack...
@@ -72,3 +71,4 @@ I'm not going to get into keyservers.
 Set key expiration.
 
 
+Original content in gopherspace: gopher://gopher.someodd.zip:7071/phlog/

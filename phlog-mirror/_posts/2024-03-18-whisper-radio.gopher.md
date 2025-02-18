@@ -11,7 +11,6 @@ tags:
 title: Whisper Radio
 
 ---
-Original content in gopherspace: gopher://gopher.someodd.zip:Just 7071/phlog/
 
 
 ## Look ma, no human DJ!
@@ -330,3 +329,4 @@ maybe even set the webroot_map to this too if that's a thing
 
 test with `sudo certbot renew --dry-run`
 
+Original content in gopherspace: gopher://gopher.someodd.zip:7071/phlog/

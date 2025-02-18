@@ -8,7 +8,6 @@ tags:
 title: Dynamic DNS in Linux (Debian)
 
 ---
-Original content in gopherspace: gopher://gopher.someodd.zip:Just 7071/phlog/
 
 
 I used to use DuckDNS, but then I started using afraid.org.
@@ -33,3 +32,4 @@ You can crontab:
 You could also use systemd. Above does every five minutes.
 
 
+Original content in gopherspace: gopher://gopher.someodd.zip:7071/phlog/

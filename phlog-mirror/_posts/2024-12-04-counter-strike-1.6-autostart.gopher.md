@@ -9,7 +9,6 @@ tags:
 title: Counter Strike 1.6 Daemonize (Linux)
 
 ---
-Original content in gopherspace: gopher://gopher.someodd.zip:Just 7071/phlog/
 
 
 Let's basically daemonize my Counter Strike 1.6 server, using Systemd. It's a
@@ -102,3 +101,4 @@ Debugging service help:
 sudo journalctl -u cs16.service -e
 ```
 
+Original content in gopherspace: gopher://gopher.someodd.zip:7071/phlog/

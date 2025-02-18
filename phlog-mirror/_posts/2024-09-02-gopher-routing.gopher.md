@@ -7,7 +7,6 @@ tags:
 title: Routing gopher requests (reverse proxy)
 
 ---
-Original content in gopherspace: gopher://gopher.someodd.zip:Just 7071/phlog/
 
 
 I host different Gopher Protocol services which use different ports on one box.
@@ -147,3 +146,4 @@ case "$selector" in
 esac
 ```
 
+Original content in gopherspace: gopher://gopher.someodd.zip:7071/phlog/

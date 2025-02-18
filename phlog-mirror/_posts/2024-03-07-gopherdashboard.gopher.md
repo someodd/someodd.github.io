@@ -7,7 +7,6 @@ tags:
 title: 'gopherdashboard: Sysadmin via Gopher'
 
 ---
-Original content in gopherspace: gopher://gopher.someodd.zip:Just 7071/phlog/
 
 
 [gopherdashboard](https://github.com/someodd/gopherdashboard).
@@ -43,3 +42,4 @@ Some configuration I have as of March 7, 2024 is:
   * `chrootkit` log
   * `restic` backup information (for server)
 
+Original content in gopherspace: gopher://gopher.someodd.zip:7071/phlog/

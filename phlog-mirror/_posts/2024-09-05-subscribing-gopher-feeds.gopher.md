@@ -5,7 +5,6 @@ tags:
 title: Subscribing to feeds in gopherspace
 
 ---
-Original content in gopherspace: gopher://gopher.someodd.zip:Just 7071/phlog/
 
 
 Liferea allows you to use a command as a feed source!
@@ -18,3 +17,4 @@ Liferea allows you to use a command as a feed source!
 
 Also, apparently the `gopher` client has a `get` command!
 
+Original content in gopherspace: gopher://gopher.someodd.zip:7071/phlog/

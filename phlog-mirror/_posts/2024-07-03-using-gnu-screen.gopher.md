@@ -6,7 +6,6 @@ tags:
 title: Using GNU screen
 
 ---
-Original content in gopherspace: gopher://gopher.someodd.zip:Just 7071/phlog/
 
 
 
@@ -56,3 +55,4 @@ https://itsubuntu.com/how-to-use-linux-gnu-screen/
 
 https://linuxize.com/post/how-to-use-linux-screen/
 
+Original content in gopherspace: gopher://gopher.someodd.zip:7071/phlog/

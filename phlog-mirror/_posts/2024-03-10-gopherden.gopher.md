@@ -8,7 +8,6 @@ tags:
 title: 'gopherden: Forum via Gopher Protocol'
 
 ---
-Original content in gopherspace: gopher://gopher.someodd.zip:Just 7071/phlog/
 
 
 [gopherden](https://github.com/someodd/gopherden/) is forum software for the [Gopher Protocol](/tags/gopher). View the official gopherden server [via the web](https://gopher.floodgap.com/gopher/gw?a=gopher%3A%2F%2Fgopher.someodd.zip%3A7070%2F) or [via the Gopher Protocol (as intended)](gopher://gopher.someodd.zip:7070/) (you may want to read [my post about the Gopher Protocol](/notes/gopher)).
@@ -111,3 +110,4 @@ package, so a set up I like and think is simple/easy:
 There you go! Keep in mind if you send the exit signal (I think) inside of `nix
 develop` the database gets wiped.
 
+Original content in gopherspace: gopher://gopher.someodd.zip:7071/phlog/

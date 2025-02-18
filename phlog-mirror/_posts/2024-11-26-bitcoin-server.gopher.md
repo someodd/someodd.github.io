@@ -7,7 +7,6 @@ tags:
 title: Running Bitcoin on my server
 
 ---
-Original content in gopherspace: gopher://gopher.someodd.zip:Just 7071/phlog/
 
 
 Actually own  your BTC by running `bitcoind` on your (Debian, Linux) server.
@@ -291,3 +290,4 @@ bitcoind -datadir=/tmp/bitcoin-test -daemon && sleep 5 && bitcoin-cli -datadir=/
 
 ## Mining
 
+Original content in gopherspace: gopher://gopher.someodd.zip:7071/phlog/

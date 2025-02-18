@@ -8,7 +8,6 @@ tags:
 title: 'Intramaze: Chat encounters in collab-built maze'
 
 ---
-Original content in gopherspace: gopher://gopher.someodd.zip:Just 7071/phlog/
 
 
 [Intramaze](https://github.com/someodd/intramaze) is web software which can
@@ -35,3 +34,4 @@ I've learned I really don't like `Database.Persist` and in the future I'd
 rather just use `postgresql-simple`, which was much easier when I was
 developing [gopherden](/showcase/gopherden).
 
+Original content in gopherspace: gopher://gopher.someodd.zip:7071/phlog/

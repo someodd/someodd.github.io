@@ -6,7 +6,6 @@ tags:
 title: Restic Backup Entire Server
 
 ---
-Original content in gopherspace: gopher://gopher.someodd.zip:Just 7071/phlog/
 
 
 Let's make a backup of the entire server.
@@ -155,3 +154,4 @@ Restore and overwrite:
 restic restore latest --target / --include /etc/hosts --overwrite -r /path/to/repo
 ```
 
+Original content in gopherspace: gopher://gopher.someodd.zip:7071/phlog/

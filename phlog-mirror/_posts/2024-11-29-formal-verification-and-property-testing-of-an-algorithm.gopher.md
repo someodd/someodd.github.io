@@ -7,7 +7,6 @@ tags:
 title: Formal verification and property testing of a custom algorithm
 
 ---
-Original content in gopherspace: gopher://gopher.someodd.zip:Just 7071/phlog/
 
 
 How do you know your code does what it says it does?
@@ -42,3 +41,4 @@ And this is because, I think, you're dealing with more abstract logic, which Has
 
 ## more on the alonzo-church split
 
+Original content in gopherspace: gopher://gopher.someodd.zip:7071/phlog/

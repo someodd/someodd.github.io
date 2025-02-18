@@ -6,7 +6,6 @@ tags:
 title: Setup Haskell verification with LiquidHaskell and Stack
 
 ---
-Original content in gopherspace: gopher://gopher.someodd.zip:Just 7071/phlog/
 
 
 This article helps you get started with LiquidHaskell, which I found confusing.
@@ -35,3 +34,4 @@ https://ucsd-progsys.github.io/liquidhaskell/install/
 
 i'm actually using regular haskell plugin
 
+Original content in gopherspace: gopher://gopher.someodd.zip:7071/phlog/

@@ -8,7 +8,6 @@ tags:
 title: Simple, quick VPN server using WireGuard
 
 ---
-Original content in gopherspace: gopher://gopher.someodd.zip:Just 7071/phlog/
 
 
 Why do I use a VPN? I personally use it because I think exposing a VPN service with
@@ -151,3 +150,4 @@ umask 077
 wg genkey | tee /etc/wireguard/privatekey | wg pubkey > /etc/wireguard/publickey
 ```
 
+Original content in gopherspace: gopher://gopher.someodd.zip:7071/phlog/
