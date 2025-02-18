@@ -28,7 +28,13 @@ layout: default
           <p>⚠️ This post is part of <a href="/notes">the notes category</a>. It may be unfinished, have incorrect information, or other "imperfections."</p>
         </blockquote>
       {% endif %}
-      
+
+      {% if page.categories contains 'phlog-mirror' %}
+       <blockquote class="warning">
+	<p>⚠️ This post is archived from <a href="gopher://gopher.someodd.zip/phlog">my phlog in Gopherspace</a>. Please read <a href="/notes/gopher">mmy post on the Gopher Protocol</a> to get started!</p>
+       </blockquote>
+     {% endif %}
+     
         <div class="e-content">
           {{ content }}
         </div>
