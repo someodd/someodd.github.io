@@ -5,8 +5,9 @@ permalink: /phlog-mirror/
 taxonomy: phlog-mirror
 ---
 
-An archive of articles from my Gopherhole/phlog at gopher://gopher.someodd.zip/phlog
-
-More up-to-date versions of these articles and more articles can be found there.
+A probably out-of-date and incomplete archive of articles from my Gopherhole/phlog at
+[gopher://gopher.someodd.zip/phlog](gopher://gopher.someodd.zip/phlog).
 
 These articles were ported/archived using my gopherhole software [Bore](https://github.com/someodd/bore).
+
+Please read [my article on the gopher protocol](/notes/gopher) to start exploring gopherspace and get full access to my articles!

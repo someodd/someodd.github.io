@@ -65,7 +65,7 @@ collections:
   news:
     output: true
     permalink: /news/:year/:month/:day/:title/
-  posts:
+  phlog-mirror:
     output: true
     permalink: /phlog-mirror/:title/
 
