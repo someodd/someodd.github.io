@@ -24,15 +24,15 @@ ssh -p 6666 treat@someodd.zip
 
 roygbyte of bitreich mentioned and summarized all the entries (including mine!):
 
-1Read the article on roybyte's gopherhole	/haunted_hosts_hallowe_en_2024.gph	roygbyte.com	70
+[Read the article on roybyte's gopherhole](gopher://roygbyte.com:70/1/haunted_hosts_hallowe_en_2024.gph)
 
 ## Background
 
-0Bitreich "Haunted Hosts" Hallowe'en event announced!	/usr/roygbyte/phlog/2024-10-12T14-01-34-582764.md	bitreich.org	70
+[Bitreich "Haunted Hosts" Hallowe'en event announced!](gopher://bitreich.org:70/0/usr/roygbyte/phlog/2024-10-12T14-01-34-582764.md)
 	
 I would like to thank Bitreich member ROYGBYTE for nudging me toward a simpler approach with this writeup:
 
-1ROYGBYTE's guide for authless SSH toy accounts	/haunted_hosts_tutorial_for_running_spooky_server_daemons.gph	roygbyte.com	70
+[ROYGBYTE's guide for authless SSH toy accounts](gopher://roygbyte.com:70/1/haunted_hosts_tutorial_for_running_spooky_server_daemons.gph)
 
 This guide was written from a Debian perspective, but should work for all Linux users, pretty much.
 

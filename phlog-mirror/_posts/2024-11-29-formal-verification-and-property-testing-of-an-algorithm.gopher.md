@@ -13,7 +13,7 @@ How do you know your code does what it says it does?
 
 i'm also writing an article on the formal verification and property testing of an algorithm i made for the gopher protocol
 
-0How to set up LiquidHaskell	/phlog/liquidhaskell-verification-stack.txt
+[How to set up LiquidHaskell](gopher://gopher.someodd.zip:70/0/phlog/liquidhaskell-verification-stack.txt)
 
 ## A little rant about Haskell, correctness
 

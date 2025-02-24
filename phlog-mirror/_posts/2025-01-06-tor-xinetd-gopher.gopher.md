@@ -83,6 +83,6 @@ esac
 
 Related:
 
-0Gopher Reverse Proxy	/phlog/gopher-routing.gopher.txt
+[Gopher Reverse Proxy](gopher://gopher.someodd.zip:70/0/phlog/gopher-routing.gopher.txt)
 
 Original content in gopherspace: gopher://gopher.someodd.zip:7071/phlog/
