@@ -7,7 +7,9 @@ title: Using GPG to encrypt messages (like email)
 ---
 
 
-I wanted to email phrack...
+I wanted to email phrack, but their contact info specifies the use of a public
+key/GPG. So I wanted to send them a GPG-encrypted/signed email message! Here's
+a guide on encrypting/signing arbitrary text content with GPG.
 
 I downloaded their public key as `phrack.asc`
 

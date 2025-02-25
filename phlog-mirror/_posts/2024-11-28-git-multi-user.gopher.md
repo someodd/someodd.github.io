@@ -10,6 +10,10 @@ title: git, GitHub and multiple accounts/profiles
 ---
 
 
+If you use more than one GitHub account you may want a nice set up to make it
+easy to assign a specific user to a specific repo with ease. Here are some
+instructions for that, plus signing commits with GPG key.
+
 ## SSH Key
 
 Create the key, be sure to use a name like `id_ed25519_username`, it's also recommended to set a passphrase for added security:

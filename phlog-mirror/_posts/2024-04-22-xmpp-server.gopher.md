@@ -8,8 +8,9 @@ title: Set up an XMPP Server
 ---
 
 
-
-XMPP is...
+XMPP allows you to host your own encrypted communication server, where you can
+talk to other people on their own servers. Think of email, but for instant
+messaging.
 
 i have an invite-only xmpp server...
 

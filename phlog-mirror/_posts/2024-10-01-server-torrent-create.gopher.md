@@ -9,7 +9,7 @@ title: Torrents for data longevity
 ---
 
 
-# Torrents for data longevity
+Creating torrents for data longevity, a distributed way to archive data.
 
 I created an archive of an artist's content and wanted to ensure it's widely available and preserved for longevity.
 

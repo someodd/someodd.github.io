@@ -8,12 +8,11 @@ title: Using old terminals (like the VT320) with Linux
 ---
 
 
-## VT320/server setup
+I have a VT320 with a unix-style LK401 (?) keyboard. I connected it via
+serial to my Debian server. Here's how.
 
 I have a USB/Serial adapter, but you can just connect via serial. Serial has
 different formats. For example, a common one is called something like RS232.
-
-I have a VT320 with a unix-style LK401 (?) keyboard.
 
 ### Terminal/VT320 setup: in the terminal config screen
 
