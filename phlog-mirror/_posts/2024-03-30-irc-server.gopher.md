@@ -1,18 +1,18 @@
 ---
-layout: post
-title: "Set up an IRC Server"
 date: 2024-03-30
-categories: notes
-tags: debian irc server linux
+tags:
+- linux
+- sysadmin
+title: Set up an IRC server
+
 ---
 
-* TOC
-{:toc}
+
 My journey setting up a little IRC server, with SSL support and services, on Debian 12.
 
 I feel like I went through a lot of struggles and research to get to the point of having a functional server. I tried various IRC daemons services, but ultimately decided to go with ngircd and atheme. I feel these are well supported, maintained and current. I also thought they were easier and simpler to understand and set up. An almost out-of-the-box experience.
 
-This is the setup I use for [my IRC server](/showcase/irc-server). Try joining!
+This is the setup I use for [my IRC server](/services/irc-server.md). Try joining!
 
 If you're struggling feel free to contact me using info from [my about page](/about).
 
@@ -48,7 +48,7 @@ Handy commands:
 
 * A handy command for debugging ngircd is `sudo journalctl -xeu ngircd.service`.
 
-* Reload config without restarting service/interrupting:
+* Reload config (including letsencrypt/ssl cert) without restarting service/interrupting:
   ```
   pgrep ngircd
   sudo kill -HUP <PID>
@@ -102,72 +102,18 @@ Of course if you want to test external connections, do some port forwarding on y
 
 Certificates expire or something, I guess. Luckily LetsEncrypt makes automation fairly simple.
 
-Edit `/etc/letsencrypt/renewal/irc.someodd.zip.conf`, so we can reload ngircd when the SSL certificate renews. Let's make a script and then use it as the post_hook in `[renewalparams]` in said config. Let's also configure `ii` to announce to a channel that the server is about to be restarted.
-
-```
-sudo apt-get update
-sudo apt-get install ii
-```
-
-Create `/usr/local/bin/update_ngircd_ssl.sh` (don't forget to `sudo chmod +x /usr/local/bin/update_ngircd_ssl.sh`, and to configure the script for your needs):
-
-```
-#!/bin/bash
-
-# Configuration variables
-SERVER="127.0.0.1"
-PORT=6667
-NICK="Urgent"
-FULLNAME="Urgent"
-CHANNEL="#main"
-MESSAGE="Attention all users: The IRC service will be restarted shortly for maintenance. Please expect a brief disconnection. If service does not resume normally please contact someodd@pm.me or @someodd@fosstodon.org."
-
-# Directory where ii will create its server/channel structure
-IIDIR="/tmp/ii_$$" # Using PID for uniqueness
-
-# Start ii in the background
-ii -s "$SERVER" -p "$PORT" -n "$NICK" -f "$FULLNAME" -i "$IIDIR" &
-
-IIPID=$!
-
-# Give ii a moment to connect and join the channel
-sleep 5
-
-# Send the message
-echo "/j $CHANNEL" > "$IIDIR/$SERVER/in"  # Join the channel
-sleep 2  # Wait a bit to ensure the join has been processed
-echo "$MESSAGE" > "$IIDIR/$SERVER/$CHANNEL/in"  # Send the message
-
-# Wait 1 hour to give users have a chance to see the message.
-sleep 1h
-
-# One last announcement from ii, now it's a five minutes heads up.
-echo "$MESSAGE" > "$IIDIR/$SERVER/$CHANNEL/in"  # Send the message
-
-# Wait 5 minutes to give users one last chance to see the message.
-sleep 5m
-
-# Clean up: kill ii and remove its directory
-kill $IIPID
-rm -rf "$IIDIR"
-
-# The "actual" renewal work
-cp /etc/letsencrypt/live/irc.someodd.zip/fullchain.pem /etc/ngircd/ssl/
-cp /etc/letsencrypt/live/irc.someodd.zip/privkey.pem /etc/ngircd/ssl/
-chown -R irc:irc /etc/ngircd/ssl/
-service ngircd restart
 ```
 
 Configure this in `/etc/letsencrypt/renewal/irc.someodd.zip.conf` under `[renewalparams]`:
 
 ```
-post_hook = /usr/local/bin/update_ngircd_ssl.sh
+post_hook = kill -HUP $(pidof ngircd)
 ```
 
 Validate that the above command works correctly:
 
 ```
-sudo certbot renew --dry-run
+sudo certbot renew --dry-run --cert-name irc.someodd.zip
 ```
 
 Please note, something I don't like about this script and would like to update in the future, is that I think it should use Atheme's global notice module.
@@ -740,3 +686,5 @@ try:
 sudo certbot renew --dry-run 
 ```
 
+
+Original content in gopherspace: gopher://gopher.someodd.zip:7071/phlog/
