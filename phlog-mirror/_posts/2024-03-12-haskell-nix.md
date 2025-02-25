@@ -1,10 +1,12 @@
 ---
-layout: post
-title: "Nix Flake a Haskell Project"
 date: 2024-03-12
-categories: notes
-tags: haskell nix
+tags:
+- haskell
+- nix
+title: Nix Flake a Haskell Project
+
 ---
+
 
 I wrote these notes because I wante to reduce the friction for myself and
 others to getting a Nix Flake working for their Haskell Project.
@@ -244,3 +246,5 @@ I ran into this weird issue where when I try to `nix build` it'd complain about
 a file not existing,e ven though I could `cabal build` and it'd detect the
 source file just fine. It turns out I had to `git add` the file for nix to pick
 up on the file?!
+
+Original content in gopherspace: gopher://gopher.someodd.zip:7071/phlog/
