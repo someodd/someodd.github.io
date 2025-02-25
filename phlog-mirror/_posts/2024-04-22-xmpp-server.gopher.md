@@ -1,10 +1,13 @@
 ---
-layout: post
-title: "Set up an XMPP Server"
 date: 2024-04-22
-categories: notes
-tags: debian xmpp server linux
+tags:
+- sysadmin
+- linux
+title: Set up an XMPP Server
+
 ---
+
+
 
 XMPP is...
 
@@ -20,6 +23,8 @@ The setup I want is e2ee, offline...
 
 * TOC
 {:toc}
+
+
 # Basic setup
 
 HOLD UP IT MAY BE BAD THAT I'M INSTALLING SOME OF THESE THINGS I THINK ARE DEPENDS, LIKE REGISTER_WEB!
@@ -55,6 +60,7 @@ Now that the config file should be open:
     ```
 
 * edit `modules_enabled`:
+
   * i'm thinking about uncommenting `http_openmetrics`
 
   * `offline` is auto-loaded! I love that.
@@ -64,6 +70,7 @@ Now that the config file should be open:
   * i enabled `websocket` for web client?
 
   * note of the log locations. mine are
+
     * `/var/log/prosody/prosody.log`
     * `/var/log/prosody/prosody.err`
 
@@ -72,9 +79,11 @@ Now that the config file should be open:
   * there's something about enabling statistics too
 
   * definitely set this:
+
     * `admins = { "someodd@xmpp.someodd.zip" }`
 
   * careful with registration:
+
     * https://prosody.im/doc/creating_accounts -- you may want to read this.
     * `allow_registration = true` is supposedly dangerous.
       * "Servers with unrestricted registration are open to abuse and provide an easy method for spammers to get onto the XMPP network. If you do not control this, your server may be blocked by other servers on the network."
@@ -91,7 +100,7 @@ Now that the config file should be open:
 
   * i decided to enable BOSH. I think this supposedly this helps with people who have unreliabel connectsions, or say are using XMPP from a phone.
 
-  *  enable chat groups:
+  * enable chat groups:
 
     * i may want to set `restrict_room_creation = local`
 
@@ -138,7 +147,7 @@ You can check my [#nginx tag](/tags/nginx) for more info, but this config in `/e
 ```
 server {
     listen 8765;
-    listen 8888 ssl;
+    #listen 8888 ssl;
     server_name xmpp.someodd.zip;
     root /var/www/xmpp.someodd.zip;
 
@@ -175,7 +184,7 @@ sudo certbot certonly --webroot-path="/var/www/xmpp.someodd.zip" -d 'xmpp.someod
 
 Select web root. Now go back and uncomment those SSL-related lines in the nginx config above and restart nginx.
 
-Now that we have the certificates, link them to the certificate directory defined in the prosody config:
+Now that we have the certificates, link them to the certificate directory defined in the prosody config **make sure to do this for all prosody-related domains**:
 
 ```
 sudo prosodyctl --root cert import /etc/letsencrypt/live
@@ -218,7 +227,9 @@ deploy_hook = prosodyctl --root cert import /etc/letsencrypt/live
 xmpp.someodd.zip = /var/www/xmpp.someodd.zip
 ```
 
-**I THINK YOU'LL WANT TO ALSO DO THAT FOR irc.xmpp.someodd.zip** if you're going to do biboumi/irc connection.
+don't forget to uncomment/edit ssl_certificate* fields in nginx then restart nginx
+
+**I THINK YOU'LL WANT TO ALSO DO THAT FOR irc.xmpp.someodd.zip** AND conference.xmpp.someodd.zip if you're going to do biboumi/irc connection. except i don't think you need the ssl or location / block for those.
 
 ## Test what we have so far + firewall
 
@@ -250,6 +261,10 @@ handy commands:
 # Backups
 
 Add `/var/lib/prosody/` to backups.
+
+# Caveats
+
+If someone can't join your groups or IRC in XMPP you should be aware that a S2S error with SSL verification may be failing. You need to have separate letsencrypt setups for all the xmpp subdomains basically. For instance `irc.xmpp.someodd.zip` and `conference.xmpp.someodd.zip`.
 
 # Coming soon
 
@@ -325,3 +340,5 @@ Add `/var/lib/biboumi/.config/biboumi/` to backups.
 * https://prosody.im/doc/modules/mod_muc
 * https://joinjabber.org/
 * https://prosody.im/doc/jingle#server_support -- calling and video support
+
+Original content in gopherspace: gopher://gopher.someodd.zip:7071/phlog/
