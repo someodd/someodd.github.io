@@ -1,14 +1,17 @@
 ---
-layout: post
-title: "Productivity in Window Maker"
 date: 2024-05-17
-categories: notes
-tags: windowmaker debian linux
 image:
-  path: /assets/posts/window-maker/screenshot-window-maker.png
-  thumbnail: /assets/posts/window-maker/screenshot-window-maker.png
-  caption: Being Productive in Window Maker
+  caption: My Window Maker setup (screenshot).
+  path: /assets/phlog/screenshot-window-maker.png
+  thumbnail: /assets/phlog/screenshot-window-maker.png
+tags:
+- windowmaker
+- debian
+- linux
+title: Productivity in Window Maker
+
 ---
+
 
 I use the old school, lightweight [Window Maker](http://www.windowmaker.org/)
 [window manager](https://en.wikipedia.org/wiki/Window_manager) on Debian
@@ -25,8 +28,8 @@ You may also want to take a look at [Window Maker
 Live](https://wmlive.sourceforge.net/). Possibly a good way to try (or even
 install) a Window-Maker-centric Debian setup.
 
-* TOC
-{:toc}
+[My Window Maker setup](gopher://gopher.someodd.zip:70/I/assets/screenshot-window-maker.png)
+
 
 ## Reasons you may want to use Window Maker
 
@@ -424,7 +427,7 @@ For images you may be able to set both the text manipulation and the random imag
 
 * https://planet.debian.org/rss20.xml - debian news
 * You can search a "booru" like Konachan which has wallpapers and provides RSS/ATOM feeds for search results, and you can specifically filter by "safe"
-  * Some early 2000s, late 90s vibes: https://konachan.net/post/atom?tags=lain+rating%3Asafe  **CHANGE THIS TO SEARCH SOMETHING ELSE**
+  * Some early 2000s, late 90s vibes: https://konachan.net/post/atom?tags=SOMETAG+rating%3Asafe
 * https://photojournal.jpl.nasa.gov/rss/index.html
 
 ### redshift
@@ -470,6 +473,8 @@ and `wmbiff` (mentioned in this document).
 
 Really feels like it fits the spirit of Window Maker, to me.
 
+I also recommend installing `claws-mail-plugins` and `laws-mail-extra-plugins`.
+
 #### Configuration
 
 I think I did create `~/.claws-mail/queue` and set it as the
@@ -488,7 +493,7 @@ shotwell for viewing photos
 
 deja-dup has been good to me. but does it need something to actually launch backups in gui more than just running in bg or whatever?
 
-transmission-qt
+For torrents I tried using `transmission-qt` for a while, but actually that doesn't look right and I experienced some problems with it. I highly recommend just using Deluge for torrents. I do think `transmission-daemon` is great for servers, though.
 
 ted
 https://www.nllgg.nl/Ted/#How_to_install_Ted
@@ -611,6 +616,23 @@ EndSection
 
 restart your x session.
 
+## Language switcher
+
+I use `ibus-pinyin`.
+
+Add the following command to your Window Maker startup script, such as ~/GNUstep/Library/WindowMaker/autostart:
+
+```
+ibus-daemon -drx
+```
+
+It should appear in system tray for you to switch between.
+
+I have it configured so windows+ space switches.
+
+ibus-setup
+
+
 ## Toys
 
 ### xpenguins
@@ -680,6 +702,26 @@ HotspotY=58
 
 With the image in `/usr/share/amor/pics/static/example.png`.
 
+### Expose-like
+
+Want something like the Gnome or Mac OSX Expose feature, where you can hit some hotkey and then see all the windows at once? `skippy-xd` is actually being maintained:
+
+https://github.com/dreamcat4/skippy-xd
+
+All you have to do is:
+
+```
+git clone https://github.com/dreamcat4/skippy-xd
+cd skippy-xd
+make
+sudo make install
+skippy-xd
+```
+
+You can map skippy-xd to whatever.
+
+Unfortunately, this will also show all the little `wm*` dockapps.
+
 ### Other
 
   * xeyes: eyes that look at your cursor.
@@ -687,3 +729,15 @@ With the image in `/usr/share/amor/pics/static/example.png`.
   * [xsnow](https://en.wikipedia.org/wiki/Xsnow)
   * [xteddy](https://weber.itn.liu.se/~stegu/xteddy/)
 
+
+## Troubleshooting
+
+### Apps keep autostarting when I don't want them to
+
+I had to figure out why things kept autostarting despite not being in my `autostart` file nor was I saving session on exit nor set in `WPrefs`. Apparently checkout `~/GNUstep/Defaults`. You should make sure to edit it while windowmaker isn't running because of the `.lck` (lock) it creates in the same directory.
+
+I saw in the aforementioned directory a file called `WMState`, which indeed had all the applications autostarting which I didn't want to do so.
+
+https://www.windowmaker.org/docs/chap4.html
+
+Original content in gopherspace: gopher://gopher.someodd.zip:7071/phlog/
