@@ -107,7 +107,7 @@ Certificates expire or something, I guess. Luckily LetsEncrypt makes automation 
 Configure this in `/etc/letsencrypt/renewal/irc.someodd.zip.conf` under `[renewalparams]`:
 
 ```
-post_hook = kill -HUP $(pidof ngircd)
+post_hook = cp /etc/letsencrypt/live/irc.someodd.zip/fullchain.pem /etc/ngircd/ssl/ && cp /etc/letsencrypt/live/irc.someodd.zip/privkey.pem /etc/ngircd/ssl/ && chown -R irc:irc /etc/ngircd/ssl/ && kill -HUP $(pidof ngircd)
 ```
 
 Validate that the above command works correctly:
