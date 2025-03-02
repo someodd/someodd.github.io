@@ -470,8 +470,8 @@ finally create this bash script to `/usr/local/bin/irc_stats.sh` with these cont
 
 # Configuration variables
 SERVER="127.0.0.1" # Change to your IRC server
-PORT=6667 # Default IRC port
-NICK="iistats" # Change to your desired nickname
+PORT=6667          # Default IRC port
+NICK="iistats"     # Change to your desired nickname
 IIDIR="/tmp/ii_$$" # Temporary directory for ii's output
 
 # Start ii in the background
@@ -492,23 +492,31 @@ operators_online=$(echo "$input" | grep -oP '\d+(?= operator\(s\) online)')
 
 # ngIRCd uptime (days)
 ngircd_pid=$(pgrep ngircd)
-ngircd_uptime_seconds=$(ps -p $ngircd_pid -o etimes= | tail -n 1 | tr -d ' ')
-ngircd_uptime=$(echo "$ngircd_uptime_seconds / 86400" | bc)
+if [ -n "$ngircd_pid" ]; then
+    ngircd_uptime_seconds=$(ps -p "$ngircd_pid" -o etimes= | tail -n 1 | tr -d ' ')
+    ngircd_uptime=$(echo "$ngircd_uptime_seconds / 86400" | bc)
+else
+    ngircd_uptime="N/A"
+fi
 
 # Atheme uptime (days)
 atheme_pid=$(pgrep atheme-services)
-atheme_uptime_seconds=$(ps -p $atheme_pid -o etimes= | tail -n 1 | tr -d ' ')
-atheme_uptime=$(echo "$atheme_uptime_seconds / 86400" | bc)
+if [ -n "$atheme_pid" ]; then
+    atheme_uptime_seconds=$(ps -p "$atheme_pid" -o etimes= | tail -n 1 | tr -d ' ')
+    atheme_uptime=$(echo "$atheme_uptime_seconds / 86400" | bc)
+else
+    atheme_uptime="N/A"
+fi
 
 # output json
 echo "{
-\"number of channels formed\": $number_of_channels_formed,
-\"number of services\": $number_of_services,
-\"current number of users\": $current_number_of_users,
-\"highest connection count\": $highest_connection_count,
-\"operators online\": $operators_online,
-\"ngircd uptime days\": $ngircd_uptime,
-\"atheme uptime days\": $atheme_uptime
+  \"number of channels formed\": ${number_of_channels_formed:-0},
+  \"number of services\": ${number_of_services:-0},
+  \"current number of users\": ${current_number_of_users:-0},
+  \"highest connection count\": ${highest_connection_count:-0},
+  \"operators online\": ${operators_online:-0},
+  \"ngircd uptime days\": \"$ngircd_uptime\",
+  \"atheme uptime days\": \"$atheme_uptime\"
 }"
 
 # Clean up
