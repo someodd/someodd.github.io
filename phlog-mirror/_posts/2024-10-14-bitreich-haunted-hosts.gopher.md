@@ -422,4 +422,4 @@ Event page: gopher://bitreich.org/1/haunted-hosts
 
 Source: gopher://bitreich.org/0/usr/roygbyte/phlog/2024-10-12T14-01-34-582764.md
 
-Original content in gopherspace: gopher://gopher.someodd.zip:7071/phlog/
+Original content in gopherspace: [gopher://gopher.someodd.zip:70/1/phlog/bitreich-haunted-hosts.gopher.txt](gopher://gopher.someodd.zip:70/1/phlog/bitreich-haunted-hosts.gopher.txt)

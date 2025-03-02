@@ -740,4 +740,4 @@ I saw in the aforementioned directory a file called `WMState`, which indeed had 
 
 https://www.windowmaker.org/docs/chap4.html
 
-Original content in gopherspace: gopher://gopher.someodd.zip:7071/phlog/
+Original content in gopherspace: [gopher://gopher.someodd.zip:70/0/phlog/window-maker.gopher.txt](gopher://gopher.someodd.zip:70/0/phlog/window-maker.gopher.txt)

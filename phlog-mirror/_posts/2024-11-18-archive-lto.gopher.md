@@ -101,4 +101,4 @@ quickly. The solution is to perhaps place a single archive onto the tar.
   zpaq to tape, especially incrementally. Or using restic?
 * Bigger block sizes and such for larger data
 
-Original content in gopherspace: gopher://gopher.someodd.zip:7071/phlog/
+Original content in gopherspace: [gopher://gopher.someodd.zip:70/0/phlog/archive-lto.gopher.txt](gopher://gopher.someodd.zip:70/0/phlog/archive-lto.gopher.txt)

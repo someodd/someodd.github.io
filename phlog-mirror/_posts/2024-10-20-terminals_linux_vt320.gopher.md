@@ -177,4 +177,4 @@ irssi without the screen getting all corrupted..
 * sacc: I really enjoy this Gopher protocol client
 * weechat: I like this IRC client
 
-Original content in gopherspace: gopher://gopher.someodd.zip:7071/phlog/
+Original content in gopherspace: [gopher://gopher.someodd.zip:70/0/phlog/terminals_linux_vt320.gopher.txt](gopher://gopher.someodd.zip:70/0/phlog/terminals_linux_vt320.gopher.txt)

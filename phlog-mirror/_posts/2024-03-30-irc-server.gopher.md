@@ -687,4 +687,4 @@ sudo certbot renew --dry-run
 ```
 
 
-Original content in gopherspace: gopher://gopher.someodd.zip:7071/phlog/
+Original content in gopherspace: [gopher://gopher.someodd.zip:70/0/phlog/irc-server.gopher.txt](gopher://gopher.someodd.zip:70/0/phlog/irc-server.gopher.txt)

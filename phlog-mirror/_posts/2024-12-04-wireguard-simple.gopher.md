@@ -150,4 +150,4 @@ umask 077
 wg genkey | tee /etc/wireguard/privatekey | wg pubkey > /etc/wireguard/publickey
 ```
 
-Original content in gopherspace: gopher://gopher.someodd.zip:7071/phlog/
+Original content in gopherspace: [gopher://gopher.someodd.zip:70/0/phlog/wireguard-simple.gopher.txt](gopher://gopher.someodd.zip:70/0/phlog/wireguard-simple.gopher.txt)

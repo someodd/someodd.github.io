@@ -223,4 +223,4 @@ case "$selector" in
 esac
 ```
 
-Original content in gopherspace: gopher://gopher.someodd.zip:7071/phlog/
+Original content in gopherspace: [gopher://gopher.someodd.zip:70/0/phlog/gopher-routing.gopher.txt](gopher://gopher.someodd.zip:70/0/phlog/gopher-routing.gopher.txt)

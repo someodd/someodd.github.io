@@ -154,4 +154,4 @@ Restore and overwrite:
 restic restore latest --target / --include /etc/hosts --overwrite -r /path/to/repo
 ```
 
-Original content in gopherspace: gopher://gopher.someodd.zip:7071/phlog/
+Original content in gopherspace: [gopher://gopher.someodd.zip:70/0/phlog/restic_entire_server.gopher.txt](gopher://gopher.someodd.zip:70/0/phlog/restic_entire_server.gopher.txt)

@@ -117,4 +117,4 @@ All looks pretty good to me!
 
 Darn, that fan is sure annoying on that little low-profile P620.
 
-Original content in gopherspace: gopher://gopher.someodd.zip:7071/phlog/
+Original content in gopherspace: [gopher://gopher.someodd.zip:70/0/phlog/upgrading-server-gpu.gopher.txt](gopher://gopher.someodd.zip:70/0/phlog/upgrading-server-gpu.gopher.txt)

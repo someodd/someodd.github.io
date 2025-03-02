@@ -73,4 +73,4 @@ I'm not going to get into keyservers.
 Set key expiration.
 
 
-Original content in gopherspace: gopher://gopher.someodd.zip:7071/phlog/
+Original content in gopherspace: [gopher://gopher.someodd.zip:70/0/phlog/gpg_messages.gopher.txt](gopher://gopher.someodd.zip:70/0/phlog/gpg_messages.gopher.txt)

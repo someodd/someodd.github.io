@@ -110,4 +110,4 @@ package, so a set up I like and think is simple/easy:
 There you go! Keep in mind if you send the exit signal (I think) inside of `nix
 develop` the database gets wiped.
 
-Original content in gopherspace: gopher://gopher.someodd.zip:7071/phlog/
+Original content in gopherspace: [gopher://gopher.someodd.zip:70/0/phlog/gopherden.gopher.txt](gopher://gopher.someodd.zip:70/0/phlog/gopherden.gopher.txt)

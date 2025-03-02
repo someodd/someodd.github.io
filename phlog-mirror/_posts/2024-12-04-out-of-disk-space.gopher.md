@@ -61,4 +61,4 @@ Ah, I see it's from an old Monero project leftover:
 
 I can pretty much delete `.bitmonero` without any concern. Yes, I made sure I cleared out my wallet.
 
-Original content in gopherspace: gopher://gopher.someodd.zip:7071/phlog/
+Original content in gopherspace: [gopher://gopher.someodd.zip:70/0/phlog/out-of-disk-space.gopher.txt](gopher://gopher.someodd.zip:70/0/phlog/out-of-disk-space.gopher.txt)

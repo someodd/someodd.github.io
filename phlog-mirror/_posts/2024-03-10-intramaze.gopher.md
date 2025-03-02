@@ -34,4 +34,4 @@ I've learned I really don't like `Database.Persist` and in the future I'd
 rather just use `postgresql-simple`, which was much easier when I was
 developing [gopherden](/showcase/gopherden).
 
-Original content in gopherspace: gopher://gopher.someodd.zip:7071/phlog/
+Original content in gopherspace: [gopher://gopher.someodd.zip:70/0/phlog/intramaze.gopher.txt](gopher://gopher.someodd.zip:70/0/phlog/intramaze.gopher.txt)

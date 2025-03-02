@@ -128,4 +128,4 @@ transmission-remote -t 1 -it
 
 You may want to edit `/etc/transmission-daemon/settings.json` and set `lpd-enabled` to `true` if you want to test downloading the torrent via local network (or even same VPN?).
 
-Original content in gopherspace: gopher://gopher.someodd.zip:7071/phlog/
+Original content in gopherspace: [gopher://gopher.someodd.zip:70/0/phlog/Server Torrent Create.gopher.txt](gopher://gopher.someodd.zip:70/0/phlog/Server Torrent Create.gopher.txt)

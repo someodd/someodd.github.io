@@ -38,4 +38,4 @@ markdown bullets into actual bullets.
 
 Also disable word wrapping. This is under "page layout" > wrpa long plaintext lines (make sure to disable).
 
-Original content in gopherspace: gopher://gopher.someodd.zip:7071/phlog/
+Original content in gopherspace: [gopher://gopher.someodd.zip:70/0/phlog/lagrange_gopher_ascii_art_tweaks.gopher.txt](gopher://gopher.someodd.zip:70/0/phlog/lagrange_gopher_ascii_art_tweaks.gopher.txt)

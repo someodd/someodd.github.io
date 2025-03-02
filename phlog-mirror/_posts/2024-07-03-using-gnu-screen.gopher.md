@@ -55,4 +55,4 @@ https://itsubuntu.com/how-to-use-linux-gnu-screen/
 
 https://linuxize.com/post/how-to-use-linux-screen/
 
-Original content in gopherspace: gopher://gopher.someodd.zip:7071/phlog/
+Original content in gopherspace: [gopher://gopher.someodd.zip:70/0/phlog/using-gnu-screen.gopher.txt](gopher://gopher.someodd.zip:70/0/phlog/using-gnu-screen.gopher.txt)

@@ -675,4 +675,4 @@ i want to add quake sounds
 * [Counter-Strike 1.6 on GameBanana](https://gamebanana.com/games/4254), a good place to get mods (like maps) for CS1.6
 * [My CS1.6 server](/services)
 
-Original content in gopherspace: gopher://gopher.someodd.zip:7071/phlog/
+Original content in gopherspace: [gopher://gopher.someodd.zip:70/0/phlog/linux-counter-strike-1.6-server.gopher.txt](gopher://gopher.someodd.zip:70/0/phlog/linux-counter-strike-1.6-server.gopher.txt)

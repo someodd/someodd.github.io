@@ -647,4 +647,4 @@ sudo wget https://mirrors.ustc.edu.cn/bjlx/pool/main/l/ltfs/ltfs_2.5.0.0~2024073
 sudo apt-get install ./ltfs_2.5.0.0\~20240731-2_amd64.deb
 ```
 
-Original content in gopherspace: gopher://gopher.someodd.zip:7071/phlog/
+Original content in gopherspace: [gopher://gopher.someodd.zip:70/0/phlog/Archiving with LTO.gopher.txt](gopher://gopher.someodd.zip:70/0/phlog/Archiving with LTO.gopher.txt)

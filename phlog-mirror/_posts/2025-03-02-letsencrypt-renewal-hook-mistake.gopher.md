@@ -33,4 +33,4 @@ I have to go through and update all my certs now...
 
 What's frustrating is it'll fail silently and just remove the line from the config. Thanks to this thread: https://community.letsencrypt.org/t/certbot-renew-overwriting-renewal-file/119107/2
 
-Original content in gopherspace: gopher://gopher.someodd.zip:7071/phlog/
+Original content in gopherspace: [gopher://gopher.someodd.zip:70/0/phlog/letsencrypt-renewal-hook-mistake.gopher.txt](gopher://gopher.someodd.zip:70/0/phlog/letsencrypt-renewal-hook-mistake.gopher.txt)

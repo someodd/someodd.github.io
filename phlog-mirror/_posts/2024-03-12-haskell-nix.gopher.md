@@ -247,4 +247,4 @@ a file not existing,e ven though I could `cabal build` and it'd detect the
 source file just fine. It turns out I had to `git add` the file for nix to pick
 up on the file?!
 
-Original content in gopherspace: gopher://gopher.someodd.zip:7071/phlog/
+Original content in gopherspace: [gopher://gopher.someodd.zip:70/0/phlog/haskell-nix.gopher.txt](gopher://gopher.someodd.zip:70/0/phlog/haskell-nix.gopher.txt)

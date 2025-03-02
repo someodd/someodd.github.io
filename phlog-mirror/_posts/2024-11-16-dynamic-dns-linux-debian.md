@@ -32,4 +32,4 @@ You can crontab:
 You could also use systemd. Above does every five minutes.
 
 
-Original content in gopherspace: gopher://gopher.someodd.zip:7071/phlog/
+Original content in gopherspace: [gopher://gopher.someodd.zip:70/0/phlog/dynamic-dns-linux-debian.txt](gopher://gopher.someodd.zip:70/0/phlog/dynamic-dns-linux-debian.txt)

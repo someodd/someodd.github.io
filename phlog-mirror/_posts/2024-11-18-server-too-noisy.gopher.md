@@ -30,4 +30,4 @@ I think it's already consistent across boots from the command I tried?
 
 I checked temps with `sensors`.
 
-Original content in gopherspace: gopher://gopher.someodd.zip:7071/phlog/
+Original content in gopherspace: [gopher://gopher.someodd.zip:70/0/phlog/server-too-noisy.gopher.txt](gopher://gopher.someodd.zip:70/0/phlog/server-too-noisy.gopher.txt)

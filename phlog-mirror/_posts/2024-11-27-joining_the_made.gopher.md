@@ -17,4 +17,4 @@ them because I donated a Packard Bell "corner computer."
 
 I'll try to update this document with more info later, especially pictures!
 
-Original content in gopherspace: gopher://gopher.someodd.zip:7071/phlog/
+Original content in gopherspace: [gopher://gopher.someodd.zip:70/0/phlog/joining_the_made.gopher.txt](gopher://gopher.someodd.zip:70/0/phlog/joining_the_made.gopher.txt)

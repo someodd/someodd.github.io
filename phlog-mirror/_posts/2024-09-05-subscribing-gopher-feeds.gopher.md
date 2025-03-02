@@ -17,4 +17,4 @@ Liferea allows you to use a command as a feed source!
 
 Also, apparently the `gopher` client has a `get` command!
 
-Original content in gopherspace: gopher://gopher.someodd.zip:7071/phlog/
+Original content in gopherspace: [gopher://gopher.someodd.zip:70/0/phlog/subscribing-gopher-feeds.gopher.txt](gopher://gopher.someodd.zip:70/0/phlog/subscribing-gopher-feeds.gopher.txt)
