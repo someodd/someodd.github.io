@@ -17,7 +17,7 @@ image:
 
 Place for people to talk using [a text-based chat system from 1988 (IRC)](https://en.wikipedia.org/wiki/IRC). Some people may find IRC dated and counter-intuitive (partially for them, I have something in the works). Think of it like an old [Discord](https://discord.com/), where people can create their own channels (and sort of be the boss of them).
 
-Since IRC is old there may be some features lacking that you're used to, like the ability to upload media. Also, to receive messages while you're not around/connected you might want to [ask me for a ZNC account](#znc-service), or you may miss messages while you're away.
+Since IRC is old there may be some features lacking that you're used to, like the ability to upload media. Also, to receive messages while you're not around/connected you might want to [ask me for an XMPP account](/showcase/xmpp), or you may miss messages while you're away.
 
 There's different ways to join (called "clients"). For example, you can join using your phone with a client like [Revolution IRC](https://github.com/MCMrARM/revolution-irc), or on your laptop using [Hexchat](https://hexchat.github.io/).
 
@@ -28,8 +28,8 @@ Open to the public, but I try to fill it with people I respect, interesting deve
 The central place (channel, room) to talk is `#main`.
 
 [Read the Rules](#rules){: .button .primary}
-[Get Connected (No ZNC)](#connecting-without-znc){: .button}
-[Get Connected With My ZNC Service](#connecting-with-znc){: .button}
+[Get Connected](#connecting){: .button}
+[Join via XMPP](xmpp:%23main%25irc.someodd.zip@irc.xmpp.someodd.zip?join){: .button}
 [Read About Nickname Registration](#register-your-nickname){: .button}
 
 ## Features
@@ -54,8 +54,8 @@ The central place (channel, room) to talk is `#main`.
 
 This is probably a non-fully-inclusive list of features!
 
-[ZNC Service](#znc-service){:.button}
-[Another Button](#znc-service){:.button}
+[Join Using XMPP](xmpp:%23main%25irc.someodd.zip@irc.xmpp.someodd.zip?join){:.button}
+[Connection Info](#connecting){:.button}
 
 ##  Statistics
 {:.stats_section}
@@ -72,11 +72,11 @@ These stats are fetched using JavaScript.
 * https://irc.someodd.zip/stats.json
 {:.statistics}
 
-[Atheme Statistics HTTP](https://github.com/someodd/atheme-stats-http){:.button}
+[Server statistics publicly available via JSON](https://irc.someodd.zip/stats.json)
 
-## Connecting without ZNC
+## Connecting 
 
-Only use this connection info if you do not use [my ZNC service](#znc-service).
+Only use this connection info if you do not use [XMPP](xmpp:%23main%25irc.someodd.zip@irc.xmpp.someodd.zip?join).
 
 * SSL only
 * Port 6697
@@ -168,9 +168,16 @@ And to login (I think this is the command):
 
 Note you don't actually include the `<>` brackets.
 
-### Note for ZNC users
+## ZNC
 
-I know it may be confusing considering you have a password for your ZNC, but you still may want to register your nickname. Once you've done that you can [manage your ZNC account's someodd network](https://znc.someodd.zip) to:
+These days I prefer just using XMPP to connect to IRC, but you may like ZNC more:
+
+* **What is ZNC?** Basically, it is something that stays connected to IRC for you and you in turn connect to the ZNC.
+* **Why use ZNC?** Primarily because if you're not connected to IRC you may miss messages.
+* **How can I get an account?** Contact me using one of the methods on [my about page](/about) to request a free ZNC account. You need to actually use the IRC server.
+* Some offerings: playback, clientbuffer
+
+I know it may be confusing considering you have a password for your ZNC, but you still may want to register your nickname.
 
 * Enable the `nickserv` module (check the checkbox)
 * input your password into the text box immediately to the right
@@ -182,23 +189,16 @@ I know it may be confusing considering you have a password for your ZNC, but you
 * Enter your username and password (from `NickServ`)
 * Click *save* button
 
-[Manage ZNC (Web)](https://znc.someodd.zip/){: .button}
-
-## ZNC service
-
-* **What is ZNC?** Basically, it is something that stays connected to IRC for you and you in turn connect to the ZNC.
-* **Why use ZNC?** Primarily because if you're not connected to IRC you may miss messages.
-* **How can I get an account?** Contact me using one of the methods on [my about page](/about) to request a free ZNC account. You need to actually use the IRC server.
-* Some offerings: playback, clientbuffer
+[Get ZNC](https://znc.in/){: .button}
 
 ### Connecting with ZNC
 
 Information on connecting to my IRC service using the ZNC account I made for you. You use this information *instead* of the regular connection info.
 
-* **Manage your account:** https://znc.someodd.zip
+* **Manage your account:** through the ZNC web interface.
   * You may want to change your password straightaway. You can also use `/msg *controlpanel set password myusername mynewpassword` once you're connected.
 * **Recommended connection settings:**
-  * **Host:** znc.someodd.zip/+6669
+  * **Host:** znc.example.org/+6669
     * SSL, port 6669
   * **Username:** `username@identifier/network` (for example `someuser@mylaptop/someodd`)
     * `username` is your ZNC username
@@ -219,7 +219,7 @@ I have some note about these commands which may come in handy, but don't just bl
 /msg *controlpanel set AutoClearQueryBuffer $me False
 ```
 
-[Manage ZNC (Web)](https://znc.someodd.zip/){: .button .primary}
+[Get ZNC](https://znc.in/){: .button .primary}
 
 ## News
 
@@ -227,7 +227,6 @@ someodd-irc
 
 ## Known issues
 
-* Not using Atheme's Global notice module to send maintenance notifications
 * I'm not really doing much of any administration, there's no other operators
 * Server isn't really fully set up (like services, permissions)
 * Web UI (KiwiIRC) seems to be broken
