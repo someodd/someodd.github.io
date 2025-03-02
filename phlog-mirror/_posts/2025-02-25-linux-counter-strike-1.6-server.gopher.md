@@ -546,7 +546,7 @@ sudo certbot certonly --webroot-path="/var/www/cs16.someodd.zip" -d 'cs16.someod
 maybe setup the hook for renewal edit `/etc/letsencrypt/renewal/cs16.someodd.zip.conf` under `[renewalparams]`:
 
 ```
-post_hook = service nginx restart
+renew_hook = service nginx restart
 ```
 
 and maybe the other one in that config too...

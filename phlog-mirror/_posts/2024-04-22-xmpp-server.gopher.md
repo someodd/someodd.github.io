@@ -194,7 +194,7 @@ sudo prosodyctl --root cert import /etc/letsencrypt/live
 Edit `/etc/letsencrypt/renewal/xmpp.someodd.zip.conf` and add the following to `renewalparams`:
 
 ```
-deploy_hook = /usr/bin/prosodyctl --root cert import /etc/letsencrypt/live
+renew_hook = /usr/bin/prosodyctl --root cert import /etc/letsencrypt/live
 ```
 
 I will probably update this article later to use a system-wide notification about the service going down for maintenance. Test out renewing:
@@ -203,9 +203,11 @@ I will probably update this article later to use a system-wide notification abou
 sudo certbot renew --dry-run --cert-name xmpp.someodd.zip
 ```
 
+Do the above for `conference.xmpp.someodd.zip` too!
+
 Not done, just now do the same thing but for `upload.xmpp.someodd.zip`.
 
-here's the general idea with the `/etc/letsencrypt/renewal/xmpp.someodd.zip.conf` file, please note the `deploy_hook` which restarts prosody after renewal:
+here's the general idea with the `/etc/letsencrypt/renewal/xmpp.someodd.zip.conf` file, please note the `renew_hook` which restarts prosody after renewal:
 
 ```
 # renew_before_expiry = 30 days
@@ -223,14 +225,18 @@ authenticator = webroot
 webroot_path = /var/www/xmpp.someodd.zip,
 server = https://acme-v02.api.letsencrypt.org/directory
 key_type = ecdsa
-deploy_hook = prosodyctl --root cert import /etc/letsencrypt/live
+renew_hook = prosodyctl --root cert import /etc/letsencrypt/live
 [[webroot_map]]
 xmpp.someodd.zip = /var/www/xmpp.someodd.zip
 ```
 
-don't forget to uncomment/edit ssl_certificate* fields in nginx then restart nginx
+**I THINK YOU'LL WANT TO ALSO DO THAT FOR irc.xmpp.someodd.zip** AND
+conference.xmpp.someodd.zip AND upload.xmpp.someodd.zip if you're going to do
+biboumi/irc connection.  except i don't think you need the ssl or location /
+block for those.
 
-**I THINK YOU'LL WANT TO ALSO DO THAT FOR irc.xmpp.someodd.zip** AND conference.xmpp.someodd.zip if you're going to do biboumi/irc connection. except i don't think you need the ssl or location / block for those.
+don't forget to uncomment/edit ssl_certificate* fields in nginx then restart
+nginx
 
 ## Test what we have so far + firewall
 
@@ -329,6 +335,14 @@ you'll also want to enable `mod_muc` for group chats maybe in the component?
 
 Add `/var/lib/biboumi/.config/biboumi/` to backups.
 
+also don't forget to configure letsencrypt similar to how we configued xmpp.someodd.zip's cert
+
+like
+
+```
+renew_hook = prosodyctl --root cert import /etc/letsencrypt/live
+```
+
 # Bonus: anonymous usage of chat room? but don't allow c2c?
 
 ...
@@ -341,5 +355,6 @@ Add `/var/lib/biboumi/.config/biboumi/` to backups.
 * https://prosody.im/doc/modules/mod_muc
 * https://joinjabber.org/
 * https://prosody.im/doc/jingle#server_support -- calling and video support
+* https://compliance.conversations.im/
 
 Original content in gopherspace: gopher://gopher.someodd.zip:7071/phlog/
