@@ -102,8 +102,6 @@ Of course if you want to test external connections, do some port forwarding on y
 
 Certificates expire or something, I guess. Luckily LetsEncrypt makes automation fairly simple.
 
-```
-
 Configure this in `/etc/letsencrypt/renewal/irc.someodd.zip.conf` under `[renewalparams]`:
 
 ```
@@ -290,7 +288,9 @@ Maybe I should make this for all users by default!
 
 switching...
 
+```
 /znc JumpNetwork netname
+```
 
 you can login using the default login message with username/pasword, but you can also specify the network to connect by default to make connecting to multiple networks easier:
 
@@ -307,13 +307,13 @@ Client configs:
 
 I feel this is kind of required in the modern times where you may have phone and laptop connected. You may want to have the same playback/buffer for all clients.
 
-https://wiki.znc.in/Playback
+<https://wiki.znc.in/Playback>
 
-https://wiki.znc.in/Clientbuffer
+<https://wiki.znc.in/Clientbuffer>
 
-https://wiki.znc.in/Modules
+<https://wiki.znc.in/Modules>
 
-https://wiki.znc.in/Compiling_modules
+<https://wiki.znc.in/Compiling_modules>
 
 
 ```
@@ -341,8 +341,8 @@ Use the autoadd argument.
 ```
 /msg *status Broadcast about to restart ZNC for maintenance. Please reconnect in a few minutes.
 /msg *status SaveConfig
-
 ```
+
 now `pkill znc` and `znc`.
 
 now when i checked global modules, playback was set. `clientbuffer` seems to only show up in editnetwork.
@@ -362,7 +362,9 @@ It may be very handy to use the ClientBuffer module. In which case you can set a
 
 debug with:
 
+```
 znc -D
+```
 
 ### backing up
 
@@ -420,7 +422,6 @@ I think the easiest way to set up statistics haring is just to have nginx share 
 
 ```
 sudo apt-get install nginx
-
 ```
 
 then edit `sudo vi /etc/nginx/sites-available/irc.someodd.zip.conf`  (we also want to set cors header or whatever so it's easier to fetch the site using javascript):
@@ -536,7 +537,7 @@ you can test it
 sudo /usr/local/bin/irc_stats.sh > /var/www/irc.someodd.zip/stats.json
 ```
 
-crontab it`crontab -e`:
+crontab it `crontab -e`:
 
 ```
 */30 * * * * /usr/local/bin/irc_stats.sh > /var/www/irc.someodd.zip/stats.json 2>&1
