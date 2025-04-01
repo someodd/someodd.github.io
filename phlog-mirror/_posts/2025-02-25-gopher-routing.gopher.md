@@ -223,4 +223,68 @@ case "$selector" in
 esac
 ```
 
+## yet another update
+
+sorry i need to clean up this article, but i realized for phorum until i release a prefix-adding feature for slectors in phorum i need to rewrite the links in phorum.
+
+```
+#!/bin/bash
+# Read the selector from stdin
+read selector
+
+# Function to check if the connection is coming from Tor
+is_tor_connection() {
+    # Check if the remote IP address matches known Tor patterns
+    if [[ "$REMOTE_HOST" == "::ffff:127.0.0.1" ]]; then
+        # Assuming Tor traffic comes from localhost for hidden services
+        return 0
+    fi
+    return 1
+}
+
+# Function to process and replace paths and ports in the response
+process_response() {
+    local prefix="$1"
+    local port="$2"
+    local rewrite_selectors_to_use_prefix="$3"
+    local target_host="gopher.someodd.zip"
+    local target_port="70"
+
+    # Check if Tor was used and adjust the target host
+    if is_tor_connection; then
+        target_host="xj2o2wylbqkprajldswuyxm6dffca4eepegelblgvux3uuqmtb2l56id.onion"
+    fi
+
+    # Strip the prefix from the selector and ensure the leading slash is retained
+    local stripped_selector="${selector#$prefix}"
+    if [[ "$stripped_selector" != /* ]]; then
+        stripped_selector="/$stripped_selector"
+    fi
+
+    # Send the selector to the appropriate service and process the response
+    if [[ "$rewrite_selectors_to_use_prefix" == "true" ]]; then
+        # When rewriting is enabled, add the prefix to all selectors in the response
+        echo "$stripped_selector" | nc localhost $port | \
+        sed -e "s|\tgopher.someodd.zip\t${port}|\t${target_host}\t${target_port}|g" \
+            -e "s|\tgopher.someodd.zip/|\t${target_host}/|g" \
+            -e "s|\t/|\t${prefix}/|g"
+    else
+        # Original behavior without selector rewriting
+        echo "$stripped_selector" | nc localhost $port | \
+        sed -e "s|\tgopher.someodd.zip\t${port}|\t${target_host}\t${target_port}|g" \
+            -e "s|\tgopher.someodd.zip/|\t${target_host}/|g"
+    fi
+}
+
+# Handle the selector
+case "$selector" in
+    "/phorum"*)
+        process_response "/phorum" 7070 "true"
+        ;;
+    *)
+        process_response "/" 7071 "false"
+        ;;
+esac
+```
+
 Original content in gopherspace: [gopher://gopher.someodd.zip:70/0/phlog/gopher-routing.gopher.txt](gopher://gopher.someodd.zip:70/0/phlog/gopher-routing.gopher.txt)

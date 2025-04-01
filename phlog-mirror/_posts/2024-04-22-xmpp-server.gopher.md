@@ -343,6 +343,18 @@ like
 renew_hook = prosodyctl --root cert import /etc/letsencrypt/live
 ```
 
+## Modify ngircd to allow many connections from localhost
+
+You need to modify `/etc/ngircd/ngircd.conf` to allow more than 10 connections per IP if you want more than 10 biboumi users to be active at once. So under `[Limits]` change to `MaxConnectionsIP = 0`. Other interesting settings in there too.
+
+You can reload config by doing a `HUP`:
+
+```
+kill -HUP $(pidof ngircd)
+```
+
+or as irc op use `/quote REHASH`.
+
 # Bonus: anonymous usage of chat room? but don't allow c2c?
 
 ...

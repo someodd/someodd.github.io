@@ -395,6 +395,8 @@ and fits the Window Maker feel and lightness and kidn of retro look.
 sudo apt-get install thunar
 ```
 
+For thumbnails you may also want to install `tumbler`.
+
 ### Bluetooth and Wifi GUI
 
 These two apps will enable a GUI through the system tray (dockapp).
