@@ -94,7 +94,7 @@ defaults:
       permalink: /phlog-mirror/:title
       category: phlog-mirror
 
-logo: /assets/logo.png
+logo: /assets/logo-colors.png
 
 # Site Author
 author:

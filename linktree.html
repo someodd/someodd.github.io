@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>someodd</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: #f5e8d3; /* Creme-ish, yellowish background */
+            font-family: 'Palatino', 'Garamond', serif; /* Elegant, academic-style fonts */
+            line-height: 1.5;
+        }
+        .container {
+            text-align: center;
+            max-width: 90%;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+	.gopher-address a:visited,
+	.gopher-address a:link {
+            color: #800020; /* Burgundy color */
+	}
+        .gopher-address {
+            margin-bottom: 20px;
+            word-wrap: break-word;
+            line-height: 1.2;
+            font-size: 5vw; /* Responsive font size */
+        }
+        .normal-link {
+            font-size: 18px;
+            color: #4a4a4a;
+            text-decoration: none;
+            border-bottom: 1px solid #4a4a4a;
+            transition: color 0.3s ease, border-color 0.3s ease;
+            margin-bottom: 40px;
+            display: inline-block;
+        }
+        .normal-link:hover {
+            color: #800020;
+            border-color: #800020;
+        }
+        .link-list {
+            margin-top: 40px;
+	    list-style-type: none;
+        }
+        .link-list a {
+            display: block;
+            font-size: 16px;
+            color: #4a4a4a;
+            text-decoration: none;
+            padding: 10px 0;
+            border-bottom: 1px solid #4a4a4a;
+            transition: color 0.3s ease, border-color 0.3s ease;
+        }
+        .link-list a:hover {
+            color: #800020;
+            border-color: #800020;
+        }
+        @media (max-width: 600px) {
+            .gopher-address {
+                font-size: 8vw;
+            }
+            .normal-link {
+                font-size: 16px;
+            }
+            .link-list a {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+	<header>
+	<h1 class="gopher-address">
+            <a href="https://gopher.floodgap.com/gopher/gw?a=gopher%3A%2F%2Fgopher.someodd.zip%2F">gopher://gopher.someodd.zip/</a>
+        </h1>
+        <a href="/jekyll-index.html" class="normal-link">Just View Someodd's Website</a>
+	</header>
+        <nav class="link-list">
+		<li><a href="https://github.com/someodd">GitHub</a></li>
+		<li><a href="https://gopher.floodgap.com/gopher/gw?a=gopher%3A%2F%2Fgopher.someodd.zip%2F">Gopherhole&mdash;More Maintained than Website &amp; Can View in Browser!</a></li>
+		<li><a href="https://fosstodon.org/@someodd">Mastodon</a></li>
+		<li><a href="https://x.com/@someodd_">X.com (Twitter)</a></li>
+		<li><a href="/jekyll-index.html">Blog (Website)</a></li>
+		<li><a href="https://gopher.floodgap.com/gopher/gw?a=gopher%3A%2F%2Fgopher.someodd.zip%3A70%2F1%2Fphorum">Phorum</a></li>
+		<li><a href="mailto:someodd@pm.me">Email</a></li>
+		<li><a href="ircs://irc.someodd.zip">IRC</a></li>
+		<li><a href="steam://connect/cs16.someodd.zip:27015">CS 1.6 Server</a></li>
+		<li><a href="xmpp:someodd@xmpp.someodd.zip">XMPP</a></li>
+		<li><a href="https://radio.someodd.zip/stream">Radio</a></li>
+        </nav>
+    </div>
+</body>
+</html>

@@ -1,0 +1,967 @@
+/*
+  Anti-Design Typography Poster Style for someodd.zip_jekyll-index.html
+  ---------------------------------------------------------------------
+  This CSS embraces "anti-design" principles: raw, stark, and typography-driven.
+  It features a single-column layout, aggressive font sizing, high-contrast
+  colors, and the deliberate removal of conventional borders and shadows.
+  Accessibility remains a core focus, with clear, albeit unconventional, indicators.
+
+  Inspired by webtypography.net principles for enhanced readability and impact,
+  specifically concerning word spacing, comfortable measure, and vertical rhythm.
+  Blockquotes are now transformed into aesthetic background elements,
+  drawing inspiration from the unique typographic style of Lain anime.
+
+  Author: Gemini (as a senior-level front-end developer)
+  Date: July 14, 2025 (Revised for Anti-Design - Dazzling & Vibrant, with Aesthetic Blockquotes)
+*/
+
+/* -------------------------------------------------------------------------- */
+/* 1. CSS Custom Properties (Variables)                                       */
+/* Stark, high-contrast palette and aggressive typography scale.           */
+/* -------------------------------------------------------------------------- */
+:root {
+  /* Colors - Bold, fun, and high-contrast (WCAG 2.2 AAA compliant) */
+  --color-background-body: #004d40; /* Deep Teal for the overall body background */
+  --color-background-content: #CCFF00; /* Vibrant Yellow-Green for content areas */
+
+  --color-text-on-dark-bg: #CCFF00; /* Vibrant Yellow-Green for text on dark backgrounds */
+  --color-text-on-light-bg: #111111; /* Near-black for text on light backgrounds */
+  --color-secondary-text-on-light-bg: #333333; /* Dark grey for secondary text on light backgrounds */
+
+  --color-primary: #FF00FF; /* Vibrant Magenta - for links/accents on light content background */
+  --color-primary-dark: #CC00CC; /* Darker Magenta for active states */
+
+  --color-link-on-dark-bg: #00FFFF; /* Electric Blue - for links on dark backgrounds */
+
+  --color-focus: #FF0000; /* Bright Red - intentionally jarring focus indicator */
+  --color-code-bg: #EFEFEF; /* Light grey for code blocks */
+
+  /* Typography - Bold, impactful sans-serif for poster-like effect */
+  --font-family-primary: "IBM Plex Sans", "Inter", sans-serif; /* Primary sans-serif */
+  --font-family-mono: "Fira Code", "SFMono-Regular", Consolas, "Liberation Mono", monospace; /* For code snippets */
+
+  /* Type Scale (Highly impactful, based on 1.414 - Augmented Fourth/Tritone) */
+  --font-size-base: 1.8rem; /* Significantly larger base font size for dazzling body text (28.8px) */
+  --font-size-sm: 0.888rem; /* ~17.7px */
+  --font-size-md: 1.25rem; /* 20px */
+  --font-size-lg: 1.768rem; /* ~28.3px */
+  --font-size-xl: 2.5rem; /* 40px */
+  --font-size-2xl: 3.536rem; /* ~56.5px */
+  --font-size-3xl: 5rem; /* 80px - very large */
+  --font-size-4xl: 7.071rem; /* ~113.1px - massive for poster effect */
+
+  /* Spacing - Deliberate, often exaggerated whitespace for vertical rhythm */
+  --line-height-base: 1.4; /* Tighter line height for a denser feel */
+  --rhythm-unit: calc(var(--font-size-base) * var(--line-height-base)); /* Base for vertical rhythm */
+
+  --spacing-unit: 1rem; /* Base unit for general spacing */
+  --spacing-xxs: calc(0.25 * var(--spacing-unit));
+  --spacing-xs: calc(0.5 * var(--spacing-unit));
+  --spacing-sm: calc(0.75 * var(--spacing-unit));
+  --spacing-md: var(--spacing-unit);
+  --spacing-lg: calc(1.5 * var(--spacing-unit));
+  --spacing-xl: calc(2 * var(--spacing-unit));
+  --spacing-2xl: calc(3 * var(--spacing-unit));
+  --spacing-3xl: calc(4 * var(--spacing-unit));
+  --spacing-4xl: calc(6 * var(--spacing-unit)); /* Even larger for dramatic breaks */
+
+  /* Border Radius - Uniformly zero for flat, stark aesthetic */
+  --border-radius-none: 0;
+
+  /* Transitions - Abrupt changes for anti-design feel */
+  --transition-speed: 0.05s; /* Very fast, almost instant */
+  --transition-ease: linear; /* No easing, just direct change */
+}
+
+/* -------------------------------------------------------------------------- */
+/* 2. Global Resets & Base Styles                                             */
+/* Minimalist resets, typography-first application.                        */
+/* -------------------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-base); /* Apply base line height */
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-family-primary);
+  color: var(--color-text-on-light-bg); /* Default text color for content */
+  background-color: var(--color-background-body); /* Bold background for the entire page */
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Ensure consistent vertical rhythm */
+  line-height: var(--line-height-base);
+}
+
+/* Images - No adornments, just content */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  border-radius: var(--border-radius-none); /* No rounding */
+  border: none; /* No borders */
+}
+
+/* Links - High contrast, abrupt change on hover */
+a {
+  color: var(--color-primary); /* Links in content areas */
+  text-decoration: none;
+  transition: color var(--transition-speed) var(--transition-ease);
+}
+
+a:hover {
+  color: var(--color-text-on-light-bg); /* Stark color change on hover */
+  text-decoration: underline; /* Still provide clear indication */
+}
+
+/* Accessibility: Focus Indicators - Unmissable, even if visually disruptive */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 5px solid var(--color-focus); /* Very thick, jarring outline */
+  outline-offset: 0px; /* No offset, directly on the element */
+  border-radius: var(--border-radius-none); /* No rounding */
+  box-shadow: none; /* No shadows */
+}
+
+/* Headings - Dominant, poster-like typography */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-family-primary);
+  line-height: 1; /* Very tight for a solid block of text */
+  margin-top: calc(1.5 * var(--rhythm-unit)); /* Tighter margin-top */
+  margin-bottom: calc(0.75 * var(--rhythm-unit)); /* Tighter margin-bottom */
+  color: var(--color-text-on-light-bg);
+  font-weight: 700; /* Bold and impactful */
+  letter-spacing: -0.05em; /* Aggressively tight letter spacing */
+  text-transform: uppercase; /* Common in anti-design posters */
+  word-spacing: -0.07em; /* Tighter word spacing for large, bold headings */
+}
+
+h1 { font-size: var(--font-size-4xl); }
+h2 { font-size: var(--font-size-3xl); }
+h3 { font-size: var(--font-size-2xl); }
+h4 { font-size: var(--font-size-xl); }
+h5 { font-size: var(--font-size-lg); }
+h6 { font-size: var(--font-size-md); }
+
+/* Paragraphs - Generous vertical rhythm, dazzling size */
+p {
+  margin-top: 0;
+  margin-bottom: var(--rhythm-unit); /* Aligned to vertical rhythm */
+  line-height: var(--line-height-base); /* Consistent with body */
+  font-weight: 400; /* Standard weight, but larger size makes it impactful */
+  hyphens: auto; /* Enable hyphenation for better text flow */
+  word-break: break-word; /* Ensure long words break */
+  word-spacing: -0.02em; /* Slightly tighter word spacing for body text */
+}
+
+/* Lists - Simple, functional, aligned to rhythm */
+ul, ol {
+  margin-top: 0;
+  margin-bottom: var(--rhythm-unit); /* Aligned to vertical rhythm */
+  padding-left: var(--spacing-xl);
+}
+
+li {
+  margin-bottom: calc(0.5 * var(--rhythm-unit)); /* Half rhythm unit below list items */
+}
+
+/* Code snippets - Clean, distinct, no frills */
+code, pre {
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-sm);
+  background-color: var(--color-code-bg);
+  border-radius: var(--border-radius-none); /* No rounding */
+  border: none; /* No borders */
+}
+
+code {
+  padding: 0.2em 0.4em;
+  white-space: nowrap;
+}
+
+pre {
+  padding: var(--spacing-md);
+  overflow-x: auto;
+  line-height: 1.4;
+  margin-bottom: var(--rhythm-unit); /* Aligned to vertical rhythm */
+}
+
+/* Blockquotes - Marked by color and indentation, not borders */
+blockquote {
+  margin: calc(1.5 * var(--rhythm-unit)) 0; /* Tighter margin */
+  padding: var(--spacing-md) var(--spacing-lg);
+  border-left: 8px solid var(--color-primary); /* Thick, bold left border */
+  background-color: transparent; /* No background color */
+  color: var(--color-text-on-light-bg); /* Use dark text for contrast */
+  font-style: italic;
+  font-weight: 600; /* Make it stand out */
+  border-radius: var(--border-radius-none);
+}
+
+/* -------------------------------------------------------------------------- */
+/* 3. Layout & Structure                                                      */
+/* Single-column, raw layout, emphasizing typography.                      */
+/* -------------------------------------------------------------------------- */
+
+/* Header Notification (The "My gopherhole..." notice) */
+/* This class should be applied to the div containing the notice text in your HTML. */
+.header-notification {
+  background-color: var(--color-primary); /* Vibrant Magenta background */
+  color: var(--color-text-on-light-bg); /* Dark text for high contrast */
+  text-align: center;
+  padding: var(--rhythm-unit) var(--spacing-md); /* Aligned to rhythm, some horizontal padding */
+  font-size: var(--font-size-lg); /* Large enough to be noticeable but not a heading */
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  word-spacing: 0.05em;
+  line-height: 1.2; /* Tighter for a single line of text */
+  margin-bottom: 0; /* Removed margin-bottom as requested */
+  display: block; /* Ensure it takes full width */
+  width: 100%; /* Explicitly full width */
+  position: relative; /* Establish positioning context for inner blockquotes */
+  overflow: hidden; /* Clip any overflowing aesthetic text */
+  /* Ensure the main content of the notification is visible */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(3 * var(--rhythm-unit)); /* Ensure enough height for content and aesthetic elements */
+}
+
+/* Aesthetic Blockquotes within header-notification */
+.header-notification blockquote {
+  position: absolute;
+  font-family: var(--font-family-primary); /* Use primary font */
+  font-weight: 900; /* Extra bold */
+  text-transform: uppercase;
+  letter-spacing: 0.1em; /* More tracking */
+  color: var(--color-primary); /* Use primary color for the text */
+  opacity: 0.1; /* Make them subtle background elements */
+  pointer-events: none; /* Ensure they don't interfere with interactions */
+  white-space: nowrap; /* Prevent text wrapping */
+  z-index: 0; /* Place them behind other content */
+  margin: 0; /* Remove default blockquote margins */
+  padding: 0; /* Remove default blockquote padding */
+  border-left: none; /* Remove default blockquote border */
+  background-color: transparent; /* Explicitly ensure no background color */
+}
+
+/* First blockquote: top-right */
+.header-notification blockquote:nth-of-type(1) {
+  /* top: -1.5em; Removed as requested */
+  right: -2em; /* Adjust position to align with right edge */
+  font-size: var(--font-size-3xl); /* Large size */
+  transform: rotate(10deg) scale(1.2); /* Slight rotation and scale for Lain aesthetic */
+  transform-origin: top right;
+  color: var(--color-link-on-dark-bg); /* Electric blue for this one */
+  opacity: 0.15;
+}
+
+/* Second blockquote: bottom-right */
+.header-notification blockquote:nth-of-type(2) {
+  /* bottom: -1.5em; Removed as requested */
+  right: -1em; /* Adjust position to align with right edge */
+  font-size: var(--font-size-2xl); /* Slightly smaller than the first */
+  transform: rotate(-8deg) scale(1.1); /* Slight rotation and scale */
+  transform-origin: bottom right;
+  color: var(--color-primary-dark); /* Changed to a darker primary for more contrast */
+  opacity: 0.8; /* Significantly increased opacity for maximum visibility */
+}
+
+/* Ensure the paragraph content within header-notification stays visible */
+.header-notification p {
+  position: relative; /* Bring paragraph above aesthetic blockquotes */
+  z-index: 1;
+  color: var(--color-text-on-light-bg); /* Ensure text is dark and readable */
+  font-size: var(--font-size-base); /* Adjust size if needed */
+  font-weight: 600;
+  line-height: 1.2;
+  margin: 0; /* Remove paragraph margins */
+}
+
+.header-notification p a {
+  color: var(--color-background-content); /* Link color on the magenta background */
+  text-decoration: underline;
+}
+
+.header-notification p a:hover {
+  color: var(--color-link-on-dark-bg); /* Hover color for links in notification */
+}
+
+
+/* Wrapper for content - Constrained width for readability */
+.wrap {
+  /* Calculate max-width in ems for a comfortable measure (around 66 characters) */
+  /* Assuming ~0.55em per character for IBM Plex Sans at 1.8rem base */
+  /* 66 chars * 0.55em/char = 36.3em. Using 38em for a slightly wider, more flexible range. */
+  max-width: 38em; /* Elastic width based on ems */
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--spacing-md);
+  padding-right: var(--spacing-md);
+  background-color: transparent; /* Removed background color as requested */
+  padding-top: calc(2 * var(--rhythm-unit)); /* Tighter padding within the wrap */
+  padding-bottom: calc(2 * var(--rhythm-unit)); /* Tighter padding within the wrap */
+  position: relative; /* Essential for positioning aesthetic blockquotes */
+  overflow: visible; /* Changed to visible to allow elements to overflow if needed */
+}
+
+/* Skip links for accessibility - Functionally present, visually stark */
+.skip-links {
+  position: absolute;
+  left: -9999px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  z-index: 9999;
+}
+
+.skip-links:focus-within {
+  position: static;
+  width: auto;
+  height: auto;
+  left: 0;
+  top: 0;
+  background-color: var(--color-focus); /* Use focus color for background */
+  padding: var(--spacing-sm);
+  border: 2px solid var(--color-primary); /* Primary color border for contrast */
+  border-radius: var(--border-radius-none);
+  text-align: center;
+  color: var(--color-text-on-light-bg); /* Dark text on focus background */
+  font-weight: 700; /* Bold text */
+  text-transform: uppercase; /* Uppercase text */
+  letter-spacing: 0.08em; /* More tracking */
+  word-spacing: 0.05em; /* Slightly increased word spacing */
+  margin: var(--spacing-sm) auto;
+  display: block; /* Ensure it takes full width when visible */
+  max-width: 300px; /* Constrain width for a more "notice" like appearance */
+}
+
+.skip-links h2 {
+  border: 0;
+  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: inset(50%);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+  word-wrap: normal !important;
+}
+
+.skip-links ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.skip-links li {
+  margin-bottom: 0;
+  display: inline-block;
+}
+
+.skip-links a {
+  display: inline-block;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  color: var(--color-text-on-light-bg); /* Dark text for links within focus state */
+  font-weight: bold;
+  text-decoration: none; /* Ensure no default underline */
+}
+
+.skip-links a:hover,
+.skip-links a:focus {
+  color: var(--color-primary); /* Primary color on hover/focus for links within the skip-links */
+  text-decoration: underline;
+}
+
+/* Navigation - Bold, blocky, high-contrast */
+.navigation-wrapper {
+  background-color: var(--color-text-on-light-bg); /* Dark background for navigation */
+  padding: var(--spacing-lg) 0;
+  text-align: center;
+  border: none; /* No borders */
+}
+
+#menu-toggle {
+  display: none;
+  color: var(--color-background-content);
+  padding: var(--spacing-xs) var(--spacing-md);
+  border: 1px solid var(--color-background-content); /* Still needs a border for visibility */
+  border-radius: var(--border-radius-none);
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color var(--transition-speed) var(--transition-ease);
+}
+
+#menu-toggle:hover,
+#menu-toggle:focus {
+  background-color: var(--color-primary); /* Stark hover color */
+  color: var(--color-text-on-light-bg); /* Text becomes dark */
+}
+
+.site-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.site-nav li {
+  margin: 0 var(--spacing-xl); /* More aggressive spacing */
+}
+
+.site-nav a {
+  display: block;
+  padding: var(--spacing-md) var(--spacing-lg); /* Larger clickable area */
+  color: var(--color-text-on-dark-bg); /* Vibrant text on dark background */
+  font-weight: 700; /* Very bold */
+  text-transform: uppercase;
+  letter-spacing: 0.1em; /* More pronounced tracking */
+  border-radius: var(--border-radius-none);
+  transition: background-color var(--transition-speed) var(--transition-ease),
+              color var(--transition-speed) var(--transition-ease);
+}
+
+.site-nav a:hover,
+.site-nav a:focus {
+  background-color: var(--color-link-on-dark-bg); /* Electric Blue on hover */
+  color: var(--color-text-on-light-bg); /* Dark text on electric blue */
+  text-decoration: none;
+}
+
+/* Masthead (Header) - Raw, typographic branding */
+.masthead {
+  background-color: var(--color-background-content); /* Masthead uses the vibrant background */
+  padding: calc(2 * var(--rhythm-unit)) 0 calc(1.5 * var(--rhythm-unit)); /* Tighter padding, aligned to rhythm */
+  text-align: center;
+  border: none; /* No borders */
+  position: relative; /* Establish positioning context for inner blockquotes */
+  overflow: hidden; /* NEW: Set overflow to hidden to clip blockquotes */
+  z-index: 10; /* NEW: Give masthead a higher z-index to contain its children */
+}
+
+/* Aesthetic Blockquotes within masthead */
+.masthead blockquote {
+  position: absolute;
+  font-family: var(--font-family-primary);
+  font-weight: 900;
+  text-transform: uppercase;
+  pointer-events: none; /* Ensure they don't interfere with interactions */
+  z-index: 0; /* Placed behind other content elements in masthead */
+  margin: 0; /* Remove default blockquote margins */
+  padding: 0; /* Remove default blockquote padding */
+  border-left: none; /* Remove default blockquote border */
+  background-color: transparent; /* Ensure no background color */
+  text-align: left; /* Align text within its own block */
+  line-height: 1; /* Tight line height for block effect */
+}
+
+/* First masthead blockquote (Chinese) */
+.masthead blockquote:nth-of-type(1) {
+  top: 10%; /* Position from top */
+  left: 5%; /* Aligned more from the left */
+  max-width: 40%; /* Constrain width to encourage wrapping */
+  font-size: var(--font-size-3xl); /* Large size */
+  color: var(--color-link-on-dark-bg); /* Swapped color to electric blue */
+  opacity: 0.15;
+  transform: rotate(-15deg) scale(1.1); /* Rotation and scale */
+  transform-origin: top left;
+  letter-spacing: 0.05em;
+  white-space: normal; /* Allow it to wrap as a text block */
+  animation: drift1 15s infinite alternate ease-in-out; /* Apply drift animation */
+}
+
+/* Second masthead blockquote (English) */
+.masthead blockquote:nth-of-type(2) {
+  /* Removed top/bottom declarations */
+  /* Removed left declaration */
+  width: 150%; /* Make it span horizontally, potentially off-screen */
+  font-size: var(--font-size-2xl); /* Slightly smaller */
+  color: var(--color-primary); /* Swapped color to vibrant magenta */
+  opacity: 0.1;
+  /* More aggressive, wavy transform */
+  transform: rotate(8deg) skewX(15deg) scale(1.1) translateY(5%) perspective(500px) rotateY(20deg); /* Added perspective and rotateY for depth */
+  transform-origin: bottom left; /* Changed origin for better curve from left */
+  letter-spacing: 0.15em; /* Increased tracking for warped effect */
+  word-spacing: 0.1em; /* Increased word spacing */
+  white-space: nowrap; /* Force onto one line */
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3), -2px -2px 5px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth/wavy effect */
+  animation: drift2 18s infinite alternate-reverse ease-in-out; /* Apply drift animation */
+}
+
+/* Define drifting animations for blockquotes */
+@keyframes drift1 {
+  0% { transform: rotate(-15deg) scale(1.1) translate(0, 0); }
+  50% { transform: rotate(-17deg) scale(1.12) translate(5%, 2%); }
+  100% { transform: rotate(-15deg) scale(1.1) translate(0, 0); }
+}
+
+@keyframes drift2 {
+  0% { transform: rotate(8deg) skewX(15deg) scale(1.1) translateY(5%) perspective(500px) rotateY(20deg) translate(0, 0); }
+  50% { transform: rotate(10deg) skewX(17deg) scale(1.12) translateY(7%) perspective(500px) rotateY(22deg) translate(-5%, -3%); }
+  100% { transform: rotate(8deg) skewX(15deg) scale(1.1) translateY(5%) perspective(500px) rotateY(20deg) translate(0, 0); }
+}
+
+
+/* Define the 3D spin animation */
+@keyframes spin3D {
+  0% {
+    transform: translate(-50%, -50%) rotate3d(1, -1, 0, 0deg) rotate(20deg) scale(1.2); /* Rotate around diagonal axis, then apply initial cocking */
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate3d(1, -1, 0, 360deg) rotate(20deg) scale(1.2); /* Complete 360deg rotation around diagonal axis */
+  }
+}
+
+/* Ensure the main content of masthead stays visible */
+.masthead .wrap {
+  position: relative; /* Bring wrap content above aesthetic blockquotes */
+  z-index: 1; /* Keep wrap content above blockquotes */
+}
+
+.site-logo-img { /* Target directly, remove .animated for animation application */
+  position: absolute; /* Position the logo absolutely within masthead */
+  top: 50%; /* Center vertically */
+  left: 50%; /* Center horizontally */
+  transform: translate(-50%, -50%) rotate(20deg) scale(1.2); /* Rotated clockwise */
+  z-index: 2; /* Place above site title and description */
+  opacity: 0.8; /* Slight transparency */
+  max-width: 200px; /* Make it larger for more impact */
+  left: 70%; /* Move more to the right */
+  animation: spin3D 8s infinite linear; /* Apply the 3D spin animation */
+}
+
+.site-title { /* Target directly, remove .animated for animation application */
+  position: relative; /* Ensure these are above the blockquotes and logo */
+  z-index: 3; /* Ensure site title and description are on top */
+  /* Adjust margin-bottom to pull subtitle closer, and padding-right to prevent cutoff */
+  margin-bottom: calc(0.25 * var(--rhythm-unit)); /* Reduced margin to pull subtitle closer */
+  padding-right: 1em; /* Add some padding to prevent cutoff */
+  overflow: visible; /* Ensure text is not cut off */
+}
+
+.site-description { /* Target directly, remove .animated for animation application */
+  position: relative; /* Ensure these are above the blockquotes and logo */
+  z-index: 3; /* Ensure site title and description are on top */
+  margin-top: 0; /* Ensure no extra margin pushes it away from title */
+}
+
+/* Main Content Area - Single column, raw text flow */
+.main-content {
+  /* No padding here, as it's now handled by .wrap */
+  padding: 0;
+}
+
+.page-wrapper {
+  background-color: transparent; /* No background box, wrap handles it */
+  padding: 0; /* No internal padding for the wrapper */
+  border-radius: var(--border-radius-none);
+  box-shadow: none;
+}
+
+.page-header {
+  border: none; /* No borders */
+  margin-bottom: calc(1.5 * var(--rhythm-unit)); /* Tighter margin */
+  padding-bottom: calc(0.75 * var(--rhythm-unit)); /* Tighter padding */
+}
+
+.page-title {
+  font-size: var(--font-size-3xl);
+  margin-top: 0;
+  margin-bottom: 0;
+  text-align: left;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+}
+
+.page-content {
+  line-height: var(--line-height-base); /* Consistent with body */
+}
+
+/* Entry List (Articles) - Raw, separated blocks of text */
+.entries-list {
+  display: block;
+}
+
+.entry {
+  background-color: transparent; /* No background box */
+  border: none; /* No borders */
+  border-radius: var(--border-radius-none);
+  overflow: visible; /* Allow content to break out if needed */
+  box-shadow: none;
+  transition: none; /* No transitions */
+  display: flex;
+  flex-direction: column;
+  margin-bottom: calc(2 * var(--rhythm-unit)); /* Tighter space between articles */
+  padding: 0; /* No internal padding for the entry */
+}
+
+.entry:hover {
+  background-color: transparent; /* No background change on hover */
+  transform: none;
+  box-shadow: none;
+}
+
+.entry-header {
+  padding: 0;
+  margin-bottom: calc(0.5 * var(--rhythm-unit)); /* Adjusted for tighter grouping */
+}
+
+.entry-title {
+  font-size: var(--font-size-2xl);
+  margin-top: 0;
+  margin-bottom: calc(0.25 * var(--rhythm-unit)); /* Tighter to title */
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+.entry-title a {
+  color: var(--color-text-on-light-bg);
+  transition: color var(--transition-speed) var(--transition-ease);
+}
+
+.entry-title a:hover,
+.entry-title a:focus {
+  color: var(--color-primary); /* Primary color on hover */
+  text-decoration: none;
+}
+
+.entry-image {
+  width: 100%;
+  height: 10.5em; /* Sized in ems for vertical rhythm consistency */
+  object-fit: cover;
+  border: none; /* No borders */
+  border-radius: var(--border-radius-none);
+  margin-bottom: var(--rhythm-unit); /* Aligned to rhythm */
+}
+
+.entry-excerpt {
+  padding: 0;
+  flex-grow: 1;
+  margin-bottom: calc(0.75 * var(--rhythm-unit)); /* Tighter to meta */
+}
+
+.entry-excerpt h1 {
+  font-size: var(--font-size-xl);
+  margin-top: 0;
+  margin-bottom: calc(0.5 * var(--rhythm-unit)); /* Aligned to rhythm */
+  font-weight: 600;
+  text-transform: none; /* Allow normal casing here */
+  letter-spacing: normal;
+}
+
+.entry-meta {
+  padding: 0;
+  font-size: var(--font-size-md); /* Slightly larger meta info */
+  color: var(--color-secondary-text-on-light-bg); /* Secondary text color */
+  border: none; /* No borders */
+  margin-top: 0; /* Align meta closely with excerpt */
+  padding-top: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.entry-date {
+  display: block;
+  margin-top: 0;
+}
+
+/* Footer - Stark, functional block */
+.site-footer {
+  background-color: var(--color-text-on-light-bg); /* Dark background */
+  color: var(--color-text-on-dark-bg); /* Vibrant text on dark background */
+  padding: calc(1.5 * var(--rhythm-unit)) 0; /* Tighter padding */
+  text-align: center;
+  font-size: var(--font-size-md); /* Slightly larger footer text */
+  border: none;
+}
+
+.site-footer a {
+  color: var(--color-link-on-dark-bg); /* Electric Blue for footer links */
+  transition: color var(--transition-speed) var(--transition-ease);
+}
+
+.site-footer a:hover,
+.site-footer a:focus {
+  color: var(--color-primary); /* Primary color on hover */
+}
+
+.social-icons {
+  margin-bottom: var(--rhythm-unit); /* Aligned to rhythm */
+}
+
+.social-icon {
+  margin: 0 var(--spacing-md); /* More space between icons */
+  display: inline-block;
+}
+
+.social-icon i {
+  color: var(--color-text-on-dark-bg); /* Vibrant text on dark background */
+  transition: none; /* No transition for icons */
+}
+
+.social-icon i:hover,
+.social-icon i:focus {
+  color: var(--color-primary); /* Stark color change */
+}
+
+.copyright {
+  margin-top: var(--rhythm-unit); /* Aligned to rhythm */
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* -------------------------------------------------------------------------- */
+/* 4. Animations (Removed for anti-design static feel)                        */
+/* -------------------------------------------------------------------------- */
+/* All previous .animated classes and @keyframes are removed.               */
+/* Only abrupt transitions for hover/focus states remain.                   */
+
+/* -------------------------------------------------------------------------- */
+/* 5. Responsive Design (Mobile-First)                                        */
+/* Adapts to various screen sizes with anti-design principles.             */
+/* -------------------------------------------------------------------------- */
+
+/* Small devices (phones, 767px and down) */
+@media (max-width: 767px) {
+  .navigation-wrapper {
+    padding: var(--spacing-md) 0;
+  }
+
+  #menu-toggle {
+    display: inline-block;
+    padding: var(--spacing-sm) var(--spacing-lg);
+    font-size: var(--font-size-md);
+  }
+
+  .site-nav {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--color-text-on-light-bg);
+    padding-bottom: var(--spacing-md);
+  }
+
+  .site-nav.is-open {
+    max-height: 500px;
+    padding-top: var(--spacing-md);
+  }
+
+  .site-nav ul {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .site-nav li {
+    margin: var(--spacing-sm) 0;
+    width: 90%;
+    text-align: center;
+  }
+
+  .site-nav a {
+    padding: var(--spacing-md) var(--spacing-lg);
+    width: 100%;
+    font-size: var(--font-size-lg);
+  }
+
+  .masthead {
+    padding: calc(1.5 * var(--rhythm-unit)) 0 calc(1 * var(--rhythm-unit));
+  }
+
+  /* Aesthetic Blockquotes within masthead for mobile */
+  .masthead blockquote:nth-of-type(1) {
+    font-size: var(--font-size-2xl);
+    left: 2%;
+    transform: rotate(-10deg) scale(1);
+  }
+
+  .masthead blockquote:nth-of-type(2) {
+    font-size: var(--font-size-xl);
+    right: 2%;
+    transform: rotate(5deg) skewX(5deg) scale(1) translate(-10%, 2%);
+  }
+
+  .site-logo-img {
+    max-width: 100px;
+    left: 50%; /* Center for mobile */
+    transform: translate(-50%, -50%) rotate(0deg) scale(1); /* Reset rotation and scale for mobile */
+    top: 50%;
+  }
+
+  .site-title {
+    font-size: var(--font-size-3xl);
+    padding-right: 0; /* Remove padding for mobile */
+  }
+
+  .site-description {
+    font-size: var(--font-size-md);
+  }
+
+  .wrap {
+    padding-top: calc(1.5 * var(--rhythm-unit));
+    padding-bottom: calc(1.5 * var(--rhythm-unit));
+  }
+
+  .page-header {
+    margin-bottom: var(--rhythm-unit);
+    padding-bottom: calc(0.5 * var(--rhythm-unit));
+  }
+
+  .page-title {
+    font-size: var(--font-size-2xl);
+  }
+
+  .entry {
+    margin-bottom: calc(1.5 * var(--rhythm-unit));
+  }
+
+  .entry-title {
+    font-size: var(--font-size-xl);
+  }
+
+  .entry-image {
+    height: 220px;
+  }
+
+  .site-footer {
+    padding: calc(0.75 * var(--rhythm-unit)) 0;
+  }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+  #menu-toggle {
+    display: none;
+  }
+
+  .site-nav {
+    max-height: none;
+    overflow: visible;
+    background-color: transparent;
+    padding-bottom: 0;
+  }
+
+  .site-nav ul {
+    flex-direction: row;
+  }
+
+  .site-nav li {
+    margin: 0 var(--spacing-xl);
+  }
+
+  .site-title {
+    font-size: var(--font-size-4xl);
+  }
+
+  .site-description {
+    font-size: var(--font-size-lg);
+  }
+
+  .page-title {
+    font-size: var(--font-size-3xl);
+  }
+}
+
+/* Large devices (desktops, 1024px and up) */
+@media (min-width: 1024px) {
+  .wrap {
+    padding-left: var(--spacing-lg);
+    padding-right: var(--spacing-lg);
+  }
+
+  .site-nav li {
+    margin: 0 var(--spacing-2xl);
+  }
+
+  .masthead {
+    padding: calc(2 * var(--rhythm-unit)) 0 calc(1.5 * var(--rhythm-unit));
+  }
+
+  .site-logo-img {
+    max-width: 150px;
+  }
+
+  .page-wrapper {
+    padding: calc(2 * var(--rhythm-unit)) calc(1.5 * var(--rhythm-unit));
+  }
+}
+
+/* Extra large devices (large desktops, 1440px and up) */
+@media (min-width: 1440px) {
+  .wrap {
+    max-width: 800px;
+  }
+}
+
+/* -------------------------------------------------------------------------- */
+/* 6. Accessibility Enhancements                                              */
+/* -------------------------------------------------------------------------- */
+
+/* Screen reader text helper (already defined in skip-links h2) */
+.screen-reader-text {
+  border: 0;
+  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: inset(50%);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+  word-wrap: normal !important;
+}
+
+/* Buttons - Ensure contrast and clear states */
+button {
+  background-color: var(--color-primary);
+  color: var(--color-background-content);
+  padding: var(--spacing-md) var(--spacing-lg);
+  border: none;
+  border-radius: var(--border-radius-none);
+  cursor: pointer;
+  font-size: var(--font-size-base);
+  font-family: var(--font-family-primary);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: background-color var(--transition-speed) var(--transition-ease),
+              color var(--transition-speed) var(--transition-ease);
+}
+
+button:hover {
+  background-color: var(--color-text-on-light-bg); /* Stark change on hover */
+  color: var(--color-primary);
+}
+
+/* -------------------------------------------------------------------------- */
+/* 7. Performance Optimization Considerations                                 */
+/* -------------------------------------------------------------------------- */
+
+/* Font Loading Strategy */
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400,600,700,900&family=Inter:wght@400;600;700&family=Fira+Code:wght@400&display=swap');
+
+/* Using 'display=swap' ensures text is visible during font loading. */
+/* For critical fonts, consider 'font-display: optional;' or preloading. */
+
