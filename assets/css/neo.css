@@ -1,20 +1,3 @@
-/*
-  Anti-Design Typography Poster Style for someodd.zip_jekyll-index.html
-  ---------------------------------------------------------------------
-  This CSS embraces "anti-design" principles: raw, stark, and typography-driven.
-  It features a single-column layout, aggressive font sizing, high-contrast
-  colors, and the deliberate removal of conventional borders and shadows.
-  Accessibility remains a core focus, with clear, albeit unconventional, indicators.
-
-  Inspired by webtypography.net principles for enhanced readability and impact,
-  specifically concerning word spacing, comfortable measure, and vertical rhythm.
-  Blockquotes are now transformed into aesthetic background elements,
-  drawing inspiration from the unique typographic style of Lain anime.
-
-  Author: Gemini (as a senior-level front-end developer)
-  Date: July 14, 2025 (Revised for Anti-Design - Dazzling & Vibrant, with Aesthetic Blockquotes)
-*/
-
 /* -------------------------------------------------------------------------- */
 /* 1. CSS Custom Properties (Variables)                                       */
 /* Stark, high-contrast palette and aggressive typography scale.           */
@@ -24,6 +7,7 @@
   --color-background-body: #004d40; /* Deep Teal for the overall body background */
   --color-background-content: #CCFF00; /* Vibrant Yellow-Green for content areas */
 
+  --color-body-text-on-dark-bg: #d9ffd9;
   --color-text-on-dark-bg: #CCFF00; /* Vibrant Yellow-Green for text on dark backgrounds */
   --color-text-on-light-bg: #111111; /* Near-black for text on light backgrounds */
   --color-secondary-text-on-light-bg: #333333; /* Dark grey for secondary text on light backgrounds */
@@ -187,10 +171,22 @@ code, pre {
   border: none; /* No borders */
 }
 
+code,
+code.highlighter-rouge,
+pre {
+  color: var(--color-text-on-dark-bg);
+  background-color: var(--color-text-on-light-bg);
+}
+
 code {
   padding: 0.2em 0.4em;
   white-space: nowrap;
 }
+
+code.highlighter-rouge {
+  white-space: wrap;
+}
+
 
 pre {
   padding: var(--spacing-md);
@@ -420,6 +416,7 @@ blockquote {
   list-style: none;
   margin: 0;
   padding: 0;
+  background-color: transparent;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
@@ -452,7 +449,6 @@ blockquote {
 .masthead {
   background-color: var(--color-background-content); /* Masthead uses the vibrant background */
   padding: calc(2 * var(--rhythm-unit)) 0 calc(1.5 * var(--rhythm-unit)); /* Tighter padding, aligned to rhythm */
-  text-align: center;
   border: none; /* No borders */
   position: relative; /* Establish positioning context for inner blockquotes */
   overflow: hidden; /* Set overflow to hidden to clip blockquotes */
@@ -557,12 +553,13 @@ blockquote {
   position: relative; /* Ensure these are above the blockquotes and logo */
   z-index: 3; /* Ensure site title and description are on top */
   /* Adjust margin-bottom to pull subtitle closer, and padding-right to prevent cutoff */
-  margin-bottom: calc(0.25 * var(--rhythm-unit)); /* Reduced margin to pull subtitle closer */
+  margin-bottom: 0;
   padding-right: 1em; /* Add some padding to prevent cutoff */
   white-space: nowrap; /* Force onto one line */
   overflow: hidden; /* Hide overflow */
   text-overflow: ellipsis; /* Add ellipsis */
   min-width: 0; /* Allow shrinking */
+  text-align: left;
 }
 
 .site-description { /* Target directly, remove .animated for animation application */
@@ -575,14 +572,25 @@ blockquote {
 .main-content {
   /* No padding here, as it's now handled by .wrap */
   padding: 0;
+  color: var(--color-body-text-on-dark-bg);
+}
+
+.main-content h1,
+.main-content h2,
+.main-content h3,
+.main-content h4,
+.main-content h5,
+.main-content h6 {
+  color: var(--color-text-on-dark-bg);
 }
 
 .page-wrapper {
   background-color: transparent; /* No background box, wrap handles it */
-  padding: 0; /* No internal padding for the wrapper */
   border-radius: var(--border-radius-none);
   box-shadow: none;
+  padding: calc(2 * var(--rhythm-unit)) calc(1.5 * var(--rhythm-unit));
 }
+
 
 .page-header {
   border: none; /* No borders */
@@ -593,7 +601,7 @@ blockquote {
 .page-title {
   font-size: var(--font-size-3xl);
   margin-top: 0;
-  margin-bottom: var(--rhythm-unit); /* Restore normal blockquote margins for content */
+  margin-bottom: calc(0.5 * var(--rhythm-unit)); /* MODIFIED: Tighter margin to group with meta info */
   text-align: left;
   font-weight: 700;
   letter-spacing: -0.03em;
@@ -604,13 +612,19 @@ blockquote {
   line-height: var(--line-height-base); /* Consistent with body */
 }
 
+/* NEW: Specific styling for the post-start warning blockquote to tighten spacing from meta info */
+.page-content > blockquote.warning {
+  margin-top: 0;
+  font-size: var(--font-size-sm);
+}
+
 /* Specific styling for blockquotes within the main content of a post */
 .page-content blockquote {
   margin: var(--rhythm-unit) 0; /* Restore normal blockquote margins for content */
+  color: var(--color-body-text-on-dark-bg);
   padding: calc(0.5 * var(--rhythm-unit)) var(--font-size-md); /* Restore normal blockquote margins for content */
   border-left: 4px solid var(--color-primary);
   background-color: var(--color-background-mid); /* Give content blockquotes a subtle background */
-  color: var(--color-text-on-light-bg);
   font-style: normal; /* Override italic for content blockquotes */
   font-weight: 400; /* Reset font weight */
   border-radius: var(--border-radius-none);
@@ -629,12 +643,15 @@ blockquote {
 .page-content blockquote h5,
 .page-content blockquote h6 {
   font-size: var(--font-size-lg); /* Significantly smaller for headings inside blockquotes */
-  margin-top: 0;
-  margin-bottom: calc(0.5 * var(--rhythm-unit)); /* Tighter margin below */
   text-transform: none; /* Allow normal casing */
   letter-spacing: normal;
   word-spacing: normal;
   line-height: 1.2;
+}
+
+.page-content blockquote h1 {
+  margin-top: 0;
+  margin-bottom: var(--rhythm-unit);
 }
 
 
@@ -677,7 +694,7 @@ blockquote {
 }
 
 .entry-title a {
-  color: var(--color-text-on-light-bg);
+  color: var(--color-text-on-dark-bg);
   transition: color var(--transition-speed) var(--transition-ease);
 }
 
@@ -714,7 +731,7 @@ blockquote {
 .entry-meta {
   padding: 0;
   font-size: var(--font-size-md); /* Slightly larger meta info */
-  color: var(--color-secondary-text-on-light-bg); /* Secondary text color */
+  color: var(--color-text-on-dark-bg);
   border: none; /* No borders */
   margin-top: 0; /* Align meta closely with excerpt */
   padding-top: 0;
@@ -730,7 +747,7 @@ blockquote {
 /* Page Sidebar (for post meta info) */
 .page-sidebar {
   padding: 0 var(--spacing-md); /* Add padding to sidebar */
-  margin-bottom: calc(2 * var(--rhythm-unit)); /* Space below sidebar */
+  margin-bottom: var(--rhythm-unit); /* MODIFIED: Space below sidebar, reduced for better grouping */
   text-align: left; /* Align text within sidebar */
 }
 
@@ -792,56 +809,67 @@ blockquote {
 
 /* Page Pagination */
 .page-pagination {
-  display: flex;
-  justify-content: space-between;
-  margin-top: calc(2 * var(--rhythm-unit)); /* Tighter margin from content */
-  padding-top: var(--rhythm-unit); /* Padding above line */
-  border-top: 1px solid var(--color-text-on-light-bg); /* Stark separator line */
+  display: block;
+  margin-top: calc(4 * var(--rhythm-unit));
+  padding-top: 0;
+  border-top: none;
   font-family: var(--font-family-primary);
   text-transform: uppercase;
   font-weight: 700;
   letter-spacing: 0.05em;
   font-size: var(--font-size-md);
-  padding-bottom: var(--rhythm-unit); /* Padding below pagination for better rhythm */
+  padding-bottom: var(--rhythm-unit);
+}
+
+.page-pagination a {
+  display: block;
+  padding: 0;
+  margin-bottom: var(--rhythm-unit);
+  color: var(--color-text-on-dark-bg);
+  text-decoration: none;
+}
+
+.page-pagination a:hover {
+    background-color: transparent;
+    text-decoration: none;
+}
+
+.page-pagination a:hover .page-pagination-label,
+.page-pagination a:hover .page-pagination-title {
+    color: var(--color-primary);
 }
 
 .page-pagination-label {
-  font-size: var(--font-size-sm); /* Smaller label */
-  color: var(--color-secondary-text-on-light-bg);
-  margin-bottom: calc(0.25 * var(--rhythm-unit)); /* Tighter margin below label */
+  font-size: var(--font-size-sm);
+  color: var(--color-secondary-text-on-dark-bg);
+  margin-bottom: calc(0.25 * var(--rhythm-unit));
+  display: block;
 }
 
 .page-pagination-title {
   display: block;
-  color: var(--color-text-on-light-bg);
-  font-size: var(--font-size-lg); /* Larger title for clickable area */
+  color: var(--color-text-on-dark-bg);
+  font-size: var(--font-size-lg);
   line-height: 1.2;
-}
-
-.page-pagination a {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start; /* Default for previous link */
-  flex: 1; /* Allow links to take equal space */
-  padding: var(--spacing-sm);
-  transition: background-color 0.1s ease-out;
-}
-
-.page-pagination a:hover {
-  background-color: var(--color-background-mid); /* Subtle hover effect */
+  padding-left: var(--spacing-lg);
+  text-decoration: none;
 }
 
 .page-pagination .page-next {
-  text-align: right; /* Align next link to the right */
-  align-items: flex-end;
+  text-align: left;
 }
 
 .page-pagination .fas {
   font-size: var(--font-size-md);
-  margin-top: var(--spacing-xs);
-  color: var(--color-primary);
+  font-weight: 900;
+  display: inline-block;
+  margin-right: var(--spacing-sm);
 }
 
+.page-pagination .page-next .fas {
+    margin-left: var(--spacing-sm);
+    margin-right: 0;
+}
 
 /* Footer - Stark, functional block */
 .site-footer {
@@ -905,6 +933,7 @@ blockquote {
     padding: var(--spacing-md) 0;
   }
 
+
   #menu-toggle {
     display: inline-block;
     padding: var(--spacing-sm) var(--spacing-lg);
@@ -929,7 +958,7 @@ blockquote {
   .site-nav ul {
     flex-direction: column;
     align-items: center;
-    background-color: transparent !important; /* Ensure no black background on mobile menu */
+    background-color: transparent !important; /* BUG FIX: Ensure the list itself has no background, inheriting from the .site-nav container. */
   }
 
   .site-nav li {
@@ -990,6 +1019,10 @@ blockquote {
     padding-right: var(--spacing-md); /* Ensure horizontal padding for content */
   }
 
+  .page-wrapper {
+    padding: var(--rhythm-unit) calc(0.5 * var(--rhythm-unit));
+  }
+
   /* Post page specific adjustments for mobile */
   .page-header {
     margin-bottom: 0; /* Tighter margin below header */
@@ -1048,7 +1081,6 @@ blockquote {
     padding: var(--spacing-sm);
     border-left: 4px solid var(--color-primary);
     background-color: var(--color-background-mid); /* Give content blockquotes a subtle background */
-    color: var(--color-text-on-light-bg);
     font-style: normal; /* Override italic for content blockquotes */
     font-weight: 400; /* Reset font weight */
     border-radius: var(--border-radius-none);
@@ -1071,13 +1103,6 @@ blockquote {
     margin-bottom: calc(0.25 * var(--rhythm-unit));
   }
 
-  /* Post Notice Specific Adjustments */
-  .header-notification { /* This is the "My gopherhole is generally..." notice */
-    padding-bottom: calc(0.25 * var(--rhythm-unit)); /* NEW: Even tighter padding-bottom */
-  }
-  .header-notification p:last-child { /* Target the paragraph inside the header-notification */
-    margin-bottom: 0; /* Remove its bottom margin */
-  }
 
   .page-pagination {
     margin-top: calc(1 * var(--rhythm-unit)); /* NEW: Tighter margin from content */
@@ -1110,6 +1135,8 @@ blockquote {
     padding: calc(0.75 * var(--rhythm-unit)) 0;
   }
 }
+
+/* whatever */
 
 /* Medium devices (tablets, 768px and up) */
 @media (min-width: 768px) {
@@ -1189,9 +1216,6 @@ blockquote {
     max-width: 150px;
   }
 
-  .page-wrapper {
-    padding: calc(2 * var(--rhythm-unit)) calc(1.5 * var(--rhythm-unit));
-  }
 }
 
 /* Extra large devices (large desktops, 1440px and up) */
@@ -1247,7 +1271,4 @@ button:hover {
 
 /* Font Loading Strategy */
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400,600,700,900&family=Inter:wght@400;600;700&family=Fira+Code:wght@400&display=swap');
-
-/* Using 'display=swap' ensures text is visible during font loading. */
-/* For critical fonts, consider 'font-display: optional;' or preloading. */
 
