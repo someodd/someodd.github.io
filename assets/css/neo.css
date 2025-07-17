@@ -1155,7 +1155,25 @@ blockquote {
 
 }
 
-/* whatever */
+/* Search Input Styling */
+.search-input {
+  width: 100%; /* Take up full width of the container */
+  background-color: var(--color-background-content); /* Vibrant Yellow-Green background */
+  color: var(--color-text-on-light-bg); /* Near-black for input text */
+  border: none; /* No borders for a flat look */
+  border-radius: var(--border-radius-none); /* No rounded corners */
+  padding: var(--spacing-lg) var(--spacing-md); /* Generous padding for a bold feel */
+  font-family: var(--font-family-primary); /* Consistent font */
+  font-size: var(--font-size-lg); /* Large, impactful font size */
+  font-weight: 600; /* A strong but not overly bold weight */
+  margin-bottom: var(--rhythm-unit); /* Maintain vertical rhythm */
+}
+
+.search-input::placeholder {
+  color: var(--color-secondary-text-on-light-bg); /* Dark grey for placeholder */
+  opacity: 0.7; /* Make it slightly less prominent */
+  font-style: italic;
+}
 
 /* Medium devices (tablets, 768px and up) */
 @media (min-width: 768px) {
