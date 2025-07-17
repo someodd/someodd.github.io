@@ -412,6 +412,8 @@ blockquote {
   color: var(--color-text-on-light-bg); /* Text becomes dark */
 }
 
+/* The .is-open class and :active rules are no longer needed */
+
 .site-nav ul {
   list-style: none;
   margin: 0;
@@ -658,6 +660,7 @@ blockquote {
 /* Entry List (Articles) - Raw, separated blocks of text */
 .entries-list {
   display: block;
+  margin-top: calc(2 * var(--rhythm-unit)); /* Tighter space above entries */
 }
 
 .entry {
@@ -681,6 +684,7 @@ blockquote {
 
 .entry-header {
   padding: 0;
+  hyphens: auto;
   margin-bottom: calc(0.5 * var(--rhythm-unit)); /* Adjusted for tighter grouping */
 }
 
@@ -731,7 +735,7 @@ blockquote {
 .entry-meta {
   padding: 0;
   font-size: var(--font-size-md); /* Slightly larger meta info */
-  color: var(--color-text-on-dark-bg);
+  color: var(--color-text-on-light-bg);
   border: none; /* No borders */
   margin-top: 0; /* Align meta closely with excerpt */
   padding-top: 0;
@@ -742,6 +746,10 @@ blockquote {
 .entry-date {
   display: block;
   margin-top: 0;
+}
+
+.e-content {
+  margin-top: var(--rhythm-unit);
 }
 
 /* Page Sidebar (for post meta info) */
@@ -973,6 +981,15 @@ blockquote {
     font-size: var(--font-size-lg);
   }
 
+  /* --- In section 5. Responsive Design > (max-width: 767px) media query --- */
+
+
+/* When the nav element is targeted via the anchor link, reveal it */
+#menu-toggle:target + #primary-nav {
+  max-height: unset; /* An arbitrary large height to allow content to show */
+  padding-top: var(--spacing-md);
+}
+
   .masthead {
     padding: calc(1.5 * var(--rhythm-unit)) 0 calc(1 * var(--rhythm-unit));
   }
@@ -1134,6 +1151,8 @@ blockquote {
   .site-footer {
     padding: calc(0.75 * var(--rhythm-unit)) 0;
   }
+
+
 }
 
 /* whatever */

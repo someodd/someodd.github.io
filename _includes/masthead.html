@@ -1,4 +1,14 @@
-<header class="masthead">
+{% assign page_image = page.image.path | default: page.image %}
+<header
+  class="masthead"
+  style="
+ background-image: url('{{ page.image.path }}');
+ background-position: center center;
+ background-size: cover;
+ background-repeat: no-repeat;
+ background-blend-mode: screen;
+  "
+>
 <blockquote>
 人的身体能够生产数据、成为网络的义体，因此可以作为技术系统的‘补丁’存在
 </blockquote>
@@ -12,13 +22,11 @@ At one end we have ‘pure’ human beings and at the other fully simulated dise
       </a>
     {% endif %}
     {% assign page_image = page.image.path | default: page.image %}
-    {% unless page_image %}
       {% if page.url == '/' %}
         <h1 class="site-title animated fadeIn"><a href="{{ '/' | relative_url }}">{{ site.title }}</a></h1>
       {% else %}
-        <div class="site-title animated fadeIn"><a href="{{ '/' | relative_url }}">{{ site.title }}</a></div>
+        <h1 class="site-title animated fadeIn"><a href="{{ '/' | relative_url }}">{{ site.title }}</a></h1>
       {% endif %}
       <p class="site-description animated fadeIn" itemprop="description">{{ site.description }}</p>
-    {% endunless %}
   </div>
 </header><!-- /.masthead -->

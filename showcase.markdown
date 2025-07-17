@@ -6,4 +6,4 @@ entries_layout: grid
 taxonomy: showcase
 ---
 
-Some of the projects I’ve worked on. Please also look at [my services page](/services).
+Some of the projects I’ve worked on. Please also look at [my about page](/about).
