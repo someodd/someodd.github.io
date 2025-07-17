@@ -202,7 +202,7 @@ pre {
 /* Blockquotes - Marked by color and indentation, not borders */
 blockquote {
   margin: calc(1.5 * var(--rhythm-unit)) 0; /* Tighter margin */
-  padding: var(--spacing-md) var(--spacing-lg);
+  padding: var(--rhythm-unit) var(--spacing-lg);
   border-left: 8px solid var(--color-primary); /* Thick, bold left border */
   background-color: transparent; /* No background color */
   color: var(--color-text-on-light-bg); /* Use dark text for contrast */
@@ -369,6 +369,7 @@ blockquote {
   list-style: none;
   margin: 0;
   padding: 0;
+  background-color: transparent !important; /* Ensure no black background on mobile menu */
 }
 
 .skip-links li {
@@ -454,8 +455,9 @@ blockquote {
   text-align: center;
   border: none; /* No borders */
   position: relative; /* Establish positioning context for inner blockquotes */
-  overflow: hidden; /* NEW: Set overflow to hidden to clip blockquotes */
-  z-index: 10; /* NEW: Give masthead a higher z-index to contain its children */
+  overflow: hidden; /* Set overflow to hidden to clip blockquotes */
+  z-index: 10; /* Give masthead a higher z-index to contain its children */
+  perspective: 1000px; /* Add perspective to the masthead for 3D transforms */
 }
 
 /* Aesthetic Blockquotes within masthead */
@@ -524,10 +526,11 @@ blockquote {
 /* Define the 3D spin animation */
 @keyframes spin3D {
   0% {
-    transform: translate(-50%, -50%) rotate3d(1, -1, 0, 0deg) rotate(20deg) scale(1.2); /* Rotate around diagonal axis, then apply initial cocking */
+    /* Apply initial rotation first, then rotate around Y axis (local vertical axis) */
+    transform: translate(-50%, -50%) rotate(20deg) rotateY(0deg) scale(1.2);
   }
   100% {
-    transform: translate(-50%, -50%) rotate3d(1, -1, 0, 360deg) rotate(20deg) scale(1.2); /* Complete 360deg rotation around diagonal axis */
+    transform: translate(-50%, -50%) rotate(20deg) rotateY(360deg) scale(1.2);
   }
 }
 
@@ -541,12 +544,13 @@ blockquote {
   position: absolute; /* Position the logo absolutely within masthead */
   top: 50%; /* Center vertically */
   left: 50%; /* Center horizontally */
-  transform: translate(-50%, -50%) rotate(20deg) scale(1.2); /* Rotated clockwise */
+  transform: translate(-50%, -50%) rotate(20deg) scale(1.2); /* Initial cocked rotation and scale */
   z-index: 2; /* Place above site title and description */
   opacity: 0.8; /* Slight transparency */
   max-width: 200px; /* Make it larger for more impact */
   left: 70%; /* Move more to the right */
-  animation: spin3D 8s infinite linear; /* Apply the 3D spin animation */
+  animation: spin3D 20s infinite linear; /* Apply the 3D spin animation */
+  transform-style: preserve-3d; /* Enable 3D transforms for the element itself */
 }
 
 .site-title { /* Target directly, remove .animated for animation application */
@@ -555,7 +559,10 @@ blockquote {
   /* Adjust margin-bottom to pull subtitle closer, and padding-right to prevent cutoff */
   margin-bottom: calc(0.25 * var(--rhythm-unit)); /* Reduced margin to pull subtitle closer */
   padding-right: 1em; /* Add some padding to prevent cutoff */
-  overflow: visible; /* Ensure text is not cut off */
+  white-space: nowrap; /* Force onto one line */
+  overflow: hidden; /* Hide overflow */
+  text-overflow: ellipsis; /* Add ellipsis */
+  min-width: 0; /* Allow shrinking */
 }
 
 .site-description { /* Target directly, remove .animated for animation application */
@@ -579,14 +586,14 @@ blockquote {
 
 .page-header {
   border: none; /* No borders */
-  margin-bottom: calc(1.5 * var(--rhythm-unit)); /* Tighter margin */
-  padding-bottom: calc(0.75 * var(--rhythm-unit)); /* Tighter padding */
+  margin-bottom: 0; /* Tighter margin */
+  padding-bottom: 0; /* Tighter padding */
 }
 
 .page-title {
   font-size: var(--font-size-3xl);
   margin-top: 0;
-  margin-bottom: 0;
+  margin-bottom: var(--rhythm-unit); /* Restore normal blockquote margins for content */
   text-align: left;
   font-weight: 700;
   letter-spacing: -0.03em;
@@ -596,6 +603,40 @@ blockquote {
 .page-content {
   line-height: var(--line-height-base); /* Consistent with body */
 }
+
+/* Specific styling for blockquotes within the main content of a post */
+.page-content blockquote {
+  margin: var(--rhythm-unit) 0; /* Restore normal blockquote margins for content */
+  padding: calc(0.5 * var(--rhythm-unit)) var(--font-size-md); /* Restore normal blockquote margins for content */
+  border-left: 4px solid var(--color-primary);
+  background-color: var(--color-background-mid); /* Give content blockquotes a subtle background */
+  color: var(--color-text-on-light-bg);
+  font-style: normal; /* Override italic for content blockquotes */
+  font-weight: 400; /* Reset font weight */
+  border-radius: var(--border-radius-none);
+}
+
+/* Target last paragraph in content blockquote to remove bottom margin */
+.page-content blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+/* Specific styling for headings INSIDE blockquotes within the main content */
+.page-content blockquote h1,
+.page-content blockquote h2,
+.page-content blockquote h3,
+.page-content blockquote h4,
+.page-content blockquote h5,
+.page-content blockquote h6 {
+  font-size: var(--font-size-lg); /* Significantly smaller for headings inside blockquotes */
+  margin-top: 0;
+  margin-bottom: calc(0.5 * var(--rhythm-unit)); /* Tighter margin below */
+  text-transform: none; /* Allow normal casing */
+  letter-spacing: normal;
+  word-spacing: normal;
+  line-height: 1.2;
+}
+
 
 /* Entry List (Articles) - Raw, separated blocks of text */
 .entries-list {
@@ -641,7 +682,7 @@ blockquote {
 }
 
 .entry-title a:hover,
-.entry-title a:focus {
+.entry-title-a:focus {
   color: var(--color-primary); /* Primary color on hover */
   text-decoration: none;
 }
@@ -685,6 +726,122 @@ blockquote {
   display: block;
   margin-top: 0;
 }
+
+/* Page Sidebar (for post meta info) */
+.page-sidebar {
+  padding: 0 var(--spacing-md); /* Add padding to sidebar */
+  margin-bottom: calc(2 * var(--rhythm-unit)); /* Space below sidebar */
+  text-align: left; /* Align text within sidebar */
+}
+
+.page-author {
+  margin-bottom: calc(0.5 * var(--rhythm-unit)); /* Tighter margin for author info */
+}
+
+.page-date {
+  font-size: var(--font-size-lg); /* Make date larger and more prominent */
+  font-weight: 700;
+  color: var(--color-text-on-light-bg);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: block;
+  margin-bottom: calc(0.5 * var(--rhythm-unit)); /* Tighter margin below date */
+}
+
+.page-date a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.page-date a:hover {
+  color: var(--color-primary);
+  text-decoration: underline;
+}
+
+.page-taxonomies-title {
+  font-size: var(--font-size-md); /* Smaller, more subtle title for taxonomies */
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-top: calc(1.75 * var(--font-size-md)); /* Space above taxonomy titles */
+  margin-bottom: calc(0.25 * var(--font-size-md)); /* Space below taxonomy titles */
+  color: var(--color-secondary-text-on-light-bg);
+}
+
+.page-taxonomies {
+  list-style: none; /* Remove bullet points */
+  padding-left: 0; /* Remove default padding */
+  margin-bottom: var(--rhythm-unit); /* Space below taxonomy lists */
+}
+
+.page-taxonomies li {
+  margin-bottom: var(--spacing-xxs); /* Tighter spacing for list items */
+  font-size: var(--font-size-sm); /* Smaller font for taxonomy items */
+  text-transform: lowercase; /* Lowercase for a more subtle look */
+  letter-spacing: 0.03em;
+}
+
+.page-taxonomies a {
+  color: var(--color-primary);
+}
+
+.page-taxonomies a:hover {
+  color: var(--color-primary-dark);
+}
+
+
+/* Page Pagination */
+.page-pagination {
+  display: flex;
+  justify-content: space-between;
+  margin-top: calc(2 * var(--rhythm-unit)); /* Tighter margin from content */
+  padding-top: var(--rhythm-unit); /* Padding above line */
+  border-top: 1px solid var(--color-text-on-light-bg); /* Stark separator line */
+  font-family: var(--font-family-primary);
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  font-size: var(--font-size-md);
+  padding-bottom: var(--rhythm-unit); /* Padding below pagination for better rhythm */
+}
+
+.page-pagination-label {
+  font-size: var(--font-size-sm); /* Smaller label */
+  color: var(--color-secondary-text-on-light-bg);
+  margin-bottom: calc(0.25 * var(--rhythm-unit)); /* Tighter margin below label */
+}
+
+.page-pagination-title {
+  display: block;
+  color: var(--color-text-on-light-bg);
+  font-size: var(--font-size-lg); /* Larger title for clickable area */
+  line-height: 1.2;
+}
+
+.page-pagination a {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Default for previous link */
+  flex: 1; /* Allow links to take equal space */
+  padding: var(--spacing-sm);
+  transition: background-color 0.1s ease-out;
+}
+
+.page-pagination a:hover {
+  background-color: var(--color-background-mid); /* Subtle hover effect */
+}
+
+.page-pagination .page-next {
+  text-align: right; /* Align next link to the right */
+  align-items: flex-end;
+}
+
+.page-pagination .fas {
+  font-size: var(--font-size-md);
+  margin-top: var(--spacing-xs);
+  color: var(--color-primary);
+}
+
 
 /* Footer - Stark, functional block */
 .site-footer {
@@ -772,6 +929,7 @@ blockquote {
   .site-nav ul {
     flex-direction: column;
     align-items: center;
+    background-color: transparent !important; /* Ensure no black background on mobile menu */
   }
 
   .site-nav li {
@@ -808,11 +966,17 @@ blockquote {
     left: 50%; /* Center for mobile */
     transform: translate(-50%, -50%) rotate(0deg) scale(1); /* Reset rotation and scale for mobile */
     top: 50%;
+    animation: spin3D 20s infinite linear; /* Re-enable animation on mobile */
   }
 
   .site-title {
-    font-size: var(--font-size-3xl);
+    font-size: 12vw; /* Use viewport width for fluid scaling on mobile */
     padding-right: 0; /* Remove padding for mobile */
+    white-space: normal; /* Allow wrapping for better fit */
+    overflow: visible; /* Ensure text is not cut off */
+    text-overflow: clip; /* No ellipsis when wrapping */
+    min-width: 0; /* Allow shrinking */
+    line-height: 1.1; /* Tighter line height for multi-line title */
   }
 
   .site-description {
@@ -822,27 +986,124 @@ blockquote {
   .wrap {
     padding-top: calc(1.5 * var(--rhythm-unit));
     padding-bottom: calc(1.5 * var(--rhythm-unit));
+    padding-left: var(--spacing-md); /* Ensure horizontal padding for content */
+    padding-right: var(--spacing-md); /* Ensure horizontal padding for content */
   }
 
+  /* Post page specific adjustments for mobile */
   .page-header {
-    margin-bottom: var(--rhythm-unit);
-    padding-bottom: calc(0.5 * var(--rhythm-unit));
+    margin-bottom: 0; /* Tighter margin below header */
+    padding-bottom: 0;
   }
 
   .page-title {
     font-size: var(--font-size-2xl);
+    margin-bottom: calc(0.25 * var(--rhythm-unit)); /* Tighter margin to pull date closer */
+    padding-left: var(--spacing-md); /* Ensure horizontal padding for title */
+    padding-right: var(--spacing-md); /* Ensure horizontal padding for title */
   }
 
-  .entry {
-    margin-bottom: calc(1.5 * var(--rhythm-unit));
+  .page-sidebar {
+    padding: 0 var(--spacing-md); /* Ensure padding for sidebar */
+    margin-top: 0; /* NEW: Even tighter top margin for associativity */
+    margin-bottom: calc(0.75 * var(--rhythm-unit)); /* NEW: Tighter space below sidebar */
   }
 
-  .entry-title {
-    font-size: var(--font-size-xl);
+  .page-author {
+    margin-bottom: calc(0.25 * var(--rhythm-unit)); /* Even tighter margin for author info */
   }
 
-  .entry-image {
-    height: 220px;
+  .page-date {
+    font-size: var(--font-size-base); /* Smaller date font for mobile */
+    margin-bottom: calc(0.5 * var(--rhythm-unit)); /* NEW: Tighter space below date to separate from taxonomies */
+  }
+
+  .page-taxonomies-title {
+    font-size: var(--font-size-sm); /* Smaller taxonomy titles */
+    margin-top: 0; /* No top margin, associate closely with date */
+    margin-bottom: calc(0.25 * var(--rhythm-unit));
+  }
+
+  .page-taxonomies {
+    list-style: none; /* Remove bullet points */
+    padding-left: 0; /* Remove default padding */
+    margin-bottom: calc(0.5 * var(--rhythm-unit)); /* NEW: Tighter space below taxonomy lists */
+  }
+
+  .page-taxonomies li {
+    margin-bottom: var(--spacing-xxs); /* Tighter spacing for list items */
+    font-size: var(--font-size-sm); /* Smaller font for taxonomy items */
+    text-transform: lowercase; /* Lowercase for a more subtle look */
+    letter-spacing: 0.03em;
+  }
+
+  .page-content {
+    padding-left: var(--spacing-md); /* Add horizontal padding to main content */
+    padding-right: var(--spacing-md); /* Add horizontal padding to main content */
+  }
+
+  /* Specific styling for blockquotes within the main content of a post */
+  .page-content blockquote {
+    margin: var(--rhythm-unit) 0; /* Restore normal blockquote margins for content */
+    padding: var(--spacing-sm);
+    border-left: 4px solid var(--color-primary);
+    background-color: var(--color-background-mid); /* Give content blockquotes a subtle background */
+    color: var(--color-text-on-light-bg);
+    font-style: normal; /* Override italic for content blockquotes */
+    font-weight: 400; /* Reset font weight */
+    border-radius: var(--border-radius-none);
+    padding-bottom: calc(0.25 * var(--rhythm-unit)); /* Tighter padding on the bottom */
+    margin-bottom: calc(0.5 * var(--rhythm-unit)); /* NEW: Even tighter margin below content blockquote */
+  }
+
+  .page-content blockquote p:last-child { /* Target last paragraph in content blockquote */
+    margin-bottom: 0; /* Remove bottom margin to prevent excessive space */
+  }
+
+  /* Specific styling for headings INSIDE blockquotes within the main content */
+  .page-content blockquote h1,
+  .page-content blockquote h2,
+  .page-content blockquote h3,
+  .page-content blockquote h4,
+  .page-content blockquote h5,
+  .page-content blockquote h6 {
+    font-size: var(--font-size-md); /* Smaller heading inside blockquote for mobile */
+    margin-bottom: calc(0.25 * var(--rhythm-unit));
+  }
+
+  /* Post Notice Specific Adjustments */
+  .header-notification { /* This is the "My gopherhole is generally..." notice */
+    padding-bottom: calc(0.25 * var(--rhythm-unit)); /* NEW: Even tighter padding-bottom */
+  }
+  .header-notification p:last-child { /* Target the paragraph inside the header-notification */
+    margin-bottom: 0; /* Remove its bottom margin */
+  }
+
+  .page-pagination {
+    margin-top: calc(1 * var(--rhythm-unit)); /* NEW: Tighter margin from content */
+    padding-top: calc(0.5 * var(--rhythm-unit)); /* NEW: Tighter padding above line */
+    flex-direction: column; /* Stack pagination links vertically */
+    align-items: center;
+    padding-bottom: calc(0.5 * var(--rhythm-unit)); /* NEW: Tighter padding below pagination */
+  }
+
+  .page-pagination-label {
+    margin-bottom: calc(0.125 * var(--rhythm-unit)); /* Even tighter margin below label */
+  }
+
+  .page-pagination a {
+    text-align: center;
+    align-items: center;
+    width: 100%; /* Full width links */
+    margin-bottom: var(--spacing-sm); /* Space between stacked links */
+  }
+  .page-pagination a:last-child {
+      margin-bottom: 0; /* Remove bottom margin on last pagination link */
+  }
+
+  .page-pagination .page-next {
+    text-align: center;
+    align-items: center;
   }
 
   .site-footer {
@@ -872,7 +1133,10 @@ blockquote {
   }
 
   .site-title {
-    font-size: var(--font-size-4xl);
+    font-size: var(--font-size-4xl); /* Revert to fixed large font size on larger screens */
+    white-space: normal; /* Allow wrapping on larger screens if original design intended it */
+    overflow: visible;
+    text-overflow: clip;
   }
 
   .site-description {
@@ -881,6 +1145,28 @@ blockquote {
 
   .page-title {
     font-size: var(--font-size-3xl);
+  }
+
+  .entry {
+    padding-left: 0; /* Remove specific padding for larger screens */
+    padding-right: 0; /* Remove specific padding for larger screens */
+  }
+
+  /* Post page specific adjustments for larger screens */
+  .page-sidebar {
+    padding: 0; /* Reset sidebar padding for larger screens */
+    margin-top: 0; /* Reset margin-top */
+    margin-bottom: 0; /* Reset sidebar margin */
+    /* Potentially add grid/flex for two-column layout here if desired, but for now keep single column flow */
+  }
+
+  .page-content {
+    padding-left: 0; /* Remove specific padding for larger screens */
+    padding-right: 0; /* Remove specific padding for larger screens */
+  }
+
+  .page-pagination {
+    flex-direction: row; /* Horizontal pagination links */
   }
 }
 
