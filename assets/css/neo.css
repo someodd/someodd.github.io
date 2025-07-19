@@ -49,6 +49,10 @@
   --spacing-3xl: calc(4 * var(--spacing-unit));
   --spacing-4xl: calc(6 * var(--spacing-unit)); /* Even larger for dramatic breaks */
 
+  /* NEW: Centralized Gutters for Layout Control */
+  --gutter-horizontal: var(--spacing-xl);
+  --gutter-vertical: var(--spacing-2xl);
+
   /* Border Radius - Uniformly zero for flat, stark aesthetic */
   --border-radius-none: 0;
 
@@ -213,107 +217,94 @@ blockquote {
 /* -------------------------------------------------------------------------- */
 
 /* Header Notification (The "My gopherhole..." notice) */
-/* This class should be applied to the div containing the notice text in your HTML. */
 .header-notification {
   background-color: var(--color-primary); /* Vibrant Magenta background */
   color: var(--color-text-on-light-bg); /* Dark text for high contrast */
   text-align: center;
-  padding: var(--rhythm-unit) var(--spacing-md); /* Aligned to rhythm, some horizontal padding */
-  font-size: var(--font-size-lg); /* Large enough to be noticeable but not a heading */
+  padding: var(--rhythm-unit) var(--gutter-horizontal); /* Use horizontal gutter */
+  font-size: var(--font-size-lg);
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   word-spacing: 0.05em;
-  line-height: 1.2; /* Tighter for a single line of text */
-  margin-bottom: 0; /* Removed margin-bottom as requested */
-  display: block; /* Ensure it takes full width */
-  width: 100%; /* Explicitly full width */
-  position: relative; /* Establish positioning context for inner blockquotes */
-  overflow: hidden; /* Clip any overflowing aesthetic text */
-  /* Ensure the main content of the notification is visible */
+  line-height: 1.2;
+  margin-bottom: 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-height: calc(3 * var(--rhythm-unit)); /* Ensure enough height for content and aesthetic elements */
+  min-height: calc(3 * var(--rhythm-unit));
+  position: relative;
+  overflow: hidden;
 }
 
 /* Aesthetic Blockquotes within header-notification */
 .header-notification blockquote {
   position: absolute;
-  font-family: var(--font-family-primary); /* Use primary font */
-  font-weight: 900; /* Extra bold */
+  font-family: var(--font-family-primary);
+  font-weight: 900;
   text-transform: uppercase;
-  letter-spacing: 0.1em; /* More tracking */
-  color: var(--color-primary); /* Use primary color for the text */
-  opacity: 0.1; /* Make them subtle background elements */
-  pointer-events: none; /* Ensure they don't interfere with interactions */
-  white-space: nowrap; /* Prevent text wrapping */
-  z-index: 0; /* Place them behind other content */
-  margin: 0; /* Remove default blockquote margins */
-  padding: 0; /* Remove default blockquote padding */
-  border-left: none; /* Remove default blockquote border */
-  background-color: transparent; /* Explicitly ensure no background color */
+  letter-spacing: 0.1em;
+  color: var(--color-primary);
+  opacity: 0.1;
+  pointer-events: none;
+  white-space: nowrap;
+  z-index: 0;
+  margin: 0;
+  padding: 0;
+  border-left: none;
+  background-color: transparent;
 }
 
-/* First blockquote: top-right */
 .header-notification blockquote:nth-of-type(1) {
-  /* top: -1.5em; Removed as requested */
-  right: -2em; /* Adjust position to align with right edge */
-  font-size: var(--font-size-3xl); /* Large size */
-  transform: rotate(10deg) scale(1.2); /* Slight rotation and scale for Lain aesthetic */
+  right: -2em;
+  font-size: var(--font-size-3xl);
+  transform: rotate(10deg) scale(1.2);
   transform-origin: top right;
-  color: var(--color-link-on-dark-bg); /* Electric blue for this one */
+  color: var(--color-link-on-dark-bg);
   opacity: 0.15;
 }
 
-/* Second blockquote: bottom-right */
 .header-notification blockquote:nth-of-type(2) {
-  /* bottom: -1.5em; Removed as requested */
-  right: -1em; /* Adjust position to align with right edge */
-  font-size: var(--font-size-2xl); /* Slightly smaller than the first */
-  transform: rotate(-8deg) scale(1.1); /* Slight rotation and scale */
+  right: -1em;
+  font-size: var(--font-size-2xl);
+  transform: rotate(-8deg) scale(1.1);
   transform-origin: bottom right;
-  color: var(--color-primary-dark); /* Changed to a darker primary for more contrast */
-  opacity: 0.8; /* Significantly increased opacity for maximum visibility */
+  color: var(--color-primary-dark);
+  opacity: 0.8;
 }
 
-/* Ensure the paragraph content within header-notification stays visible */
 .header-notification p {
-  position: relative; /* Bring paragraph above aesthetic blockquotes */
+  position: relative;
   z-index: 1;
-  color: var(--color-text-on-light-bg); /* Ensure text is dark and readable */
-  font-size: var(--font-size-base); /* Adjust size if needed */
+  color: var(--color-text-on-light-bg);
+  font-size: var(--font-size-base);
   font-weight: 600;
   line-height: 1.2;
-  margin: 0; /* Remove paragraph margins */
+  margin: 0;
 }
 
 .header-notification p a {
-  color: var(--color-background-content); /* Link color on the magenta background */
+  color: var(--color-background-content);
   text-decoration: underline;
 }
 
 .header-notification p a:hover {
-  color: var(--color-link-on-dark-bg); /* Hover color for links in notification */
+  color: var(--color-link-on-dark-bg);
 }
-
 
 /* Wrapper for content - Constrained width for readability */
 .wrap {
-  /* Calculate max-width in ems for a comfortable measure (around 66 characters) */
-  /* Assuming ~0.55em per character for IBM Plex Sans at 1.8rem base */
-  /* 66 chars * 0.55em/char = 36.3em. Using 38em for a slightly wider, more flexible range. */
-  max-width: 38em; /* Elastic width based on ems */
+  max-width: 38em;
   margin-left: auto;
   margin-right: auto;
-  padding-left: var(--spacing-md);
-  padding-right: var(--spacing-md);
-  background-color: transparent; /* Removed background color as requested */
-  padding-top: calc(2 * var(--rhythm-unit)); /* Tighter padding within the wrap */
-  padding-bottom: calc(2 * var(--rhythm-unit)); /* Tighter padding within the wrap */
-  position: relative; /* Essential for positioning aesthetic blockquotes */
-  overflow: visible; /* Changed to visible to allow elements to overflow if needed */
+  padding-left: var(--gutter-horizontal); /* Use horizontal gutter */
+  padding-right: var(--gutter-horizontal); /* Use horizontal gutter */
+  padding-top: var(--gutter-vertical); /* Use vertical gutter */
+  padding-bottom: var(--gutter-vertical); /* Use vertical gutter */
+  background-color: transparent;
+  position: relative;
+  overflow: visible;
 }
 
 /* Skip links for accessibility - Functionally present, visually stark */
@@ -333,19 +324,19 @@ blockquote {
   height: auto;
   left: 0;
   top: 0;
-  background-color: var(--color-focus); /* Use focus color for background */
+  background-color: var(--color-focus);
   padding: var(--spacing-sm);
-  border: 2px solid var(--color-primary); /* Primary color border for contrast */
+  border: 2px solid var(--color-primary);
   border-radius: var(--border-radius-none);
   text-align: center;
-  color: var(--color-text-on-light-bg); /* Dark text on focus background */
-  font-weight: 700; /* Bold text */
-  text-transform: uppercase; /* Uppercase text */
-  letter-spacing: 0.08em; /* More tracking */
-  word-spacing: 0.05em; /* Slightly increased word spacing */
+  color: var(--color-text-on-light-bg);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  word-spacing: 0.05em;
   margin: var(--spacing-sm) auto;
-  display: block; /* Ensure it takes full width when visible */
-  max-width: 300px; /* Constrain width for a more "notice" like appearance */
+  display: block;
+  max-width: 300px;
 }
 
 .skip-links h2 {
@@ -365,7 +356,7 @@ blockquote {
   list-style: none;
   margin: 0;
   padding: 0;
-  background-color: transparent !important; /* Ensure no black background on mobile menu */
+  background-color: transparent !important;
 }
 
 .skip-links li {
@@ -376,30 +367,30 @@ blockquote {
 .skip-links a {
   display: inline-block;
   padding: var(--spacing-xs) var(--spacing-sm);
-  color: var(--color-text-on-light-bg); /* Dark text for links within focus state */
+  color: var(--color-text-on-light-bg);
   font-weight: bold;
-  text-decoration: none; /* Ensure no default underline */
+  text-decoration: none;
 }
 
 .skip-links a:hover,
 .skip-links a:focus {
-  color: var(--color-primary); /* Primary color on hover/focus for links within the skip-links */
+  color: var(--color-primary);
   text-decoration: underline;
 }
 
 /* Navigation - Bold, blocky, high-contrast */
 .navigation-wrapper {
-  background-color: var(--color-text-on-light-bg); /* Dark background for navigation */
+  background-color: var(--color-text-on-light-bg);
   padding: var(--spacing-lg) 0;
   text-align: center;
-  border: none; /* No borders */
+  border: none;
 }
 
 #menu-toggle {
   display: none;
   color: var(--color-background-content);
   padding: var(--spacing-xs) var(--spacing-md);
-  border: 1px solid var(--color-background-content); /* Still needs a border for visibility */
+  border: 1px solid var(--color-background-content);
   border-radius: var(--border-radius-none);
   cursor: pointer;
   font-weight: bold;
@@ -408,11 +399,9 @@ blockquote {
 
 #menu-toggle:hover,
 #menu-toggle:focus {
-  background-color: var(--color-primary); /* Stark hover color */
-  color: var(--color-text-on-light-bg); /* Text becomes dark */
+  background-color: var(--color-primary);
+  color: var(--color-text-on-light-bg);
 }
-
-/* The .is-open class and :active rules are no longer needed */
 
 .site-nav ul {
   list-style: none;
@@ -425,16 +414,16 @@ blockquote {
 }
 
 .site-nav li {
-  margin: 0 var(--spacing-xl); /* More aggressive spacing */
+  margin: 0 var(--spacing-xl);
 }
 
 .site-nav a {
   display: block;
-  padding: var(--spacing-md) var(--spacing-lg); /* Larger clickable area */
-  color: var(--color-text-on-dark-bg); /* Vibrant text on dark background */
-  font-weight: 700; /* Very bold */
+  padding: var(--spacing-md) var(--spacing-lg);
+  color: var(--color-text-on-dark-bg);
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.1em; /* More pronounced tracking */
+  letter-spacing: 0.1em;
   border-radius: var(--border-radius-none);
   transition: background-color var(--transition-speed) var(--transition-ease),
               color var(--transition-speed) var(--transition-ease);
@@ -442,20 +431,20 @@ blockquote {
 
 .site-nav a:hover,
 .site-nav a:focus {
-  background-color: var(--color-link-on-dark-bg); /* Electric Blue on hover */
-  color: var(--color-text-on-light-bg); /* Dark text on electric blue */
+  background-color: var(--color-link-on-dark-bg);
+  color: var(--color-text-on-light-bg);
   text-decoration: none;
 }
 
 /* Masthead (Header) - Raw, typographic branding */
 .masthead {
-  background-color: var(--color-background-content); /* Masthead uses the vibrant background */
-  padding: calc(2 * var(--rhythm-unit)) 0 calc(1.5 * var(--rhythm-unit)); /* Tighter padding, aligned to rhythm */
-  border: none; /* No borders */
-  position: relative; /* Establish positioning context for inner blockquotes */
-  overflow: hidden; /* Set overflow to hidden to clip blockquotes */
-  z-index: 10; /* Give masthead a higher z-index to contain its children */
-  perspective: 1000px; /* Add perspective to the masthead for 3D transforms */
+  background-color: var(--color-background-content);
+  padding: var(--gutter-vertical) 0;
+  border: none;
+  position: relative;
+  overflow: hidden;
+  z-index: 10;
+  perspective: 1000px;
 }
 
 /* Aesthetic Blockquotes within masthead */
@@ -464,50 +453,44 @@ blockquote {
   font-family: var(--font-family-primary);
   font-weight: 900;
   text-transform: uppercase;
-  pointer-events: none; /* Ensure they don't interfere with interactions */
-  z-index: 0; /* Placed behind other content elements in masthead */
-  margin: 0; /* Remove default blockquote margins */
-  padding: 0; /* Remove default blockquote padding */
-  border-left: none; /* Remove default blockquote border */
-  background-color: transparent; /* Ensure no background color */
-  text-align: left; /* Align text within its own block */
-  line-height: 1; /* Tight line height for block effect */
+  pointer-events: none;
+  z-index: 0;
+  margin: 0;
+  padding: 0;
+  border-left: none;
+  background-color: transparent;
+  text-align: left;
+  line-height: 1;
 }
 
-/* First masthead blockquote (Chinese) */
 .masthead blockquote:nth-of-type(1) {
-  top: 10%; /* Position from top */
-  left: 5%; /* Aligned more from the left */
-  max-width: 40%; /* Constrain width to encourage wrapping */
-  font-size: var(--font-size-3xl); /* Large size */
-  color: var(--color-link-on-dark-bg); /* Swapped color to electric blue */
+  top: 10%;
+  left: 5%;
+  max-width: 40%;
+  font-size: var(--font-size-3xl);
+  color: var(--color-link-on-dark-bg);
   opacity: 0.15;
-  transform: rotate(-15deg) scale(1.1); /* Rotation and scale */
+  transform: rotate(-15deg) scale(1.1);
   transform-origin: top left;
   letter-spacing: 0.05em;
-  white-space: normal; /* Allow it to wrap as a text block */
-  animation: drift1 15s infinite alternate ease-in-out; /* Apply drift animation */
+  white-space: normal;
+  animation: drift1 15s infinite alternate ease-in-out;
 }
 
-/* Second masthead blockquote (English) */
 .masthead blockquote:nth-of-type(2) {
-  /* Removed top/bottom declarations */
-  /* Removed left declaration */
-  width: 150%; /* Make it span horizontally, potentially off-screen */
-  font-size: var(--font-size-2xl); /* Slightly smaller */
-  color: var(--color-primary); /* Swapped color to vibrant magenta */
+  width: 150%;
+  font-size: var(--font-size-2xl);
+  color: var(--color-primary);
   opacity: 0.1;
-  /* More aggressive, wavy transform */
-  transform: rotate(8deg) skewX(15deg) scale(1.1) translateY(5%) perspective(500px) rotateY(20deg); /* Added perspective and rotateY for depth */
-  transform-origin: bottom left; /* Changed origin for better curve from left */
-  letter-spacing: 0.15em; /* Increased tracking for warped effect */
-  word-spacing: 0.1em; /* Increased word spacing */
-  white-space: nowrap; /* Force onto one line */
-  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3), -2px -2px 5px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth/wavy effect */
-  animation: drift2 18s infinite alternate-reverse ease-in-out; /* Apply drift animation */
+  transform: rotate(8deg) skewX(15deg) scale(1.1) translateY(5%) perspective(500px) rotateY(20deg);
+  transform-origin: bottom left;
+  letter-spacing: 0.15em;
+  word-spacing: 0.1em;
+  white-space: nowrap;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3), -2px -2px 5px rgba(0, 0, 0, 0.3);
+  animation: drift2 18s infinite alternate-reverse ease-in-out;
 }
 
-/* Define drifting animations for blockquotes */
 @keyframes drift1 {
   0% { transform: rotate(-15deg) scale(1.1) translate(0, 0); }
   50% { transform: rotate(-17deg) scale(1.12) translate(5%, 2%); }
@@ -520,59 +503,48 @@ blockquote {
   100% { transform: rotate(8deg) skewX(15deg) scale(1.1) translateY(5%) perspective(500px) rotateY(20deg) translate(0, 0); }
 }
 
-
-/* Define the 3D spin animation */
 @keyframes spin3D {
-  0% {
-    /* Apply initial rotation first, then rotate around Y axis (local vertical axis) */
-    transform: translate(-50%, -50%) rotate(20deg) rotateY(0deg) scale(1.2);
-  }
-  100% {
-    transform: translate(-50%, -50%) rotate(20deg) rotateY(360deg) scale(1.2);
-  }
+  0% { transform: translate(-50%, -50%) rotate(20deg) rotateY(0deg) scale(1.2); }
+  100% { transform: translate(-50%, -50%) rotate(20deg) rotateY(360deg) scale(1.2); }
 }
 
-/* Ensure the main content of masthead stays visible */
 .masthead .wrap {
-  position: relative; /* Bring wrap content above aesthetic blockquotes */
-  z-index: 1; /* Keep wrap content above blockquotes */
+  position: relative;
+  z-index: 1;
 }
 
-.site-logo-img { /* Target directly, remove .animated for animation application */
-  position: absolute; /* Position the logo absolutely within masthead */
-  top: 50%; /* Center vertically */
-  left: 50%; /* Center horizontally */
-  transform: translate(-50%, -50%) rotate(20deg) scale(1.2); /* Initial cocked rotation and scale */
-  z-index: 2; /* Place above site title and description */
-  opacity: 0.8; /* Slight transparency */
-  max-width: 200px; /* Make it larger for more impact */
-  left: 70%; /* Move more to the right */
-  animation: spin3D 20s infinite linear; /* Apply the 3D spin animation */
-  transform-style: preserve-3d; /* Enable 3D transforms for the element itself */
+.site-logo-img {
+  position: absolute;
+  top: 50%;
+  left: 70%;
+  transform: translate(-50%, -50%) rotate(20deg) scale(1.2);
+  z-index: 2;
+  opacity: 0.8;
+  max-width: 200px;
+  animation: spin3D 20s infinite linear;
+  transform-style: preserve-3d;
 }
 
-.site-title { /* Target directly, remove .animated for animation application */
-  position: relative; /* Ensure these are above the blockquotes and logo */
-  z-index: 3; /* Ensure site title and description are on top */
-  /* Adjust margin-bottom to pull subtitle closer, and padding-right to prevent cutoff */
+.site-title {
+  position: relative;
+  z-index: 3;
   margin-bottom: 0;
-  padding-right: 1em; /* Add some padding to prevent cutoff */
-  white-space: nowrap; /* Force onto one line */
-  overflow: hidden; /* Hide overflow */
-  text-overflow: ellipsis; /* Add ellipsis */
-  min-width: 0; /* Allow shrinking */
+  padding-right: 1em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
   text-align: left;
 }
 
-.site-description { /* Target directly, remove .animated for animation application */
-  position: relative; /* Ensure these are above the blockquotes and logo */
-  z-index: 3; /* Ensure site title and description are on top */
-  margin-top: 0; /* Ensure no extra margin pushes it away from title */
+.site-description {
+  position: relative;
+  z-index: 3;
+  margin-top: 0;
 }
 
 /* Main Content Area - Single column, raw text flow */
 .main-content {
-  /* No padding here, as it's now handled by .wrap */
   padding: 0;
   color: var(--color-body-text-on-dark-bg);
 }
@@ -587,23 +559,22 @@ blockquote {
 }
 
 .page-wrapper {
-  background-color: transparent; /* No background box, wrap handles it */
+  background-color: transparent;
   border-radius: var(--border-radius-none);
   box-shadow: none;
-  padding: calc(2 * var(--rhythm-unit)) calc(1.5 * var(--rhythm-unit));
+  padding: var(--gutter-vertical) var(--gutter-horizontal);
 }
 
-
 .page-header {
-  border: none; /* No borders */
-  margin-bottom: 0; /* Tighter margin */
-  padding-bottom: 0; /* Tighter padding */
+  border: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
 }
 
 .page-title {
   font-size: var(--font-size-3xl);
   margin-top: 0;
-  margin-bottom: calc(0.5 * var(--rhythm-unit)); /* MODIFIED: Tighter margin to group with meta info */
+  margin-bottom: calc(0.5 * var(--rhythm-unit));
   text-align: left;
   font-weight: 700;
   letter-spacing: -0.03em;
@@ -611,41 +582,37 @@ blockquote {
 }
 
 .page-content {
-  line-height: var(--line-height-base); /* Consistent with body */
+  line-height: var(--line-height-base);
 }
 
-/* NEW: Specific styling for the post-start warning blockquote to tighten spacing from meta info */
 .page-content > blockquote.warning {
   margin-top: 0;
   font-size: var(--font-size-sm);
 }
 
-/* Specific styling for blockquotes within the main content of a post */
 .page-content blockquote {
-  margin: var(--rhythm-unit) 0; /* Restore normal blockquote margins for content */
+  margin: var(--rhythm-unit) 0;
   color: var(--color-body-text-on-dark-bg);
-  padding: calc(0.5 * var(--rhythm-unit)) var(--font-size-md); /* Restore normal blockquote margins for content */
+  padding: calc(0.5 * var(--rhythm-unit)) var(--font-size-md);
   border-left: 4px solid var(--color-primary);
-  background-color: var(--color-background-mid); /* Give content blockquotes a subtle background */
-  font-style: normal; /* Override italic for content blockquotes */
-  font-weight: 400; /* Reset font weight */
+  background-color: var(--color-background-mid);
+  font-style: normal;
+  font-weight: 400;
   border-radius: var(--border-radius-none);
 }
 
-/* Target last paragraph in content blockquote to remove bottom margin */
 .page-content blockquote p:last-child {
   margin-bottom: 0;
 }
 
-/* Specific styling for headings INSIDE blockquotes within the main content */
 .page-content blockquote h1,
 .page-content blockquote h2,
 .page-content blockquote h3,
 .page-content blockquote h4,
 .page-content blockquote h5,
 .page-content blockquote h6 {
-  font-size: var(--font-size-lg); /* Significantly smaller for headings inside blockquotes */
-  text-transform: none; /* Allow normal casing */
+  font-size: var(--font-size-lg);
+  text-transform: none;
   letter-spacing: normal;
   word-spacing: normal;
   line-height: 1.2;
@@ -656,28 +623,27 @@ blockquote {
   margin-bottom: var(--rhythm-unit);
 }
 
-
 /* Entry List (Articles) - Raw, separated blocks of text */
 .entries-list {
   display: block;
-  margin-top: calc(2 * var(--rhythm-unit)); /* Tighter space above entries */
+  margin-top: calc(2 * var(--rhythm-unit));
 }
 
 .entry {
-  background-color: transparent; /* No background box */
-  border: none; /* No borders */
+  background-color: transparent;
+  border: none;
   border-radius: var(--border-radius-none);
-  overflow: visible; /* Allow content to break out if needed */
+  overflow: visible;
   box-shadow: none;
-  transition: none; /* No transitions */
+  transition: none;
   display: flex;
   flex-direction: column;
-  margin-bottom: calc(2 * var(--rhythm-unit)); /* Tighter space between articles */
-  padding: 0; /* No internal padding for the entry */
+  margin-bottom: calc(2 * var(--rhythm-unit));
+  padding: 0;
 }
 
 .entry:hover {
-  background-color: transparent; /* No background change on hover */
+  background-color: transparent;
   transform: none;
   box-shadow: none;
 }
@@ -685,13 +651,13 @@ blockquote {
 .entry-header {
   padding: 0;
   hyphens: auto;
-  margin-bottom: calc(0.5 * var(--rhythm-unit)); /* Adjusted for tighter grouping */
+  margin-bottom: calc(0.5 * var(--rhythm-unit));
 }
 
 .entry-title {
   font-size: var(--font-size-2xl);
   margin-top: 0;
-  margin-bottom: calc(0.25 * var(--rhythm-unit)); /* Tighter to title */
+  margin-bottom: calc(0.25 * var(--rhythm-unit));
   font-weight: 700;
   letter-spacing: -0.02em;
   text-transform: uppercase;
@@ -704,40 +670,40 @@ blockquote {
 
 .entry-title a:hover,
 .entry-title-a:focus {
-  color: var(--color-primary); /* Primary color on hover */
+  color: var(--color-primary);
   text-decoration: none;
 }
 
 .entry-image {
   width: 100%;
-  height: 10.5em; /* Sized in ems for vertical rhythm consistency */
+  height: 10.5em;
   object-fit: cover;
-  border: none; /* No borders */
+  border: none;
   border-radius: var(--border-radius-none);
-  margin-bottom: var(--rhythm-unit); /* Aligned to rhythm */
+  margin-bottom: var(--rhythm-unit);
 }
 
 .entry-excerpt {
   padding: 0;
   flex-grow: 1;
-  margin-bottom: calc(0.75 * var(--rhythm-unit)); /* Tighter to meta */
+  margin-bottom: calc(0.75 * var(--rhythm-unit));
 }
 
 .entry-excerpt h1 {
   font-size: var(--font-size-xl);
   margin-top: 0;
-  margin-bottom: calc(0.5 * var(--rhythm-unit)); /* Aligned to rhythm */
+  margin-bottom: calc(0.5 * var(--rhythm-unit));
   font-weight: 600;
-  text-transform: none; /* Allow normal casing here */
+  text-transform: none;
   letter-spacing: normal;
 }
 
 .entry-meta {
   padding: 0;
-  font-size: var(--font-size-md); /* Slightly larger meta info */
+  font-size: var(--font-size-md);
   color: var(--color-text-on-light-bg);
-  border: none; /* No borders */
-  margin-top: 0; /* Align meta closely with excerpt */
+  border: none;
+  margin-top: 0;
   padding-top: 0;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -754,23 +720,23 @@ blockquote {
 
 /* Page Sidebar (for post meta info) */
 .page-sidebar {
-  padding: 0 var(--spacing-md); /* Add padding to sidebar */
-  margin-bottom: var(--rhythm-unit); /* MODIFIED: Space below sidebar, reduced for better grouping */
-  text-align: left; /* Align text within sidebar */
+  padding: 0 var(--spacing-md);
+  margin-bottom: var(--rhythm-unit);
+  text-align: left;
 }
 
 .page-author {
-  margin-bottom: calc(0.5 * var(--rhythm-unit)); /* Tighter margin for author info */
+  margin-bottom: calc(0.5 * var(--rhythm-unit));
 }
 
 .page-date {
-  font-size: var(--font-size-lg); /* Make date larger and more prominent */
+  font-size: var(--font-size-lg);
   font-weight: 700;
   color: var(--color-text-on-light-bg);
   text-transform: uppercase;
   letter-spacing: 0.05em;
   display: block;
-  margin-bottom: calc(0.5 * var(--rhythm-unit)); /* Tighter margin below date */
+  margin-bottom: calc(0.5 * var(--rhythm-unit));
 }
 
 .page-date a {
@@ -784,25 +750,25 @@ blockquote {
 }
 
 .page-taxonomies-title {
-  font-size: var(--font-size-md); /* Smaller, more subtle title for taxonomies */
+  font-size: var(--font-size-md);
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  margin-top: calc(1.75 * var(--font-size-md)); /* Space above taxonomy titles */
-  margin-bottom: calc(0.25 * var(--font-size-md)); /* Space below taxonomy titles */
+  margin-top: calc(1.75 * var(--font-size-md));
+  margin-bottom: calc(0.25 * var(--font-size-md));
   color: var(--color-secondary-text-on-light-bg);
 }
 
 .page-taxonomies {
-  list-style: none; /* Remove bullet points */
-  padding-left: 0; /* Remove default padding */
-  margin-bottom: var(--rhythm-unit); /* Space below taxonomy lists */
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: var(--rhythm-unit);
 }
 
 .page-taxonomies li {
-  margin-bottom: var(--spacing-xxs); /* Tighter spacing for list items */
-  font-size: var(--font-size-sm); /* Smaller font for taxonomy items */
-  text-transform: lowercase; /* Lowercase for a more subtle look */
+  margin-bottom: var(--spacing-xxs);
+  font-size: var(--font-size-sm);
+  text-transform: lowercase;
   letter-spacing: 0.03em;
 }
 
@@ -813,7 +779,6 @@ blockquote {
 .page-taxonomies a:hover {
   color: var(--color-primary-dark);
 }
-
 
 /* Page Pagination */
 .page-pagination {
@@ -881,45 +846,45 @@ blockquote {
 
 /* Footer - Stark, functional block */
 .site-footer {
-  background-color: var(--color-text-on-light-bg); /* Dark background */
-  color: var(--color-text-on-dark-bg); /* Vibrant text on dark background */
-  padding: calc(1.5 * var(--rhythm-unit)) 0; /* Tighter padding */
+  background-color: var(--color-text-on-light-bg);
+  color: var(--color-text-on-dark-bg);
+  padding: calc(1.5 * var(--rhythm-unit)) 0;
   text-align: center;
-  font-size: var(--font-size-md); /* Slightly larger footer text */
+  font-size: var(--font-size-md);
   border: none;
 }
 
 .site-footer a {
-  color: var(--color-link-on-dark-bg); /* Electric Blue for footer links */
+  color: var(--color-link-on-dark-bg);
   transition: color var(--transition-speed) var(--transition-ease);
 }
 
 .site-footer a:hover,
 .site-footer a:focus {
-  color: var(--color-primary); /* Primary color on hover */
+  color: var(--color-primary);
 }
 
 .social-icons {
-  margin-bottom: var(--rhythm-unit); /* Aligned to rhythm */
+  margin-bottom: var(--rhythm-unit);
 }
 
 .social-icon {
-  margin: 0 var(--spacing-md); /* More space between icons */
+  margin: 0 var(--spacing-md);
   display: inline-block;
 }
 
 .social-icon i {
-  color: var(--color-text-on-dark-bg); /* Vibrant text on dark background */
-  transition: none; /* No transition for icons */
+  color: var(--color-text-on-dark-bg);
+  transition: none;
 }
 
 .social-icon i:hover,
 .social-icon i:focus {
-  color: var(--color-primary); /* Stark color change */
+  color: var(--color-primary);
 }
 
 .copyright {
-  margin-top: var(--rhythm-unit); /* Aligned to rhythm */
+  margin-top: var(--rhythm-unit);
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
@@ -937,10 +902,21 @@ blockquote {
 
 /* Small devices (phones, 767px and down) */
 @media (max-width: 767px) {
+  /* Redefine base font size and layout gutters for mobile */
+  :root {
+    --font-size-base: 1.1rem; /* Further reduced for better comfort on small screens */
+    --font-size-lg: 1.3rem;
+    --font-size-xl: 1.6rem;
+    --font-size-2xl: 2.0rem;
+    --font-size-3xl: 2.7rem;
+    --font-size-4xl: 3.5rem;
+    --gutter-horizontal: var(--spacing-sm); /* Tighter horizontal padding */
+    --gutter-vertical: var(--spacing-lg);   /* Reduced vertical padding */
+  }
+
   .navigation-wrapper {
     padding: var(--spacing-md) 0;
   }
-
 
   #menu-toggle {
     display: inline-block;
@@ -963,10 +939,16 @@ blockquote {
     padding-top: var(--spacing-md);
   }
 
+  /* When the nav element is targeted via the anchor link, reveal it */
+  #menu-toggle:target + #primary-nav {
+    max-height: unset;
+    padding-top: var(--spacing-md);
+  }
+
   .site-nav ul {
     flex-direction: column;
     align-items: center;
-    background-color: transparent !important; /* BUG FIX: Ensure the list itself has no background, inheriting from the .site-nav container. */
+    background-color: transparent !important;
   }
 
   .site-nav li {
@@ -981,17 +963,8 @@ blockquote {
     font-size: var(--font-size-lg);
   }
 
-  /* --- In section 5. Responsive Design > (max-width: 767px) media query --- */
-
-
-/* When the nav element is targeted via the anchor link, reveal it */
-#menu-toggle:target + #primary-nav {
-  max-height: unset; /* An arbitrary large height to allow content to show */
-  padding-top: var(--spacing-md);
-}
-
   .masthead {
-    padding: calc(1.5 * var(--rhythm-unit)) 0 calc(1 * var(--rhythm-unit));
+    padding: var(--gutter-vertical) 0; /* Use mobile vertical gutter */
   }
 
   /* Aesthetic Blockquotes within masthead for mobile */
@@ -1009,138 +982,113 @@ blockquote {
 
   .site-logo-img {
     max-width: 100px;
-    left: 50%; /* Center for mobile */
-    transform: translate(-50%, -50%) rotate(0deg) scale(1); /* Reset rotation and scale for mobile */
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(0deg) scale(1);
     top: 50%;
-    animation: spin3D 20s infinite linear; /* Re-enable animation on mobile */
+    animation: spin3D 20s infinite linear;
   }
 
   .site-title {
     font-size: 12vw; /* Use viewport width for fluid scaling on mobile */
-    padding-right: 0; /* Remove padding for mobile */
-    white-space: normal; /* Allow wrapping for better fit */
-    overflow: visible; /* Ensure text is not cut off */
-    text-overflow: clip; /* No ellipsis when wrapping */
-    min-width: 0; /* Allow shrinking */
-    line-height: 1.1; /* Tighter line height for multi-line title */
+    padding-right: 0;
+    white-space: normal;
+    overflow: visible;
+    text-overflow: clip;
+    min-width: 0;
+    line-height: 1.1;
   }
 
   .site-description {
     font-size: var(--font-size-md);
   }
 
-  .wrap {
-    padding-top: calc(1.5 * var(--rhythm-unit));
-    padding-bottom: calc(1.5 * var(--rhythm-unit));
-    padding-left: var(--spacing-md); /* Ensure horizontal padding for content */
-    padding-right: var(--spacing-md); /* Ensure horizontal padding for content */
-  }
-
   .page-wrapper {
-    padding: var(--rhythm-unit) calc(0.5 * var(--rhythm-unit));
+    padding: var(--gutter-vertical) var(--gutter-horizontal); /* Use mobile gutters */
   }
 
   /* Post page specific adjustments for mobile */
   .page-header {
-    margin-bottom: 0; /* Tighter margin below header */
+    margin-bottom: 0;
     padding-bottom: 0;
   }
 
   .page-title {
-    font-size: var(--font-size-2xl);
-    margin-bottom: calc(0.25 * var(--rhythm-unit)); /* Tighter margin to pull date closer */
-    padding-left: var(--spacing-md); /* Ensure horizontal padding for title */
-    padding-right: var(--spacing-md); /* Ensure horizontal padding for title */
+    margin-bottom: calc(0.25 * var(--rhythm-unit));
   }
 
   .page-sidebar {
-    padding: 0 var(--spacing-md); /* Ensure padding for sidebar */
-    margin-top: 0; /* NEW: Even tighter top margin for associativity */
-    margin-bottom: calc(0.75 * var(--rhythm-unit)); /* NEW: Tighter space below sidebar */
+    padding: 0; /* No extra padding needed, .wrap handles it */
+    margin-top: 0;
+    margin-bottom: calc(0.75 * var(--rhythm-unit));
   }
 
   .page-author {
-    margin-bottom: calc(0.25 * var(--rhythm-unit)); /* Even tighter margin for author info */
+    margin-bottom: calc(0.25 * var(--rhythm-unit));
   }
 
   .page-date {
-    font-size: var(--font-size-base); /* Smaller date font for mobile */
-    margin-bottom: calc(0.5 * var(--rhythm-unit)); /* NEW: Tighter space below date to separate from taxonomies */
+    font-size: var(--font-size-base);
+    margin-bottom: calc(0.5 * var(--rhythm-unit));
   }
 
   .page-taxonomies-title {
-    font-size: var(--font-size-sm); /* Smaller taxonomy titles */
-    margin-top: 0; /* No top margin, associate closely with date */
+    font-size: var(--font-size-sm);
+    margin-top: 0;
     margin-bottom: calc(0.25 * var(--rhythm-unit));
   }
 
   .page-taxonomies {
-    list-style: none; /* Remove bullet points */
-    padding-left: 0; /* Remove default padding */
-    margin-bottom: calc(0.5 * var(--rhythm-unit)); /* NEW: Tighter space below taxonomy lists */
+    padding-left: 0;
+    margin-bottom: calc(0.5 * var(--rhythm-unit));
   }
 
   .page-taxonomies li {
-    margin-bottom: var(--spacing-xxs); /* Tighter spacing for list items */
-    font-size: var(--font-size-sm); /* Smaller font for taxonomy items */
-    text-transform: lowercase; /* Lowercase for a more subtle look */
-    letter-spacing: 0.03em;
+    margin-bottom: var(--spacing-xxs);
+    font-size: var(--font-size-sm);
   }
 
-  .page-content {
-    padding-left: var(--spacing-md); /* Add horizontal padding to main content */
-    padding-right: var(--spacing-md); /* Add horizontal padding to main content */
-  }
-
-  /* Specific styling for blockquotes within the main content of a post */
   .page-content blockquote {
-    margin: var(--rhythm-unit) 0; /* Restore normal blockquote margins for content */
+    margin: var(--rhythm-unit) 0;
     padding: var(--spacing-sm);
     border-left: 4px solid var(--color-primary);
-    background-color: var(--color-background-mid); /* Give content blockquotes a subtle background */
-    font-style: normal; /* Override italic for content blockquotes */
-    font-weight: 400; /* Reset font weight */
-    border-radius: var(--border-radius-none);
-    padding-bottom: calc(0.25 * var(--rhythm-unit)); /* Tighter padding on the bottom */
-    margin-bottom: calc(0.5 * var(--rhythm-unit)); /* NEW: Even tighter margin below content blockquote */
+    padding-bottom: calc(0.25 * var(--rhythm-unit));
+    margin-bottom: calc(0.5 * var(--rhythm-unit));
   }
 
-  .page-content blockquote p:last-child { /* Target last paragraph in content blockquote */
-    margin-bottom: 0; /* Remove bottom margin to prevent excessive space */
+  .page-content blockquote p:last-child {
+    margin-bottom: 0;
   }
 
-  /* Specific styling for headings INSIDE blockquotes within the main content */
   .page-content blockquote h1,
   .page-content blockquote h2,
   .page-content blockquote h3,
   .page-content blockquote h4,
   .page-content blockquote h5,
   .page-content blockquote h6 {
-    font-size: var(--font-size-md); /* Smaller heading inside blockquote for mobile */
+    font-size: var(--font-size-md);
     margin-bottom: calc(0.25 * var(--rhythm-unit));
   }
 
-
   .page-pagination {
-    margin-top: calc(1 * var(--rhythm-unit)); /* NEW: Tighter margin from content */
-    padding-top: calc(0.5 * var(--rhythm-unit)); /* NEW: Tighter padding above line */
-    flex-direction: column; /* Stack pagination links vertically */
+    margin-top: calc(1 * var(--rhythm-unit));
+    padding-top: calc(0.5 * var(--rhythm-unit));
+    flex-direction: column;
     align-items: center;
-    padding-bottom: calc(0.5 * var(--rhythm-unit)); /* NEW: Tighter padding below pagination */
+    padding-bottom: calc(0.5 * var(--rhythm-unit));
   }
 
   .page-pagination-label {
-    margin-bottom: calc(0.125 * var(--rhythm-unit)); /* Even tighter margin below label */
+    margin-bottom: calc(0.125 * var(--rhythm-unit));
   }
 
   .page-pagination a {
     text-align: center;
     align-items: center;
-    width: 100%; /* Full width links */
-    margin-bottom: var(--spacing-sm); /* Space between stacked links */
+    width: 100%;
+    margin-bottom: var(--spacing-sm);
   }
   .page-pagination a:last-child {
-      margin-bottom: 0; /* Remove bottom margin on last pagination link */
+      margin-bottom: 0;
   }
 
   .page-pagination .page-next {
@@ -1151,27 +1099,25 @@ blockquote {
   .site-footer {
     padding: calc(0.75 * var(--rhythm-unit)) 0;
   }
-
-
 }
 
 /* Search Input Styling */
 .search-input {
-  width: 100%; /* Take up full width of the container */
-  background-color: var(--color-background-content); /* Vibrant Yellow-Green background */
-  color: var(--color-text-on-light-bg); /* Near-black for input text */
-  border: none; /* No borders for a flat look */
-  border-radius: var(--border-radius-none); /* No rounded corners */
-  padding: var(--spacing-lg) var(--spacing-md); /* Generous padding for a bold feel */
-  font-family: var(--font-family-primary); /* Consistent font */
-  font-size: var(--font-size-lg); /* Large, impactful font size */
-  font-weight: 600; /* A strong but not overly bold weight */
-  margin-bottom: var(--rhythm-unit); /* Maintain vertical rhythm */
+  width: 100%;
+  background-color: var(--color-background-content);
+  color: var(--color-text-on-light-bg);
+  border: none;
+  border-radius: var(--border-radius-none);
+  padding: var(--spacing-lg) var(--spacing-md);
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  margin-bottom: var(--rhythm-unit);
 }
 
 .search-input::placeholder {
-  color: var(--color-secondary-text-on-light-bg); /* Dark grey for placeholder */
-  opacity: 0.7; /* Make it slightly less prominent */
+  color: var(--color-secondary-text-on-light-bg);
+  opacity: 0.7;
   font-style: italic;
 }
 
@@ -1197,68 +1143,13 @@ blockquote {
   }
 
   .site-title {
-    font-size: var(--font-size-4xl); /* Revert to fixed large font size on larger screens */
-    white-space: normal; /* Allow wrapping on larger screens if original design intended it */
+    white-space: normal;
     overflow: visible;
     text-overflow: clip;
   }
 
-  .site-description {
-    font-size: var(--font-size-lg);
-  }
-
-  .page-title {
-    font-size: var(--font-size-3xl);
-  }
-
-  .entry {
-    padding-left: 0; /* Remove specific padding for larger screens */
-    padding-right: 0; /* Remove specific padding for larger screens */
-  }
-
-  /* Post page specific adjustments for larger screens */
-  .page-sidebar {
-    padding: 0; /* Reset sidebar padding for larger screens */
-    margin-top: 0; /* Reset margin-top */
-    margin-bottom: 0; /* Reset sidebar margin */
-    /* Potentially add grid/flex for two-column layout here if desired, but for now keep single column flow */
-  }
-
-  .page-content {
-    padding-left: 0; /* Remove specific padding for larger screens */
-    padding-right: 0; /* Remove specific padding for larger screens */
-  }
-
   .page-pagination {
-    flex-direction: row; /* Horizontal pagination links */
-  }
-}
-
-/* Large devices (desktops, 1024px and up) */
-@media (min-width: 1024px) {
-  .wrap {
-    padding-left: var(--spacing-lg);
-    padding-right: var(--spacing-lg);
-  }
-
-  .site-nav li {
-    margin: 0 var(--spacing-2xl);
-  }
-
-  .masthead {
-    padding: calc(2 * var(--rhythm-unit)) 0 calc(1.5 * var(--rhythm-unit));
-  }
-
-  .site-logo-img {
-    max-width: 150px;
-  }
-
-}
-
-/* Extra large devices (large desktops, 1440px and up) */
-@media (min-width: 1440px) {
-  .wrap {
-    max-width: 800px;
+    flex-direction: row;
   }
 }
 
@@ -1307,5 +1198,4 @@ button:hover {
 /* -------------------------------------------------------------------------- */
 
 /* Font Loading Strategy */
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400,600,700,900&family=Inter:wght@400;600;700&family=Fira+Code:wght@400&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700;900&family=Inter:wght@400;600;700&family=Fira+Code:wght@400&display=swap');
