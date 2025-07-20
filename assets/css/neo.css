@@ -436,6 +436,17 @@ blockquote {
   text-decoration: none;
 }
 
+/* Active Navigation Link Style */
+.site-nav li.active a,
+.site-nav li.active a:hover,
+.site-nav li.active a:focus {
+  background-color: transparent;
+  color: var(--color-link-on-dark-bg);
+  transform: rotate(-20deg);
+  text-decoration: none;
+}
+
+
 /* Masthead (Header) - Raw, typographic branding */
 .masthead {
   background-color: var(--color-background-content);

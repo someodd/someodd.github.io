@@ -22,7 +22,7 @@ markdown: kramdown
 title: someodd
 email: someodd@pm.me
 description: >- # this means to ignore newlines until "baseurl:"
-  someodd's personal website.
+  aaaaaa my brain is online
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 github_username:  someodd
