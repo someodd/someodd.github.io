@@ -91,8 +91,19 @@ sudo tar \
     --use-compress-program="zstd" -cvf /dev/st0 /
 ```
 
+NOte for above: actually to be encrypted may want to do nst0?
+
 This is crazy fast. But if blocking factor is large you'll run out of space
 quickly. The solution is to perhaps place a single archive onto the tar.
+
+## Test archive, restore
+
+Rewind and list contents:
+
+```
+sudo mt -f /dev/nst0 rewind
+sudo tar -tvf /dev/nst0 --use-compress-program=zstd
+```
 
 ## Tips
 

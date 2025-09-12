@@ -282,6 +282,52 @@ If someone can't join your groups or IRC in XMPP you should be aware that a S2S 
 * It turns out I do have another question: if I enter a key/password for a channel and I have persistence turned on, I'm not going to have a nasty situation where others can now access the channel without the key/password, am I?  Like, how about if someone uses the same generic name I used to access the password-protected channel?
 * Public Statistics: https://prosody.im/doc/modules/mod_http_openmetrics -- [http_openmetrics](https://prosody.im/doc/modules/mod_http_openmetrics) is built in!
 
+# Bonus: uploads behind nginx/reverse proxy
+
+Change your prosody config:
+
+```
+Component "upload.xmpp.someodd.zip" "http_file_share"
+    http_file_share_size_limit = 25*1024*1024
+    http_external_url = "https://upload.xmpp.someodd.zip/"
+```
+
+And use this kind of nginx config:
+
+```
+server {
+    listen 8765;
+    listen 8888 ssl;
+    server_name upload.xmpp.someodd.zip;
+    root /var/www/upload.xmpp.someodd.zip;
+
+    ssl_certificate     /etc/letsencrypt/live/upload.xmpp.someodd.zip/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/upload.xmpp.someodd.zip/privkey.pem;
+
+    location / {
+        # ← hide the upstream CSP header
+        proxy_hide_header Content-Security-Policy;
+        # ← add a new one allowing media from self
+        add_header Content-Security-Policy "default-src 'none'; media-src 'self';" always;
+        client_max_body_size 0;
+
+        proxy_pass  http://localhost:5280;
+        proxy_set_header Host            "upload.xmpp.someodd.zip";
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_buffering off;
+        tcp_nodelay on;
+    }
+
+    location ^~ /.well-known/acme-challenge/ {
+        default_type "text/plain";
+        root /var/www/upload.xmpp.someodd.zip;
+    }
+}
+```
+
+Also know there's a weird quirk in prosody <= 0.13, so upgrade: https://prosody.im/download/package_repository
+
 # Bonus: link to IRC
 
 First look at:

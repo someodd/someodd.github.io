@@ -72,5 +72,6 @@ I'm not going to get into keyservers.
 
 Set key expiration.
 
+You may also want to add your key for decrypting the message you sent as well.
 
 Original content in gopherspace: [gopher://gopher.someodd.zip:70/0/phlog/gpg_messages.gopher.txt](gopher://gopher.someodd.zip:70/0/phlog/gpg_messages.gopher.txt)

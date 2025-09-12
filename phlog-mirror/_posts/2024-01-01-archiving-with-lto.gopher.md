@@ -647,4 +647,44 @@ sudo wget https://mirrors.ustc.edu.cn/bjlx/pool/main/l/ltfs/ltfs_2.5.0.0~2024073
 sudo apt-get install ./ltfs_2.5.0.0\~20240731-2_amd64.deb
 ```
 
+## Tips: using streaming compression
+
+Choose between `zstd` (faster) and `xz` (better compression ratio), but both
+are built for streams, I think.
+
+```
+sudo tar \
+    --exclude=/home/baudrillard/.bitmonero \
+    --exclude=/root/.bitmonero \
+    --exclude=/nix \
+    --exclude=/snap \
+    --exclude=/var/cache \
+    --exclude=/mnt \
+    --exclude=/tmp \
+    --exclude=/media \
+    --exclude=/run \
+    --exclude=/var/tmp \
+    --exclude=/lost+found \
+    --exclude=/sys \
+    --exclude=/usr/share/ollama/.ollama/models/blobs \
+    --exclude=/proc \
+    --exclude=/dev \
+    --totals --checkpoint=100 --checkpoint-action=dot \
+    --use-compress-program="zstd" -cvf /dev/st0 /
+```
+
+Note for above: actually to be encrypted may want to do nst0?
+
+This is crazy fast. But if blocking factor is large you'll run out of space
+quickly. The solution is to perhaps place a single archive onto the tar.
+
+Rewind and list contents:
+
+```
+sudo mt -f /dev/nst0 rewind
+sudo tar -tvf /dev/nst0 --use-compress-program=zstd
+```
+
+
+
 Original content in gopherspace: [gopher://gopher.someodd.zip:70/0/phlog/Archiving with LTO.gopher.txt](gopher://gopher.someodd.zip:70/0/phlog/Archiving with LTO.gopher.txt)

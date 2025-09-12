@@ -8,14 +8,27 @@ title: I'm now a member of Bitreich!
 ---
 
 
-I am now officially a member of Bitreich!
+I am now officially a member of Bitreich! I'll talk a bit about my membership and about Bitreich itself.
 
 [Check out Bitreich's gopherhole](gopher://bitreich.org:70/1/)
 
+I really admire the Bitreich group for being such a powerful and vocal, noticeable force for the Gopher Protocol in the modern era. I think I ran into their gopherhole randomly while surfing gopherspace. The Bitreich group carries a lot of the whimsy and not-taking-itself-too-seriously that you find surfing Gopherspace. For example, look at this joke about the excesses of the web made by *20h* on a Debian mailing list:
+
+[G3C announces: GML, Gopher and XHTML](gopher://gopher.someodd.zip:70/h/URL:https://lists.debian.org/gopher-project/2021/04/msg00001.html)
+
+Of course, Bitreich has their own manifesto. Here's a quip:
+
+> We  form  a movement to improve our daily software life. Software has to
+> not misbehave, it has to follow our rules, it has to be reusable, it has
+> to be easily maintainable, it has to provide its recompilable source and
+> it has to be easily understandable.
+
+[Bitreich Manifesto](gopher://gopher.someodd.zip:70/0/gopher://bitreich.org:70/0/documents/bitreich-manifesto.md)
+
+[20h, the main person behind Bitreich, is a member of suckless.org](gopher://gopher.someodd.zip:70/h/URL:https://suckless.org/people/20h/)
+
 I had been helping out tangentially by working on my Whisper Radio project, because they also had their own radio service.
 I also have been working on uncovering history regarding the Gopher Protocol and working on a lot of Gopher software.
-
-I really admire the Bitreich group for being such a powerful and vocal, noticeable force for the Gopher Protocol in the modern era. I think I ran into their gopherhole randomly while surfing gopherspace.
 
 [You can see my previous Halloween post about Bitreich](gopher://gopher.someodd.zip:70/1/phlog/bitreich-haunted-hosts.gopher.txt)
 

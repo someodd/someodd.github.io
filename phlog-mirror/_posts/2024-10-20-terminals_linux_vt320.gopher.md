@@ -138,6 +138,10 @@ to:
 ExecStart=-/sbin/agetty -o '-p -- \\u' --keep-baud 115200,38400,9600 %I vt220
 ```
 
+### Updated instructions
+
+I did some extra stuff like adding to grub I'll document later...
+
 ## Terminal advice: living inside screen
 
 This advice comes from someone (sorry I forget their name, so no credit).

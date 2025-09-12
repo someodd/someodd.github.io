@@ -36,7 +36,7 @@ Isn't this just the magic of smallnet, operating your own servers, federation, a
 
 [Screwtape's archive of the radio segment](gopher://gopher.someodd.zip:70/h/URL:https://communitymedia.video/w/41809e84-ea6e-43f9-ba06-5092114391fa)
 
-[Bitreich's article about the interview:](gopher://gopher.someodd.zip:70/0/usr/20h/phlog/2025-03-20T20-39-20-466398.md)
+[Bitreich's article about the interview:](gopher://bitreich.org:70/0/usr/20h/phlog/2025-03-20T20-39-20-466398.md)
 
 	# 2025-03-20 20:39:20.466398 UTC (+0000)
 

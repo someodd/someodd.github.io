@@ -55,6 +55,32 @@ install) a Window-Maker-centric Debian setup.
 
 ## Window Maker-specific and Appearance
 
+you should really read the manual...
+
+### handy hotkeys
+
+f11: like alt tab, but a nice list
+
+### How does this all work?
+
+Some general tips:
+
+try right clicking icons that pop up and goign to attributes. look through all the options. you can't just drag *anything* to the dockapp or clip. You can even set things to minimize to their icon in the dock.
+
+Practical Workflow Tip
+
+Use the Dock for things you want to launch.
+
+Use the Clip to keep track of things you already have open and minimized.
+
+If you want something to behave like a taskbar entry, keep its mini-icon in the Clip with Keep Icon.
+
+### The clip
+
+The clip icon allows you to manage workspaces (page through them, name them).
+
+You can drag the clip itself to move a bunch of icons with it. Specifically, you can pin apps to the clip permanently, just like the dock--then the app will always live there for that workspace. The clip is workspace-aware. Use it as a lightweight way to keep different sets of apps organized between worskpaces. When you drag an app to the clip it will also auto-start minimized in that workspace. Beware, this isn't like, just dragging minimized things to it, but like things youc an pin to the dock you can also pin to the clip.
+
 ### Dock apps
 
 Dock apps for Window Maker. Dock apps are such a cool feature of Window Maker.
@@ -110,6 +136,25 @@ dockapps I've tried seem to all have good man pages, I think.
     than `wmweather+`. Displays handy info in a hover/tooltip, including
     forecast. This may be the easiest to work with and is perhaps the easiest to
     work with.
+
+##### wmweather+
+
+This weather dockapp rules. You even get a radar GIF and different weather views. The config can be a little confusing though. Here's what I have. I have it launch with `wmweather+ -c /home/tilde/.wmweather+/config` and then in that config:
+
+```
+# METAR station
+-station KSFO
+
+# Coordinates (Mission, SF)
+-location 37.7599N 122.4148W
+
+# Bay Area radar loop (KMUX)
+-radar-uri https://radar.weather.gov/ridge/standard/KMUX_loop.gif
+
+# Crop & animate with crosshair
+-radar-crop 244x134+52+40
+-radar-cross 244x134 animate
+```
 
 ##### wmbiff
 
@@ -207,6 +252,8 @@ much time into using them, or they're just here...
   * `wmdrawer` needs config file. didn't really try. maybe i'm wrong, but I'm prety
     happy with what I think is the built-in drawer thing in Window Maker.
 
+adding drawers is cool and you can have it autocollect which is super handy.
+
 #### custom wmcube object
 
 You can actually use a custom object for the wmcube, but I think it needs a
@@ -292,6 +339,50 @@ deja-dup &
 nm-applet &
 ```
 
+You can actually be more sophisticated than this, because annoyingly, if you restart your session or something, everything will get launched AGAIN even if it's already running!
+
+So try something like this:
+
+```
+#!/bin/sh
+
+# runonce CMD [args...]
+# Starts CMD only if no process with the same basename is running.
+runonce() {
+  cmd="$1"; shift
+  name=$(basename "$cmd")
+  pgrep -x "$name" >/dev/null 2>&1 || "$cmd" "$@" &
+}
+
+# If you want a fresh xsettingsd each login, keep pkill; otherwise just `runonce xsettingsd`
+pkill -x xsettingsd 2>/dev/null
+runonce xsettingsd
+
+runonce blueman-applet
+runonce amor
+runonce xscreensaver --no-splash
+runonce xeyes
+# runonce virt-manager
+
+runonce protonmail-bridge
+
+# For scripts, the process name is the shell (e.g., sh), so use a lock to avoid duplicates
+flock -n /tmp/deadline.lock /home/tilde/scripts/deadline.sh &
+
+runonce skippy-xd --start-daemon
+runonce xpenguins -a -b -t "Big Penguins"
+# runonce oneko
+runonce redshift-gtk -m randr -l 37.8044:-122.2712
+runonce nm-applet
+runonce deja-dup
+runonce ibus-daemon -drx
+
+# One-shot tweak (not a daemon; don’t background)
+xset m 20/10 4
+```
+
+It's worth mentioning you can just SAVE the wmaker sesssion and load it on startup (can be done automatically). But for some reason I prefer this method.
+
 ### App icons
 
 I wanted to change the Thunar icon for my launcher (or whatever it's called) so
@@ -317,12 +408,73 @@ theme](https://github.com/matthewmx86/Redmond97/tree/master/Theme),
 specifically the *redmond cde* theme, to match the overal purplish thing I have
 going on. I think it matches the *SteelBlueSilk* Window Maker theme.
 
+For GTK4 there's another project that tries to accomplish this but I just lazily used some GTK4 theme called Windows-95 and edited `~/.config/gtk-4.0/settings.ini` and `gtk-theme-name=Windows-95` then logged in and out.
+
 Bonus: https://github.com/mgsander/wmstep/tree/master/WMStep:
 something I found but I didn't get working.
 
 I went ahead and disabled the GTK window decoration hints or the like in the
 advanced section of WPrefs or something. I think this maybe makes things look
 more consistent.
+
+#### Icon theme
+
+There's actually a GNUstep icon theme for GTK I believe: https://www.gnome-look.org/p/1239539
+
+Something like this: `tar -xzf GNUstep.tar.gz   -C ~/.local/share/icons`
+
+Then you can actually use `lxappearance` to change the icon theme, which this app is generally pretty useful for tweaking GTK theme stuff, more-or-less.
+
+I went down a weird path where thunar wasn't picking up on the icon theme and I found out I need `sudo apt install xsettingsd`, then create ~/.xsettingsd:
+
+```
+Gtk/IconThemeName "GNUstep"
+Gtk/ThemeName "Redmond97 CDE"
+Gtk/FontName "Noto Sans 10"
+Net/IconThemeName "GNUstep"
+```
+
+and make sure xsettingsd autostarts with gnustep by adding it to ~/GNUstep/Library/WindowMaker/autostart and add:
+
+```
+killall -q xsettingsd
+xsettingsd &
+```
+
+
+or the like.
+
+You may also wanna try the Chicago95 theme.
+
+```
+git clone https://github.com/grassmunk/Chicago95.git
+cd Chicago95
+./installer.py
+```
+
+You get cursors, sounds, fonts... i actually updated my ~/.xsettingsd to look like this:
+
+```
+#Gtk/IconThemeName "Chicago95"
+Gtk/ThemeName "Redmond97 CDE"
+#Gtk/FontName "Noto Sans 10"
+#Net/IconThemeName "GNUstep"
+
+# Icon Theme
+Gtk/IconThemeName "Chicago95"
+
+# Cursor Theme (The correct name for the large, animated version)
+Gtk/CursorThemeName "Chicago95_Animated_Hourglass_Cursors_HiDPI"
+
+# Font
+Gtk/FontName "Plus! 8"
+
+# Compatibility settings
+Net/IconThemeName "Chicago95"
+Net/ThemeName "Redmond97 CDE"
+```
+
+I feel like Chicago95 is fine until I find something that more suits my late 90s linux vibes.
 
 ### Adding hotkeys
 
@@ -338,6 +490,17 @@ I think sometimes (?) you may need to restart the session for hotkeys to come in
 
 Use `brightnessctl set 10%-` and `brightnessctl set 10%+` then add to menu and assign hotkeys.
 
+## Laptop: power management
+
+I use `powerprofilesctl`, you can use commands like:
+
+```
+powerprofilesctl set power-saver
+powerprofilesctl list
+powerprofilesctl get
+```
+
+I'd like to have a GUI solution.
 
 ## Essential programs
 
@@ -377,6 +540,10 @@ The gtk audacious is great! the hotkeys seem to mostly work out-of-the-box for
 what I've used, I think? You can use Winamp skins if you want to go the extra
 mile. If you want to go even further, milkdrop is available for linux.
 
+Don't forget, if you use the Winamp skins, you can right click the titlebars in audacious and then select attributes--disable the titlebars! A good thing to know in general. I also like making it 2x scale (but that's by right clicking the actual Winamp content/pane).
+
+Please see my phlog article on projectM (old winamp/milkdrop) visualizations.
+
 ### Language switcher
 
 I'm using IBUS.
@@ -410,6 +577,8 @@ i also use `blueman-applet` (you can just install through `blueman` package), ad
 I find that this is a nice terminal to use in Window Maker.
 
 ### Screenshots
+
+Windowmaker has its own built-in screen capture you can configure undder keyboard shortcut preferences in wprefs.
 
 Scrot and Maim didn't seem to work well with WindowMaker hotkey or the like. So I'm using `xfce4-screenshooter`, which seems to segfault if I capture window border when capturing the active window.
 
@@ -488,6 +657,35 @@ I finally set the queue folder to the IMAP *Drafts* folder or whatever and now
 it works!
 
 It may also complain about not being able to open signature.
+
+#### "Fix:" selected item is black-on-black
+
+You may have an issue where your theme, with Claws, causes the selected item to be illegible due to the text vs. background color of a selected item. I found this took me a while to figure out, so here I'm going to save you the pain.
+
+You can edit `~/.config/gtk-3.0/gtk.css` and add these lines:
+
+```
+/* Only Claws: its main window has id #mainwindow */
+window#mainwindow *:selected {
+  background-color: #3584E4;
+  color: #FBF6F0;
+}
+```
+
+#### Start reply above the quote
+
+I think it's a bit dated/annoying for others to have the email you're replying to quoted *above* your actual reply message. So you can go into preferences and then under "compose" is *templates." There's a "reply" tab and you can do something like this:
+
+```
+%cursor
+
+On %d
+%f wrote:
+
+%q
+```
+
+For the above to work you need to disable *compose > writing > replyling > replyl with quote by default.*
 
 ### Bonus software+ apps i like using with
 
@@ -639,6 +837,8 @@ ibus-setup
 
 ### xpenguins
 
+Useful: http://xpenguins.seul.org/index-2.1.html -- they also have a gnome applet.
+
 Penguins to walk and fall off windows and more.
 
 ```
@@ -646,6 +846,8 @@ xpenguins -ab t "Big Penguins"
 ```
 
 I find it has a good deal of nice config options.
+
+You can even install themes!
 
 ### oneko
 
@@ -704,6 +906,10 @@ HotspotY=58
 
 With the image in `/usr/share/amor/pics/static/example.png`.
 
+I made my own theme you can find here:
+
+[My Amor themes](gopher://gopher.someodd.zip:70/1/assets/someodd_creations/amor_theme_peepy)
+
 ### Expose-like
 
 Want something like the Gnome or Mac OSX Expose feature, where you can hit some hotkey and then see all the windows at once? `skippy-xd` is actually being maintained:
@@ -730,6 +936,15 @@ Unfortunately, this will also show all the little `wm*` dockapps.
   * [A thread on Linux Questions about Virtual Pets](https://www.linuxquestions.org/questions/linux-general-1/virtual-pets-for-the-linux-desktop-418186/page2.html)
   * [xsnow](https://en.wikipedia.org/wiki/Xsnow)
   * [xteddy](https://weber.itn.liu.se/~stegu/xteddy/)
+  * xmountains
+  * xplanet
+  * You can actually set screensavers as wallpapers with commands like `/usr/libexec/xscreensaver/glblur -root &`
+  * You can run xscreensavers in a window, here's an "aquarium:" `/usr/libexec/xscreensaver/glschool -window -geometry 640x480+100+100 &`
+  * `xrootconsole`: nice little scrolling/updating text on your wallpaper basically `tail -f ~/.zsh_history | xrootconsole` for example
+
+Add some terminal whimsy:
+
+* `sudo apt install sl` then try running `sl`
 
 
 ## Troubleshooting
