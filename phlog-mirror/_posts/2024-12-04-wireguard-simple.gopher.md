@@ -120,6 +120,12 @@ Restart the interface and test it with:
 ping 10.1.0.1
 ```
 
+Restart an interface like:
+
+```
+systemctl enable wg-quick@wg0
+```
+
 ## Phone client configuration (Android)
 
 You can download "WG Tunnel" off F-Droid. I don't think the interface is great,

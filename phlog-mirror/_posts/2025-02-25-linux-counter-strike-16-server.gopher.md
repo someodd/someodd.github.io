@@ -143,9 +143,9 @@ Back up the entire directory first.
 
 Before installing Podbot, you need to install Metamod, which is a plugin interface for Half-Life modifications that allows you to use plugins  like Podbot.
 
-**Download Metamod**: Visit the Metamod website and download the latest version appropriate for your server (P or V depending on your server's OS). http://metamod.org/ (i downloaded the regular linux, not x64 version).
+**Download Metamod**: Visit the Metamod website and download the latest version appropriate for your server (P or V depending on your server's OS). http://metamod.org/ (i downloaded the regular linux, not x64 version). **IMPORTANT NOTE STARTING WITH DEBIAN TRIXIE (13)** just use Metamod-p like from https://sourceforge.net/projects/metamod-p/files/Metamod-P%20Binaries/.
 
-**Extract the Files**: Unzip the downloaded file into the `cstrike/addons/` directory of your server.
+**Extract the Files**: Unzip the downloaded file into the `cstrike/addons/` directory of your server. Something like this:
 
 ```
 mkdir -p cs16/cstrike/addons/metamod/dlls

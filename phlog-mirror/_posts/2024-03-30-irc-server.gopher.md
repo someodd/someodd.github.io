@@ -132,6 +132,12 @@ sudo apt-get install atheme-services
 
 A handy command for debugging `atheme-services` is `sudo journalctl -xeu atheme-services.service`.
 
+You can enable like this:
+
+```
+mention sudo systemctl enable --now atheme-services
+```
+
 ## Preparing ngircd for Atheme
 
 Add a new `[Server]` block in `ngircd.conf` for Atheme:
@@ -178,6 +184,24 @@ My database, I think, was at `/var/lib/atheme/services.db`. I added it to the li
 ## Known issues
 
 **I think it's not saving nicknames/registration after restart? That's severe!** or maybe it's that i need to verify  by email for it to work right? i should disable that? i have to follow up on this. 
+
+## Tips and tricks
+
+If you use a client like Gajim, you send commands like this in the server window:
+
+```
+privmsg NickServ :IDENTIFY someodd hunter1
+OPER someodd mypasswordlol
+nick someodd
+```
+
+With Atheme services you can send global notices like this:
+
+```
+privmsg OperServ :GLOBAL I plan to shut down the server TEMPORARILY soon. Be aware you may need to *manually* reconnect. The server will only be down for like an hour, tops. I plan to do this in the next 24 hours.
+
+privmsg Global :GLOBAL SEND
+```
 
 # Bonus
 

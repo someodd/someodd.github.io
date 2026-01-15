@@ -17,6 +17,8 @@ I use the old school, lightweight [Window Maker](http://www.windowmaker.org/)
 [window manager](https://en.wikipedia.org/wiki/Window_manager) on Debian
 Unstable.
 
+Gallery: /home/tilde/Projects/gopherhole_bore/assets/posts/window-maker/
+
 Since Window Maker is only a "window manager" and not a full environment it may
 feel backwards to use it in 2024, there's a lot of things you may miss, a lot
 of work to do from a fresh install.
@@ -57,6 +59,20 @@ install) a Window-Maker-centric Debian setup.
 
 you should really read the manual...
 
+### Preset themes
+
+This is amazing: https://git.x1b.dev/waterjones/WindowMaker-Themes
+
+[Nokia theme from waterjones](gopher://gopher.someodd.zip:70/I/assets/posts/window-maker/theme-nokia.png)
+
+You can save your own theme using:
+
+```
+getstyle -p ~/GNUstep/Library/WindowMaker/Themes/MyTheme
+```
+
+For more info see: https://www.windowmaker.org/themes/themepacks.html
+
 ### handy hotkeys
 
 f11: like alt tab, but a nice list
@@ -80,6 +96,46 @@ If you want something to behave like a taskbar entry, keep its mini-icon in the 
 The clip icon allows you to manage workspaces (page through them, name them).
 
 You can drag the clip itself to move a bunch of icons with it. Specifically, you can pin apps to the clip permanently, just like the dock--then the app will always live there for that workspace. The clip is workspace-aware. Use it as a lightweight way to keep different sets of apps organized between worskpaces. When you drag an app to the clip it will also auto-start minimized in that workspace. Beware, this isn't like, just dragging minimized things to it, but like things youc an pin to the dock you can also pin to the clip.
+
+### GNUStep .appsm openstep de
+
+You can install something like a DE with `sudo apt install gnustep`, which is kind of just a meta for all the `*.app` windowmaker apps that are kinda nifty, but also sometimes too severely dated for me to find them useful. I'm not sure how useful you'll find these apps day-to-day, but they're fun to look at.
+
+Try `sudo apt install textedit.app` and run with `openapp TextEdit`.
+
+Also try `apt search "\.app"`
+
+These apps will feel right at home! Note when you use `openapp` you'll want to use `PascalCase`.
+
+Some things I noticed:
+
+* textedit.app -- rtf editor + more? seems kinda cool
+* fontmanager.app
+* gnumail.app seemed interesting, but I have to do extra work to get it to play nice with proton mail bridge i think
+* fortunate.app -- simple fortunes. cute toy.
+* gmastermind.app -- classic board game that I think inspired the fallout hacking game. dennis ritchi or the like came up with an algo for this i think?
+* gorm.app: visual interface builder for gnustep!
+* grr.app: RSS reader! It's honestly kind of nice! I wish it had support for custom commands to fetch RSS like liferea (?) does (so I can grab gopher URI feeds)
+* gshisen.app -- some kind of mahjong tile game?
+* gworkspace: i have no idea what this is but seems awesome. might explore later.
+* gmpdcon.app -- perfect since I have an mpd server! Even lets you give ratings! kind of strange though, i haven't gotten used to it.
+* pikopixel.app -- pixel art editor!
+* preview.app -- maybe the best choice for previewing an image in WM!
+* talksoup.app -- irc client for gnustep
+* terminal.app -- terminal emulator!
+* viewpdf.app
+* Affiche.app -- sticky note app that I actually really like! has a bunch of nice features like saving importing/exporting. reminds me also of the dock app that does something similar, but affiche.app i could see using frequently.
+* cynthiune.app -- A really neat music player. I think it has troubles adding my entire library at once, though.
+  ```
+  2025-09-21 12:20:01.408 Cynthiune[439584:439584] MP3.m: no handle...
+  2025-09-21 12:20:01.408 Cynthiune[439584:439584] MP3.m: no handle...
+  2025-09-21 12:20:01.408 Cynthiune[439584:439584] Failed to create pipe ... Error Domain=NSPOSIXErrorDomain Code=24 "Too many open files"
+  2025-09-21 12:20:01.563 Cynthiune[439584:439584] NSTask.m:593  Assertion failed
+  in NSConcreteUnixTask(instance), method setStandardOutput:.  NSInvalidArgumentException
+  [1]    439584 segmentation fault  openapp Cynthiune
+  ```
+
+  
 
 ### Dock apps
 
@@ -476,6 +532,17 @@ Net/ThemeName "Redmond97 CDE"
 
 I feel like Chicago95 is fine until I find something that more suits my late 90s linux vibes.
 
+I actually installed my own cursors, you can check this place out for more:
+
+*  https://www.rw-designer.com/cursor-library/set-40
+
+Although the cursor I'm using is [Golden-XCursors-3D-0.8 from Gnome-Look](https://www.gnome-look.org/p/999590) and setting this in my `.xsettingsd`:
+
+```
+Gtk/CursorThemeName "Gamma.Gold"
+Gtk/CursorThemeSize 48
+```
+
 ### Adding hotkeys
 
 You can add hotkeys by editing the Window Maker menu through WPrefs, under
@@ -520,13 +587,13 @@ xarchiver
 
 ### Browsers
 
-`firefox-esr`My main web browser is just the Debian-provided Firefox.
+`firefox-esr`My main web browser is just the Debian-provided Firefox. You may want to tweak the scrollbar size (that's a thing you can do).
 
 https://github.com/dillo-browser/dillo -- you actually may not want to use the repo version and build it from there, because of the time of writing this i'm told the repo verison is ten years old. https://github.com/dillo-browser/dillo/blob/master/doc/install.md gopher plugin: https://github.com/dillo-browser/dillo-plugin-gopher
 
-### KeepassXC
+### KeepassXC: Password manager, keyring manager!
 
-Password manager.
+Password manager. In my opinion this is crucial and fantastic for Window Maker, because Window Maker doesn't just include an SSH Agent and Secret Service integration. I wrote an article about this: [using KeepassXC as keyring manager](/phlog/keepass-keyring-manager.gopher.txt).
 
 ### deja-dup
 
@@ -635,6 +702,12 @@ location-provider=manual
 [manual]
 lat=...
 lon=...
+```
+
+This is the command that worked for me:
+
+```
+redshift-gtk -m vidmode -l 37.7749:-122.4194
 ```
 
 ### Claws/claws-mail
@@ -940,12 +1013,101 @@ Unfortunately, this will also show all the little `wm*` dockapps.
   * xplanet
   * You can actually set screensavers as wallpapers with commands like `/usr/libexec/xscreensaver/glblur -root &`
   * You can run xscreensavers in a window, here's an "aquarium:" `/usr/libexec/xscreensaver/glschool -window -geometry 640x480+100+100 &`
-  * `xrootconsole`: nice little scrolling/updating text on your wallpaper basically `tail -f ~/.zsh_history | xrootconsole` for example
 
 Add some terminal whimsy:
 
 * `sudo apt install sl` then try running `sl`
 
+#### `xrootconsole`
+
+Scrolling console text painted onto your wallpaper/desktop!
+
+Here's an example:
+
+```
+tail -f ~/.zsh_history | xrootconsole
+```
+
+I actually have a setup that queries what's basically my "latest posts" script in gopherspace. I'll cover that here.
+
+My setup is to add this to my crontab:
+
+```
+curl -s gopher://gopher.someodd.zip:70/0/gateway/status/feed > /tmp/someodd-feed.txt
+```
+
+Then I have this script:
+
+```
+# !/bin/sh
+# feed-diff-ticker.sh — print only the added lines since last snapshot
+# Usage:
+#   feed-diff-ticker.sh /tmp/someodd-feed.txt /tmp/someodd-feed.prev 10 | xrootconsole &
+# Env:
+#   MAX_LINES=100   # optional cap on burst output
+
+set -eu
+
+FEED="${1:-/tmp/someodd-feed.txt}"
+STATE="${2:-/tmp/someodd-feed.prev}"
+INTERVAL="${3:-10}"
+MAX_LINES="${MAX_LINES:-}"
+
+WORK_DIR="$(dirname "$STATE")"
+TMP_NEW="$WORK_DIR/.feed.new.$$"
+TMP_DIF="$WORK_DIR/.feed.diff.$$"
+
+cleanup() { rm -f "$TMP_NEW" "$TMP_DIF" 2>/dev/null || true; }
+trap cleanup EXIT INT TERM
+
+# Seed state file if missing
+[ -f "$STATE" ] || : > "$STATE"
+
+while :; do
+  # Skip if feed missing or empty
+  if [ ! -s "$FEED" ]; then
+    sleep "$INTERVAL"; continue
+  fi
+
+  # Snapshot current feed (best with atomic mv in cron)
+  cp -f -- "$FEED" "$TMP_NEW" 2>/dev/null || { sleep "$INTERVAL"; continue; }
+
+  # Compute diff; exit codes: 0=same, 1=different, >1=error
+  if diff -u --label old "$STATE" --label new "$TMP_NEW" >"$TMP_DIF" 2>/dev/null; then
+    # No differences: do not touch STATE
+    :
+  else
+    # We have differences (exit code 1). Extract ONLY added lines from “new”.
+    # Strip headers (---/+++), hunks (@@), keep lines starting with '+', then drop the leading '+'.
+    ADDED="$(sed -n '
+      1,2d;                 # drop the first two header lines
+      /^\+\+\+ /d;          # drop +++ header
+      /^--- /d;             # drop --- header (in case)
+      /^@@/d;               # drop hunk markers
+      s/^\+//p              # print added lines with leading + removed
+    ' "$TMP_DIF")"
+
+    if [ -n "$ADDED" ]; then
+      if [ -n "$MAX_LINES" ]; then
+        printf "%s\n" "$ADDED" | tail -n "$MAX_LINES"
+      else
+        printf "%s\n" "$ADDED"
+      fi
+      # Update STATE only when we actually emitted new content
+      mv -f -- "$TMP_NEW" "$STATE"
+      : > "$TMP_NEW" 2>/dev/null || true
+    fi
+  fi
+
+  sleep "$INTERVAL"
+done
+```
+
+And my `xrootconsole` launch command is:
+
+```
+/home/tilde/bin/feed-diff-ticker.sh /tmp/someodd-feed.txt /tmp/someodd-feed.prev 10 | xrootconsole &
+```
 
 ## Troubleshooting
 
@@ -957,4 +1119,4 @@ I saw in the aforementioned directory a file called `WMState`, which indeed had 
 
 https://www.windowmaker.org/docs/chap4.html
 
-Original content in gopherspace: [gopher://gopher.someodd.zip:70/0/phlog/window-maker.gopher.txt](gopher://gopher.someodd.zip:70/0/phlog/window-maker.gopher.txt)
+Original content in gopherspace: [gopher://gopher.someodd.zip:70/1/phlog/window-maker.gopher.txt](gopher://gopher.someodd.zip:70/1/phlog/window-maker.gopher.txt)

@@ -148,8 +148,10 @@ case "$selector" in
 esac
 ```
 
-### Handle rewriting for Tor
+### Handle rewriting for Tor + my modern setup
 
+This is the setup I use now, actually. I have kept the older ones above because
+they might be useful or interesting. I should really clean this article up.
 
 in `/etc/xinetd.d/gopher`:
 
@@ -174,116 +176,98 @@ now i updated my routing script:
 
 ```
 #!/bin/bash
+# xinetd wrapper for Gopher services with /phorum branch
+# - Preserves index-search tabs (type 7)
+# - Sends CRLF to backend
+# - Does NOT strip /phorum for the 7070 service (fixes /phorum/newthread)
+# - Rewrites backend host/port in responses
+# - Optional prefix reattach for relative selectors returned by /phorum
 
-# Read the selector from stdin
-read selector
+set -Eeuo pipefail
 
-# Function to check if the connection is coming from Tor
+# --- Config -------------------------------------------------------------------
+DEFAULT_HOST="gopher.someodd.zip"
+DEFAULT_PORT="70"
+PHORUM_BACKEND_PORT="7070"
+OTHER_BACKEND_PORT="7071"
+
+# If your /phorum backend returns relative selectors like "/newthread" and you
+# want follow-up clicks to stay under /phorum, set this to "true".
+PHORUM_REWRITE_PREFIX="false"  # "true" or "false"
+
+# Onion to use when served via Tor hidden service
+ONION_HOST="xj2o2wylbqkprajldswuyxm6dffca4eepegelblgvux3uuqmtb2l56id.onion"
+
+# --- Read request line exactly (keep tabs), trim trailing CR -------------------
+IFS= read -r selector || selector=""
+# strip a single trailing CR if present
+selector=${selector%$'\r'}
+
+# --- Helpers ------------------------------------------------------------------
 is_tor_connection() {
-    # Check if the remote IP address matches known Tor patterns
-    if [[ "$REMOTE_HOST" == "::ffff:127.0.0.1" ]]; then
-        # Assuming Tor traffic comes from localhost for hidden services
-        return 0
-    fi
-    return 1
+  # xinetd exports remote endpoint in REMOTE_HOST/REMOTE_ADDR
+  case "${REMOTE_HOST:-${REMOTE_ADDR:-}}" in
+    127.0.0.1|::1|::ffff:127.0.0.1) return 0 ;;
+    *) return 1 ;;
+  esac
 }
 
-# Function to process and replace paths and ports in the response
-process_response() {
-    local prefix="$1"
-    local port="$2"
-    local target_host="gopher.someodd.zip"
-    local target_port="70"
-
-    # Check if Tor was used and adjust the target host
-    if is_tor_connection; then
-        target_host="xj2o2wylbqkprajldswuyxm6dffca4eepegelblgvux3uuqmtb2l56id.onion"
-    fi
-
-    # Strip the prefix from the selector and ensure the leading slash is retained
-    local stripped_selector="${selector#$prefix}"
-    if [[ "$stripped_selector" != /* ]]; then
-        stripped_selector="/$stripped_selector"
-    fi
-
-    # Send the selector to the appropriate service and process the response
-    echo "$stripped_selector" | nc localhost $port | \
-    sed -e "s|\tgopher.someodd.zip\t${port}|\t${target_host}\t${target_port}|g" \
-        -e "s|\tgopher.someodd.zip/|\t${target_host}/|g"
+current_target_host() {
+  if is_tor_connection; then
+    printf '%s' "$ONION_HOST"
+  else
+    printf '%s' "$DEFAULT_HOST"
+  fi
 }
 
-# Handle the selector
+rewrite_backend_links() {
+  # $1 = backend_port, $2 = rewrite_prefix (true/false), $3 = (optional) prefix text like "/phorum"
+  local backend_port="$1"
+  local rewrite_prefix="$2"
+  local prefix="${3:-/phorum}"
+  local tgt_host; tgt_host="$(current_target_host)"
+
+  # Replace host:port emitted by backend with public host:70
+  # Also normalize any literal "host/path" occurrences emitted by some servers
+  # Finally, optionally reattach prefix to *returned* selectors that start with "/"
+  if [[ "$rewrite_prefix" == "true" ]]; then
+    sed -e "s|\t${DEFAULT_HOST}\t${backend_port}|\t${tgt_host}\t${DEFAULT_PORT}|g" \
+        -e "s|\t${DEFAULT_HOST}/|\t${tgt_host}/|g" \
+        -e "s|\t/|\t${prefix}/|g"
+  else
+    sed -e "s|\t${DEFAULT_HOST}\t${backend_port}|\t${tgt_host}\t${DEFAULT_PORT}|g" \
+        -e "s|\t${DEFAULT_HOST}/|\t${tgt_host}/|g"
+  fi
+}
+
+proxy_to() {
+  # $1 = backend_port
+  local port="$1"
+  # Forward the request exactly as received (including any \tquery), with CRLF
+  # Use -w to avoid hanging if the backend closes slowly; -N if your nc supports it
+  printf "%s\r\n" "$selector" | nc localhost "$port" | rewrite_backend_links "$port" "false"
+}
+
+proxy_phorum() {
+  # For /phorum we forward *as-is* (no prefix stripping). This fixes /phorum/newthread.
+  # Optionally reattach /phorum to returned relative selectors if desired.
+  local port="$PHORUM_BACKEND_PORT"
+  local tgt_host; tgt_host="$(current_target_host)"
+  if [[ "$PHORUM_REWRITE_PREFIX" == "true" ]]; then
+    printf "%s\r\n" "$selector" | nc localhost "$port" | rewrite_backend_links "$port" "true" "/phorum"
+  else
+    printf "%s\r\n" "$selector" | nc localhost "$port" | rewrite_backend_links "$port" "false"
+  fi
+}
+
+# --- Routing ------------------------------------------------------------------
 case "$selector" in
-    "/phorum"*)
-        process_response "/phorum" 7070
-        ;;
-    *)
-        process_response "/" 7071
-        ;;
-esac
-```
-
-## yet another update
-
-sorry i need to clean up this article, but i realized for phorum until i release a prefix-adding feature for slectors in phorum i need to rewrite the links in phorum.
-
-```
-#!/bin/bash
-# Read the selector from stdin
-read selector
-
-# Function to check if the connection is coming from Tor
-is_tor_connection() {
-    # Check if the remote IP address matches known Tor patterns
-    if [[ "$REMOTE_HOST" == "::ffff:127.0.0.1" ]]; then
-        # Assuming Tor traffic comes from localhost for hidden services
-        return 0
-    fi
-    return 1
-}
-
-# Function to process and replace paths and ports in the response
-process_response() {
-    local prefix="$1"
-    local port="$2"
-    local rewrite_selectors_to_use_prefix="$3"
-    local target_host="gopher.someodd.zip"
-    local target_port="70"
-
-    # Check if Tor was used and adjust the target host
-    if is_tor_connection; then
-        target_host="xj2o2wylbqkprajldswuyxm6dffca4eepegelblgvux3uuqmtb2l56id.onion"
-    fi
-
-    # Strip the prefix from the selector and ensure the leading slash is retained
-    local stripped_selector="${selector#$prefix}"
-    if [[ "$stripped_selector" != /* ]]; then
-        stripped_selector="/$stripped_selector"
-    fi
-
-    # Send the selector to the appropriate service and process the response
-    if [[ "$rewrite_selectors_to_use_prefix" == "true" ]]; then
-        # When rewriting is enabled, add the prefix to all selectors in the response
-        echo "$stripped_selector" | nc localhost $port | \
-        sed -e "s|\tgopher.someodd.zip\t${port}|\t${target_host}\t${target_port}|g" \
-            -e "s|\tgopher.someodd.zip/|\t${target_host}/|g" \
-            -e "s|\t/|\t${prefix}/|g"
-    else
-        # Original behavior without selector rewriting
-        echo "$stripped_selector" | nc localhost $port | \
-        sed -e "s|\tgopher.someodd.zip\t${port}|\t${target_host}\t${target_port}|g" \
-            -e "s|\tgopher.someodd.zip/|\t${target_host}/|g"
-    fi
-}
-
-# Handle the selector
-case "$selector" in
-    "/phorum"*)
-        process_response "/phorum" 7070 "true"
-        ;;
-    *)
-        process_response "/" 7071 "false"
-        ;;
+  /phorum*)
+    proxy_phorum
+    ;;
+  *)
+    proxy_to "$OTHER_BACKEND_PORT"
+    ;;
 esac
 ```
 

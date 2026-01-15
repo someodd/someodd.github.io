@@ -3,10 +3,9 @@ date: 2024-11-18
 tags:
 - sysadmin
 - linux
-- archival
+- backup_archive
 - lto
 - debian
-- ltfs
 title: Restic on LTFS
 
 ---
