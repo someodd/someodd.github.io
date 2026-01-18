@@ -1,15 +1,86 @@
 ---
-layout: category
+layout: frontpage
 excerpt: "someodd"
 show_excerpts: true
 paginate: true
 entries_layout: list
 ---
 
-{% assign sorted_posts = site.posts | sort: 'date' | reverse %}
+<main class="issue">
 
-<div class="entries-{{ page.entries_layout | default: 'list' }}">
-  {% for entry in sorted_posts %}
-    {% include entry.html %}
-  {% endfor %}
-</div>
+  <!-- MASTHEAD / COVER -->
+  <section class="cover">
+
+    <header class="masthead">
+      <h1 class="brand">SOMEODD</h1>
+      <p class="tagline">
+        this website is a simulacra of my gopherhole
+      </p>
+    </header>
+
+    <!-- NAV AS STRAPLINE -->
+    <nav class="strapline" aria-label="Primary navigation">
+      <a href="/phlog/">PHLOG</a>
+      <a href="/showcase/">SHOWCASE</a>
+      <a href="/about/">ABOUT</a>
+      <a href="/search/">SEARCH</a>
+    </nav>
+
+    <!-- COVER LINES (NOT CTAs) -->
+    <section class="coverlines">
+
+      <a class="coverline feature" href="{{ site.posts.first.url | relative_url }}">
+        <span class="kicker">FEATURED</span>
+        <span class="headline">{{ site.posts.first.title }}</span>
+      </a>
+
+      <a class="coverline" href="/gateway/games/grpg/look/">
+        <span class="kicker">WEIRD SOFTWARE</span>
+        <span class="headline">PLAY MY MMO INSIDE GOPHERSPACE</span>
+      </a>
+
+      <a class="coverline" href="https://github.com/someodd">
+        <span class="kicker">ARCHIVE</span>
+        <span class="headline">GITHUB / RECEIPTS</span>
+      </a>
+
+      <a class="coverline" href="mailto:hi@someodd">
+        <span class="kicker">CONTACT</span>
+        <span class="headline">HIRE / COLLAB</span>
+      </a>
+
+      <a class="coverline" href="gopher://gopher.someodd.zip/1/">
+        <span class="kicker">ALT-WEB</span>
+        <span class="headline">ENTER THE GOPHERHOLE</span>
+      </a>
+
+    </section>
+
+    <!-- MAGAZINE FURNITURE -->
+    <aside class="stamps" aria-hidden="true">
+      <span>ISSUE 0</span>
+      <span>ANTI-DESIGN</span>
+      <span>TEXT-HEAVY</span>
+      <span>NO ADS</span>
+    </aside>
+
+  </section>
+
+  <!-- TABLE OF CONTENTS -->
+  <section class="toc">
+    <h2>ARTICLES</h2>
+
+    <ul class="toc-list">
+      {% for post in site.posts %}
+        <li>
+          <a href="{{ post.url | relative_url }}">
+            <span class="toc-title">{{ post.title }}</span>
+            <span class="toc-meta">{{ post.date | date: "%Y" }}</span>
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+  </section>
+
+</main>
+

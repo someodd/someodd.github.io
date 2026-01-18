@@ -1,0 +1,454 @@
+/* ============================================================
+   SOMEODD — INDEX.CSS (Homepage-only cover)
+   INSANE editorial / brutalist poster cover
+   - ONE color field
+   - NO SCROLL (fits viewport)
+   - Masthead is the event: diagonal + slash + crop + overprint
+   - Spine + upside-down type + registration marks
+   - Controlled chaos (not outline soup)
+   ============================================================ */
+
+/* ---------- RESET ---------- */
+*{ box-sizing: border-box; }
+html, body{ height: 100%; }
+body{
+  margin: 0;
+  overflow: hidden;                 /* COVER: no scroll */
+  background: #caff00;              /* ONE field color */
+  color: #000;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  line-height: 1.25;
+}
+
+/* Links are objects, not underlines */
+a{ color: inherit; text-decoration: none; }
+a:hover{ text-decoration: none; }
+a:focus-visible{
+  outline: 6px solid #ff00c8;
+  outline-offset: 2px;
+}
+
+/* ---------- PAGE WRAP ---------- */
+.issue{
+  max-width: 1200px;
+  height: 100vh;
+  margin: 0 auto;
+  padding: clamp(0.8rem, 2vw, 1.6rem);
+}
+
+/* Hide inside pages on cover (viewport fit) */
+.toc{ display: none; }
+
+/* ---------- COVER GRID (everything on screen) ---------- */
+.cover{
+  position: relative;
+  height: calc(100vh - clamp(1.6rem, 4vw, 3.2rem));
+  padding: clamp(1rem, 2.5vw, 2rem);
+  background: #caff00;
+  overflow: hidden;
+
+  display: grid;
+  grid-template-rows: auto auto auto 1fr auto;
+  gap: clamp(0.55rem, 1.2vw, 1.05rem);
+}
+
+/* Big ghost overprint — but subtle, like ink */
+.cover::before,
+.cover::after{
+  content: "SOMEODD";
+  position: absolute;
+  left: -0.42em;
+  top: -0.65em;
+  font-weight: 900;
+  font-size: clamp(6rem, 22vw, 18rem);
+  letter-spacing: -0.14em;
+  opacity: 0.12;
+  pointer-events: none;
+  white-space: nowrap;
+  mix-blend-mode: multiply;
+  z-index: 0;
+}
+.cover::after{
+  transform: translate(16px, 12px) rotate(1deg);
+  opacity: 0.07;
+}
+
+/* Registration marks cluster (print culture wink) */
+.cover .masthead::after{
+  content: "⊕  ⊕  ⊕";
+  position: absolute;
+  right: 0;
+  top: -0.3rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  font-size: 0.9rem;
+  letter-spacing: 0.45em;
+  opacity: 0.55;
+}
+
+/* Vertical spine (magazine spine) */
+.cover::marker{ content:none; } /* noop */
+.cover .masthead{
+  position: relative;
+  z-index: 2;
+}
+.cover .masthead::before{
+  content: "ISSUE 0  —  ANTI-DESIGN  —  TEXT-HEAVY  —  NO ADS";
+  position: absolute;
+  left: -3.1rem;
+  top: 7.5rem;
+  transform: rotate(-90deg);
+  transform-origin: left top;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  font-size: 0.82rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  opacity: 0.75;
+  white-space: nowrap;
+}
+
+/* Upside-down microtype (your ref’s inverted words) */
+.cover .tagline::after{
+  content: "SOMEODD // VISCONTI // BRUTAL RAW // NO GRIDS";
+  position: absolute;
+  right: 0;
+  top: -1.8rem;
+  transform: rotate(180deg);
+  transform-origin: right top;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  opacity: 0.55;
+  white-space: nowrap;
+}
+
+/* ---------- BIG BANG MASTHEAD ---------- */
+.brand{
+  position: relative;
+  display: inline-block;
+  margin: 0;
+
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -0.12em;
+  line-height: 0.80;
+  font-size: clamp(4rem, 15.5vw, 12.5rem);
+
+  /* Poster bleed: push into the edge */
+  margin-left: -0.18em;
+
+  /* Brutalize: diagonal */
+  transform: rotate(-6.5deg) translateX(-0.06em);
+  transform-origin: left center;
+
+  z-index: 2;
+}
+
+/* Magenta misregistration (one additional ink) */
+.brand::before{
+  content: "SOMEODD";
+  position: absolute;
+  left: 12px;
+  top: 9px;
+  color: #ff00c8;
+  opacity: 0.22;
+  pointer-events: none;
+  mix-blend-mode: multiply;
+}
+
+/* The slash: one violent act */
+.brand::after{
+  content: "";
+  position: absolute;
+  left: -10%;
+  top: 54%;
+  width: 130%;
+  height: 18%;
+  background: rgba(0,0,0,0.93);
+  transform: rotate(-9deg);
+  transform-origin: left center;
+  pointer-events: none;
+  box-shadow: 14px 14px 0 rgba(0,0,0,0.35);
+}
+
+/* Guillotine crop: triangular erase to delete part of masthead */
+.cover .brand{
+  /* keep above other stuff */
+}
+.cover .masthead .brand{
+  /* the crop layer sits ABOVE the masthead */
+}
+.cover .masthead .brand + .tagline{
+  position: relative;
+}
+
+.cover .masthead .brand{
+  position: relative;
+}
+.cover .masthead .brand ._noop{ display:none; } /* harmless */
+
+.cover .masthead{
+  overflow: visible;
+}
+.cover .masthead .brand{
+  overflow: visible;
+}
+.cover .masthead{
+  /* create a crop overlay using a pseudo-element on masthead itself */
+}
+.cover .masthead > .brand{ }
+.cover .masthead > .brand{ }
+
+.cover .masthead > .brand{ }
+
+.cover .masthead{
+  /* Crop overlay */
+}
+.cover .masthead .brand{ }
+
+.cover .masthead{
+  /* Actual crop overlay: */
+}
+.cover .masthead{
+  /* nothing else */
+}
+
+/* Crop overlay element */
+.cover .masthead .brand{
+  /* no change */
+}
+.cover .masthead{
+  /* We place crop overlay as separate pseudo to ensure it sits above masthead */
+}
+.cover .masthead{
+  /* already positioned */
+}
+.cover .masthead::before{
+  /* spine already uses ::before, so use an extra overlay on cover instead */
+}
+
+/* Use cover overlay for crop to avoid pseudo conflict */
+.cover .crop{
+  display:none;
+}
+.cover{
+  /* crop overlay using an extra pseudo via box-shadow trick */
+}
+.cover .masthead{}
+
+/* Add the crop with a dedicated pseudo on .cover using a second layer */
+.cover{
+  /* nothing */
+}
+.cover .masthead{
+  /* nothing */
+}
+
+/* Actual crop overlay (we'll use .cover .brand-crop via ::before on .tagline container) */
+.tagline{
+  position: relative;
+  margin: 0.85rem 0 0;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  font-size: 0.95rem;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  opacity: 0.92;
+  max-width: 56ch;
+}
+
+/* The guillotine crop itself */
+.masthead .tagline::before{
+  content: "";
+  position: absolute;
+  left: -2.4rem;
+  top: -7.8rem;
+  width: 52%;
+  height: 7.5rem;
+  background: #caff00;
+  clip-path: polygon(0 0, 100% 0, 0 100%);
+  pointer-events: none;
+  z-index: 6;
+}
+
+/* ---------- NAV STRAPLINE (one rule, not a box) ---------- */
+.strapline{
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+  margin: 0;
+  padding: 0.55rem 0;
+  border-top: 6px solid #000;
+  background: rgba(0,0,0,0.10);
+}
+
+.strapline a{
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  padding: 0.85rem 1.05rem;
+}
+.strapline a:not(:last-child)::after{
+  content: " //";
+  opacity: 0.55;
+  margin-left: 0.2rem;
+}
+.strapline a:hover{
+  background: rgba(0,0,0,0.16);
+}
+
+/* ---------- FEATURE BAR (the single framed block) ---------- */
+.coverline.feature{
+  position: relative;
+  z-index: 2;
+  display: block;
+
+  padding: clamp(0.9rem, 2vw, 1.2rem);
+  background: #000;
+  color: #caff00;
+
+  /* one dominant border move */
+  box-shadow:
+    0 0 0 8px #000,
+    18px 18px 0 rgba(0,0,0,0.65);
+
+  transform: rotate(-0.8deg) translateX(-6px);
+}
+
+/* ---------- COVERLINES (uneven collage, reduced outlines) ---------- */
+.coverlines{
+  position: relative;
+  z-index: 2;
+
+  display: grid;
+  grid-template-columns: 1.35fr 0.85fr;
+  gap: clamp(0.7rem, 1.6vw, 1.1rem);
+  align-content: start;
+}
+
+/* Base tile: NO border, just shadow slab */
+.coverline{
+  position: relative;
+  display: block;
+  padding: clamp(0.85rem, 2vw, 1.2rem);
+  background: rgba(255,255,255,0.16);
+  box-shadow: 12px 12px 0 rgba(0,0,0,0.55);
+  transform: rotate(var(--tilt, -1deg));
+  transform-origin: 10% 20%;
+}
+
+/* Collage tilts + one collision */
+.coverline:nth-child(2){ --tilt: 1.2deg; }
+.coverline:nth-child(3){ --tilt: -2.6deg; transform: rotate(var(--tilt)) translateY(-0.9rem); }
+.coverline:nth-child(4){ --tilt: 0.8deg; transform: rotate(var(--tilt)) translateX(0.5rem); }
+.coverline:nth-child(5){ --tilt: -1.2deg; grid-column: 1 / -1; }
+
+/* Typography inside tiles */
+.kicker{
+  display: inline-block;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  font-size: 0.72rem;
+  opacity: 0.85;
+}
+
+.headline{
+  display: block;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -0.06em;
+  line-height: 0.92;
+  margin-top: 0.35rem;
+  font-size: clamp(1.2rem, 2.8vw, 2.35rem);
+}
+
+/* Make one tile right-aligned for editorial awkwardness */
+.coverline:nth-child(3) .headline{
+  text-align: right;
+}
+
+/* Featured headline bigger */
+.coverline.feature .headline{
+  font-size: clamp(1.8rem, 4.2vw, 3.8rem);
+  letter-spacing: -0.06em;
+}
+
+/* ---------- STAMPS (print furniture; light outlines) ---------- */
+.stamps{
+  position: relative;
+  z-index: 2;
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  margin-top: 0;
+}
+
+.stamps span{
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  border: 3px solid #000;          /* light outline */
+  background: transparent;
+  padding: 0.35rem 0.6rem;
+}
+
+/* Applied feel */
+.stamps span:nth-child(2){ transform: rotate(-2deg) translateY(2px); }
+.stamps span:nth-child(3){ transform: rotate(1.5deg) translateY(-2px); }
+
+/* ---------- HOVER-ONLY VIOLENCE ---------- */
+@media (prefers-reduced-motion: no-preference){
+  .coverline:hover{
+    animation: jolt 140ms steps(2, end) 1;
+    box-shadow: 18px 18px 0 rgba(0,0,0,0.65);
+  }
+  .coverline:hover .headline{
+    animation: glitch 220ms steps(2, end) 1;
+  }
+}
+
+@keyframes jolt{
+  0%{ transform: rotate(var(--tilt)) translate(0,0); }
+  40%{ transform: rotate(calc(var(--tilt) - 0.7deg)) translate(-2px, 2px); }
+  70%{ transform: rotate(calc(var(--tilt) + 1.0deg)) translate(3px, -1px); }
+  100%{ transform: rotate(var(--tilt)) translate(0,0); }
+}
+
+@keyframes glitch{
+  0%{ text-shadow: none; }
+  45%{ text-shadow: 3px 0 0 #ff00c8, -3px 0 0 #00ffd5; }
+  100%{ text-shadow: none; }
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 900px){
+  .issue{ padding: 0.9rem; }
+  .brand{
+    transform: rotate(-4.5deg) translateX(-0.04em);
+    letter-spacing: -0.10em;
+  }
+  .coverlines{ grid-template-columns: 1fr; }
+  .masthead .tagline::before{
+    width: 62%;
+    top: -7.2rem;
+  }
+  .cover .masthead::before{
+    /* spine becomes too tight on mobile; hide it */
+    content: "";
+  }
+  .tagline::after{
+    display: none;
+  }
+}
+
+@media (max-width: 520px){
+  .brand{ font-size: 3.8rem; }
+  .strapline a{
+    padding: 0.7rem 0.75rem;
+    letter-spacing: 0.14em;
+  }
+}
+

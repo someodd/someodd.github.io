@@ -28,6 +28,11 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family={%- for font in site.google_fonts -%}{{ font.name | replace: ' ', '+' }}{% if font.weights %}:{% endif %}{{ font.weights | remove: ' ' }}{% if forloop.last != true %}|{% endif %}{%- endfor -%}">
   {% endif %}
   <link rel="stylesheet" href="{{ '/assets/css/neo.css' | relative_url }}">
+{% if page.url == "/" %}
+  <link rel="stylesheet" href="{{ '/assets/css/frontpage.css' | relative_url }}">
+{% endif %}
+
+
 
   {%- if site.plugins contains 'jekyll-feed' or site.gems contains 'jekyll-feed' -%}
     {%- comment -%}

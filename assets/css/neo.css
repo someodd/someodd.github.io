@@ -1238,3 +1238,165 @@ article, main, .content {
   margin-inline: auto;
 }
 
+/* front page stuff
+ */
+
+/* --- CTA POSTER GRID (home page) --- */
+
+.cta-poster{
+  max-width: 1100px;           /* wide poster area */
+  margin: 1.25rem auto 2rem;
+  padding: 0 1rem;
+  position: relative;
+}
+
+.cta-grid{
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 14px;
+}
+
+/* Tiles */
+.cta-tile{
+  position: relative;
+  display: block;
+  padding: 18px 18px 16px;
+  text-decoration: none;
+  color: inherit;
+
+  border: 4px solid rgba(0,0,0,0.7);
+  background: rgba(255,255,255,0.08);
+  box-shadow: 10px 10px 0 rgba(0,0,0,0.35);
+
+  transform: translateZ(0);
+  transition: transform 120ms ease, box-shadow 120ms ease, filter 120ms ease;
+  overflow: hidden;
+}
+
+/* Overprint / misregistration effect (anti-design poster vibe) */
+.cta-tile::before{
+  content: "";
+  position: absolute;
+  inset: -8px;
+  border: 2px solid rgba(255,255,255,0.18);
+  transform: rotate(-0.35deg);
+  pointer-events: none;
+}
+
+.cta-tile::after{
+  content: "";
+  position: absolute;
+  left: -30%;
+  top: -40%;
+  width: 80%;
+  height: 220%;
+  background: rgba(0,0,0,0.18);
+  transform: rotate(16deg);
+  pointer-events: none;
+}
+
+.cta-kicker{
+  font-size: 0.82rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.9;
+}
+
+.cta-title{
+  font-size: clamp(1.6rem, 2.6vw, 2.4rem);
+  line-height: 0.95;
+  margin: 0.35rem 0 0.55rem;
+  letter-spacing: -0.02em;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.cta-sub{
+  font-size: 1.02rem;
+  line-height: 1.25;
+  max-width: 38ch;
+  opacity: 0.92;
+}
+
+.cta-meta{
+  margin-top: 0.85rem;
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+  opacity: 0.85;
+}
+
+/* Layout spanning (poster composition) */
+.cta-hero{ grid-column: span 7; min-height: 170px; }
+.cta-contact{ grid-column: span 5; min-height: 170px; }
+
+.cta-gopher{ grid-column: span 4; min-height: 150px; }
+.cta-web{ grid-column: span 4; min-height: 150px; }
+.cta-rfc{ grid-column: span 4; min-height: 150px; }
+
+.cta-play{ grid-column: span 12; min-height: 120px; }
+
+/* Color blocks (use your existing palette; these are intentionally loud) */
+.cta-hero{ background: rgba(190, 255, 0, 0.22); }
+.cta-contact{ background: rgba(255, 0, 170, 0.16); }
+.cta-gopher{ background: rgba(0, 255, 180, 0.14); }
+.cta-web{ background: rgba(255, 255, 255, 0.08); }
+.cta-rfc{ background: rgba(255, 180, 0, 0.16); }
+.cta-play{ background: rgba(0, 0, 0, 0.18); }
+
+/* Brutalist hover: jump + sharpen, but keep text readable */
+@keyframes posterJitter{
+  0%{ transform: translate(0,0) rotate(0deg); }
+  30%{ transform: translate(-2px,1px) rotate(-0.2deg); }
+  60%{ transform: translate(2px,-1px) rotate(0.2deg); }
+  100%{ transform: translate(0,0) rotate(0deg); }
+}
+
+.cta-tile:hover{
+  transform: translate(-3px,-3px);
+  box-shadow: 16px 16px 0 rgba(0,0,0,0.35);
+  filter: contrast(1.05) saturate(1.1);
+}
+
+.cta-tile:hover .cta-title{
+  animation: posterJitter 160ms steps(2, end) 2;
+}
+
+/* Focus styles for keyboard users */
+.cta-tile:focus-visible{
+  outline: 3px solid currentColor;
+  outline-offset: 4px;
+}
+
+/* “Stamp” line */
+.cta-stamp{
+  margin-top: 12px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  font-size: 0.82rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+
+.cta-stamp span{
+  border: 2px solid rgba(255,255,255,0.18);
+  padding: 6px 10px;
+  background: rgba(0,0,0,0.14);
+  box-shadow: 6px 6px 0 rgba(0,0,0,0.25);
+}
+
+/* Responsive: stack nicely */
+@media (max-width: 900px){
+  .cta-hero{ grid-column: span 12; }
+  .cta-contact{ grid-column: span 12; }
+  .cta-gopher, .cta-web, .cta-rfc{ grid-column: span 12; }
+  .cta-play{ grid-column: span 12; }
+}
+
+/* Reduced motion: disable jitter */
+@media (prefers-reduced-motion: reduce){
+  .cta-tile:hover .cta-title{ animation: none !important; }
+  .cta-tile{ transition: none; }
+}
+
