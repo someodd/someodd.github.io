@@ -1,454 +1,851 @@
-/* ============================================================
-   SOMEODD — INDEX.CSS (Homepage-only cover)
-   INSANE editorial / brutalist poster cover
-   - ONE color field
-   - NO SCROLL (fits viewport)
-   - Masthead is the event: diagonal + slash + crop + overprint
-   - Spine + upside-down type + registration marks
-   - Controlled chaos (not outline soup)
-   ============================================================ */
+/* /assets/css/frontpage.css
+   Poster-frontpage skin (uses /assets/images/frontpage.png as the bg)
+*/
 
-/* ---------- RESET ---------- */
-*{ box-sizing: border-box; }
-html, body{ height: 100%; }
-body{
+:root{
+  --pink: #ff00c8;
+  --acid: #c9ff00;
+  --cyan: #00e7ff;
+  --ink: rgba(0,0,0,.78);
+  --ink2: rgba(0,0,0,.55);
+}
+
+html, body{
+  height: 100%;
+}
+
+body.layout--frontpage{
   margin: 0;
-  overflow: hidden;                 /* COVER: no scroll */
-  background: #caff00;              /* ONE field color */
-  color: #000;
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-  line-height: 1.25;
+  overflow: hidden;          /* keep it poster-fit */
+  background: #061f1d;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
-/* Links are objects, not underlines */
-a{ color: inherit; text-decoration: none; }
-a:hover{ text-decoration: none; }
-a:focus-visible{
-  outline: 6px solid #ff00c8;
-  outline-offset: 2px;
-}
-
-/* ---------- PAGE WRAP ---------- */
-.issue{
-  max-width: 1200px;
-  height: 100vh;
-  margin: 0 auto;
-  padding: clamp(0.8rem, 2vw, 1.6rem);
-}
-
-/* Hide inside pages on cover (viewport fit) */
-.toc{ display: none; }
-
-/* ---------- COVER GRID (everything on screen) ---------- */
-.cover{
+.cover-poster{
   position: relative;
-  height: calc(100vh - clamp(1.6rem, 4vw, 3.2rem));
-  padding: clamp(1rem, 2.5vw, 2rem);
-  background: #caff00;
-  overflow: hidden;
-
-  display: grid;
-  grid-template-rows: auto auto auto 1fr auto;
-  gap: clamp(0.55rem, 1.2vw, 1.05rem);
+  width: 100vw;
+  height: 100vh;
+  isolation: isolate;
 }
 
-/* Big ghost overprint — but subtle, like ink */
-.cover::before,
-.cover::after{
-  content: "SOMEODD";
+/* background image layer */
+.poster-bg{
   position: absolute;
-  left: -0.42em;
-  top: -0.65em;
-  font-weight: 900;
-  font-size: clamp(6rem, 22vw, 18rem);
-  letter-spacing: -0.14em;
-  opacity: 0.12;
-  pointer-events: none;
-  white-space: nowrap;
-  mix-blend-mode: multiply;
+  inset: 0;
+  background-image: url("/assets/images/frontpage2.png");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  filter: saturate(1.15) contrast(1.07);
+  transform: scale(1.01);
   z-index: 0;
 }
-.cover::after{
-  transform: translate(16px, 12px) rotate(1deg);
-  opacity: 0.07;
-}
 
-/* Registration marks cluster (print culture wink) */
-.cover .masthead::after{
-  content: "⊕  ⊕  ⊕";
+/* common poster link styling */
+.cover-poster a{
   position: absolute;
-  right: 0;
-  top: -0.3rem;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
-  font-size: 0.9rem;
-  letter-spacing: 0.45em;
-  opacity: 0.55;
-}
-
-/* Vertical spine (magazine spine) */
-.cover::marker{ content:none; } /* noop */
-.cover .masthead{
-  position: relative;
-  z-index: 2;
-}
-.cover .masthead::before{
-  content: "ISSUE 0  —  ANTI-DESIGN  —  TEXT-HEAVY  —  NO ADS";
-  position: absolute;
-  left: -3.1rem;
-  top: 7.5rem;
-  transform: rotate(-90deg);
-  transform-origin: left top;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
-  font-size: 0.82rem;
-  letter-spacing: 0.22em;
+  z-index: 3;
+  text-decoration: none;
   text-transform: uppercase;
-  opacity: 0.75;
-  white-space: nowrap;
-}
-
-/* Upside-down microtype (your ref’s inverted words) */
-.cover .tagline::after{
-  content: "SOMEODD // VISCONTI // BRUTAL RAW // NO GRIDS";
-  position: absolute;
-  right: 0;
-  top: -1.8rem;
-  transform: rotate(180deg);
-  transform-origin: right top;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
-  font-size: 0.75rem;
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
-  opacity: 0.55;
-  white-space: nowrap;
-}
-
-/* ---------- BIG BANG MASTHEAD ---------- */
-.brand{
-  position: relative;
-  display: inline-block;
-  margin: 0;
-
+  letter-spacing: -0.02em;
   font-weight: 900;
-  text-transform: uppercase;
-  letter-spacing: -0.12em;
-  line-height: 0.80;
-  font-size: clamp(4rem, 15.5vw, 12.5rem);
-
-  /* Poster bleed: push into the edge */
-  margin-left: -0.18em;
-
-  /* Brutalize: diagonal */
-  transform: rotate(-6.5deg) translateX(-0.06em);
-  transform-origin: left center;
-
-  z-index: 2;
+  line-height: 0.92;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: geometricPrecision;
 }
 
-/* Magenta misregistration (one additional ink) */
-.brand::before{
-  content: "SOMEODD";
-  position: absolute;
-  left: 12px;
-  top: 9px;
-  color: #ff00c8;
-  opacity: 0.22;
-  pointer-events: none;
-  mix-blend-mode: multiply;
+.cover-poster a:focus{
+  outline: 2px solid var(--acid);
+  outline-offset: 6px;
 }
 
-/* The slash: one violent act */
-.brand::after{
-  content: "";
-  position: absolute;
-  left: -10%;
-  top: 54%;
-  width: 130%;
-  height: 18%;
-  background: rgba(0,0,0,0.93);
-  transform: rotate(-9deg);
-  transform-origin: left center;
-  pointer-events: none;
-  box-shadow: 14px 14px 0 rgba(0,0,0,0.35);
+/* hover should feel like print misregistration, not "button hover" */
+@keyframes jitter{
+  0%{ transform: translate(0,0) rotate(var(--rot,0deg)); filter:none; }
+  15%{ transform: translate(1px,-1px) rotate(var(--rot,0deg)); }
+  35%{ transform: translate(-1px,0px) rotate(var(--rot,0deg)); }
+  60%{ transform: translate(1px,1px) rotate(var(--rot,0deg)); }
+  100%{ transform: translate(0,0) rotate(var(--rot,0deg)); }
+}
+@keyframes flicker{
+  0%, 100%{ opacity: 1; }
+  35%{ opacity: .9; }
+  55%{ opacity: 1; }
+  72%{ opacity: .85; }
 }
 
-/* Guillotine crop: triangular erase to delete part of masthead */
-.cover .brand{
-  /* keep above other stuff */
-}
-.cover .masthead .brand{
-  /* the crop layer sits ABOVE the masthead */
-}
-.cover .masthead .brand + .tagline{
-  position: relative;
+.cover-poster a:hover{
+  text-shadow:
+    2px 0 0 rgba(0,231,255,.65),
+    -2px 0 0 rgba(255,0,200,.55);
 }
 
-.cover .masthead .brand{
-  position: relative;
-}
-.cover .masthead .brand ._noop{ display:none; } /* harmless */
+/* MASTHEAD: SOMEODD */
+.poster-title{
+  left: 3.2vw;
+  top: 2.2vh;
+  color: var(--pink);
+  font-size: clamp(56px, 12vw, 170px);
+  letter-spacing: -0.06em;
+  z-index: 5;
 
-.cover .masthead{
-  overflow: visible;
-}
-.cover .masthead .brand{
-  overflow: visible;
-}
-.cover .masthead{
-  /* create a crop overlay using a pseudo-element on masthead itself */
-}
-.cover .masthead > .brand{ }
-.cover .masthead > .brand{ }
-
-.cover .masthead > .brand{ }
-
-.cover .masthead{
-  /* Crop overlay */
-}
-.cover .masthead .brand{ }
-
-.cover .masthead{
-  /* Actual crop overlay: */
-}
-.cover .masthead{
-  /* nothing else */
+  /* subtle "print slip" line through it */
+  background:
+    linear-gradient(transparent 52%, rgba(0,0,0,.12) 52%, rgba(0,0,0,.12) 61%, transparent 61%);
+  -webkit-background-clip: text;
+  background-clip: text;
 }
 
-/* Crop overlay element */
-.cover .masthead .brand{
-  /* no change */
-}
-.cover .masthead{
-  /* We place crop overlay as separate pseudo to ensure it sits above masthead */
-}
-.cover .masthead{
-  /* already positioned */
-}
-.cover .masthead::before{
-  /* spine already uses ::before, so use an extra overlay on cover instead */
+.poster-title:visited {
+  color: var(--pink);
 }
 
-/* Use cover overlay for crop to avoid pseudo conflict */
-.cover .crop{
-  display:none;
-}
-.cover{
-  /* crop overlay using an extra pseudo via box-shadow trick */
-}
-.cover .masthead{}
-
-/* Add the crop with a dedicated pseudo on .cover using a second layer */
-.cover{
-  /* nothing */
-}
-.cover .masthead{
-  /* nothing */
+/* TOP STRAP: ANTI–DESIGN (yellow-green, right-ish like ref) */
+.poster-top-right{
+  right: 8.2vw;
+  top: 10.5vh;
+  color: var(--acid);
+  font-size: clamp(22px, 4.2vw, 64px);
+  letter-spacing: -0.04em;
+  z-index: 6;
+  opacity: .95;
 }
 
-/* Actual crop overlay (we'll use .cover .brand-crop via ::before on .tagline container) */
-.tagline{
-  position: relative;
-  margin: 0.85rem 0 0;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
-  font-size: 0.95rem;
-  letter-spacing: 0.10em;
-  text-transform: uppercase;
-  opacity: 0.92;
-  max-width: 56ch;
-}
-
-/* The guillotine crop itself */
-.masthead .tagline::before{
-  content: "";
-  position: absolute;
-  left: -2.4rem;
-  top: -7.8rem;
-  width: 52%;
-  height: 7.5rem;
-  background: #caff00;
-  clip-path: polygon(0 0, 100% 0, 0 100%);
-  pointer-events: none;
+/* RIGHT VERTICAL: ABOUT (cyan, vertical on far right) */
+.poster-vertical-right{
+  right: 2.6vw;
+  top: 6.5vh;
+  color: var(--cyan);
+  font-size: clamp(18px, 3.2vw, 54px);
+  letter-spacing: -0.02em;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
   z-index: 6;
 }
 
-/* ---------- NAV STRAPLINE (one rule, not a box) ---------- */
-.strapline{
-  position: relative;
-  z-index: 2;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0;
-  margin: 0;
-  padding: 0.55rem 0;
-  border-top: 6px solid #000;
-  background: rgba(0,0,0,0.10);
+/* LEFT: PHLOG should be BLUE/CYAN and UPSIDE DOWN like the reference edge text */
+.poster-left-1{
+  left: 1.6vw;
+  top: 36vh;                 /* center-ish vertically */
+  color: var(--ink);
+  font-size: clamp(18px, 3.6vw, 54px);
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transform: rotate(180deg);
+  transform-origin: center;
+  opacity: .95;
+  z-index: 7;                /* ensure it doesn't disappear behind title */
 }
 
-.strapline a{
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
-  text-transform: uppercase;
-  letter-spacing: 0.18em;
-  padding: 0.85rem 1.05rem;
-}
-.strapline a:not(:last-child)::after{
-  content: " //";
-  opacity: 0.55;
-  margin-left: 0.2rem;
-}
-.strapline a:hover{
-  background: rgba(0,0,0,0.16);
+/* LEFT STACK: BRUTALIST RAW (magenta mid-left) */
+.poster-left-2{
+  left: 5.2vw;
+  top: 34vh;
+  transform: rotate(180deg);
+  color: var(--pink);
+  font-size: clamp(28px, 4.8vw, 78px);
+  letter-spacing: -0.03em;
+  z-index: 6;
 }
 
-/* ---------- FEATURE BAR (the single framed block) ---------- */
-.coverline.feature{
-  position: relative;
-  z-index: 2;
-  display: block;
-
-  padding: clamp(0.9rem, 2vw, 1.2rem);
-  background: #000;
-  color: #caff00;
-
-  /* one dominant border move */
-  box-shadow:
-    0 0 0 8px #000,
-    18px 18px 0 rgba(0,0,0,0.65);
-
-  transform: rotate(-0.8deg) translateX(-6px);
-}
-
-/* ---------- COVERLINES (uneven collage, reduced outlines) ---------- */
-.coverlines{
-  position: relative;
-  z-index: 2;
-
-  display: grid;
-  grid-template-columns: 1.35fr 0.85fr;
-  gap: clamp(0.7rem, 1.6vw, 1.1rem);
-  align-content: start;
-}
-
-/* Base tile: NO border, just shadow slab */
-.coverline{
-  position: relative;
-  display: block;
-  padding: clamp(0.85rem, 2vw, 1.2rem);
-  background: rgba(255,255,255,0.16);
-  box-shadow: 12px 12px 0 rgba(0,0,0,0.55);
-  transform: rotate(var(--tilt, -1deg));
-  transform-origin: 10% 20%;
-}
-
-/* Collage tilts + one collision */
-.coverline:nth-child(2){ --tilt: 1.2deg; }
-.coverline:nth-child(3){ --tilt: -2.6deg; transform: rotate(var(--tilt)) translateY(-0.9rem); }
-.coverline:nth-child(4){ --tilt: 0.8deg; transform: rotate(var(--tilt)) translateX(0.5rem); }
-.coverline:nth-child(5){ --tilt: -1.2deg; grid-column: 1 / -1; }
-
-/* Typography inside tiles */
-.kicker{
-  display: inline-block;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
-  text-transform: uppercase;
-  letter-spacing: 0.22em;
-  font-size: 0.72rem;
-  opacity: 0.85;
-}
-
-.headline{
-  display: block;
+/* LEFT STACK: NO / GRIDS (magenta, slightly below) */
+.poster-left-3{
+  position: absolute;
+  left: 5.2vw;
+  top: 54vh;
+  color: var(--pink);
   font-weight: 900;
   text-transform: uppercase;
-  letter-spacing: -0.06em;
-  line-height: 0.92;
-  margin-top: 0.35rem;
-  font-size: clamp(1.2rem, 2.8vw, 2.35rem);
+  font-size: clamp(18px, 3.2vw, 48px);
+  line-height: .9;
+  z-index: 6;
+  opacity: .92;
 }
 
-/* Make one tile right-aligned for editorial awkwardness */
-.coverline:nth-child(3) .headline{
-  text-align: right;
+/* CENTER BLOCK: simulate the big black panel */
+.poster-center{
+  left: 24vw;
+  top: 28vh;
+  transform: translate(-50%, -50%);
+  color: var(--acid);
+  font-size: clamp(34px, 4.9vw, 84px);
+  letter-spacing: -0.03em;
+  padding: clamp(14px, 2.2vw, 26px) clamp(18px, 2.6vw, 34px);
+  background: var(--ink);
+  box-shadow: 0 10px 40px rgba(0,0,0,.25);
+  z-index: 7;
 }
 
-/* Featured headline bigger */
-.coverline.feature .headline{
-  font-size: clamp(1.8rem, 4.2vw, 3.8rem);
-  letter-spacing: -0.06em;
-}
-
-/* ---------- STAMPS (print furniture; light outlines) ---------- */
-.stamps{
+/* the little neon bar behind "VOID"/highlight area */
+.poster-center .highlight{
   position: relative;
-  z-index: 2;
-
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.7rem;
-  margin-top: 0;
+  display: inline-block;
+  padding-right: .15em;
+	color: #000;
+}
+.poster-center .highlight::after{
+  content: "";
+  position: absolute;
+  left: 58%;
+  top: 54%;
+  width: 8.6em;
+  height: 1.05em;
+  background: var(--acid);
+  opacity: .92;
+  transform: translate(-50%, -50%) rotate(-1deg);
+  z-index: -1;
+  filter: saturate(1.05);
 }
 
-.stamps span{
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
-  letter-spacing: 0.22em;
+/* BOTTOM INVERTED: SEARCH (magenta, upside down centered bottom) */
+.poster-bottom-invert{
+  left: 50%;
+  bottom: 3.2vh;
+  --rot: 180deg;
+  transform: translateX(-50%) rotate(180deg)!important;
+  color: var(--cyan);
+  font-size: clamp(18px, 3.5vw, 56px);
+  letter-spacing: -0.02em;
+  z-index: 6;
+  opacity: .92;
+}
+
+/* MICRO CREDIT (bottom-right tiny) */
+.poster-micro{
+  position: absolute;
+  right: 2.6vw;
+  bottom: 3.3vh;
+  z-index: 8;
+  color: var(--acid);
+  font-weight: 800;
   text-transform: uppercase;
-  border: 3px solid #000;          /* light outline */
-  background: transparent;
-  padding: 0.35rem 0.6rem;
+  letter-spacing: 0.06em;
+  font-size: clamp(9px, 1.05vw, 13px);
+  opacity: .75;
+  mix-blend-mode: screen;
 }
 
-/* Applied feel */
-.stamps span:nth-child(2){ transform: rotate(-2deg) translateY(2px); }
-.stamps span:nth-child(3){ transform: rotate(1.5deg) translateY(-2px); }
-
-/* ---------- HOVER-ONLY VIOLENCE ---------- */
-@media (prefers-reduced-motion: no-preference){
-  .coverline:hover{
-    animation: jolt 140ms steps(2, end) 1;
-    box-shadow: 18px 18px 0 rgba(0,0,0,0.65);
-  }
-  .coverline:hover .headline{
-    animation: glitch 220ms steps(2, end) 1;
-  }
+/* kill “too many outlines” globally for this poster */
+.cover-poster *{
+  border: 0 !important;
 }
 
-@keyframes jolt{
-  0%{ transform: rotate(var(--tilt)) translate(0,0); }
-  40%{ transform: rotate(calc(var(--tilt) - 0.7deg)) translate(-2px, 2px); }
-  70%{ transform: rotate(calc(var(--tilt) + 1.0deg)) translate(3px, -1px); }
-  100%{ transform: rotate(var(--tilt)) translate(0,0); }
+/* Make sure nested theme styles don’t accidentally mess with anchors */
+.cover-poster a,
+.cover-poster a:visited{
 }
 
-@keyframes glitch{
-  0%{ text-shadow: none; }
-  45%{ text-shadow: 3px 0 0 #ff00c8, -3px 0 0 #00ffd5; }
-  100%{ text-shadow: none; }
-}
-
-/* ---------- RESPONSIVE ---------- */
+/* Responsive: keep everything on-viewport and legible */
 @media (max-width: 900px){
-  .issue{ padding: 0.9rem; }
-  .brand{
-    transform: rotate(-4.5deg) translateX(-0.04em);
-    letter-spacing: -0.10em;
+  .poster-left-2{ left: 6vw; top: 38vh; }
+  .poster-left-3{ left: 6vw; top: 58vh; }
+  .poster-center{ left: 62vw; top: 62vh; }
+}
+
+@media (max-width: 650px){
+  .poster-title{ left: 4vw; top: 3vh; font-size: 16vw; }
+  .poster-top-right{ right: 6vw; top: 12vh; font-size: 7vw; }
+  .poster-vertical-right{ right: 3vw; top: 8vh; font-size: 7vw; }
+  .poster-left-1{ left: 2vw; top: 42vh; font-size: 7vw; }
+  .poster-left-2{ left: 8vw; top: 40vh; font-size: 9vw; }
+  .poster-left-3{ left: 8vw; top: 60vh; font-size: 6.5vw; }
+  .poster-center{ left: 60vw; top: 66vh; font-size: 9vw; }
+  .poster-bottom-invert{ font-size: 7vw; }
+}
+
+/* --- CONTEXT PANEL (lower-right bay) --- */
+
+.poster-context{
+  position: absolute;
+  z-index: 6;
+  /* place inside the empty bay to the right of the photo */
+  left: 55.5vw;
+  top: 66.5vh;
+  width: 40vw;
+  height: 27vh;
+
+  /* panel feel: brutal dark plate, not outlined */
+  background: rgba(0,0,0,0.40);
+  backdrop-filter: blur(1px);
+  padding: 1.1vw 1.2vw;
+}
+
+.pc-grid{
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: auto 1fr 1fr;
+  gap: 0.85vw;
+}
+
+/* tiles */
+.pc-tile{
+  display: block;
+  background: rgba(0,0,0,0.50);
+  padding: 0.85vw 0.85vw 0.75vw;
+  color: var(--lime);
+  mix-blend-mode: screen;
+  text-decoration: none;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  line-height: 1.0;
+  border: 0; /* no outlines */
+  position: relative;
+}
+
+/* subtle “print” noise by shadow only, not borders */
+.pc-tile{
+  box-shadow: 0 0 0 0 rgba(0,0,0,0);
+}
+.pc-tile:hover{
+  filter: drop-shadow(0 0 10px rgba(255,255,255,0.14)) drop-shadow(0 0 18px rgba(0,0,0,0.30));
+}
+
+/* kicker/title/sub */
+.pc-kicker{
+  display: block;
+  font-size: clamp(9px, 0.85vw, 14px);
+  letter-spacing: 0.14em;
+  opacity: 0.95;
+  color: var(--cyan);
+  mix-blend-mode: screen;
+}
+
+.pc-title{
+  display: block;
+  margin-top: 0.3vw;
+  font-size: clamp(16px, 1.8vw, 28px);
+  letter-spacing: -0.04em;
+}
+
+.pc-sub{
+  display: block;
+  margin-top: 0.35vw;
+  font-size: clamp(10px, 0.95vw, 14px);
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  opacity: 0.9;
+  color: rgba(217,255,47,0.95);
+}
+
+/* brand accents (no borders, just color shifts) */
+.pc-github .pc-title{ color: var(--lime); }
+.pc-masto .pc-title{ color: var(--magenta); }
+.pc-mail .pc-title{ color: var(--cyan); }
+.pc-suedo .pc-title{ color: var(--lime); }
+
+.pc-masto{ background: rgba(0,0,0,0.56); }
+.pc-mail{ background: rgba(0,0,0,0.52); }
+.pc-suedo{ background: rgba(0,0,0,0.58); }
+
+/* Featured strip spans full width */
+.pc-feature{
+  grid-column: 1 / -1;
+  grid-row: 2 / 3;
+  display: block;
+  padding: 0.85vw 1.0vw;
+  background: rgba(0,0,0,0.60);
+  text-decoration: none;
+  mix-blend-mode: screen;
+}
+
+.pc-feature-title{
+  display: block;
+  margin-top: 0.3vw;
+  font-size: clamp(18px, 2.4vw, 34px);
+  letter-spacing: -0.04em;
+  font-weight: 900;
+  color: var(--magenta);
+}
+
+/* Latest list block spans 2 columns */
+.pc-latest{
+  grid-column: 1 / -1;
+  grid-row: 3 / 4;
+  background: rgba(0,0,0,0.45);
+  padding: 0.75vw 0.9vw;
+  mix-blend-mode: screen;
+}
+
+.pc-latest-head{
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 0.35vw;
+}
+
+.pc-more{
+  color: var(--lime);
+  text-decoration: none;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  font-size: clamp(10px, 0.95vw, 14px);
+  opacity: 0.95;
+}
+.pc-more:hover{ opacity: 1; }
+
+.pc-post{
+  display: block;
+  text-decoration: none;
+  color: rgba(217,255,47,0.95);
+  font-weight: 850;
+  letter-spacing: 0.02em;
+  font-size: clamp(12px, 1.05vw, 16px);
+  line-height: 1.25;
+  margin-top: 0.25vw;
+}
+.pc-post:hover{
+  color: var(--cyan);
+}
+
+/* Keep it usable on smaller screens */
+@media (max-width: 980px){
+  .poster-context{
+    left: 8vw;
+    top: 70vh;
+    width: 84vw;
+    height: 26vh;
+    padding: 2.2vw 2.4vw;
   }
-  .coverlines{ grid-template-columns: 1fr; }
-  .masthead .tagline::before{
-    width: 62%;
-    top: -7.2rem;
+  .pc-grid{
+    gap: 2.0vw;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto auto 1fr;
   }
-  .cover .masthead::before{
-    /* spine becomes too tight on mobile; hide it */
-    content: "";
+  .pc-feature{ grid-row: 2 / 3; }
+  .pc-latest{ grid-row: 3 / 4; }
+}
+
+/* =========================
+   POSTER MID (container)
+   ========================= */
+
+.poster-mid{
+  position:absolute;
+  left: 56%;
+  top: 64%;
+  transform: translate(-50%, -50%);
+  width: min(820px, 44vw);
+  z-index: 7;
+
+  display: grid;
+  grid-template-rows: auto auto;
+  gap: 14px;
+}
+
+/* =========================
+   SIMULACRA BLOCK
+   ========================= */
+
+.poster-center{
+  display:block;
+  text-transform: uppercase;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  line-height: 0.92;
+
+  padding: 18px 18px 14px;
+  background: rgba(0,0,0,0.62);
+  color: rgba(255,255,255,0.92);
+
+  transition: filter .12s ease, background .12s ease;
+}
+
+.poster-center:hover{
+  background: rgba(0,0,0,0.70);
+  filter: saturate(1.15) contrast(1.05);
+}
+
+.poster-center .highlight{
+  display:inline-block;
+  padding: 6px 10px 4px;
+  background: rgba(204, 255, 0, 0.92);
+  color: #000;
+  margin-top: 6px;
+}
+
+/* =========================
+   CONTEXT PANEL RESET
+   IMPORTANT: prevents overlay
+   ========================= */
+
+.poster-context,
+.poster-context *{
+  position: static !important;
+  top: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+  left: auto !important;
+  transform: none !important;
+  float: none !important;
+}
+
+/* The panel itself can be positioned by poster-mid; inside: NORMAL FLOW */
+.poster-context{
+  background: rgba(0,0,0,0.42);
+  padding: 14px;
+  color: rgba(255,255,255,0.92);
+
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  grid-template-areas:
+    "tiles tiles"
+    "posts posts";
+  gap: 14px;
+}
+
+/* =========================
+   TOP ROW: TILES GRID
+   (icons + featured + misc)
+   ========================= */
+
+.ctx-tiles{
+  grid-area: tiles;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1fr 1fr;
+  gap: 12px;
+  align-items: stretch;
+}
+
+/* shared tile style */
+.ctx-tile{
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: 8px;
+
+  padding: 12px;
+  background: rgba(0,0,0,0.35);
+  color: rgba(255,255,255,0.92);
+  text-decoration: none;
+
+  border: 1px solid rgba(255,255,255,0.06); /* tiny, not “outliney” */
+  transition: filter .12s ease, background .12s ease;
+}
+
+.ctx-tile:hover{
+  background: rgba(0,0,0,0.48);
+  filter: saturate(1.12);
+}
+
+/* tile header */
+.ctx-kicker{
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0.80;
+}
+
+/* featured tile: more violent */
+.ctx-tile--featured{
+  background: rgba(0,0,0,0.58);
+  border-color: rgba(204,255,0,0.22);
+}
+
+.ctx-title{
+  font-weight: 900;
+  text-transform: uppercase;
+  line-height: 0.95;
+  letter-spacing: -0.01em;
+  color: rgba(255,255,255,0.95);
+}
+
+.ctx-sub{
+  font-size: 12px;
+  opacity: 0.80;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* icon tile */
+.ctx-tile--icons{
+  grid-template-rows: auto auto 1fr;
+}
+
+.ctx-icons{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.ctx-ico{
+  display: grid;
+  place-items: center;
+  height: 44px;
+
+  background: rgba(0,255,255,0.12);
+  color: rgba(255,255,255,0.92);
+
+  text-decoration: none;
+  font-weight: 900;
+  text-transform: uppercase;
+
+  border: 1px solid rgba(0,255,255,0.18);
+  transition: background .12s ease, filter .12s ease;
+}
+
+.ctx-ico:hover{
+  background: rgba(0,255,255,0.22);
+  filter: saturate(1.2);
+}
+
+/* thumbnail tiles */
+.ctx-thumb{
+  aspect-ratio: 16 / 9;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.06);
+  overflow: hidden;
+}
+
+.ctx-thumb img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: saturate(1.15) contrast(1.05);
+}
+
+/* =========================
+   POSTS ROW: INLINE WITH //
+   ========================= */
+
+.ctx-posts{
+  grid-area: posts;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255,255,255,0.10);
+}
+
+.ctx-posts .ctx-kicker{
+  margin-bottom: 8px;
+}
+
+/* inline run */
+.ctx-postlist{
+  display: inline;
+  line-height: 1.35;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.ctx-postlist a{
+  color: rgba(255,255,255,0.92);
+  text-decoration: none;
+}
+
+.ctx-postlist a:hover{
+  text-decoration: underline;
+}
+
+/* the // separators */
+.ctx-postlist a + a::before{
+  content: " // ";
+  color: rgba(204,255,0,0.85);
+  font-weight: 900;
+  letter-spacing: 0.08em;
+}
+
+/* =========================
+   MOBILE
+   ========================= */
+
+@media (max-width: 1000px){
+  .poster-mid{
+    left: 50%;
+    top: 70%;
+    width: min(840px, 92vw);
   }
-  .tagline::after{
-    display: none;
+
+  .poster-context{
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "tiles"
+      "posts";
+  }
+
+  .ctx-tiles{
+    grid-template-columns: 1fr 1fr;
   }
 }
 
-@media (max-width: 520px){
-  .brand{ font-size: 3.8rem; }
-  .strapline a{
-    padding: 0.7rem 0.75rem;
-    letter-spacing: 0.14em;
+@media (max-width: 640px){
+  .ctx-tiles{
+    grid-template-columns: 1fr;
   }
+  .ctx-icons{
+    grid-template-columns: repeat(4, minmax(50px, 1fr));
+  }
+}
+
+
+
+
+
+
+/* ================================
+   WOW TITLE: TRIPLE-PLATE SLICE
+   ================================ */
+
+.poster-title{
+  position:absolute; /* keep as you already have */
+  left: 3.2vw;
+  top: 3.0vh;
+  z-index: 40;
+
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 0.84;
+
+  /* choose color: magenta is fine, but let’s deepen it */
+  color: #ff00c8;
+
+  /* optional: slight tilt for poster violence */
+  transform: rotate(-2.2deg) skewX(-6deg);
+  transform-origin: left top;
+
+  /* make it feel printed */
+  text-shadow:
+    0.06em 0.02em 0 rgba(0,0,0,0.25),
+    -0.02em 0.02em 0 rgba(0,0,0,0.18);
+}
+
+/* Two “plates” of the same word, clipped into bands */
+.poster-title::before,
+.poster-title::after{
+  content: attr(href); /* fallback if you don’t add data-text */
+  /* IMPORTANT: better if you set data-text, see note below */
+  content: attr(data-text);
+
+  position:absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+
+  pointer-events: none;
+  mix-blend-mode: screen;
+  opacity: 0.92;
+}
+
+/* CYAN PLATE: top band */
+.poster-title::before{
+  color: #20f7ff;
+  transform: translate(0.06em, -0.02em) rotate(0.4deg);
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 44%,
+    0% 44%
+  );
+  filter: saturate(1.1) contrast(1.05);
+}
+
+/* ACID PLATE: middle “tear” band, shifted harder */
+.poster-title::after{
+  color: #cfff00;
+  transform: translate(-0.03em, 0.06em) rotate(-0.2deg);
+  clip-path: polygon(
+    0% 42%,
+    100% 34%,
+    100% 82%,
+    0% 92%
+  );
+  opacity: 0.84;
+}
+
+/* Hard “cut line” across the title (like a knife splice) */
+.poster-title{
+  -webkit-mask-image: linear-gradient(
+    175deg,
+    #000 0%,
+    #000 46%,
+    rgba(0,0,0,0.0) 47%,
+    rgba(0,0,0,0.0) 49%,
+    #000 50%,
+    #000 100%
+  );
+  -webkit-mask-size: 100% 100%;
+  mask-image: linear-gradient(
+    175deg,
+    #000 0%,
+    #000 46%,
+    rgba(0,0,0,0.0) 47%,
+    rgba(0,0,0,0.0) 49%,
+    #000 50%,
+    #000 100%
+  );
+  mask-size: 100% 100%;
+}
+
+/* Optional: disable any previous hover styling on the title */
+.poster-title:hover{
+  filter: none;
+  text-decoration: none;
+}
+
+
+
+
+
+
+/* ================================
+   JAGGED CONTEXT PANEL (ANTI-GRID)
+   ================================ */
+
+/* rotate the whole context slab */
+.poster-mid{
+
+    transform:
+    rotate(-2.4deg)
+    skewX(-1.2deg)
+    translate(-40%, -60%); /* ← tweak these */
+  transform-origin: 20% 20%;
+}
+
+/* keep text from getting too drunk (optional, subtle) */
+.poster-mid *{
+  transform: rotate(1.2deg);
+  transform-origin: center;
+}
+
+/* if your cubes are links/cards, apply jitter */
+.poster-mid a,
+.poster-mid .tile,
+.poster-mid .poster-card{
+  display: block;
+  transform-origin: center;
+  transition: transform 120ms ease, filter 120ms ease;
+}
+
+/* micro-jitter per item */
+.poster-mid a:nth-child(1),
+.poster-mid .tile:nth-child(1),
+.poster-mid .poster-card:nth-child(1){ transform: rotate(-2deg) translate(-2px, 1px); }
+
+.poster-mid a:nth-child(2),
+.poster-mid .tile:nth-child(2),
+.poster-mid .poster-card:nth-child(2){ transform: rotate(1.5deg) translate(2px, -1px); }
+
+.poster-mid a:nth-child(3),
+.poster-mid .tile:nth-child(3),
+.poster-mid .poster-card:nth-child(3){ transform: rotate(-1.1deg) translate(1px, 2px); }
+
+.poster-mid a:nth-child(4),
+.poster-mid .tile:nth-child(4),
+.poster-mid .poster-card:nth-child(4){ transform: rotate(2.2deg) translate(-1px, 0px); }
+
+.poster-mid a:nth-child(5),
+.poster-mid .tile:nth-child(5),
+.poster-mid .poster-card:nth-child(5){ transform: rotate(-1.7deg) translate(-2px, -2px); }
+
+.poster-mid a:nth-child(6),
+.poster-mid .tile:nth-child(6),
+.poster-mid .poster-card:nth-child(6){ transform: rotate(1.1deg) translate(2px, 2px); }
+
+/* hover: make it feel like a physical tile (not “whack”) */
+.poster-mid a:hover,
+.poster-mid .tile:hover,
+.poster-mid .poster-card:hover{
+  transform: translateY(-2px) rotate(0.6deg);
+  filter: brightness(1.08) contrast(1.05);
+  text-decoration: none;
 }
 

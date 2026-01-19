@@ -6,81 +6,97 @@ paginate: true
 entries_layout: list
 ---
 
-<main class="issue">
+<div class="cover-poster">
+  <div class="poster-bg"></div>
 
-  <!-- MASTHEAD / COVER -->
-  <section class="cover">
+  <!-- MASTHEAD -->
+  <a href="/" data-text="SOMEODD" class="poster-title">SOMEODD</a>
 
-    <header class="masthead">
-      <h1 class="brand">SOMEODD</h1>
-      <p class="tagline">
-        this website is a simulacra of my gopherhole
-      </p>
-    </header>
+  <!-- TOP STRAP -->
+  <a href="/tags/#mysoftware" class="poster-top-right">WEIRD WAREZ</a>
 
-    <!-- NAV AS STRAPLINE -->
-    <nav class="strapline" aria-label="Primary navigation">
-      <a href="/phlog/">PHLOG</a>
-      <a href="/showcase/">SHOWCASE</a>
-      <a href="/about/">ABOUT</a>
-      <a href="/search/">SEARCH</a>
-    </nav>
+  <!-- LEFT STACK -->
+  <a href="/phlog-mirror/" class="poster-left poster-left-1">PHLOG</a>
+  <a href="/showcase/" class="poster-left poster-left-2">BRUTALIST<br>RAW</a>
+  <span class="poster-left poster-left-3">NO<br>GRIDS</span>
 
-    <!-- COVER LINES (NOT CTAs) -->
-    <section class="coverlines">
+  <!-- RIGHT VERTICAL -->
+  <a href="/about/" class="poster-vertical-right">ABOUT</a>
 
-      <a class="coverline feature" href="{{ site.posts.first.url | relative_url }}">
-        <span class="kicker">FEATURED</span>
-        <span class="headline">{{ site.posts.first.title }}</span>
-      </a>
+<!-- CENTER + CONTEXT WRAP -->
+<div class="poster-mid">
+  <!-- CENTER BLOCK -->
+  <a href="https://gopher.someodd.zip" class="poster-center">
+    SIMULACRA<br>
+    OF MY<br>
+    <span class="highlight">GOPHERHOLE</span>
+  </a>
 
-      <a class="coverline" href="/gateway/games/grpg/look/">
-        <span class="kicker">WEIRD SOFTWARE</span>
-        <span class="headline">PLAY MY MMO INSIDE GOPHERSPACE</span>
-      </a>
+  <!-- CONTEXT PANEL -->
+<div class="poster-context">
+  <div class="ctx-tiles">
 
-      <a class="coverline" href="https://github.com/someodd">
-        <span class="kicker">ARCHIVE</span>
-        <span class="headline">GITHUB / RECEIPTS</span>
-      </a>
+    <a class="ctx-tile ctx-tile--featured" href="/play/">
+      <div class="ctx-kicker">FEATURED</div>
+      <div class="ctx-title">PLAY THE MMO RPG</div>
+      <div class="ctx-sub">RUNS INSIDE GOPHERSPACE</div>
+    </a>
 
-      <a class="coverline" href="mailto:hi@someodd">
-        <span class="kicker">CONTACT</span>
-        <span class="headline">HIRE / COLLAB</span>
-      </a>
+    <div class="ctx-tile ctx-tile--icons">
+      <div class="ctx-kicker">CONTACT</div>
+      <div class="ctx-icons">
+        <a href="https://github.com/someodd" class="ctx-ico">GH</a>
+        <a href="mailto:hi@someodd.zip" class="ctx-ico">✉</a>
+        <a href="https://fosstodon.org/@someodd" class="ctx-ico">M</a>
+        <a href="/about/" class="ctx-ico">?</a>
+      </div>
+    </div>
 
-      <a class="coverline" href="gopher://gopher.someodd.zip/1/">
-        <span class="kicker">ALT-WEB</span>
-        <span class="headline">ENTER THE GOPHERHOLE</span>
-      </a>
+    <a class="ctx-tile" href="/showcase/">
+      <div class="ctx-kicker">SHOWCASE</div>
+      <div class="ctx-thumb"><img src="/assets/images/frontpage.png" alt=""></div>
+      <div class="ctx-sub">WEIRD SOFTWARE</div>
+    </a>
 
-    </section>
+    <a class="ctx-tile" href="/phlog-mirror/">
+      <div class="ctx-kicker">LATEST DROP</div>
+      <div class="ctx-title">READ THE PHLOG</div>
+      <div class="ctx-sub">NEW POSTS / NOTES</div>
+    </a>
 
-    <!-- MAGAZINE FURNITURE -->
-    <aside class="stamps" aria-hidden="true">
-      <span>ISSUE 0</span>
-      <span>ANTI-DESIGN</span>
-      <span>TEXT-HEAVY</span>
-      <span>NO ADS</span>
-    </aside>
+  </div>
 
-  </section>
+  <div class="ctx-posts">
+    <div class="ctx-kicker">LATEST</div>
+    <div class="ctx-postlist">
+      <a href="#">gasm: 1.5 KB Gopher server…</a>
+      <a href="#">Interview on screwtape…</a>
+      <a href="#">My Gopher Host That Clones Your Repo</a>
+    </div>
+  </div>
+</div>
 
-  <!-- TABLE OF CONTENTS -->
-  <section class="toc">
-    <h2>ARTICLES</h2>
 
-    <ul class="toc-list">
-      {% for post in site.posts %}
-        <li>
-          <a href="{{ post.url | relative_url }}">
-            <span class="toc-title">{{ post.title }}</span>
-            <span class="toc-meta">{{ post.date | date: "%Y" }}</span>
-          </a>
-        </li>
-      {% endfor %}
-    </ul>
-  </section>
 
-</main>
+  <!-- BOTTOM INVERTED -->
+  <a href="/search/" class="poster-bottom-invert">SEARCH</a>
+
+  <!-- MICRO CREDIT -->
+  <span class="poster-micro">TEXT-HEAVY · NO ADS · ALT-WEB</span>
+
+  <div class="radio">
+	  <button id="enter">Radio</button>
+
+<audio id="radio" preload="none">
+  <source src="https://radio.someodd.zip/" type="audio/mpeg">
+</audio>
+
+<script>
+  document.getElementById("enter").onclick = () => {
+    document.getElementById("radio").play();
+  };
+</script>
+  </div>
+</div>
+
 
