@@ -6,6 +6,8 @@ paginate: true
 entries_layout: list
 ---
 
+{% assign sorted_posts = site.posts | sort: 'date' | reverse %}
+
 <div class="cover-poster">
   <div class="poster-bg"></div>
 
@@ -69,9 +71,12 @@ entries_layout: list
   <div class="ctx-posts">
     <div class="ctx-kicker">LATEST</div>
     <div class="ctx-postlist">
-      <a href="#">gasm: 1.5 KB Gopher server…</a>
-      <a href="#">Interview on screwtape…</a>
-      <a href="#">My Gopher Host That Clones Your Repo</a>
+
+  {% for post in sorted_posts limit:5 %}
+      <a href="{{ post.url | relative_url }}">
+        {{ post.title }}
+      </a>
+  {% endfor %}
     </div>
   </div>
 </div>
