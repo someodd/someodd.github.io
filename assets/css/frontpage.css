@@ -199,7 +199,7 @@ body.layout--frontpage{
 
 /* BOTTOM INVERTED: SEARCH (magenta, upside down centered bottom) */
 .poster-bottom-invert{
-  left: 50%;
+  left: 40%;
   bottom: 3.2vh;
   --rot: 180deg;
   transform: translateX(-50%) rotate(180deg)!important;
@@ -246,11 +246,12 @@ body.layout--frontpage{
   .poster-title{ left: 4vw; top: 3vh; font-size: 16vw; }
   .poster-top-right{ right: 6vw; top: 12vh; font-size: 7vw; }
   .poster-vertical-right{ right: 3vw; top: 8vh; font-size: 7vw; }
-  .poster-left-1{ left: 2vw; top: 42vh; font-size: 7vw; }
-  .poster-left-2{ left: 8vw; top: 40vh; font-size: 9vw; }
-  .poster-left-3{ left: 8vw; top: 60vh; font-size: 6.5vw; }
-  .poster-center{ left: 60vw; top: 66vh; font-size: 9vw; }
+  .poster-left-1{ left: 2vw; top: 22vh; font-size: 7vw; }
+  .poster-left-2{ left: 8vw; top: 20vh; font-size: 9vw; }
+  .poster-left-3{ left: 8vw; top: 30vh; font-size: 6.5vw; }
+  .poster-center{ position: static!important; left: 0; top: 0; font-size: 9vw; }
   .poster-bottom-invert{ font-size: 7vw; }
+  .poster-mid { position: absolute; bottom: 0; top: auto; }
 }
 
 /* --- CONTEXT PANEL (lower-right bay) --- */
@@ -476,7 +477,7 @@ body.layout--frontpage{
   right: auto !important;
   bottom: auto !important;
   left: auto !important;
-  transform: none !important;
+  /*transform: none !important;*/
   float: none !important;
 }
 
@@ -486,12 +487,6 @@ body.layout--frontpage{
   padding: 14px;
   color: rgba(255,255,255,0.92);
 
-  display: grid;
-  grid-template-columns: 1.05fr 0.95fr;
-  grid-template-areas:
-    "tiles tiles"
-    "posts posts";
-  gap: 14px;
 }
 
 /* =========================
@@ -612,6 +607,11 @@ body.layout--frontpage{
   grid-area: posts;
   padding-top: 10px;
   border-top: 1px solid rgba(255,255,255,0.10);
+
+  grid-column: 1 / -1;   /* span full row */
+  margin-top: 0.75rem;  /* space below cards */
+  align-self: start;    /* prevent sideways drift */
+  width: 100%;
 }
 
 .ctx-posts a {
@@ -671,16 +671,27 @@ body.layout--frontpage{
   }
 
   .ctx-tiles{
-    grid-template-columns: 1fr 1fr;
   }
 }
 
 @media (max-width: 640px){
   .ctx-tiles{
-    grid-template-columns: 1fr;
+	  display: block;
+  }
+  .poster-micro {
+	  position: static;
   }
   .ctx-icons{
     grid-template-columns: repeat(4, minmax(50px, 1fr));
+  }
+
+  .poster-center{
+	  font-size: 100%;
+	  display: inline-block;
+  }
+  .poster-bottom-invert {
+	  position: static;
+	  transform: rotate(180deg);
   }
 }
 
@@ -856,5 +867,102 @@ body.layout--frontpage{
   transform: translateY(-2px) rotate(0.6deg);
   filter: brightness(1.08) contrast(1.05);
   text-decoration: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ===========================
+   MINIMAL PATCH (ONLY mid + center + post links)
+   Paste at VERY BOTTOM
+   =========================== */
+
+/* 1) Make sure these are actually above the background and not getting clipped */
+.cover-poster { position: relative; overflow: hidden; }
+
+/* 2) SIMULACRA must never disappear */
+.poster-center{
+  position: absolute;
+  z-index: 80;              /* always above poster-mid */
+  display: block;
+  max-width: min(92vw, 760px);
+  pointer-events: auto;
+}
+
+/* 3) Context box: stable + never overlaps itself */
+.poster-mid{
+  position: absolute;
+  z-index: 40;
+  width: min(560px, 52vw);
+  max-width: 92vw;
+}
+
+/* 4) Stop post titles from blowing out the box */
+.poster-mid .post-list,
+.poster-mid .post-list a{
+  min-width: 0;
+}
+
+.poster-mid .post-list a{
+  display: block;
+  max-width: 30ch;          /* your “30 chars” rule */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ===========================
+   RESPONSIVE: keep both visible
+   =========================== */
+
+/* DESKTOP/WIDE:
+   Keep whatever positions you already loved.
+   (Do NOT override your good values here.) */
+
+/* MID SCREENS: nudge poster-mid toward center without changing poster-center */
+@media (max-width: 980px){
+  .poster-mid{
+    /* pull it inward */
+    left: 58%;
+    top: 58%;
+    transform: translate(-50%, -50%) rotate(-2deg);
+    width: min(520px, 72vw);
+  }
+
+  .poster-mid .post-list a{
+    max-width: 28ch;
+  }
+}
+
+/* SMALL SCREENS:
+   Rule: poster-mid sits ABOVE poster-center, not on top of it.
+   We do this by anchoring both to the bottom, with guaranteed separation. */
+@media (max-width: 640px){
+  .poster-mid{
+    left: 0;
+    bottom: 0;           /* context box higher */
+    top: auto;
+    transform: rotate(-1deg);
+    width: 92vw;
+  }
+
+  .poster-mid .post-list a{
+    max-width: 26ch;
+  }
+
+  .poster-left-1 {
+  }
+  .cover-poster {
+	  overflow: auto;
+  }
 }
 
