@@ -1,5 +1,11 @@
-- title: Phlog
+- title: Posts
   url: /phlog-mirror/
+- title: my_warez
+  url: /tags/my_warez
+- title: my_servs
+  url: /tags/my_servs
+- title: Interviews
+  url: /tags/interviews
 - title: About
   url: /about/
 - title: Search

@@ -16,9 +16,6 @@ title: 'gopherden: Forum via Gopher Protocol'
 
 I'm thinking about renaming it to "phorum."
 
-* TOC
-{:toc}
-
 # Features (Users/Visitors)
 
 Features for the people who use a gopherden:
@@ -31,10 +28,6 @@ Features for the people who use a gopherden:
 * "Secret codes" which allow you to use codes like `<jgsBagOfMoney>` to potentially show an ASCII art picture
 * Rate-limiting (how fast you can make new threads or posts)
 * Handles/parses Gopher and HTTP(S) URIs into menu/map items
-
-# News
-
-[news from my blog about gopherden]
 
 # Known issues
 
