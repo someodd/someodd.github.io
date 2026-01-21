@@ -5,4 +5,4 @@ permalink: /tags/my_warez/
 taxonomy: my_warez
 ---
 
-Posts I bothered writing regarding the software I made.
+Posts about the software I made.
