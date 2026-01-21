@@ -5,6 +5,8 @@ tags:
 - gopher
 - news
 - announcements
+- my_warez
+- my_servs
 title: My Gopher Host That Clones Your Repo
 
 ---

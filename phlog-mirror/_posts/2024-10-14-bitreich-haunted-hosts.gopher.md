@@ -5,6 +5,7 @@ tags:
 - linux
 - halloween
 - events
+- my_warez
 title: My entry for Bitreich's "Haunted Hosts" Halloween Event
 
 ---

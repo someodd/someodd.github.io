@@ -4,6 +4,7 @@ tags:
 - gopher
 - games
 - haskell
+- my_warez
 title: I Made a Multiplayer RPG Where You Explore Gopherspace With Others
 
 ---

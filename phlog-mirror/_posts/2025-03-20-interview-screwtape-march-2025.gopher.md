@@ -6,6 +6,7 @@ tags:
 - gopher
 - someodd
 - code
+- my_interviews
 title: My radio interview (Lispy Gopher Climate/screwtape)
 
 ---

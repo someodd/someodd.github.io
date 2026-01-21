@@ -5,6 +5,7 @@ tags:
 - haskell
 - games
 - showcase
+- my_warez
 title: 'Intramaze: Chat encounters in collab-built maze'
 
 ---

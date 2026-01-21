@@ -5,6 +5,8 @@ tags:
 - haskell
 - nix
 - showcase
+- my_warez
+- my_servs
 title: 'gopherden: Forum via Gopher Protocol'
 
 ---

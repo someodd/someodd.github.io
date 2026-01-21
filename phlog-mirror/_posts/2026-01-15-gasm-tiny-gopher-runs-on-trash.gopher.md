@@ -1,8 +1,13 @@
 ---
 date: 2026-01-15
+image:
+  caption: A whacky photo of me showing the file size of the gasm binary.
+  path: /assets/phlog/posts/gasm/gasm-showing-size.jpg
+  thumbnail: /assets/phlog/posts/gasm/gasm-showing-size.jpg
 tags:
 - linux
 - gopher
+- my_warez
 title: 'gasm: 1.5 KB Gopher server that runs on 24 KB of RAM'
 
 ---
@@ -16,6 +21,10 @@ assembly with zero dependencies—no libc, no runtime, just raw `int 0x80`
 syscalls.
 
 The result is GASM.
+
+![A whacky photo of me showing the file size of the gasm binary](/assets/posts/gasm/gasm-showing-size.jpg)
+
+[Whacky photo of gasm's binary size](gopher://gopher.someodd.zip:70/I/assets/posts/gasm/gasm-showing-size.jpg)
 
 By manually managing the ELF headers, disabling page alignment, and
 using the legacy Linux `socketcall` interface, the final efficiency
@@ -39,4 +48,4 @@ The source is available for audit.
 
 [Source Code and Download (GitHub)](https://github.com/someodd/gasm)
 
-Original content in gopherspace: [gopher://gopher.someodd.zip:70/0/phlog/gasm-tiny-gopher-runs-on-trash.gopher.txt](gopher://gopher.someodd.zip:70/0/phlog/gasm-tiny-gopher-runs-on-trash.gopher.txt)
+Original content in gopherspace: [gopher://gopher.someodd.zip:70/1/phlog/gasm-tiny-gopher-runs-on-trash.gopher.txt](gopher://gopher.someodd.zip:70/1/phlog/gasm-tiny-gopher-runs-on-trash.gopher.txt)

@@ -5,9 +5,10 @@ image:
   path: /assets/phlog/screenshot-window-maker.png
   thumbnail: /assets/phlog/screenshot-window-maker.png
 tags:
-- windowmaker
+- window_maker
 - debian
 - linux
+- retro_tech
 title: Productivity in Window Maker
 
 ---
