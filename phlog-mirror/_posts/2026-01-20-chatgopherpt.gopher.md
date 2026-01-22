@@ -9,9 +9,11 @@ title: 'ChatGopherPT: talking to LLMs over Gopher'
 ---
 
 
+I'm the bastard who brought Chinese AI to the pre-web Internet.
+
 I wanted a way to talk to a language model that felt closer to a daemon than a platform.
 
-So I put `ollama` behind Gopher.
+So I put `ollama` behind Gopher, using DeepSeek's models.
 
 Available here: gopher://gopher.someodd.zip/1/gateway/ollama/list
 
@@ -26,5 +28,9 @@ I like that this works from a terminal. I like that it works from Lynx. I like t
 This is not a startup and not a demo. It is a thing I wanted, so I built it and left it running.
 
 If you miss small servers, plain text, and systems that stay out of your way, you might enjoy talking to a language model over Gopher.
+
+It's open source: https://github.com/someodd/small-gopher-applets
+
+The source is a single README, which is a Literate Haskell file. You literally mark the Markdown file as an executable and run it.
 
 Original content in gopherspace: [gopher://gopher.someodd.zip:70/0/phlog/chatgopherpt.gopher.txt](gopher://gopher.someodd.zip:70/0/phlog/chatgopherpt.gopher.txt)
