@@ -10,14 +10,17 @@ tags:
 - events
 - news
 - announcements
-title: Counter-Strike 1.6 Weekly Event
+- my_servs
+title: Counter-Strike 1.6 Server + Weekly Event
 
 ---
 
 
 Counter-Strike 1.6 @ cs16.someodd.zip!
 
-Weekly. Saturday from 7-9pm, US/Pacific (LA time).
+It's basically always up, but the event is weekly.
+
+Every Saturday from 7-9pm, US/Pacific (LA time).
 
 All hosted on my home server. For complete info:
 
