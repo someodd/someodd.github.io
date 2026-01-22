@@ -1,5 +1,9 @@
 ---
 date: 2024-12-30
+image:
+  caption: ASCII art being displayed in Lagrange.
+  path: /assets/posts/lagrange_ascii/someodd_ascii.png
+  thumbnail: /assets/posts/lagrange_ascii/someodd_ascii.png
 tags:
 - gopher
 title: Lagrange & ASCII-art-heavy gopherholes
@@ -38,4 +42,9 @@ markdown bullets into actual bullets.
 
 Also disable word wrapping. This is under "page layout" > wrpa long plaintext lines (make sure to disable).
 
-Original content in gopherspace: [gopher://gopher.someodd.zip:70/0/phlog/lagrange_gopher_ascii_art_tweaks.gopher.txt](gopher://gopher.someodd.zip:70/0/phlog/lagrange_gopher_ascii_art_tweaks.gopher.txt)
+
+Example of ASCII art in Lagrange:
+
+![ASCII art in Lagrange](/assets/posts/lagrange_ascii/someodd_ascii.png)
+
+Original content in gopherspace: [gopher://gopher.someodd.zip:70/1/phlog/lagrange_gopher_ascii_art_tweaks.gopher.txt](gopher://gopher.someodd.zip:70/1/phlog/lagrange_gopher_ascii_art_tweaks.gopher.txt)

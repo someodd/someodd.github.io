@@ -1,5 +1,9 @@
 ---
 date: 2024-03-10
+image:
+  caption: Lagrange for android browsing gopherden.
+  path: /assets/showcase/gopherden/lagrange-gopherden-phone.png
+  thumbnail: /assets/showcase/gopherden/lagrange-gopherden-phone.png
 tags:
 - gopher
 - haskell
@@ -105,4 +109,4 @@ package, so a set up I like and think is simple/easy:
 There you go! Keep in mind if you send the exit signal (I think) inside of `nix
 develop` the database gets wiped.
 
-Original content in gopherspace: [gopher://gopher.someodd.zip:70/0/phlog/gopherden.gopher.txt](gopher://gopher.someodd.zip:70/0/phlog/gopherden.gopher.txt)
+Original content in gopherspace: [gopher://gopher.someodd.zip:70/1/phlog/gopherden.gopher.txt](gopher://gopher.someodd.zip:70/1/phlog/gopherden.gopher.txt)

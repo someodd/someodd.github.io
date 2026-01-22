@@ -1,5 +1,9 @@
 ---
 date: 2025-03-20
+image:
+  caption: Flyer promoting the Lispy Gopher Show.
+  path: /assets/posts/screwtape/lispy_gopher_show_flyer.jpg
+  thumbnail: /assets/posts/screwtape/lispy_gopher_show_flyer.jpg
 tags:
 - archival
 - radio
@@ -60,5 +64,7 @@ Isn't this just the magic of smallnet, operating your own servers, federation, a
 	Chief Press Officer (CPO)
 
 Wow, what a wonderful letter! It feels very nice to be recognized by the smallnet community, especially the niches which share a lot of my aesthetics!
+
+![Lispy Gopher Show Promotional Flyer](/assets/posts/screwtape/lispy_gopher_show_flyer.jpg)
 
 Original content in gopherspace: [gopher://gopher.someodd.zip:70/1/phlog/interview-screwtape-march-2025.gopher.txt](gopher://gopher.someodd.zip:70/1/phlog/interview-screwtape-march-2025.gopher.txt)

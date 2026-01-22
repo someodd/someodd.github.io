@@ -1,5 +1,9 @@
 ---
 date: 2025-03-08
+image:
+  caption: Chinese flyer promoting my event.
+  path: /assets/posts/richmond-library/extension-staircase-atrium.jpg
+  thumbnail: /assets/posts/richmond-library/extension-staircase-atrium.jpg
 tags:
 - libraries
 - san francisco
@@ -16,6 +20,8 @@ This is part of my series on branches of the San Francisco Public Library system
 
 Please actually look through the gallery--there's a lot of photos that aren't shown in this post!
 Hopefully the file names are descriptive enough.
+
+![Atrium Staircase](/assets/posts/richmond-library/extension-staircase-atrium.jpg)
 
 ## Explorer map
 

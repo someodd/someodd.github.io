@@ -1,5 +1,9 @@
 ---
 date: 2025-11-17
+image:
+  caption: Flyer promoting the Lispy Gopher Show.
+  path: /assets/posts/screwtape/lispy_gopher_show_flyer.jpg
+  thumbnail: /assets/posts/screwtape/lispy_gopher_show_flyer.jpg
 tags:
 - gopher
 - interviews
@@ -26,4 +30,7 @@ Some topics covered:
 * The logic of Gopher
 * I talked about Category Theory (I'm no expert) and... MONADS.
 
-Original content in gopherspace: [gopher://gopher.someodd.zip:70/0/phlog/screwtape-interview-2025-11-04.gopher.txt](gopher://gopher.someodd.zip:70/0/phlog/screwtape-interview-2025-11-04.gopher.txt)
+
+![Lispy Gopher Show Promotional Flyer](/assets/posts/screwtape/lispy_gopher_show_flyer.jpg)
+
+Original content in gopherspace: [gopher://gopher.someodd.zip:70/1/phlog/screwtape-interview-2025-11-04.gopher.txt](gopher://gopher.someodd.zip:70/1/phlog/screwtape-interview-2025-11-04.gopher.txt)

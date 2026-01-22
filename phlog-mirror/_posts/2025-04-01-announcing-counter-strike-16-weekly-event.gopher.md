@@ -1,5 +1,9 @@
 ---
 date: 2025-04-01
+image:
+  caption: Chinese flyer promoting my event.
+  path: /assets/posts/counter-strike-event/flyer-chinese.png
+  thumbnail: /assets/posts/counter-strike-event/flyer-chinese.png
 tags:
 - gaming
 - selfhosted
@@ -29,17 +33,17 @@ Join the text chats, too:
 
 [IRC (classic, more reliable)](gopher://gopher.someodd.zip:70/0/services/irc.md)
 
-[Flyer promoting the event](gopher://gopher.someodd.zip:70/I/assets/posts/counter-strike-event/flyer.png)
+![Flyer promoting the event](/assets/posts/counter-strike-event/flyer.png)
 
-[Flyer promoting the event (square version)](gopher://gopher.someodd.zip:70/I/assets/posts/counter-strike-event/flyer-square.png)
+![Flyer promoting the event (square version)](/assets/posts/counter-strike-event/flyer-square.png)
 
-[Flyer promoting the event (printable version)](gopher://gopher.someodd.zip:70/I/assets/posts/counter-strike-event/flyer-printable.png)
+![Flyer promoting the event (printable version)](/assets/posts/counter-strike-event/flyer-printable.png)
 
-[Flyer promoting the event (Chinese version)](gopher://gopher.someodd.zip:70/I/assets/posts/counter-strike-event/flyer-chinese.png)
+![Flyer promoting the event (Chinese version)](/assets/posts/counter-strike-event/flyer-chinese.png)
 
-[Flyer promoting the event (Chinese printable version)](gopher://gopher.someodd.zip:70/I/assets/posts/counter-strike-event/flyer-chinese-printable.png)
+![Flyer promoting the event (Chinese printable version)](/assets/posts/counter-strike-event/flyer-chinese-printable.png)
 
-[Flyer promoting the event (Square Chinese version)](gopher://gopher.someodd.zip:70/I/assets/posts/counter-strike-event/flyer-chinese-square.png)
+![Flyer promoting the event (Square Chinese version)](/assets/posts/counter-strike-event/flyer-chinese-square.png)
 
 Contact me if you have questions!
 

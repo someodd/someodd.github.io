@@ -15,8 +15,6 @@ title: Whisper Radio
 ---
 
 
-## Look ma, no human DJ!
-
 Whisper Radio is a (hopefully) 24/7 Internet radio station "hosted by a bot."
 
 Text-To-Speech (TTS, both AI and older-school) is leveraged to dynamically read news, texts, trends, announce the next song, report the weather, the freshest thread post from my forum, and maybe more! Configurable!

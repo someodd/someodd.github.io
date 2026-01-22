@@ -1,5 +1,9 @@
 ---
 date: 2025-09-17
+image:
+  caption: Handmade map of the world of Scepter of Goth.
+  path: /assets/posts/scepter_of_goth/ScepterMap02.jpg
+  thumbnail: /assets/posts/scepter_of_goth/ScepterMap02.jpg
 tags:
 - gaming
 title: Scepter of Goth
@@ -7,7 +11,21 @@ title: Scepter of Goth
 ---
 
 
-# What stats mean?
+I had the pleasant experience of playing the first MMORPG with one of the people involved, who also happens to be a co-author of The Internet Gopher Protocol: Bob Alberti. I met him because I interviewed him for a documentary.
+
+## Bonus material
+
+Here are some images I got from Bob Alberti himself, including handmade maps.
+
+![handmade map 01](/assets/posts/scepter_of_goth/ScepterMap01.jpg)
+
+![handmade map 02](/assets/posts/scepter_of_goth/ScepterMap02.jpg)
+
+![some other map](/assets/posts/scepter_of_goth/001_Boldhome-Jroldham.jpg)
+
+An open source version: https://github.com/shelches/scepter
+
+## Review of stats!
 
 [Looking at code of a 40+ year old MMORPG to minmax my fighter.](https://fosstodon.org/@someodd/115222607021233114)
 
@@ -101,4 +119,4 @@ leaves us with 45 points to divide amont our three selected stats.
 
 Skills were a bit hard for me to reason about. I think I just will play the game to really figure out which skill/weapon type is best for which scenarios kinda...
 
-Original content in gopherspace: [gopher://gopher.someodd.zip:70/0/phlog/scepter_of_goth.gopher.txt](gopher://gopher.someodd.zip:70/0/phlog/scepter_of_goth.gopher.txt)
+Original content in gopherspace: [gopher://gopher.someodd.zip:70/1/phlog/scepter_of_goth.gopher.txt](gopher://gopher.someodd.zip:70/1/phlog/scepter_of_goth.gopher.txt)

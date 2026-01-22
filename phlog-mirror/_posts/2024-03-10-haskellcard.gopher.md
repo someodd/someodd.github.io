@@ -1,5 +1,9 @@
 ---
 date: 2024-03-10
+image:
+  caption: Cruddy image of Haskellcard in action.
+  path: /assets/posts/haskellcard/haskellcard-xmas-release.png
+  thumbnail: /assets/posts/haskellcard/haskellcard-xmas-release.png
 tags:
 - sdl
 - haskell
@@ -28,5 +32,7 @@ Neat parts:
   * Music queue system, so can loop, but also wait for a loop to finish before
     next song plays
   * Tweening system
+
+![Cruddy demo from Christmas](/assets/posts/haskellcard/haskellcard-xmas-release.png)
 
 Original content in gopherspace: [gopher://gopher.someodd.zip:70/0/phlog/haskellcard.gopher.txt](gopher://gopher.someodd.zip:70/0/phlog/haskellcard.gopher.txt)

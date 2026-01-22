@@ -1,5 +1,9 @@
 ---
 date: 2024-10-14
+image:
+  caption: Felix the Cat playing in a terminal.
+  path: /assets/posts/bitreich_halloween/treat.png
+  thumbnail: /assets/posts/bitreich_halloween/treat.png
 tags:
 - sysadmin
 - linux
@@ -26,6 +30,8 @@ ssh -p 6666 treat@someodd.zip
 roygbyte of bitreich mentioned and summarized all the entries (including mine!):
 
 [Read the article on roybyte's gopherhole](gopher://roygbyte.com:70/1/haunted_hosts_hallowe_en_2024.gph)
+
+![Felix the Cat playing in a terminal.](/assets/posts/bitreich_halloween/treat.png)
 
 ## Background
 

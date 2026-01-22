@@ -1,5 +1,9 @@
 ---
 date: 2026-01-15
+image:
+  caption: Screenshot from Windows ME Museum in Dillo.
+  path: /assets/posts/me_museum/dillo_screenshot.png
+  thumbnail: /assets/posts/me_museum/dillo_screenshot.png
 tags:
 - sysadmin
 - linux
@@ -13,6 +17,8 @@ title: Windows ME Museum
 Introducing the ME Museum. Play around with Windows ME from The Internet Gopher Protocol (you can also use my gopher proxy).
 
 gopher://gopher.someodd.zip/1/gateway/me_museum/screen
+
+![Screenshot from the Windows ME Museum in Dillo](/assets/posts/me_museum/dillo_screenshot.png)
 
 ## Why?
 
@@ -101,4 +107,4 @@ qemu-system-i386 \
 
 You'll need to control panel add new hardware, 
 
-Original content in gopherspace: [gopher://gopher.someodd.zip:70/0/phlog/windows-me-museum-and-vm-servers.gopher.txt](gopher://gopher.someodd.zip:70/0/phlog/windows-me-museum-and-vm-servers.gopher.txt)
+Original content in gopherspace: [gopher://gopher.someodd.zip:70/1/phlog/windows-me-museum-and-vm-servers.gopher.txt](gopher://gopher.someodd.zip:70/1/phlog/windows-me-museum-and-vm-servers.gopher.txt)
