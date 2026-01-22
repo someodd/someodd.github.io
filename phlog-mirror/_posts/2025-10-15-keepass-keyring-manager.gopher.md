@@ -1,85 +1,194 @@
 ---
 date: 2025-10-15
+image:
+  caption: KeepassXC's SSH Agent Settings
+  path: /assets/posts/keepass_keyring/keepass_ssh_agent.png
+  thumbnail: /assets/posts/keepass_keyring/keepass_ssh_agent.png
 tags:
 - sysadmin
 - linux
 - security
 - debian
 - window_maker
-title: KeepassXC as Key Ring Manager
+title: KeepassXC as Key Ring Manager for Minimal DEs & WMs
 
 ---
 
 
-You can use [KeepassXC](https://keepassxc.org/) as your "key ring manager," specifically your *SSH Agent* and *Secret Service Integration*.
+Use KeePassXC as your Key Ring Manager in non-GNOME/KDE big DE setups, e.g.,
+Window Maker, i3, Xmonad.
 
-I am writing from the perspective of a [Window Maker](https://windowmaker.org) user. This was tricky for me because nothing else I tried seemed to integrate well into Window Maker, yet I was already using KeepassXC.
+This is how to use KeePassXC as:
+- your SSH key manager
+- your Secret Service (org.freedesktop.secrets)
+- without GNOME, KDE, or keyring daemons
 
-# Disable Gnome Keyring Daemon (if you have it)
+The goal:
+One stable ssh-agent socket.
+Everything talks to it.
+KeePassXC loads keys into it.
 
-I honestly recommend just removing the Gnome and KDE keyring managers because you may keep running into issues.
+No popups. No race conditions. No broken SSH.
 
-Kill the Gnome Keyring Daemon:
+--------------------------------------------------
 
-```
-pkill -f gnome-keyring-daemon || killall gnome-keyring-daemon 2>/dev/null || true
-pgrep -a gnome-keyring-daemon || echo "no gnome-keyring running"
-```
+## 1. Create a systemd user ssh-agent with a fixed socket
 
-This might work to permanently disable:
+Create:
 
-```
-systemctl --user stop gnome-keyring.service gnome-keyring-secrets.service 
-gnome-keyring-ssh.service gnome-keyring-gpg.service 2>/dev/null || true
-
-systemctl --user mask gnome-keyring.service gnome-keyring-secrets.service 
-gnome-keyring-ssh.service gnome-keyring-gpg.service
-```
-
-UPDATE: honestly, I just went ahead and uninstalled the Gnome Keyring manager and uh Seahorse or whatever it's called, entirely. It kept finding its way back into hijacking my secrets/key manager.
-
-# Set up KeepassXC SSH Agent
-
-Prepare the `SSH_AUTH_SOCK` environment variable (in y our `~/.bashrc` or `~/.zshrc` or whatever):
+~/.config/systemd/user/ssh-agent.socket
 
 ```
-export SSH_AUTH_SOCK=$(ls /tmp/ssh-*/agent.* 2>/dev/null | head -n1)
+[Unit]
+Description=SSH Agent Socket
+
+[Socket]
+ListenStream=%t/ssh-agent.socket
+SocketMode=0600
+
+[Install]
+WantedBy=sockets.target
 ```
 
-Reload with `source ~/.zshrc` for example. You can check the change:
+~/.config/systemd/user/ssh-agent.service
 
 ```
+[Unit]
+Description=SSH agent
+Requires=ssh-agent.socket
+After=ssh-agent.socket
+
+[Service]
+Type=simple
+Environment=SSH_AUTH_SOCK=%t/ssh-agent.socket
+ExecStart=/usr/bin/ssh-agent -D -a $SSH_AUTH_SOCK
+```
+
+Enable it:
+```
+
+systemctl --user daemon-reload
+systemctl --user enable --now ssh-agent.socket
+
+```
+
+Your agent now lives at:
+
+```
+/run/user/<UID>/ssh-agent.socket
+```
+
+NOTE: `<UID>` is probably `1000`.
+
+--------------------------------------------------
+
+## 2. Export SSH_AUTH_SOCK everywhere
+
+Create:
+~/.config/environment.d/10-ssh-agent.conf
+
+```
+
+SSH_AUTH_SOCK=${XDG_RUNTIME_DIR}/ssh-agent.socket
+
+```
+
+Also force it in zsh (important for minimal WMs):
+Put this at the very top of ~/.zshrc
+
+```
+
+export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR:-/run/user/$(id -u)}/ssh-agent.socket"
+
+```
+
+This prevents old or broken agents from hijacking your shell.
+
+--------------------------------------------------
+
+## 3. Tell KeePassXC to use that socket
+
+![KeepassXC's SSH Agent Settings](/assets/posts/keepass_keyring/keepass_ssh_agent.png)
+
+KeePassXC -> Settings -> SSH Agent
+
+Enable:
+- SSH Agent integration
+
+Set:
+- SSH_AUTH_SOCK override:
+/run/user/1000/ssh-agent.socket
+(use your UID)
+
+KeePassXC is now a client of the real agent.
+
+--------------------------------------------------
+
+## 4. Enable Secret Service (Linux keyring)
+
+![KeepassXC's Secret Service Settings](/assets/posts/keepass_keyring/keepass_secret_service.png)
+
+KeePassXC -> Settings:
+Enable "Freedesktop.org Secret Service integration"
+
+Open your database:
+Database Settings -> Secret Service Integration
+Choose a group to expose.
+
+KeePassXC now replaces:
+- gnome-keyring
+- kwallet
+- gcr
+
+--------------------------------------------------
+
+## 5. Verify
+
+You'll likely want to logout/login.
+
+```
+
 echo $SSH_AUTH_SOCK
 ssh-add -l
+
 ```
 
-In KeepassXC go to settings -> SSH Agent:
+You should see:
+```
 
-* Enable SSH Agent integration (checked)
-* `SSH_AUTH_SOCK` override might be set to something like `/run/user/1000/ssh-agent.socket`, but the env var trick I did just detects the value (path changes each login?)
+/run/user/UID/ssh-agent.socket
 
-Now you can actually keep your keys in KeepassXC, including their passwords, and KeepassXC will handle it for you. For example, add a new entry to the database:
+```
+and your keys listed.
 
-* Enter the password for the key in the "password" field.
-* Attach the key under *advanced*
-* Under *SSH Agent* section, tick "add key to agent when database is opened/unlocked" and for private key actually select the key you attached in the *attachment* drop down.
+Don't forget to check the box to add a key to the keyring for the respective
+ssh key entries in KeepassXC!
 
-# KeepassXC Secret Service Integration
+If you have any troubles, it may just be that another keyring manager is being
+annoying. I found Gnoe's keyring manager was such a hinderence I uninstalled
+it.
 
-In KeepassXC *settings* -> *Secret Service Integration*:
+--------------------------------------------------
 
-* Enable KeepassXC Freedesktop.org Secret Service Integration
-* Add a password group to be exposed to "exposed database groups."
-* Unchecked: *confirm when passwords are retrieved by clients*
+## Result
 
-If you're not able to enable it, it very well may be that another integration is running.
+KeePassXC is now:
+- your SSH key loader
+- your password store
+- your Linux keyring
+- your single source of trust
 
-Now that it's enabled, I believe whenever you enter passwords, it'll actually get saved to this group you created/use for the exposed database group. For example, my Gajim/XMPP passwords got saved there. I think you'll see KeepassXC pop up with some kinda confirm sometimes regarding this.
+Works in:
+- Window Maker
+- i3
+- sway
+- Xmonad
+- bare X11
+- no GNOME
+- no KDE
 
-# Other notes
+One agent.
+One socket.
+No magic.
 
-Make sure KeepassXC is unlocked if you want this system to work!
-
-If you ever notice this system isn't working, check to make sure `gnome-keyring-daemon` isn't running.
-
-Original content in gopherspace: [gopher://gopher.someodd.zip:70/0/phlog/keepass-keyring-manager.gopher.txt](gopher://gopher.someodd.zip:70/0/phlog/keepass-keyring-manager.gopher.txt)
+Original content in gopherspace: [gopher://gopher.someodd.zip:70/1/phlog/keepass-keyring-manager.gopher.txt](gopher://gopher.someodd.zip:70/1/phlog/keepass-keyring-manager.gopher.txt)

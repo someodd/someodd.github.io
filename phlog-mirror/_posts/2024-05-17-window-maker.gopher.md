@@ -2,8 +2,8 @@
 date: 2024-05-17
 image:
   caption: My Window Maker setup (screenshot).
-  path: /assets/phlog/screenshot-window-maker.png
-  thumbnail: /assets/phlog/screenshot-window-maker.png
+  path: /assets/screenshot-window-maker.png
+  thumbnail: /assets/screenshot-window-maker.png
 tags:
 - window_maker
 - debian

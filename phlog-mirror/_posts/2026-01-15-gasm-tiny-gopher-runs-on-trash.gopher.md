@@ -2,8 +2,8 @@
 date: 2026-01-15
 image:
   caption: A whacky photo of me showing the file size of the gasm binary.
-  path: /assets/phlog/posts/gasm/gasm-showing-size.jpg
-  thumbnail: /assets/phlog/posts/gasm/gasm-showing-size.jpg
+  path: /assets/posts/gasm/gasm-showing-size.jpg
+  thumbnail: /assets/posts/gasm/gasm-showing-size.jpg
 tags:
 - linux
 - gopher

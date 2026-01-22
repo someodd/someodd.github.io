@@ -2,8 +2,8 @@
 date: 2025-02-25
 image:
   caption: Counter Strike 1.6
-  path: /assets/phlog/counter-strike-1.6.jpg
-  thumbnail: /assets/phlog/counter-strike-1.6.jpg
+  path: /assets/counter-strike-1.6.jpg
+  thumbnail: /assets/counter-strike-1.6.jpg
 tags:
 - linux
 - cs16
