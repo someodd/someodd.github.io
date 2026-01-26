@@ -966,3 +966,108 @@ body.layout--frontpage{
   }
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ============================================================
+   FRONT PAGE: kill phantom horizontal scroll on narrow viewports
+   (keep the laptop look; just clip overflow cleanly)
+   ============================================================ */
+
+html { overflow-x: clip; }            /* modern browsers */
+body.layout--frontpage { overflow-x: clip; }
+
+@supports not (overflow: clip) {
+  html, body { overflow-x: hidden; }  /* fallback */
+}
+
+/* 100vw is a frequent culprit (includes scrollbar width on some UAs) */
+.cover-poster{
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: clip;
+}
+
+/* extra insurance: transformed/absolute children can still force scroll on some engines */
+.cover-poster, .poster-bg, .poster-lower, .poster-mid, .poster-context {
+  max-width: 100vw;
+}
+
+/* if you WANT vertical scroll on small screens, keep it controlled */
+@media (max-width: 900px){
+  body.layout--frontpage{
+    overflow-y: auto;     /* keeps your “it can collapse” stance */
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#radio-toggle {
+  background: #ff00ff;
+  color: #000;
+  border: 0;
+  font-weight: 800;
+  padding: 0.4em 0.6em;
+  cursor: pointer;
+}
+
+#radio-toggle .icon-playing { display: none; }
+
+body.radio-playing #radio-toggle .icon-muted { display: none; }
+body.radio-playing #radio-toggle .icon-playing { display: inline; }
+

@@ -58,7 +58,7 @@ entries_layout: list
 
     <a class="ctx-tile" href="/tags/my_warez">
       <div class="ctx-kicker">SHOWCASE</div>
-      <div class="ctx-thumb"><img src="/assets/images/frontpage.png" alt=""></div>
+      <div class="ctx-thumb"><img src="/assets/showcase/waffle/waffle-customization.gif" alt=""></div>
       <div class="ctx-sub">WEIRD SOFTWARE</div>
     </a>
 
@@ -87,18 +87,30 @@ entries_layout: list
 
 
   <div class="radio">
-	  <button id="enter">Radio</button>
+	  <button id="radio-toggle" aria-label="Toggle radio">
+		  <span class="icon-muted">🔇 My Radio</span>
+		  <span class="icon-playing">🔊 My Radio</span>
+	</button>
+
 
 <audio id="radio" preload="none">
   <source src="https://radio.someodd.zip/" type="audio/mpeg">
 </audio>
 
 <script>
-  document.getElementById("enter").onclick = () => {
-    document.getElementById("radio").play();
+  const audio = document.getElementById("radio");
+  const btn   = document.getElementById("radio-toggle");
+
+  btn.onclick = () => {
+    if (audio.paused) {
+      audio.play();
+      document.body.classList.add("radio-playing");
+    } else {
+      audio.pause();
+      document.body.classList.remove("radio-playing");
+    }
   };
 </script>
-
 
   </div>
 
