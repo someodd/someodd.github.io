@@ -12,7 +12,7 @@ title: Simpler Encrypted LTO Tape Archives
 
 Simple setup for encrypted backups using LTO6 on Debian. I have an older, very similar article:
 
-[Archiving with LTO & zpaq](gopher://gopher.someodd.zip:70/1/phlog/archive_lto_zpaq.gopher.txt)
+[Archiving with LTO & zpaq](gopher://gopher.someodd.zip:70/1/phlog/archive_lto_zpaq.gopher.html)
 
 I've found tapes are just best to write once and forget about it. Trying to do
 updates over time is kind of a pain and I've found it unreliable in some ways.

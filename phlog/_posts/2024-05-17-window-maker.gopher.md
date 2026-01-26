@@ -594,7 +594,7 @@ https://github.com/dillo-browser/dillo -- you actually may not want to use the r
 
 ### KeepassXC: Password manager, keyring manager!
 
-Password manager. In my opinion this is crucial and fantastic for Window Maker, because Window Maker doesn't just include an SSH Agent and Secret Service integration. I wrote an article about this: [using KeepassXC as keyring manager](/phlog/keepass-keyring-manager.gopher.txt).
+Password manager. In my opinion this is crucial and fantastic for Window Maker, because Window Maker doesn't just include an SSH Agent and Secret Service integration. I wrote an article about this: [using KeepassXC as keyring manager](/phlog/keepass-keyring-manager.gopher.html).
 
 ### deja-dup
 

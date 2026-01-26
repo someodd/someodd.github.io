@@ -1,8 +1,8 @@
 ---
 title: Phlog Mirror
 layout: category
-permalink: /phlog-mirror/
-taxonomy: phlog-mirror
+permalink: /phlog/
+taxonomy: phlog
 ---
 
 Articles archived/mirrored from

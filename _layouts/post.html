@@ -14,25 +14,29 @@ layout: default
         {% endif %}
       </header>
 
-      <div class="page-sidebar">
-        {% include page-author.html %}
-        {% include page-tags.html %}
+<div class="page-sidebar">
+  <div class="catalog-card">
+    {% if page.date %}
+      <div class="catalog-row catalog-date">
+        <span class="catalog-key">DATE</span>
+        <time class="dt-published" datetime="{{ page.date | date_to_xmlschema }}">
+          {{ page.date | date: "%Y-%m-%d" }}
+        </time>
       </div>
+    {% endif %}
+
+    {% include page-tags.html %}
+
+    {% if page.categories contains 'phlog' %}
+      <div class="catalog-row catalog-note">
+        Mirrored from my phlog. Source URI: see appendix.
+      </div>
+    {% endif %}
+  </div>
+</div>
 
       <div class="page-content">
       
-      {% if page.categories contains 'notes' %}
-        <blockquote class="warning">
-          <p>⚠️ This post is part of <a href="/notes">the notes category</a>. It may be unfinished, have incorrect information, or other "imperfections."</p>
-        </blockquote>
-      {% endif %}
-
-      {% if page.categories contains 'phlog-mirror' %}
-       <blockquote class="warning">
-	<p>⚠️ This post is archived from <a href="gopher://gopher.someodd.zip/1/phlog">my phlog in Gopherspace</a>. Please read <a href="/phlog-mirror/gopher">my post on the Gopher Protocol</a> to get started!</p>
-       </blockquote>
-     {% endif %}
-     
         <div class="e-content">
           {{ content }}
         </div>

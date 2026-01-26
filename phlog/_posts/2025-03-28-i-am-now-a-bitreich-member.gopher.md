@@ -30,7 +30,7 @@ Of course, Bitreich has their own manifesto. Here's a quip:
 I had been helping out tangentially by working on my Whisper Radio project, because they also had their own radio service.
 I also have been working on uncovering history regarding the Gopher Protocol and working on a lot of Gopher software.
 
-[You can see my previous Halloween post about Bitreich](gopher://gopher.someodd.zip:70/1/phlog/bitreich-haunted-hosts.gopher.txt)
+[You can see my previous Halloween post about Bitreich](gopher://gopher.someodd.zip:70/1/phlog/bitreich-haunted-hosts.gopher.html)
 
 [Official Bitreich announcement:](gopher://bitreich.org:70/0/usr/20h/phlog/2025-03-27T18-29-56-532851.md)
 

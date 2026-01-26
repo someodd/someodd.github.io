@@ -1400,3 +1400,164 @@ article, main, .content {
   .cta-tile{ transition: none; }
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* -------------------------------------------------------------------------- */
+/* Post sidebar meta as "library card"                                        */
+/* -------------------------------------------------------------------------- */
+
+.layout--post .page-sidebar .catalog-card{
+  font-family: var(--font-family-mono);
+  font-size: 0.95rem;
+  line-height: 1.2;
+  letter-spacing: 0;
+}
+
+.layout--post .page-sidebar .catalog-row{
+  margin: 0 0 var(--spacing-xs) 0;
+}
+
+.layout--post .page-sidebar .catalog-key{
+  display: inline-block;
+  width: 5ch;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.layout--post .page-sidebar .page-taxonomies{
+  display: inline;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.layout--post .page-sidebar .page-taxonomy{
+  display: inline;
+  margin: 0;
+  padding: 0;
+}
+
+.layout--post .page-sidebar .page-taxonomy:not(:last-child)::after{
+  content: ", ";
+}
+
+.layout--post .page-sidebar .catalog-note{
+  margin-top: var(--spacing-sm);
+  font-style: italic;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* -------------------------------------------------------------------------- */
+/* Post headings: intertitle system                                           */
+/* -------------------------------------------------------------------------- */
+
+.layout--post .e-content h2 {
+  margin: var(--spacing-lg) 0 var(--spacing-md) calc(-1 * var(--spacing-md));
+  padding: 0;
+
+  font-size: clamp(2.4rem, 6vw, 4rem);
+  font-weight: 900;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+
+  /* important: keep color simple */
+  color: var(--color-accent);
+}
+
+.layout--post .e-content h3 {
+  margin: var(--spacing-md) 0 var(--spacing-sm) 0;
+
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.layout--post .e-content h4 {
+  margin: var(--spacing-sm) 0 var(--spacing-xs) 0;
+
+  font-size: 1rem;
+  font-weight: 700;
+}
+

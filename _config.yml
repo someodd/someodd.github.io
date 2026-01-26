@@ -65,9 +65,9 @@ collections:
   news:
     output: true
     permalink: /news/:year/:month/:day/:title/
-  phlog-mirror:
+  phlog:
     output: true
-    permalink: /phlog-mirror/:title/
+    permalink: /phlog/:title/
 
 # Front Matter Defaults
 defaults:
@@ -88,11 +88,11 @@ defaults:
       category: news
   # Mirror from my phlog using Bore
   - scope:
-      path: "phlog-mirror/_posts"
+      path: "phlog/_posts"
       type: posts
     values:
-      permalink: /phlog-mirror/:title
-      category: phlog-mirror
+      permalink: /phlog/:title
+      category: phlog
 
 logo: /assets/logo-colors.png
 

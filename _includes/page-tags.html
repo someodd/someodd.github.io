@@ -1,32 +1,30 @@
 {% if page.tags and page.tags.size > 0 %}
-  <h3 class="page-taxonomies-title">
-    {{ site.data.text[site.locale].tags | default: 'Tags' }}
-  </h3>
+  <div class="catalog-row catalog-tags">
+    <span class="catalog-key">TAGS</span>
 
-  <ul class="page-taxonomies">
-    {% assign tags = page.tags | sort %}
-    {% for tag in tags %}
-      <li class="page-taxonomy">
-        {%- assign tag_escaped = tag | uri_escape -%}
+    <ul class="page-taxonomies">
+      {% assign tags = page.tags | sort %}
+      {% for tag in tags %}
+        <li class="page-taxonomy">
+          {%- assign tag_escaped = tag | uri_escape -%}
+          {%- assign want1 = "/tags/" | append: tag_escaped -%}
+          {%- assign want2 = want1 | append: "/" -%}
 
-        {%- assign want1 = "/tags/" | append: tag_escaped -%}
-        {%- assign want2 = want1 | append: "/" -%}
+          {%- assign found_url = "" -%}
+          {%- for p in site.pages -%}
+            {%- if p.url == want1 or p.url == want2 -%}
+              {%- assign found_url = p.url -%}
+              {%- break -%}
+            {%- endif -%}
+          {%- endfor -%}
 
-        {%- assign found_url = "" -%}
-        {%- for p in site.pages -%}
-          {%- if p.url == want1 or p.url == want2 -%}
-            {%- assign found_url = p.url -%}
-            {%- break -%}
+          {%- if found_url != "" -%}
+            <a href="{{ found_url | relative_url }}" rel="tag">{{ tag }}</a>
+          {%- else -%}
+            <a href="{{ want1 | relative_url }}" rel="tag">{{ tag }}</a>
           {%- endif -%}
-        {%- endfor -%}
-
-        {%- if found_url != "" -%}
-          <a href="{{ found_url | relative_url }}" rel="tag">{{ tag }}</a>
-        {%- else -%}
-          <a href="{{ want1 | relative_url }}" rel="tag">{{ tag }}</a>
-        {%- endif -%}
-      </li>
-    {% endfor %}
-  </ul>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
 {% endif %}
-

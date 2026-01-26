@@ -22,7 +22,7 @@ I was interviewed again on Screwtape (an AnonrRadio program powered by SDF):
 Some topics covered:
 
 * Writing gopher apps easily with Venusia, porting software to Gopher
-* [My Gopherspace RPG](/0/phlog/gopherspace-rpg.gopher.md)
+* [My Gopherspace RPG](/0/phlog/gopherspace-rpg.gopher.html)
 * Haskell and Lisp programming languages
 * How the people watching the show comment via a MUD (think: adventure game), which also has a built-in Gopher browser!
 * Sentimental tech: tech as craft, art, intimacy with systems, and my upcoming manifesto/treatise/article, "we need to make tech into something warmer than just bits."

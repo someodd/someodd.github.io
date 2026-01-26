@@ -116,16 +116,16 @@ Amazing website, very artistic indieweb experience like none other.
 
 Get started self-hosting! Running your own server is fun!
 
-[Music server with MPD](gopher://gopher.someodd.zip:70/0/phlog/music-server-mpd.gopher.txt)
+[Music server with MPD](gopher://gopher.someodd.zip:70/0/phlog/music-server-mpd.gopher.html)
 
-[Counter-Strike 1.6 Server in Linux](gopher://gopher.someodd.zip:70/0/phlog/linux-counter-strike-16-server.gopher.txt)
+[Counter-Strike 1.6 Server in Linux](gopher://gopher.someodd.zip:70/0/phlog/linux-counter-strike-16-server.gopher.html)
 
-[XMPP audio/video call support](gopher://gopher.someodd.zip:70/0/phlog/xmpp-server-video-audio-calls.gopher.txt)
+[XMPP audio/video call support](gopher://gopher.someodd.zip:70/0/phlog/xmpp-server-video-audio-calls.gopher.html)
 
-[Host your own XMPP server](gopher://gopher.someodd.zip:70/0/phlog/xmpp-server.gopher.txt)
+[Host your own XMPP server](gopher://gopher.someodd.zip:70/0/phlog/xmpp-server.gopher.html)
 
-[Host your own IRC server](gopher://gopher.someodd.zip:70/0/phlog/irc-server.gopher.txt)
+[Host your own IRC server](gopher://gopher.someodd.zip:70/0/phlog/irc-server.gopher.html)
 
-[Make your own VPN](gopher://gopher.someodd.zip:70/0/phlog/wireguard-simple.gopher.txt)
+[Make your own VPN](gopher://gopher.someodd.zip:70/0/phlog/wireguard-simple.gopher.html)
 
 Original content in gopherspace: [gopher://gopher.someodd.zip:70/1/phlog/best-of-smallnet-april-2025.gopher.txt](gopher://gopher.someodd.zip:70/1/phlog/best-of-smallnet-april-2025.gopher.txt)

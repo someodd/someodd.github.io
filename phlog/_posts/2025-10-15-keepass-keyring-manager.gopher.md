@@ -15,8 +15,7 @@ title: KeepassXC as Key Ring Manager for Minimal DEs & WMs
 ---
 
 
-Use KeePassXC as your Key Ring Manager in non-GNOME/KDE big DE setups, e.g.,
-Window Maker, i3, Xmonad.
+Use KeePassXC as your Key Ring Manager in non-GNOME/KDE big DE setups. For example, I use it with [Window Maker (see my post)](/phlog/window-maker.gopher.html).
 
 This is how to use KeePassXC as:
 - your SSH key manager
