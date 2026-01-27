@@ -1323,9 +1323,7 @@ body.radio-playing #radio-toggle .icon-playing { display: inline; }
   pointer-events:none;
   z-index:99999;
   background: var(--leave-void);
-  mix-blend-mode: screen;
   opacity:0;
-  filter: saturate(3) contrast(1.4);
 }
 
 body.is-leaving {
@@ -1406,22 +1404,18 @@ body.is-leaving .cover-poster::after{
   0%{
     opacity:0;
     transform:none;
-    filter: hue-rotate(0deg) saturate(3) contrast(1.4);
   }
-  18%{
-    opacity:.65;
-    transform: translate(-24px,18px) skewX(16deg);
-    filter: hue-rotate(200deg) saturate(3.5) contrast(1.6);
+  20%{
+    opacity:.35;
+    transform: translate(-18px,12px) skewX(10deg);
   }
-  55%{
-    opacity:.45;
-    transform: translate(38px,-26px) skewY(-18deg);
-    filter: hue-rotate(-40deg) saturate(3.2) contrast(1.7);
+  60%{
+    opacity:.25;
+    transform: translate(22px,-16px) skewY(-10deg);
   }
   100%{
     opacity:0;
-    transform: translate(90px,-70px) skewX(24deg);
-    filter: hue-rotate(140deg) saturate(4) contrast(1.8);
+    transform: translate(60px,-40px) skewX(14deg);
   }
 }
 
