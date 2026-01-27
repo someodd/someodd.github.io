@@ -1,0 +1,23 @@
+---
+layout: null
+permalink: /assets/images/bg-pools.json
+---
+
+{
+{% for pool in site.data.bg_pools %}
+  {% capture pool_seg %}/{{ pool }}/{% endcapture %}
+  "{{ pool }}": [
+    {% assign first = true %}
+    {% for f in site.static_files %}
+      {% if f.path contains '/assets/images/bg-pools/' and f.path contains pool_seg %}
+        {% if f.name contains '.jpg' or f.name contains '.jpeg' or f.name contains '.png' or f.name contains '.webp' or f.name contains '.gif' %}
+          {% unless first %},{% endunless %}
+          "{{ f.name }}"
+          {% assign first = false %}
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+  ]{% unless forloop.last %},{% endunless %}
+{% endfor %}
+}
+

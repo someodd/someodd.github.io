@@ -142,3 +142,71 @@ entries_layout: list
 </div>
 
 
+
+<script>
+(function () {
+  function pickWeighted(pools, r01) {
+    const total = pools.reduce((s, p) => s + p.weight, 0);
+    let r = r01 * total;
+    for (const p of pools) { r -= p.weight; if (r <= 0) return p.name; }
+    return pools[0].name;
+  }
+
+const SECOND = 1000;
+const MINUTE = 60 * SECOND;
+const HOUR   = 60 * MINUTE;
+const DAY    = 24 * HOUR;
+
+
+  function dailySeed() { return Math.floor(Date.now() / SECOND); }
+  function seededRand(seed, n) { return Math.abs(Math.sin(seed * 999 + n * 101)) % 1; }
+
+  async function run() {
+    const pools = [
+      { name: "machines", weight: 3 },
+      { name: "quiet",    weight: 3 },
+      { name: "brutal",   weight: 2 },
+      { name: "sacred",   weight: 2 },
+      { name: "venice",   weight: 2 }
+    ];
+
+    const seed = dailySeed();
+    const pool = pickWeighted(pools, seededRand(seed, 1));
+
+    const res = await fetch("/assets/images/bg-pools.json", { cache: "no-store" });
+    if (!res.ok) throw new Error("bg-pools.json HTTP " + res.status);
+    const all = await res.json();
+
+    const files = all[pool] || [];
+    if (!files.length) return;
+
+    const file = files[Math.floor(seededRand(seed, 2) * files.length)];
+    const url  = `/assets/images/bg-pools/${pool}/${file}`;
+
+    // Pick the element that actually covers the page background.
+    // So-Simple often uses body; some themes use a wrapper.
+    const target = document.querySelector(".page-wrapper") || document.body;
+
+    // Force override with !important
+    target.style.setProperty("background-image", `url("${url}")`, "important");
+    target.style.setProperty("background-position", "center", "important");
+    target.style.setProperty("background-repeat", "no-repeat", "important");
+    target.style.setProperty("background-attachment", "fixed", "important");
+    target.style.setProperty("background-size", "cover", "important");
+
+    // Optional: let content remain readable
+    // target.style.setProperty("background-color", "rgba(0,0,0,0.15)", "important");
+
+    document.documentElement.setAttribute("data-bg-pool", pool);
+    document.documentElement.setAttribute("data-bg-seed", String(seed));
+    console.log("[bg] applied", { pool, file, target: target.className || "body" });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", run);
+  } else {
+    run();
+  }
+})();
+</script>
+
