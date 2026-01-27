@@ -8,6 +8,7 @@
   --cyan: #00e7ff;
   --ink: rgba(0,0,0,.78);
   --ink2: rgba(0,0,0,.55);
+  --teal: #061f1d;
 }
 
 html, body{
@@ -164,7 +165,7 @@ body.layout--frontpage{
 
 /* CENTER BLOCK: simulate the big black panel */
 .poster-center{
-  left: 24vw;
+  left: 13vw;
   top: 28vh;
   transform: translate(-50%, -50%);
   color: var(--acid);
@@ -1070,4 +1071,154 @@ body.layout--frontpage { overflow-x: clip; }
 
 body.radio-playing #radio-toggle .icon-muted { display: none; }
 body.radio-playing #radio-toggle .icon-playing { display: inline; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* === ICON TILES: MAKE ICONS FILL THE TILE === */
+
+.ctx-ico {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  height: 100%;
+
+  text-decoration: none;
+}
+
+.ctx-ico i {
+  font-size: 1.8rem;   /* start here, tune visually */
+  line-height: 1;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* --- PATCH: make CONTACT icons actually fill their tiles --- */
+.cover-poster .ctx-tile--icons .ctx-icons{
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.6rem;
+  align-items: stretch;
+}
+
+.cover-poster .ctx-tile--icons .ctx-ico{
+  display: flex !important;          /* win specificity wars */
+  align-items: center;
+  justify-content: center;
+  padding: 0 !important;             /* stop the “upper-left” feel */
+  min-height: 44px;                  /* keep the cell chunky */
+  width: 100%;
+  border: 2px solid rgba(255,255,255,.18);
+  box-sizing: border-box;
+}
+
+/* FontAwesome can be <i> or injected <svg> depending on how you loaded it */
+.cover-poster .ctx-tile--icons .ctx-ico i{
+  font-size: 1.6rem;
+  line-height: 1;
+}
+
+.cover-poster .ctx-tile--icons .ctx-ico svg{
+  width: 70%;
+  height: 70%;
+  max-width: 32px;
+  max-height: 32px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* --- GRAFFITI SLOGAN -------------------------------- */
+
+.poster-whisper{
+  position: absolute;
+  right: 10vw;
+  top: 33vh;              /* higher */
+  z-index: 50;
+
+  /* make it scream */
+  font-size: clamp(18px, 2.2vw, 34px);
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: lowercase;
+
+  /* anti-design: tacky + deliberate */
+  padding: 0.22em 0.45em;
+  background: var(--cyan);
+  color: #000;
+
+  /* motion */
+  transform-origin: center center;
+  animation: whisper-spin 21s linear infinite;
+
+  pointer-events: none;
+}
+
+.poster-whisper::after{
+  content: " ♥";
+  margin-left: 0.25em;
+  display: inline-block;
+  transform: translateY(-0.05em);
+}
+
+@keyframes whisper-spin{
+  from { transform: rotate(-10deg); }
+  to   { transform: rotate(350deg); }
+}
 
