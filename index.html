@@ -213,41 +213,41 @@ const DAY    = 24 * HOUR;
 <script>
 
 // --- preload the collapse sound ---
-const collapseSfx = new Audio("/assets/sfx/collapse.ogg");
+window.collapseSfx = new Audio("/assets/sfx/collapse.ogg");
 collapseSfx.preload = "auto";
 collapseSfx.volume = 0.85;
 
-// iOS / Safari requires the first play to happen inside a user gesture,
-// so we "unlock" it silently on first interaction
-const unlockAudio = () => {
+window.addEventListener("pointerdown", () => {
   collapseSfx.play().then(() => {
     collapseSfx.pause();
     collapseSfx.currentTime = 0;
   }).catch(()=>{});
-  window.removeEventListener("pointerdown", unlockAudio);
-};
-window.addEventListener("pointerdown", unlockAudio, { once: true });
+}, { once: true });
 
+// Reset when coming back (bfcache)
+window.addEventListener("pageshow", () => {
+  document.body.classList.remove("is-leaving");
+  try { collapseSfx.pause(); collapseSfx.currentTime = 0; } catch {}
+});
 
-// --- hook all links ---
-document.addEventListener("click", e => {
+// --- hook links ---
+document.addEventListener("click", (e) => {
   const a = e.target.closest("a");
   if (!a) return;
-  if (a.target === "_blank" || e.metaKey || e.ctrlKey) return;
+  if (a.target === "_blank" || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
 
   e.preventDefault();
 
-  // start sound + animation together
+  // guard: don't re-trigger if already leaving
+  if (document.body.classList.contains("is-leaving")) return;
+
   collapseSfx.currentTime = 0;
   collapseSfx.play().catch(()=>{});
 
   document.body.classList.add("is-leaving");
-
-  // match CSS (900ms)
-  setTimeout(() => {
-    location.href = a.href;
-  }, 900);
+  setTimeout(() => (location.href = a.href), 900);
 });
+
 
 
 
