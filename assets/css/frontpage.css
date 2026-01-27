@@ -1288,113 +1288,140 @@ body.radio-playing #radio-toggle .icon-playing { display: inline; }
 
 
 /* ============================================================
-   LEAVE PAGE — VIOLENT REALITY COLLAPSE
-   Uses flat void color (#061f1d)
+   LEAVE PAGE — LOUD POSTER COLLAPSE (replace previous patch)
    ============================================================ */
+
+:root{
+  --leave-void: #061f1d;
+}
 
 .cover-poster{
   transform-style: preserve-3d;
   will-change: transform, filter, opacity;
 }
 
-/* Void overlays */
-.cover-poster::before,
+/* 1) INK FLASH PLATE (reads instantly) */
+.cover-poster::before{
+  content:"";
+  position:fixed;
+  inset:-30vh;
+  pointer-events:none;
+  z-index:99998;
+  background: radial-gradient(circle at 40% 60%,
+    rgba(255,255,255,0.08) 0%,
+    rgba(255,255,255,0.00) 35%,
+    rgba(0,0,0,0.65) 70%,
+    rgba(0,0,0,0.95) 100%);
+  opacity:0;
+}
+
+/* 2) CHROMA TEAR PLATE (big misregistration) */
 .cover-poster::after{
   content:"";
   position:fixed;
-  inset:-20vh;                 /* overscan so edges don't show */
-  background:#061f1d;
+  inset:-30vh;
   pointer-events:none;
-  opacity:0;
   z-index:99999;
+  background: var(--leave-void);
   mix-blend-mode: screen;
+  opacity:0;
+  filter: saturate(3) contrast(1.4);
 }
 
-.cover-poster::before{
-  filter: hue-rotate(210deg) saturate(3) brightness(1.3);
+body.is-leaving {
+  background: #000 !important;
 }
 
-.cover-poster::after{
-  filter: hue-rotate(-40deg) saturate(2.8) brightness(1.2);
+/* In case any other layers try to bleed through */
+body.is-leaving::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:#000;
+  z-index:0;
 }
 
-/* Trigger */
 body.is-leaving .cover-poster{
-  animation: poster-collapse 900ms cubic-bezier(.05,.85,.15,1) forwards;
+  animation: poster-collapse 2400ms cubic-bezier(.02,.9,.12,1) forwards;
 }
 
 body.is-leaving .cover-poster::before{
-  animation: chroma-left 900ms cubic-bezier(.05,.85,.15,1) forwards;
+  animation: ink-flash 2400ms cubic-bezier(.02,.9,.12,1) forwards;
 }
 
 body.is-leaving .cover-poster::after{
-  animation: chroma-right 900ms cubic-bezier(.05,.85,.15,1) forwards;
+  animation: chroma-tear 2400ms cubic-bezier(.02,.9,.12,1) forwards;
 }
 
-/* Core implosion */
+/* MAIN: more rotation + bigger zoom + heavier blur */
 @keyframes poster-collapse{
   0%{
     transform:none;
     filter:none;
     opacity:1;
   }
-
-  20%{
-    transform: perspective(900px)
-      translateZ(80px)
-      rotateX(8deg)
-      rotateY(-12deg)
-      scale(1.05);
-    filter: saturate(200%) contrast(140%);
+  10%{
+    transform: perspective(900px) translateZ(120px) rotateX(10deg) rotateY(-14deg) scale(1.08);
+    filter: saturate(230%) contrast(160%);
   }
-
-  50%{
-    transform-origin:20% 75%;
-    transform: perspective(650px)
-      rotateX(45deg)
-      rotateY(120deg)
-      rotateZ(520deg)
-      scale(0.75);
-    filter: blur(3px) saturate(300%) contrast(260%);
+  35%{
+    transform-origin: 18% 78%;
+    transform: perspective(560px)
+      rotateX(55deg)
+      rotateY(150deg)
+      rotateZ(760deg)
+      scale(0.70);
+    filter: blur(5px) saturate(320%) contrast(320%);
   }
-
-  80%{
-    transform: perspective(450px)
-      rotateX(80deg)
-      rotateY(180deg)
-      rotateZ(880deg)
-      scale(0.28);
-    filter: blur(12px) saturate(0) contrast(420%);
-  }
-
-  100%{
-    transform: perspective(300px)
-      translateZ(-1800px)
-      rotateX(120deg)
+  70%{
+    transform: perspective(340px)
+      rotateX(95deg)
       rotateY(240deg)
       rotateZ(1200deg)
-      scale(0.02);
-    filter: blur(24px) brightness(.4) contrast(500%);
-    opacity:0;
+      scale(0.22);
+    filter: blur(18px) saturate(0) contrast(520%);
+  }
+  100%{
+    transform: perspective(260px)
+      translateZ(-2400px)
+      rotateX(130deg)
+      rotateY(320deg)
+      rotateZ(1600deg)
+      scale(0.01);
+    filter: blur(22px) brightness(.35) contrast(650%);
+    opacity:0.75;
   }
 }
 
-/* Chromatic void tearing */
-@keyframes chroma-left{
+/* FLASH: plate slam + vignette */
+@keyframes ink-flash{
   0%{ opacity:0; transform:none; }
-  30%{ opacity:.5; }
-  100%{
-    opacity:0;
-    transform: translate(-60px,40px) skewX(18deg);
-  }
+  8%{ opacity:1; transform: scale(1.02); }
+  28%{ opacity:.55; transform: scale(1.08); }
+  100%{ opacity:0; transform: scale(1.25); }
 }
 
-@keyframes chroma-right{
-  0%{ opacity:0; transform:none; }
-  30%{ opacity:.5; }
+/* TEAR: huge screen misregistration, like print ripping */
+@keyframes chroma-tear{
+  0%{
+    opacity:0;
+    transform:none;
+    filter: hue-rotate(0deg) saturate(3) contrast(1.4);
+  }
+  18%{
+    opacity:.65;
+    transform: translate(-24px,18px) skewX(16deg);
+    filter: hue-rotate(200deg) saturate(3.5) contrast(1.6);
+  }
+  55%{
+    opacity:.45;
+    transform: translate(38px,-26px) skewY(-18deg);
+    filter: hue-rotate(-40deg) saturate(3.2) contrast(1.7);
+  }
   100%{
     opacity:0;
-    transform: translate(80px,-60px) skewY(-18deg);
+    transform: translate(90px,-70px) skewX(24deg);
+    filter: hue-rotate(140deg) saturate(4) contrast(1.8);
   }
 }
 
