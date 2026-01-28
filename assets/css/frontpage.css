@@ -1288,134 +1288,134 @@ body.radio-playing #radio-toggle .icon-playing { display: inline; }
 
 
 /* ============================================================
-   LEAVE PAGE — LOUD POSTER COLLAPSE (replace previous patch)
+   LEAVE PAGE — PS2-ERA COLLAPSE (matches 2400ms JS)
+   Keeps poster visible (void is BEHIND).
    ============================================================ */
 
-:root{
-  --leave-void: #061f1d;
+/* Void behind everything */
+body.layout--frontpage{
+  position: relative;
+}
+body.layout--frontpage::before{
+  content:"";
+  position: fixed;
+  inset: 0;
+  background: #061f1d;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+body.is-leaving.layout--frontpage::before{
+  opacity: 1;
+  transition: opacity 80ms linear;
 }
 
-.cover-poster{
+/* Scanlines / CRT-ish texture on top */
+body.layout--frontpage::after{
+  content:"";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  z-index: 99998;
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      rgba(255,255,255,0.028) 0px,
+      rgba(255,255,255,0.028) 1px,
+      rgba(0,0,0,0) 2px,
+      rgba(0,0,0,0) 4px
+    );
+  mix-blend-mode: overlay;
+}
+body.is-leaving.layout--frontpage::after{
+  opacity: 1;
+}
+
+/* Ensure poster is above void */
+.cover-poster{ position: relative; z-index: 1; }
+
+/* The actual “page folding” */
+body.is-leaving .cover-poster{
   transform-style: preserve-3d;
   will-change: transform, filter, opacity;
+  transform-origin: 18% 78%;
+  animation: ps2_foldout 2400ms steps(20, end) forwards;
 }
 
-/* 1) INK FLASH PLATE (reads instantly) */
-.cover-poster::before{
-  content:"";
-  position:fixed;
-  inset:-30vh;
-  pointer-events:none;
-  z-index:99998;
-  background: radial-gradient(circle at 40% 60%,
-    rgba(255,255,255,0.08) 0%,
-    rgba(255,255,255,0.00) 35%,
-    rgba(0,0,0,0.65) 70%,
-    rgba(0,0,0,0.95) 100%);
-  opacity:0;
+/* Animate the IMAGE layer too (PS2 framebuffer vibes) */
+body.is-leaving .poster-bg{
+  will-change: filter, transform;
+  animation: ps2_frame 2400ms steps(20, end) forwards;
 }
 
-/* 2) CHROMA TEAR PLATE (big misregistration) */
-.cover-poster::after{
-  content:"";
-  position:fixed;
-  inset:-30vh;
-  pointer-events:none;
-  z-index:99999;
-  background: var(--leave-void);
-  opacity:0;
-}
-
-body.is-leaving {
-  background: #000 !important;
-}
-
-/* In case any other layers try to bleed through */
-body.is-leaving::before{
-  content:"";
-  position:fixed;
-  inset:0;
-  background:#000;
-  z-index:0;
-}
-
-body.is-leaving .cover-poster{
-  animation: poster-collapse 2400ms cubic-bezier(.02,.9,.12,1) forwards;
-}
-
-body.is-leaving .cover-poster::before{
-  animation: ink-flash 2400ms cubic-bezier(.02,.9,.12,1) forwards;
-}
-
-body.is-leaving .cover-poster::after{
-  animation: chroma-tear 2400ms cubic-bezier(.02,.9,.12,1) forwards;
-}
-
-/* MAIN: more rotation + bigger zoom + heavier blur */
-@keyframes poster-collapse{
+/* Main fold/implode */
+@keyframes ps2_foldout{
   0%{
-    transform:none;
-    filter:none;
-    opacity:1;
+    transform: none;
+    opacity: 1;
+    filter: none;
   }
-  10%{
-    transform: perspective(900px) translateZ(120px) rotateX(10deg) rotateY(-14deg) scale(1.08);
-    filter: saturate(230%) contrast(160%);
+
+  12%{
+    transform: perspective(900px) translateZ(90px) rotateX(8deg) rotateY(-14deg) scale(1.05);
+    filter:
+      saturate(1.7) contrast(1.35)
+      drop-shadow(14px 0 0 rgba(0,231,255,.22))
+      drop-shadow(-12px 0 0 rgba(255,0,200,.18));
   }
-  35%{
-    transform-origin: 18% 78%;
-    transform: perspective(560px)
-      rotateX(55deg)
-      rotateY(150deg)
-      rotateZ(760deg)
-      scale(0.70);
-    filter: blur(5px) saturate(320%) contrast(320%);
+
+  44%{
+    transform: perspective(650px)
+      translate3d(18px,-10px,180px)
+      rotateX(44deg) rotateY(118deg) rotateZ(560deg)
+      scale(.74);
+    filter:
+      saturate(2.0) contrast(1.9) brightness(.92)
+      blur(1.5px)
+      drop-shadow(22px 0 0 rgba(0,231,255,.26))
+      drop-shadow(-18px 0 0 rgba(255,0,200,.22));
   }
-  70%{
-    transform: perspective(340px)
-      rotateX(95deg)
-      rotateY(240deg)
-      rotateZ(1200deg)
-      scale(0.22);
-    filter: blur(18px) saturate(0) contrast(520%);
+
+  74%{
+    transform: perspective(420px)
+      translate3d(-22px,16px,320px)
+      rotateX(86deg) rotateY(180deg) rotateZ(920deg)
+      scale(.22);
+    filter:
+      saturate(.15) contrast(3.4)
+      blur(8px)
+      drop-shadow(28px 0 0 rgba(0,231,255,.20))
+      drop-shadow(-24px 0 0 rgba(255,0,200,.18));
+  }
+
+  100%{
+    transform: perspective(320px)
+      translateZ(-2000px)
+      rotateX(118deg) rotateY(240deg) rotateZ(1200deg)
+      scale(.02);
+    filter: saturate(0) contrast(4.8) brightness(.55) blur(18px);
+    opacity: 0;
+  }
+}
+
+/* “Low-res framebuffer / PS2 decode” feel on the poster image */
+@keyframes ps2_frame{
+  0%{
+    transform: scale(1.01);
+    filter: saturate(1.15) contrast(1.07);
+  }
+  40%{
+    transform: scale(1.03);
+    filter: saturate(1.35) contrast(1.25) blur(.6px);
+  }
+  78%{
+    transform: scale(1.03);
+    filter: saturate(.4) contrast(2.4) blur(3.6px);
   }
   100%{
-    transform: perspective(260px)
-      translateZ(-2400px)
-      rotateX(130deg)
-      rotateY(320deg)
-      rotateZ(1600deg)
-      scale(0.01);
-    filter: blur(22px) brightness(.35) contrast(650%);
-    opacity:0.75;
-  }
-}
-
-/* FLASH: plate slam + vignette */
-@keyframes ink-flash{
-  0%{ opacity:0; transform:none; }
-  8%{ opacity:1; transform: scale(1.02); }
-  28%{ opacity:.55; transform: scale(1.08); }
-  100%{ opacity:0; transform: scale(1.25); }
-}
-
-/* TEAR: huge screen misregistration, like print ripping */
-@keyframes chroma-tear{
-  0%{
-    opacity:0;
-    transform:none;
-  }
-  20%{
-    opacity:.35;
-    transform: translate(-18px,12px) skewX(10deg);
-  }
-  60%{
-    opacity:.25;
-    transform: translate(22px,-16px) skewY(-10deg);
-  }
-  100%{
-    opacity:0;
-    transform: translate(60px,-40px) skewX(14deg);
+    transform: scale(1.03);
+    filter: saturate(0) contrast(3.2) blur(7px);
   }
 }
 
