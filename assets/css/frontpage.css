@@ -1339,13 +1339,13 @@ body.is-leaving .cover-poster{
   transform-style: preserve-3d;
   will-change: transform, filter, opacity;
   transform-origin: 18% 78%;
-  animation: ps2_foldout 2400ms steps(20, end) forwards;
+  animation: ps2_foldout 2000ms steps(20, end) forwards;
 }
 
 /* Animate the IMAGE layer too (PS2 framebuffer vibes) */
 body.is-leaving .poster-bg{
   will-change: filter, transform;
-  animation: ps2_frame 2400ms steps(20, end) forwards;
+  animation: ps2_frame 2000ms steps(20, end) forwards;
 }
 
 /* Main fold/implode */

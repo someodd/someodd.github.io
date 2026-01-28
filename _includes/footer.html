@@ -18,7 +18,7 @@
     {% if site.copyright %}
       {{ site.copyright | markdownify }}
     {% else %}
-      <p>&copy; {{ site.time | date: '%Y' }} {{ site.name | default: site.title }}. Did the site hurt your eyeballs? [Try gopherspace.](https://gopher.someodd.zip)
+    <p>&copy; {{ site.time | date: '%Y' }} {{ site.name | default: site.title }}. Did the site hurt your eyeballs? <a href="https://gopher.someodd.zip">Try gopherspace!</a>
     {% endif %}
   </div>
 </footer>
