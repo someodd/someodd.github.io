@@ -57,6 +57,7 @@ service gopher
 {
     type           = UNLISTED
     port           = 70
+    bind           = 127.0.0.1
     socket_type    = stream
     wait           = no
     user           = root
@@ -71,39 +72,7 @@ service gopher
 Create this script `/usr/local/bin/gopher_router.sh`:
 
 ```
-#!/bin/bash
 
-# Read the selector from stdin
-read selector
-
-# Function to process and replace paths and ports in the response
-process_response() {
-    local prefix="$1"
-    local port="$2"
-    local target_host="gopher.someodd.zip"
-    local target_port="70"
-
-    # Strip the prefix from the selector and ensure the leading slash is retained
-    local stripped_selector="${selector#$prefix}"
-    if [[ "$stripped_selector" != /* ]]; then
-        stripped_selector="/$stripped_selector"
-    fi
-
-    # Send the selector to the appropriate service and process the response
-    echo "$stripped_selector" | nc localhost $port | \
-    sed -e "/\t${target_host}\t${port}/s|\t/|\t${prefix}/|g" \
-        -e "s|\(${target_host}\)\t${port}|\1\t${target_port}|g"
-}
-
-# Handle the selector
-case "$selector" in
-    "/phorum"*)
-        process_response "/phorum" 7070
-        ;;
-    *)
-        process_response "/" 7071
-        ;;
-esac
 ```
 
 Restart:
@@ -150,31 +119,71 @@ esac
 
 ### Handle rewriting for Tor + my modern setup
 
-This is the setup I use now, actually. I have kept the older ones above because
-they might be useful or interesting. I should really clean this article up.
+This is the layout.
 
-in `/etc/xinetd.d/gopher`:
+No heuristics.  
+No guessing.  
+Port defines intent.
 
-```
-service gopher
+### torrc
+
+```conf
+HiddenServiceDir /var/lib/tor/gopher
+HiddenServicePort 70 127.0.0.1:7072
+````
+
+### xinetd (clearnet)
+
+`/etc/xinetd.d/gopher_clear`
+
+```conf
+service gopher_clear
 {
     type           = UNLISTED
     port           = 70
+    bind           = 0.0.0.0
+
     socket_type    = stream
+    protocol       = tcp
     wait           = no
     user           = root
+
     server         = /bin/bash
     server_args    = /usr/local/bin/gopher_router.sh
-    log_on_success += USERID
-    log_on_failure += USERID
-    log_type       = FILE /var/log/xinetd_gopher.log
+
     disable        = no
 }
 ```
 
-now i updated my routing script:
+### xinetd (onion)
 
+`/etc/xinetd.d/gopher_onion`
+
+```conf
+service gopher_onion
+{
+    type           = UNLISTED
+    port           = 7072
+    bind           = 127.0.0.1
+
+    socket_type    = stream
+    protocol       = tcp
+    wait           = no
+    user           = root
+
+    env            = ONION_MODE=1
+    server         = /bin/bash
+    server_args    = /usr/local/bin/gopher_router.sh
+
+    disable        = no
+}
 ```
+
+### router
+
+I'm not even using the port check nor the envvar here lol...
+
+```bash
 #!/bin/bash
 # xinetd wrapper for Gopher services with /phorum branch
 # - Preserves index-search tabs (type 7)

@@ -26,48 +26,34 @@ The goal:
 One stable ssh-agent socket.
 Everything talks to it.
 KeePassXC loads keys into it.
+The socket to survive reboots.
 
 No popups. No race conditions. No broken SSH.
 
---------------------------------------------------
+## 1. Create a systemd user ssh-agent
 
-## 1. Create a systemd user ssh-agent with a fixed socket
-
-Create:
-
-~/.config/systemd/user/ssh-agent.socket
+Edit `~/.config/systemd/user/ssh-agent.service`:
 
 ```
 [Unit]
-Description=SSH Agent Socket
-
-[Socket]
-ListenStream=%t/ssh-agent.socket
-SocketMode=0600
-
-[Install]
-WantedBy=sockets.target
-```
-
-~/.config/systemd/user/ssh-agent.service
-
-```
-[Unit]
-Description=SSH agent
-Requires=ssh-agent.socket
-After=ssh-agent.socket
+Description=OpenSSH SSH agent
 
 [Service]
 Type=simple
-Environment=SSH_AUTH_SOCK=%t/ssh-agent.socket
-ExecStart=/usr/bin/ssh-agent -D -a $SSH_AUTH_SOCK
+# Clean up a stale socket after crashes/reboots
+ExecStartPre=/usr/bin/rm -f %t/ssh-agent.socket
+# Bind a fixed, predictable path in the user runtime dir (%t == /run/user/$UID)
+ExecStart=/usr/bin/ssh-agent -D -a %t/ssh-agent.socket
+
+[Install]
+WantedBy=default.target
 ```
 
 Enable it:
 ```
 
 systemctl --user daemon-reload
-systemctl --user enable --now ssh-agent.socket
+systemctl --user enable --now ssh-agent.service
 
 ```
 
@@ -78,8 +64,6 @@ Your agent now lives at:
 ```
 
 NOTE: `<UID>` is probably `1000`.
-
---------------------------------------------------
 
 ## 2. Export SSH_AUTH_SOCK everywhere
 
@@ -103,8 +87,6 @@ export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR:-/run/user/$(id -u)}/ssh-agent.socket"
 
 This prevents old or broken agents from hijacking your shell.
 
---------------------------------------------------
-
 ## 3. Tell KeePassXC to use that socket
 
 ![KeepassXC's SSH Agent Settings](/assets/posts/keepass_keyring/keepass_ssh_agent.png)
@@ -120,8 +102,6 @@ Set:
 (use your UID)
 
 KeePassXC is now a client of the real agent.
-
---------------------------------------------------
 
 ## 4. Enable Secret Service (Linux keyring)
 
@@ -139,26 +119,23 @@ KeePassXC now replaces:
 - kwallet
 - gcr
 
---------------------------------------------------
-
 ## 5. Verify
 
 You'll likely want to logout/login.
 
 ```
-
 echo $SSH_AUTH_SOCK
 ssh-add -l
 
 ```
 
 You should see:
-```
 
+```
 /run/user/UID/ssh-agent.socket
-
 ```
-and your keys listed.
+
+...and your keys listed.
 
 Don't forget to check the box to add a key to the keyring for the respective
 ssh key entries in KeepassXC!
@@ -167,27 +144,8 @@ If you have any troubles, it may just be that another keyring manager is being
 annoying. I found Gnoe's keyring manager was such a hinderence I uninstalled
 it.
 
---------------------------------------------------
+## Caveats
 
-## Result
-
-KeePassXC is now:
-- your SSH key loader
-- your password store
-- your Linux keyring
-- your single source of trust
-
-Works in:
-- Window Maker
-- i3
-- sway
-- Xmonad
-- bare X11
-- no GNOME
-- no KDE
-
-One agent.
-One socket.
-No magic.
+You might still get prompted by `gpg-agent`, this is a separate subsystem.
 
 Original content in gopherspace: [gopher://gopher.someodd.zip:70/1/phlog/keepass-keyring-manager.gopher.txt](gopher://gopher.someodd.zip:70/1/phlog/keepass-keyring-manager.gopher.txt)

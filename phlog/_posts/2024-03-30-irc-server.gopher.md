@@ -455,7 +455,7 @@ server {
     server_name irc.someodd.zip;
     root /var/www/irc.someodd.zip;
 
-    ssl_certificate /etc/letsencrypt/live/irc.someodd.zip/cert.pem;
+    ssl_certificate /etc/letsencrypt/live/irc.someodd.zip/fullchain.pem;
     ssl_certificate_key /etc/letsencrypt/live/irc.someodd.zip/privkey.pem;
     
     location /stats.json {
@@ -672,7 +672,7 @@ server {
     server_name znc.someodd.zip;
     access_log  /var/log/nginx/irc.log combined;
 
-    ssl_certificate /etc/letsencrypt/live/znc.someodd.zip/cert.pem;
+    ssl_certificate /etc/letsencrypt/live/znc.someodd.zip/fullchain.pem;
     ssl_certificate_key /etc/letsencrypt/live/znc.someodd.zip/privkey.pem;
 
     location / {

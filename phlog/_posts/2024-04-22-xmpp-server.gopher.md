@@ -152,7 +152,7 @@ server {
     server_name xmpp.someodd.zip;
     root /var/www/xmpp.someodd.zip;
 
-    #ssl_certificate /etc/letsencrypt/live/xmpp.someodd.zip/cert.pem;
+    #ssl_certificate /etc/letsencrypt/live/xmpp.someodd.zip/fullchain.pem;
     #ssl_certificate_key /etc/letsencrypt/live/xmpp.someodd.zip/privkey.pem;
 
     location / {

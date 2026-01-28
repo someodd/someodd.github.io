@@ -43,7 +43,7 @@ server {
     listen 8888 ssl;
     server_name gopher.someodd.zip;
 
-    ssl_certificate /etc/letsencrypt/live/gopher.someodd.zip/cert.pem;
+    ssl_certificate /etc/letsencrypt/live/gopher.someodd.zip/fullchain.pem;
     ssl_certificate_key /etc/letsencrypt/live/gopher.someodd.zip/privkey.pem;
 
     location ^~ /.well-known/acme-challenge/ {

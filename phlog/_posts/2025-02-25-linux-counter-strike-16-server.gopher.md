@@ -510,7 +510,7 @@ server {
     server_name cs16.someodd.zip;
     root /var/www/cs16.someodd.zip;
 
-    ssl_certificate /etc/letsencrypt/live/cs16.someodd.zip/cert.pem;
+    ssl_certificate /etc/letsencrypt/live/cs16.someodd.zip/fullchain.pem;
     ssl_certificate_key /etc/letsencrypt/live/cs16.someodd.zip/privkey.pem;
     
     location /stats.json {

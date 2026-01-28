@@ -6,7 +6,6 @@ image:
   thumbnail: /assets/posts/screwtape/lispy_gopher_show_flyer.jpg
 tags:
 - gopher
-- interviews
 - haskell
 - my_interviews
 title: I was interviewed on screwtape 2025-11-04 about Gopher, Haskell, Category Theory

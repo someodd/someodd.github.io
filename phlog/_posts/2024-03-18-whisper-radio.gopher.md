@@ -281,7 +281,7 @@ server {
     server_name radio.someodd.zip;
     root /var/www/radio.someodd.zip;
 
-    ssl_certificate /etc/letsencrypt/live/radio.someodd.zip/cert.pem;
+    ssl_certificate /etc/letsencrypt/live/radio.someodd.zip/fullchain.pem;
     ssl_certificate_key /etc/letsencrypt/live/radio.someodd.zip/privkey.pem;
   
     location ^~ /.well-known/acme-challenge/ {
