@@ -33,7 +33,6 @@ body.layout--frontpage{
 .poster-bg{
   position: absolute;
   inset: 0;
-  background-image: url("/assets/images/frontpage.png");
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;

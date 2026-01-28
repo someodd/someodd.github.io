@@ -185,7 +185,10 @@ const DAY    = 24 * HOUR;
 
     // Pick the element that actually covers the page background.
     // So-Simple often uses body; some themes use a wrapper.
-    const target = document.querySelector(".page-wrapper") || document.body;
+    const target = document.querySelector(".poster-bg") 
+            || document.querySelector(".cover-poster")
+            || document.querySelector(".page-wrapper")
+            || document.body;
 
     // Force override with !important
     target.style.setProperty("background-image", `url("${url}")`, "important");
