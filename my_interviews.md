@@ -1,7 +1,7 @@
 ---
 title: Interviews
 layout: tag
-permalink: /tags/interviews/
+permalink: /tags/my_interviews/
 taxonomy: my_interviews
 ---
 

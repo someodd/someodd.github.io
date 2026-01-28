@@ -7,6 +7,7 @@
       {% for tag in tags %}
         <li class="page-taxonomy">
           {%- assign tag_escaped = tag | uri_escape -%}
+
           {%- assign want1 = "/tags/" | append: tag_escaped -%}
           {%- assign want2 = want1 | append: "/" -%}
 
@@ -21,10 +22,16 @@
           {%- if found_url != "" -%}
             <a href="{{ found_url | relative_url }}" rel="tag">{{ tag }}</a>
           {%- else -%}
-            <a href="{{ want1 | relative_url }}" rel="tag">{{ tag }}</a>
+            {%- assign tags_index = site.tags_archive_path | default: "/tags/" -%}
+            {%- assign last_char = tags_index | slice: -1, 1 -%}
+            {%- if last_char != "/" -%}
+              {%- assign tags_index = tags_index | append: "/" -%}
+            {%- endif -%}
+            <a href="{{ tags_index | relative_url }}#{{ tag_escaped }}" rel="tag">{{ tag }}</a>
           {%- endif -%}
         </li>
       {% endfor %}
     </ul>
   </div>
 {% endif %}
+
